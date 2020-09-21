@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "0Ki/kjKT8EZ6dqy/IK9r/QyCJ+ntm/aKRUtxlkt7rx2E++gF3I0QI1obLUa8+++HKPKWHZtIOOoiEPFiB9n/2w==",
+  "success": true,
+  "projectFilePath": "/home/fabricio/AND/categorias-subcategorias-webapi/src/Domain/Domain.csproj",
+  "expectedPackageFiles": [
+    "/home/fabricio/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "/home/fabricio/.nuget/packages/netstandard.library/2.0.3/netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
