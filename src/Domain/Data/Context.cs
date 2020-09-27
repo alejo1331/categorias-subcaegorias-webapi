@@ -7,7 +7,10 @@ namespace Domain.Data
     public class Context : DbContext
     {
         public DbSet<Estado> Estados { get; set; }
+        public DbSet<TipoCategoria> TipoCategorias { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<Subcategoria> Subcategorias { get; set; }
+        public DbSet<TercerNivel> TercerNivels { get; set; }
         
         public Context(DbContextOptions<Context> options) : base(options)
         { }

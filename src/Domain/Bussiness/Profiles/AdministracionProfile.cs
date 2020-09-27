@@ -10,8 +10,10 @@ namespace Domain.Bussiness.Profiles
         public AdministracionProfile()
         {
             CreateMap<Estado, EstadoAM>();
-
+            CreateMap<TipoCategoria, TipoCategoriaAM>().ReverseMap();
             CreateMap<Categoria, CategoriaAM>().ReverseMap();
+            CreateMap<Subcategoria, SubcategoriaAM>().ReverseMap();
+            CreateMap<TercerNivel, TercerNivelAM>().ReverseMap();
         }
     }
 }

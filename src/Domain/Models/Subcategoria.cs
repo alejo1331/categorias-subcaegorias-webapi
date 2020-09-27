@@ -7,11 +7,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Models
 {
-    [Table("TBL_CATEGORIAS", Schema = "tramites_y_servicios")]
-    public class Categoria
+    [Table("TBL_SUBCATEGORIAS", Schema = "tramites_y_servicios")]
+    public class Subcategoria
     {
         [Key]
-        [Column("CATEGORIA_ID", TypeName = "int")]
+        [Column("SUBCATEGORIA_ID", TypeName = "int")]
         public int id { get; set; }
 
         [Column("NOMBRE", TypeName = "varchar(30)")]
@@ -21,17 +21,17 @@ namespace Domain.Models
         public string descripcion { get; set; }
 
         //Foreign Key
+
         [Column("CODIGO_ESTADO", TypeName = "int")]
         public int codigoEstado { get; set; }
         [ForeignKey("codigoEstado")]
         public Estado Estado { get; set; }
         //
 
-        [Column("ORDEN", TypeName = "tinyint")]
+        [Column("ORDEN", TypeName = "int")]
         public int orden { get; set; }
 
         [Column("DESCRIPCION_LARGA", TypeName = "varchar(300)")]
         public string descripcionLarga { get; set; }
-
     }
 }

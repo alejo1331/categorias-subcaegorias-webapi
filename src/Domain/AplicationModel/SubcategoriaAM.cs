@@ -1,6 +1,6 @@
 namespace Domain.AplicationModel
 {
-    public class CategoriaAM
+    public class SubcategoriaAM
     {
         public int id { get; set; }
 

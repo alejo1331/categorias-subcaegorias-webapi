@@ -14,14 +14,25 @@ namespace Domain.Bussiness.Interface
         EstadoAM AddEstado(EstadoAM objeto);
         EstadoAM getIdEstado(int id);
 
-        /*//TipoCategoria
+        //TipoCategoria
         IList<TipoCategoriaAM> AllTiposCtg();
-        void Add(TipoCategoriaAM objeto);
-        TipoCategoriaAM getTipoCtgId(int id);*/
+        TipoCategoriaAM Add(TipoCategoriaAM objeto);
+        TipoCategoriaAM getTipoCtgId(int id);
 
         //Categoria
         IList<CategoriaAM> AllCategorias();
         CategoriaAM Add(CategoriaAM objeto);
         CategoriaAM GetCategoria(int id);
+
+        //Subcategoria
+        IList<SubcategoriaAM> TodosSubcategoria();
+        SubcategoriaAM AgregarSubcategoria(SubcategoriaAM objeto);
+        SubcategoriaAM GetSubCategoria(int id);
+
+        //Tercer Nivel
+        IList<TercerNivelAM> TodosTercerNivel();
+        TercerNivelAM AgregarTercerNivel(TercerNivelAM objeto);
+        TercerNivelAM ObtenerTercerNivel(int id);
+
     }
 }

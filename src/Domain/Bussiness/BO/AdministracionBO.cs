@@ -63,6 +63,28 @@ namespace Domain.Bussiness.BO
             return mapper.Map<EstadoAM>(estado);
         }
 
+        //Tipo Categoria
+        public IList<TipoCategoriaAM> AllTiposCtg()
+        {
+            InterfaceTipoCategoria<TipoCategoria> repository = new RepositoryTipoCategoria(context);
+            return mapper.Map<List<TipoCategoriaAM>>(repository.All());
+        }
+
+        public TipoCategoriaAM Add(TipoCategoriaAM objeto){
+            TipoCategoria tipo = mapper.Map<TipoCategoria>(objeto);
+            InterfaceTipoCategoria<TipoCategoria> repository = new RepositoryTipoCategoria(context);
+            repository.Add(tipo);
+            this.context.SaveChanges();
+            TipoCategoriaAM nuevo = mapper.Map<TipoCategoriaAM>(tipo);
+            return nuevo;
+        }
+
+        public TipoCategoriaAM getTipoCtgId(int id){
+            InterfaceTipoCategoria<TipoCategoria> repository = new RepositoryTipoCategoria(context);
+            TipoCategoria tipo = repository.GetId(id);
+            return mapper.Map<TipoCategoriaAM>(tipo);
+        }
+
         //Categoria
         public IList<CategoriaAM> AllCategorias()
         {
@@ -80,10 +102,61 @@ namespace Domain.Bussiness.BO
             return categoria;
         }
 
-        public CategoriaAM GetCategoria(int id){
+        public CategoriaAM GetCategoria(int id)
+        {
             InterfaceCategoria<Categoria> repository = new RepositoryCategoria(context);
             CategoriaAM categoria = mapper.Map<CategoriaAM>(repository.GetId(id));
             return categoria;
+        }
+
+
+        //Subcategory
+        public IList<SubcategoriaAM> TodosSubcategoria()
+        {
+            InterfaceSubcategoria<Subcategoria> repository = new RepositorySubcategoria(context);
+            return mapper.Map<List<SubcategoriaAM>>(repository.All());
+        }
+
+        public SubcategoriaAM AgregarSubcategoria(SubcategoriaAM objeto)
+        {
+            Subcategoria subcategoria = mapper.Map<Subcategoria>(objeto);
+            InterfaceSubcategoria<Subcategoria> repository = new RepositorySubcategoria(context);
+            repository.Add(subcategoria);
+            this.context.SaveChanges();
+            SubcategoriaAM subcategoriaAM = mapper.Map<SubcategoriaAM>(subcategoria);
+            return subcategoriaAM;
+        }
+
+        public SubcategoriaAM GetSubCategoria(int id)
+        {
+            InterfaceSubcategoria<Subcategoria> repository = new RepositorySubcategoria(context);
+            SubcategoriaAM subcategoria = mapper.Map<SubcategoriaAM>(repository.GetId(id));
+            return subcategoria;
+        }
+
+
+        //Tercer Nivel
+        public IList<TercerNivelAM> TodosTercerNivel()
+        {
+            InterfaceTercerNivel<TercerNivel> repository = new RepositoryTercerNivel(context);
+            return mapper.Map<List<TercerNivelAM>>(repository.All());
+        }
+
+        public TercerNivelAM AgregarTercerNivel(TercerNivelAM objeto)
+        {
+            TercerNivel tercer = mapper.Map<TercerNivel>(objeto);
+            InterfaceTercerNivel<TercerNivel> repository = new RepositoryTercerNivel(context);
+            repository.Add(tercer);
+            this.context.SaveChanges();
+            TercerNivelAM tercerAM = mapper.Map<TercerNivelAM>(tercer);
+            return tercerAM;
+        }
+
+        public TercerNivelAM ObtenerTercerNivel(int id)
+        {
+            InterfaceTercerNivel<TercerNivel> repository = new RepositoryTercerNivel(context);
+            TercerNivelAM tercer = mapper.Map<TercerNivelAM>(repository.GetId(id));
+            return tercer;
         }
     }
 }
