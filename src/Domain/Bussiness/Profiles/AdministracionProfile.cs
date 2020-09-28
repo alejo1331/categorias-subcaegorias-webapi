@@ -14,6 +14,8 @@ namespace Domain.Bussiness.Profiles
             CreateMap<Categoria, CategoriaAM>().ReverseMap();
             CreateMap<Subcategoria, SubcategoriaAM>().ReverseMap();
             CreateMap<TercerNivel, TercerNivelAM>().ReverseMap();
+            CreateMap<TipoRecurso, TipoRecursoAM>().ReverseMap();
+            CreateMap<Recurso, RecursoAM>().ReverseMap();
         }
     }
 }

@@ -34,5 +34,13 @@ namespace Domain.Bussiness.Interface
         TercerNivelAM AgregarTercerNivel(TercerNivelAM objeto);
         TercerNivelAM ObtenerTercerNivel(int id);
 
+
+        //Tipo Recurso
+        IList<TipoRecursoAM> TodosTipoRecurso();
+        TipoRecursoAM AgregarTipoRecurso(TipoRecursoAM objeto);
+        TipoRecursoAM ObtenerTipoRecurso(int id);
+
+        //Recurso
+        IList<RecursoAM> TodosRecurso();
     }
 }

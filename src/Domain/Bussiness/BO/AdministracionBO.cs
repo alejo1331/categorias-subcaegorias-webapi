@@ -70,7 +70,8 @@ namespace Domain.Bussiness.BO
             return mapper.Map<List<TipoCategoriaAM>>(repository.All());
         }
 
-        public TipoCategoriaAM Add(TipoCategoriaAM objeto){
+        public TipoCategoriaAM Add(TipoCategoriaAM objeto)
+        {
             TipoCategoria tipo = mapper.Map<TipoCategoria>(objeto);
             InterfaceTipoCategoria<TipoCategoria> repository = new RepositoryTipoCategoria(context);
             repository.Add(tipo);
@@ -79,7 +80,8 @@ namespace Domain.Bussiness.BO
             return nuevo;
         }
 
-        public TipoCategoriaAM getTipoCtgId(int id){
+        public TipoCategoriaAM getTipoCtgId(int id)
+        {
             InterfaceTipoCategoria<TipoCategoria> repository = new RepositoryTipoCategoria(context);
             TipoCategoria tipo = repository.GetId(id);
             return mapper.Map<TipoCategoriaAM>(tipo);
@@ -157,6 +159,37 @@ namespace Domain.Bussiness.BO
             InterfaceTercerNivel<TercerNivel> repository = new RepositoryTercerNivel(context);
             TercerNivelAM tercer = mapper.Map<TercerNivelAM>(repository.GetId(id));
             return tercer;
+        }
+
+
+        //Tipo recurso
+        public IList<TipoRecursoAM> TodosTipoRecurso()
+        {
+            InterfaceTipoRecurso<TipoRecurso> repository = new RepositoryTipoRecurso(context);
+            return mapper.Map<List<TipoRecursoAM>>(repository.All());
+        }
+
+        public TipoRecursoAM AgregarTipoRecurso(TipoRecursoAM objeto)
+        {
+            TipoRecurso tipo = mapper.Map<TipoRecurso>(objeto);
+            InterfaceTipoRecurso<TipoRecurso> repository = new RepositoryTipoRecurso(context);
+            repository.Add(tipo);
+            this.context.SaveChanges();
+            TipoRecursoAM nuevo = mapper.Map<TipoRecursoAM>(tipo);
+            return nuevo;
+        }
+
+        public TipoRecursoAM ObtenerTipoRecurso(int id){
+            InterfaceTipoRecurso<TipoRecurso> repository = new RepositoryTipoRecurso(context);
+            TipoRecursoAM tipo = mapper.Map<TipoRecursoAM>(repository.GetId(id));
+            return tipo;
+        }
+
+
+        //Recurso
+        public IList<RecursoAM> TodosRecurso(){
+            InterfaceRecurso<Recurso> repository = new RepositoryRecurso(context);
+            return mapper.Map<List<RecursoAM>>(repository.All());
         }
     }
 }
