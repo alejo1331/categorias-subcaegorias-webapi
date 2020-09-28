@@ -19,15 +19,37 @@ namespace Domain.Repository
             return this.context.Categorias.ToList();
         }
 
-        public void Add(Categoria objeto){
-            if(objeto == null)
+        public void Add(Categoria objeto)
+        {
+            if (objeto == null)
                 throw new ArgumentNullException(nameof(objeto));
 
             this.context.Categorias.Add(objeto);
         }
 
-        public Categoria GetId(int id){
+        public Categoria GetId(int id)
+        {
             return context.Categorias.Where(s => s.id == id).FirstOrDefault();
+        }
+
+        public TipoCategoria getIdCategoria(int id)
+        {
+            VncCategoriaTipoCtg vinculo = this.context.VncCategoriaTipoCtgs.Where(s => s.idCategoria == id && s.tipoVinculo == 1).FirstOrDefault();
+            if (vinculo == null)
+                return null;
+            else
+            {
+                TipoCategoria tipo = this.context.TipoCategorias.Where(s => s.id == vinculo.idTipoCtg).FirstOrDefault();
+                return tipo;
+            }
+        }
+
+        public void update(Categoria objeto)
+        {
+            if (objeto == null)
+                throw new ArgumentNullException(nameof(objeto));
+                
+            this.context.Categorias.Update(objeto);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Domain.AplicationModel
 
         public string nombre { get; set; }
 
-        public string descripcion { get; set; }
+        public string descripcionCorta { get; set; }
 
         //Foreign Key
         public int codigoEstado { get; set; }
@@ -15,5 +15,6 @@ namespace Domain.AplicationModel
         public int orden { get; set; }
 
         public string descripcionLarga { get; set; }
+        public string icono { get; set; }
     }
 }

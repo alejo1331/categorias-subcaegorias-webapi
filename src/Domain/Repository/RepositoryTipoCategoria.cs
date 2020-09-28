@@ -30,8 +30,17 @@ namespace Domain.Repository
             this.context.TipoCategorias.Add(objeto);
         }
 
-        public TipoCategoria GetId(int id){
+        public TipoCategoria GetId(int id)
+        {
             return this.context.TipoCategorias.Where(s => s.id == id).FirstOrDefault();
+        }
+
+        public void update(TipoCategoria objeto)
+        {
+            if (objeto == null)
+                throw new ArgumentNullException(nameof(objeto));
+
+            this.context.TipoCategorias.Update(objeto);
         }
     }
 }

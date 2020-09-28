@@ -8,6 +8,7 @@ namespace Domain.Bussiness.Interface
 {
     public interface IAdministracionBO
     {
+        // Principales
 
         //Estado
         IList<EstadoAM> All();
@@ -18,11 +19,14 @@ namespace Domain.Bussiness.Interface
         IList<TipoCategoriaAM> AllTiposCtg();
         TipoCategoriaAM Add(TipoCategoriaAM objeto);
         TipoCategoriaAM getTipoCtgId(int id);
+        TipoCategoriaAM ActualizarTipoCategoria(TipoCategoriaAM objeto);
 
         //Categoria
         IList<CategoriaAM> AllCategorias();
-        CategoriaAM Add(CategoriaAM objeto);
+        CategoriaAM Add(CategoriaAM objeto, int id);
         CategoriaAM GetCategoria(int id);
+        TipoCategoriaAM ObtenerCategoriaTipoCtg(int id);    
+        CategoriaAM ActualizarCategoria(CategoriaAM objeto);    
 
         //Subcategoria
         IList<SubcategoriaAM> TodosSubcategoria();
@@ -42,5 +46,11 @@ namespace Domain.Bussiness.Interface
 
         //Recurso
         IList<RecursoAM> TodosRecurso();
+
+
+        //Vinculaciones
+        IList<VncCategoriaTipoCtgAM> TodosVncCategoriaTipoCtg();
+        VncCategoriaTipoCtgAM AgregarVncCategoriaTipoCtg(VncCategoriaTipoCtgAM objeto);
+        VncCategoriaTipoCtgAM ObtenerVncCategoriaTipoCtg(int id);
     }
 }

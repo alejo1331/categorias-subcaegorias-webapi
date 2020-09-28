@@ -37,6 +37,7 @@ namespace Domain.Bussiness.BO
             this.mapper = new Mapper(mapConfig);
         }
 
+        //Principlaes
 
         //EstadoAM
         //Listar los EstadoAM
@@ -87,6 +88,16 @@ namespace Domain.Bussiness.BO
             return mapper.Map<TipoCategoriaAM>(tipo);
         }
 
+        public TipoCategoriaAM ActualizarTipoCategoria(TipoCategoriaAM objeto)
+        {
+            InterfaceTipoCategoria<TipoCategoria> repository = new RepositoryTipoCategoria(context);
+            TipoCategoria tipo = mapper.Map<TipoCategoria>(objeto);
+            repository.update(tipo);
+            this.context.SaveChanges();
+            TipoCategoriaAM nuevo = mapper.Map<TipoCategoriaAM>(tipo);
+            return nuevo;
+        }
+
         //Categoria
         public IList<CategoriaAM> AllCategorias()
         {
@@ -94,13 +105,23 @@ namespace Domain.Bussiness.BO
             return mapper.Map<List<CategoriaAM>>(repository.All());
         }
 
-        public CategoriaAM Add(CategoriaAM objeto)
+        public CategoriaAM Add(CategoriaAM objeto, int id)
         {
+            //Creacion de la Categoria
             InterfaceCategoria<Categoria> repository = new RepositoryCategoria(context);
             Categoria estado = mapper.Map<Categoria>(objeto);
             repository.Add(estado);
             this.context.SaveChanges();
             CategoriaAM categoria = mapper.Map<CategoriaAM>(estado);
+
+            //Creacion del vinculo inicial
+            VncCategoriaTipoCtgAM vinculo = new VncCategoriaTipoCtgAM();
+            vinculo.idCategoria = estado.id;
+            vinculo.idTipoCtg = id;
+            vinculo.codigoEstado = 1;
+            vinculo.tipoVinculo = 1;
+            vinculo.user = 0;
+            this.AgregarVncCategoriaTipoCtg(vinculo);
             return categoria;
         }
 
@@ -111,6 +132,22 @@ namespace Domain.Bussiness.BO
             return categoria;
         }
 
+        public TipoCategoriaAM ObtenerCategoriaTipoCtg(int id)
+        {
+            InterfaceCategoria<Categoria> repository = new RepositoryCategoria(context);
+            TipoCategoriaAM tipo = mapper.Map<TipoCategoriaAM>(repository.getIdCategoria(id));
+            return tipo;
+        }
+
+        public CategoriaAM ActualizarCategoria(CategoriaAM objeto)
+        {
+            Categoria categoria = mapper.Map<Categoria>(objeto);
+            InterfaceCategoria<Categoria> repository = new RepositoryCategoria(context);
+            repository.update(categoria);
+            this.context.SaveChanges();
+            CategoriaAM categoriaAM = mapper.Map<CategoriaAM>(categoria);
+            return categoriaAM;
+        }
 
         //Subcategory
         public IList<SubcategoriaAM> TodosSubcategoria()
@@ -179,7 +216,8 @@ namespace Domain.Bussiness.BO
             return nuevo;
         }
 
-        public TipoRecursoAM ObtenerTipoRecurso(int id){
+        public TipoRecursoAM ObtenerTipoRecurso(int id)
+        {
             InterfaceTipoRecurso<TipoRecurso> repository = new RepositoryTipoRecurso(context);
             TipoRecursoAM tipo = mapper.Map<TipoRecursoAM>(repository.GetId(id));
             return tipo;
@@ -187,9 +225,35 @@ namespace Domain.Bussiness.BO
 
 
         //Recurso
-        public IList<RecursoAM> TodosRecurso(){
+        public IList<RecursoAM> TodosRecurso()
+        {
             InterfaceRecurso<Recurso> repository = new RepositoryRecurso(context);
             return mapper.Map<List<RecursoAM>>(repository.All());
+        }
+
+
+        //Vinculaciones
+
+        public IList<VncCategoriaTipoCtgAM> TodosVncCategoriaTipoCtg()
+        {
+            InterfaceVclCtgTipoCtg<VncCategoriaTipoCtg> repository = new RepositoryVncCategoriaTipoCtg(context);
+            return mapper.Map<List<VncCategoriaTipoCtgAM>>(repository.All());
+        }
+
+        public VncCategoriaTipoCtgAM AgregarVncCategoriaTipoCtg(VncCategoriaTipoCtgAM objeto)
+        {
+            VncCategoriaTipoCtg vinculo = mapper.Map<VncCategoriaTipoCtg>(objeto);
+            InterfaceVclCtgTipoCtg<VncCategoriaTipoCtg> repository = new RepositoryVncCategoriaTipoCtg(context);
+            repository.Add(vinculo);
+            this.context.SaveChanges();
+            VncCategoriaTipoCtgAM vinculoAM = mapper.Map<VncCategoriaTipoCtgAM>(objeto);
+            return vinculoAM;
+        }
+
+        public VncCategoriaTipoCtgAM ObtenerVncCategoriaTipoCtg(int id)
+        {
+            InterfaceVclCtgTipoCtg<VncCategoriaTipoCtg> repository = new RepositoryVncCategoriaTipoCtg(context);
+            return mapper.Map<VncCategoriaTipoCtgAM>(repository.GetId(id));
         }
     }
 }

@@ -6,6 +6,7 @@ namespace Domain.Data
 {
     public class Context : DbContext
     {
+        //Principales
         public DbSet<Estado> Estados { get; set; }
         public DbSet<TipoCategoria> TipoCategorias { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
@@ -13,7 +14,9 @@ namespace Domain.Data
         public DbSet<TercerNivel> TercerNivels { get; set; }
         public DbSet<TipoRecurso> TipoRecursos { get; set; }
         public DbSet<Recurso> Recursos { get; set; }
-        
+
+        //Vinculos
+        public DbSet<VncCategoriaTipoCtg> VncCategoriaTipoCtgs { get; set; }
         public Context(DbContextOptions<Context> options) : base(options)
         { }
 

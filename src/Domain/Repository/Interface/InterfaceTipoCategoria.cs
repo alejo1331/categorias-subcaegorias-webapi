@@ -11,5 +11,6 @@ namespace Domain.Repository.Interface
         IList<TipoCategoria> All();
         void Add(TipoCategoria objeto);
         TipoCategoria GetId(int id);
+        void update(TipoCategoria objeto);
     }
 }

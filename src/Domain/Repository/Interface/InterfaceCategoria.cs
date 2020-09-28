@@ -9,5 +9,7 @@ namespace Domain.Repository.Interface
         IList<Categoria> All();
         void Add(Categoria objeto);
         Categoria GetId(int id);
+        TipoCategoria getIdCategoria(int id);
+        void update(Categoria objeto);
     }
 }

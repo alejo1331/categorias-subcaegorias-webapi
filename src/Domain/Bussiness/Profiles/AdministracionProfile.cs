@@ -9,6 +9,7 @@ namespace Domain.Bussiness.Profiles
     {
         public AdministracionProfile()
         {
+            //Principales
             CreateMap<Estado, EstadoAM>();
             CreateMap<TipoCategoria, TipoCategoriaAM>().ReverseMap();
             CreateMap<Categoria, CategoriaAM>().ReverseMap();
@@ -16,6 +17,9 @@ namespace Domain.Bussiness.Profiles
             CreateMap<TercerNivel, TercerNivelAM>().ReverseMap();
             CreateMap<TipoRecurso, TipoRecursoAM>().ReverseMap();
             CreateMap<Recurso, RecursoAM>().ReverseMap();
+
+            //Vinculaciones
+            CreateMap<VncCategoriaTipoCtg, VncCategoriaTipoCtgAM>().ReverseMap();
         }
     }
 }
