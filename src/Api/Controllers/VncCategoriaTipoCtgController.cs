@@ -12,15 +12,16 @@ using Domain.Bussiness.BO;
 using Domain.Data;
 using Domain.AplicationModel;
 
+
 namespace Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class TipoCategoriaController : ControllerBase
+    public class VncCategoriaTipoCtgController : ControllerBase
     {
         private readonly IAdministracionBO administracionBO;
 
-        public TipoCategoriaController(Context context)
+        public VncCategoriaTipoCtgController(Context context)
         {
             administracionBO = new AdministracionBO(context);
         }
@@ -28,17 +29,17 @@ namespace Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return new JsonResult(this.administracionBO.AllTiposCtg());
+            return new JsonResult(this.administracionBO.TodosVncCategoriaTipoCtg());
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] TipoCategoriaAM objeto)
+        public IActionResult Post([FromBody] VncCategoriaTipoCtgAM objeto)
         {
             if (objeto == null)
             {
                 return BadRequest("Owner object is null");
             }
-            return new JsonResult(this.administracionBO.Add(objeto));
+            return new JsonResult(this.administracionBO.AgregarVncCategoriaTipoCtg(objeto));
         }
 
         [HttpGet("{id}")]
@@ -46,23 +47,12 @@ namespace Api.Controllers
         {
             JsonResult response = new JsonResult(false);
 
-            TipoCategoriaAM subcategoria = administracionBO.getTipoCtgId(id);
-            if (subcategoria != null)
+            VncCategoriaTipoCtgAM vinculo = administracionBO.ObtenerVncCategoriaTipoCtg(id);
+            if (vinculo != null)
             {
-                return new JsonResult(subcategoria);
+                return new JsonResult(vinculo);
             }
             return response;
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PuttipoCategoria(int id, [FromBody] TipoCategoriaAM objeto)
-        {
-            if (id != objeto.id)
-            {
-                return BadRequest();
-            }
-
-            return new JsonResult(this.administracionBO.ActualizarTipoCategoria(objeto));
         }
     }
 }
