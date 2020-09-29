@@ -12,5 +12,7 @@ namespace Domain.Repository.Interface
         IList<Subcategoria> All();
         void Add(Subcategoria objeto);
         Subcategoria GetId(int id);
+        Categoria GetCategoria(int id);
+        void Update(Subcategoria objeto);
     }
 }

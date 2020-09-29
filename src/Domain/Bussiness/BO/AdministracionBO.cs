@@ -105,7 +105,7 @@ namespace Domain.Bussiness.BO
             return mapper.Map<List<CategoriaAM>>(repository.All());
         }
 
-        public CategoriaAM Add(CategoriaAM objeto, int id)
+        public CategoriaAM Add(CategoriaAM objeto)
         {
             //Creacion de la Categoria
             InterfaceCategoria<Categoria> repository = new RepositoryCategoria(context);
@@ -117,7 +117,7 @@ namespace Domain.Bussiness.BO
             //Creacion del vinculo inicial
             VncCategoriaTipoCtgAM vinculo = new VncCategoriaTipoCtgAM();
             vinculo.idCategoria = estado.id;
-            vinculo.idTipoCtg = id;
+            vinculo.idTipoCtg = estado.padre;
             vinculo.codigoEstado = 1;
             vinculo.tipoVinculo = 1;
             vinculo.user = 0;
@@ -158,11 +158,20 @@ namespace Domain.Bussiness.BO
 
         public SubcategoriaAM AgregarSubcategoria(SubcategoriaAM objeto)
         {
+            //Creacion de la subcategoria
             Subcategoria subcategoria = mapper.Map<Subcategoria>(objeto);
             InterfaceSubcategoria<Subcategoria> repository = new RepositorySubcategoria(context);
             repository.Add(subcategoria);
             this.context.SaveChanges();
             SubcategoriaAM subcategoriaAM = mapper.Map<SubcategoriaAM>(subcategoria);
+
+            //Creacion de la vinculacion principal
+            VncSubcategoriaCategoriaAM vinculo = new VncSubcategoriaCategoriaAM();
+            vinculo.idCategoria = objeto.padre;
+            vinculo.idSubcategoria = subcategoria.id;
+            vinculo.tipoVinculo = 1;
+            vinculo.codigoEstado = 1;
+            this.AgregarVncCategoriaSubcategoria(vinculo);
             return subcategoriaAM;
         }
 
@@ -171,6 +180,22 @@ namespace Domain.Bussiness.BO
             InterfaceSubcategoria<Subcategoria> repository = new RepositorySubcategoria(context);
             SubcategoriaAM subcategoria = mapper.Map<SubcategoriaAM>(repository.GetId(id));
             return subcategoria;
+        }
+
+        public CategoriaAM GetCategoriaSubcatgoria(int id)
+        {
+            InterfaceSubcategoria<Subcategoria> repository = new RepositorySubcategoria(context);
+            return mapper.Map<CategoriaAM>(repository.GetCategoria(id));
+        }
+
+        public SubcategoriaAM ActualizarSubCategoria(SubcategoriaAM objeto)
+        {
+            Subcategoria subcategoria = mapper.Map<Subcategoria>(objeto);
+            InterfaceSubcategoria<Subcategoria> repository = new RepositorySubcategoria(context);
+            repository.Update(subcategoria);
+            this.context.SaveChanges();
+            SubcategoriaAM subcategoriaAM = mapper.Map<SubcategoriaAM>(subcategoria);
+            return subcategoriaAM;
         }
 
 
@@ -183,11 +208,21 @@ namespace Domain.Bussiness.BO
 
         public TercerNivelAM AgregarTercerNivel(TercerNivelAM objeto)
         {
+            //Creacion del objeto
             TercerNivel tercer = mapper.Map<TercerNivel>(objeto);
             InterfaceTercerNivel<TercerNivel> repository = new RepositoryTercerNivel(context);
             repository.Add(tercer);
             this.context.SaveChanges();
             TercerNivelAM tercerAM = mapper.Map<TercerNivelAM>(tercer);
+
+            //Creacion del viculo
+            VncTercerNvlSubcategoriaAM vinculo = new VncTercerNvlSubcategoriaAM();
+            vinculo.codigoEstado = 1;
+            vinculo.idTercerNvl = tercer.id;
+            vinculo.idSubcategoria = tercer.padre;
+            vinculo.vinculo = 1;
+            vinculo.user = 0;
+            this.AgregarVncTercerNvlSubcategoria(vinculo);
             return tercerAM;
         }
 
@@ -196,6 +231,22 @@ namespace Domain.Bussiness.BO
             InterfaceTercerNivel<TercerNivel> repository = new RepositoryTercerNivel(context);
             TercerNivelAM tercer = mapper.Map<TercerNivelAM>(repository.GetId(id));
             return tercer;
+        }
+
+        public SubcategoriaAM GetSubcategoriaTercerNvl(int id)
+        {
+            InterfaceTercerNivel<TercerNivel> repository = new RepositoryTercerNivel(context);
+            return mapper.Map<SubcategoriaAM>(repository.GetSubcategoria(id));
+        }
+
+        public TercerNivelAM ActualizarTercerNivel(TercerNivelAM objeto)
+        {
+            TercerNivel tercer = mapper.Map<TercerNivel>(objeto);
+            InterfaceTercerNivel<TercerNivel> repository = new RepositoryTercerNivel(context);
+            repository.Update(tercer);
+            this.context.SaveChanges();
+            TercerNivelAM tercerAM = mapper.Map<TercerNivelAM>(tercer);
+            return tercerAM;
         }
 
 
@@ -234,6 +285,8 @@ namespace Domain.Bussiness.BO
 
         //Vinculaciones
 
+        //Tipo Categoria ---- Categoria
+
         public IList<VncCategoriaTipoCtgAM> TodosVncCategoriaTipoCtg()
         {
             InterfaceVclCtgTipoCtg<VncCategoriaTipoCtg> repository = new RepositoryVncCategoriaTipoCtg(context);
@@ -254,6 +307,54 @@ namespace Domain.Bussiness.BO
         {
             InterfaceVclCtgTipoCtg<VncCategoriaTipoCtg> repository = new RepositoryVncCategoriaTipoCtg(context);
             return mapper.Map<VncCategoriaTipoCtgAM>(repository.GetId(id));
+        }
+
+
+        // Categoria ----- Subcategoria
+        public IList<VncSubcategoriaCategoriaAM> TodosVncCategoriaSubcategoria()
+        {
+            InterfaceVncSubcategoriaCategoria<VncSubcategoriaCategoria> repository = new RepositoryVncSubcategoriaCtg(context);
+            return mapper.Map<List<VncSubcategoriaCategoriaAM>>(repository.All());
+        }
+
+        public VncSubcategoriaCategoriaAM AgregarVncCategoriaSubcategoria(VncSubcategoriaCategoriaAM objeto)
+        {
+            VncSubcategoriaCategoria vinculo = mapper.Map<VncSubcategoriaCategoria>(objeto);
+            InterfaceVncSubcategoriaCategoria<VncSubcategoriaCategoria> repository = new RepositoryVncSubcategoriaCtg(context);
+            repository.Add(vinculo);
+            this.context.SaveChanges();
+            VncSubcategoriaCategoriaAM vinculoAM = mapper.Map<VncSubcategoriaCategoriaAM>(vinculo);
+            return vinculoAM;
+        }
+
+        public VncSubcategoriaCategoriaAM ObtenerVncCategoriaSubcategoria(int id)
+        {
+            InterfaceVncSubcategoriaCategoria<VncSubcategoriaCategoria> repository = new RepositoryVncSubcategoriaCtg(context);
+            return mapper.Map<VncSubcategoriaCategoriaAM>(repository.GetId(id));
+        }
+
+
+        //Subcategoria ---- tercer Nivel
+        public IList<VncTercerNvlSubcategoriaAM> TodosVncTercerNvlSubcategoria()
+        {
+            InterfaceVnlTercerNvlSct<VncTercerNvlSubcategoria> repository = new RepositroyvVnlTercerNvlSbt(context);
+            return mapper.Map<List<VncTercerNvlSubcategoriaAM>>(repository.All());
+        }
+
+        public VncTercerNvlSubcategoriaAM AgregarVncTercerNvlSubcategoria(VncTercerNvlSubcategoriaAM objeto)
+        {
+            VncTercerNvlSubcategoria vinculo = mapper.Map<VncTercerNvlSubcategoria>(objeto);
+            InterfaceVnlTercerNvlSct<VncTercerNvlSubcategoria> repository = new RepositroyvVnlTercerNvlSbt(context);
+            repository.Add(vinculo);
+            this.context.SaveChanges();
+            VncTercerNvlSubcategoriaAM vinculoAM = mapper.Map<VncTercerNvlSubcategoriaAM>(vinculo);
+            return vinculoAM;
+        }
+
+        public VncTercerNvlSubcategoriaAM ObtenerVncTercerNvlSubcategoria(int id)
+        {
+            InterfaceVnlTercerNvlSct<VncTercerNvlSubcategoria> repository = new RepositroyvVnlTercerNvlSbt(context);
+            return mapper.Map<VncTercerNvlSubcategoriaAM>(repository.GetId(id));
         }
     }
 }

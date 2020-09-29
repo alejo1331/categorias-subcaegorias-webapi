@@ -17,6 +17,7 @@ namespace Domain.AplicationModel
         //Foreign Key
 
         public int codigoEstado { get; set; }
+        public int padre { get; set; }
         //
 
         public int user { get; set; }

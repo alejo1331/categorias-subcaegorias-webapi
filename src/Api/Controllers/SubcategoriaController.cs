@@ -54,5 +54,30 @@ namespace Api.Controllers
             }
             return response;
         }
+
+        [HttpGet("Categoria/{id}")]
+        public IActionResult getTipoCategoriaId(int id)
+        {
+            JsonResult response = new JsonResult(false);
+
+            CategoriaAM categoria = administracionBO.GetCategoriaSubcatgoria(id);
+            if (categoria != null)
+            {
+                return new JsonResult(categoria);
+            }
+            return response;
+
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult PuttipoCategoria(int id, [FromBody] SubcategoriaAM objeto)
+        {
+            if (id != objeto.id)
+            {
+                return BadRequest();
+            }
+
+            return new JsonResult(this.administracionBO.ActualizarSubCategoria(objeto));
+        }
     }
 }

@@ -41,5 +41,30 @@ namespace Api.Controllers
             }
             return new JsonResult(this.administracionBO.AgregarTercerNivel(objeto));
         }
+
+        [HttpGet("Subcategoria/{id}")]
+        public IActionResult getTipoCategoriaId(int id)
+        {
+            JsonResult response = new JsonResult(false);
+
+            SubcategoriaAM categoria = administracionBO.GetSubcategoriaTercerNvl(id);
+            if (categoria != null)
+            {
+                return new JsonResult(categoria);
+            }
+            return response;
+
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult PuttipoCategoria(int id, [FromBody] TercerNivelAM objeto)
+        {
+            if (id != objeto.id)
+            {
+                return BadRequest();
+            }
+
+            return new JsonResult(this.administracionBO.ActualizarTercerNivel(objeto));
+        }
     }
 }

@@ -20,18 +20,23 @@ namespace Domain.Models
         [Column("DESCRIPCION", TypeName = "varchar(100)")]
         public string descripcionCorta { get; set; }
 
+        [Column("DESCRIPCION_LARGA", TypeName = "varchar(300)")]
+        public string descripcionLarga { get; set; }
+
         //Foreign Key
         [Column("CODIGO_ESTADO", TypeName = "int")]
         public int codigoEstado { get; set; }
         [ForeignKey("codigoEstado")]
         public Estado Estado { get; set; }
+
+        [Column("CTC_ID", TypeName = "int")]
+        public int padre { get; set; }
+        [ForeignKey("padre")]
+        public TipoCategoria TipoCategoria { get; set; }
         //
 
         [Column("ORDEN", TypeName = "tinyint")]
         public int orden { get; set; }
-
-        [Column("DESCRIPCION_LARGA", TypeName = "varchar(300)")]
-        public string descripcionLarga { get; set; }
 
         [Column("ICONO", TypeName = "varchar(200)")]
         public string icono { get; set; }

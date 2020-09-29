@@ -32,5 +32,26 @@ namespace Domain.Repository
         {
             return this.context.TercerNivels.Where(s => s.id == id).FirstOrDefault();
         }
+
+        public Subcategoria GetSubcategoria(int id)
+        {
+            TercerNivel tercer = this.context.TercerNivels.Where(s => s.id == id).FirstOrDefault();
+            if (tercer == null)
+                return null;
+
+            Subcategoria subcategoria = this.context.Subcategorias.Where(s => s.id == tercer.padre).FirstOrDefault();
+            if (subcategoria == null)
+                return null;
+
+            return subcategoria;
+        }
+
+        public void Update(TercerNivel objeto)
+        {
+            if (objeto == null)
+                throw new ArgumentNullException(nameof(objeto));
+
+            this.context.TercerNivels.Update(objeto);
+        }
     }
 }

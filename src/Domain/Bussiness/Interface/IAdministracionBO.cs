@@ -23,20 +23,24 @@ namespace Domain.Bussiness.Interface
 
         //Categoria
         IList<CategoriaAM> AllCategorias();
-        CategoriaAM Add(CategoriaAM objeto, int id);
+        CategoriaAM Add(CategoriaAM objeto);
         CategoriaAM GetCategoria(int id);
-        TipoCategoriaAM ObtenerCategoriaTipoCtg(int id);    
-        CategoriaAM ActualizarCategoria(CategoriaAM objeto);    
+        TipoCategoriaAM ObtenerCategoriaTipoCtg(int id);
+        CategoriaAM ActualizarCategoria(CategoriaAM objeto);
 
         //Subcategoria
         IList<SubcategoriaAM> TodosSubcategoria();
         SubcategoriaAM AgregarSubcategoria(SubcategoriaAM objeto);
         SubcategoriaAM GetSubCategoria(int id);
+        CategoriaAM GetCategoriaSubcatgoria(int id);
+        SubcategoriaAM ActualizarSubCategoria(SubcategoriaAM objeto);
 
         //Tercer Nivel
         IList<TercerNivelAM> TodosTercerNivel();
         TercerNivelAM AgregarTercerNivel(TercerNivelAM objeto);
         TercerNivelAM ObtenerTercerNivel(int id);
+        SubcategoriaAM GetSubcategoriaTercerNvl(int id);
+        TercerNivelAM ActualizarTercerNivel(TercerNivelAM objeto);
 
 
         //Tipo Recurso
@@ -49,8 +53,22 @@ namespace Domain.Bussiness.Interface
 
 
         //Vinculaciones
+        //Tipo categoria ---- Categoria
         IList<VncCategoriaTipoCtgAM> TodosVncCategoriaTipoCtg();
         VncCategoriaTipoCtgAM AgregarVncCategoriaTipoCtg(VncCategoriaTipoCtgAM objeto);
         VncCategoriaTipoCtgAM ObtenerVncCategoriaTipoCtg(int id);
+
+
+        //Categoria ----- Subcategoria
+        IList<VncSubcategoriaCategoriaAM> TodosVncCategoriaSubcategoria();
+        VncSubcategoriaCategoriaAM AgregarVncCategoriaSubcategoria(VncSubcategoriaCategoriaAM objeto);
+        VncSubcategoriaCategoriaAM ObtenerVncCategoriaSubcategoria(int id);
+
+
+        //Subcategoria ---- Tercer Nivel
+        IList<VncTercerNvlSubcategoriaAM> TodosVncTercerNvlSubcategoria();
+        VncTercerNvlSubcategoriaAM AgregarVncTercerNvlSubcategoria(VncTercerNvlSubcategoriaAM objeto);
+        VncTercerNvlSubcategoriaAM ObtenerVncTercerNvlSubcategoria(int id);
+
     }
 }

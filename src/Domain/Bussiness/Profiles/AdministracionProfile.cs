@@ -20,6 +20,8 @@ namespace Domain.Bussiness.Profiles
 
             //Vinculaciones
             CreateMap<VncCategoriaTipoCtg, VncCategoriaTipoCtgAM>().ReverseMap();
+            CreateMap<VncSubcategoriaCategoria, VncSubcategoriaCategoriaAM>().ReverseMap();
+            CreateMap<VncTercerNvlSubcategoria, VncTercerNvlSubcategoriaAM>().ReverseMap();
         }
     }
 }

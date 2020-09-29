@@ -34,14 +34,16 @@ namespace Domain.Repository
 
         public TipoCategoria getIdCategoria(int id)
         {
-            VncCategoriaTipoCtg vinculo = this.context.VncCategoriaTipoCtgs.Where(s => s.idCategoria == id && s.tipoVinculo == 1).FirstOrDefault();
-            if (vinculo == null)
+            Categoria categoria = context.Categorias.Where(s => s.id == id).FirstOrDefault();
+            if( categoria == null)
                 return null;
-            else
-            {
-                TipoCategoria tipo = this.context.TipoCategorias.Where(s => s.id == vinculo.idTipoCtg).FirstOrDefault();
-                return tipo;
-            }
+
+            TipoCategoria tipo = context.TipoCategorias.Where(s => s.id == categoria.padre).FirstOrDefault();
+
+            if( tipo == null)
+                return null;
+
+            return tipo;
         }
 
         public void update(Categoria objeto)

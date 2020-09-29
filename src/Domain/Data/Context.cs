@@ -17,6 +17,9 @@ namespace Domain.Data
 
         //Vinculos
         public DbSet<VncCategoriaTipoCtg> VncCategoriaTipoCtgs { get; set; }
+        public DbSet<VncSubcategoriaCategoria> VncSubcategoriaCategorias { get; set; }
+        public DbSet<VncTercerNvlSubcategoria> VncTercerNvlSubcategorias { get; set; }
+
         public Context(DbContextOptions<Context> options) : base(options)
         { }
 

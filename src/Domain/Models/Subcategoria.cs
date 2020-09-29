@@ -26,6 +26,11 @@ namespace Domain.Models
         public int codigoEstado { get; set; }
         [ForeignKey("codigoEstado")]
         public Estado Estado { get; set; }
+
+        [Column("CATEGORIA_ID", TypeName = "int")]
+        public int padre { get; set; }
+        [ForeignKey("padre")]
+        public Categoria Categoria { get; set; }
         //
 
         [Column("ORDEN", TypeName = "int")]

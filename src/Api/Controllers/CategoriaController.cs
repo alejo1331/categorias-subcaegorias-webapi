@@ -31,14 +31,14 @@ namespace Api.Controllers
             return new JsonResult(this.administracionBO.AllCategorias());
         }
 
-        [HttpPost("{id}")]
-        public IActionResult Post([FromBody] CategoriaAM objeto, int id)
+        [HttpPost]
+        public IActionResult Post([FromBody] CategoriaAM objeto)
         {
-            if (objeto == null && id >= 0)
+            if (objeto == null)
             {
                 return BadRequest("Owner object is null");
             }
-            return Ok(this.administracionBO.Add(objeto, id));
+            return Ok(this.administracionBO.Add(objeto));
         }
 
         [HttpGet("{id}")]
@@ -70,7 +70,7 @@ namespace Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PuttipoCategoria(int id, [FromBody] CategoriaAM objeto)
+        public IActionResult PuttipoCategoria(int id, [FromBody] CategoriaAM objeto)
         {
             if (id != objeto.id)
             {
