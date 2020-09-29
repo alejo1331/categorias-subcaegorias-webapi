@@ -282,6 +282,44 @@ namespace Domain.Bussiness.BO
             return mapper.Map<List<RecursoAM>>(repository.All());
         }
 
+        public RecursoAM AgregarRecurso(RecursoAM objeto)
+        {
+            return null;
+        }
+
+        //Tipo Parametro
+        public IList<TipoParametroAM> TodosTipoParamtero()
+        {
+            InterfaceTipoParametro<TipoParametro> repository = new RepositoryTipoParamtro(context);
+            return mapper.Map<List<TipoParametroAM>>(repository.All());
+        }
+
+        public TipoParametroAM AgregarTipoParametro(TipoParametroAM objeto)
+        {
+            TipoParametro tipo = mapper.Map<TipoParametro>(objeto);
+            InterfaceTipoParametro<TipoParametro> repository = new RepositoryTipoParamtro(context);
+            repository.Add(tipo);
+            this.context.SaveChanges();
+            TipoParametroAM tipoAM = mapper.Map<TipoParametroAM>(tipo);
+            return tipoAM;
+        }
+
+        public TipoParametroAM ObtenerTipoParametro(int id)
+        {
+            InterfaceTipoParametro<TipoParametro> repository = new RepositoryTipoParamtro(context);
+            return mapper.Map<TipoParametroAM>(repository.GetId(id));
+        }
+
+        public TipoParametroAM ActualizarTipoParametro(TipoParametroAM objeto)
+        {
+            TipoParametro tipo = mapper.Map<TipoParametro>(objeto);
+            InterfaceTipoParametro<TipoParametro> repository = new RepositoryTipoParamtro(context);
+            repository.Update(tipo);
+            this.context.SaveChanges();
+            TipoParametroAM tipoAM = mapper.Map<TipoParametroAM>(tipo);
+            return tipoAM;
+        }
+
 
         //Vinculaciones
 
@@ -355,6 +393,99 @@ namespace Domain.Bussiness.BO
         {
             InterfaceVnlTercerNvlSct<VncTercerNvlSubcategoria> repository = new RepositroyvVnlTercerNvlSbt(context);
             return mapper.Map<VncTercerNvlSubcategoriaAM>(repository.GetId(id));
+        }
+
+
+        //Tipo Categoria ---- Recurso
+        public IList<VncTipoCtgRecursoAM> TodosVncTipoCtgRecurso()
+        {
+            InterfaceVncTipoCtgRecurso<VncTipoCtgRecurso> repository = new RepositoryVncTipoCtgRecurso(context);
+            return mapper.Map<List<VncTipoCtgRecursoAM>>(repository.All());
+        }
+
+        public VncTipoCtgRecursoAM AgregarVncTipoCtgRecurso(VncTipoCtgRecursoAM objeto)
+        {
+            VncTipoCtgRecurso vinculo = mapper.Map<VncTipoCtgRecurso>(objeto);
+            InterfaceVncTipoCtgRecurso<VncTipoCtgRecurso> repository = new RepositoryVncTipoCtgRecurso(context);
+            repository.Add(vinculo);
+            this.context.SaveChanges();
+            VncTipoCtgRecursoAM vinculoAM = mapper.Map<VncTipoCtgRecursoAM>(vinculo);
+            return vinculoAM;
+        }
+
+        public VncTipoCtgRecursoAM ObtenerVncTipoCtgRecurso(int id)
+        {
+            InterfaceVncTipoCtgRecurso<VncTipoCtgRecurso> repository = new RepositoryVncTipoCtgRecurso(context);
+            return mapper.Map<VncTipoCtgRecursoAM>(repository.GetId(id));
+        }
+
+        //Categoria ---- Recurso
+        public IList<VncCategoriaRecursoAM> TodosVncCategoriaRecurso()
+        {
+            InterfaceVncCategoriaRecurso<VncCategoriaRecurso> repository = new RepositoryVncCategoriaRecurso(context);
+            return mapper.Map<List<VncCategoriaRecursoAM>>(repository.All());
+        }
+
+        public VncCategoriaRecursoAM AgregarVncCategoriaRecurso(VncCategoriaRecursoAM objeto)
+        {
+            VncCategoriaRecurso vinculo = mapper.Map<VncCategoriaRecurso>(objeto);
+            InterfaceVncCategoriaRecurso<VncCategoriaRecurso> repository = new RepositoryVncCategoriaRecurso(context);
+            repository.Add(vinculo);
+            this.context.SaveChanges();
+            VncCategoriaRecursoAM vinculoAM = mapper.Map<VncCategoriaRecursoAM>(vinculo);
+            return vinculoAM;
+        }
+
+        public VncCategoriaRecursoAM ObtenerVncCategoriaRecurso(int id)
+        {
+            InterfaceVncCategoriaRecurso<VncCategoriaRecurso> repository = new RepositoryVncCategoriaRecurso(context);
+            return mapper.Map<VncCategoriaRecursoAM>(repository.GetId(id));
+        }
+
+        //Subcategoria ---- Recurso
+        public IList<VncSubcategoriaRecursoAM> TodosVncSubcategoriaRecurso()
+        {
+            InterfaceVncSubcategoriaRecurso<VncSubcategoriaRecurso> repository = new RepositoryVncSubcategoriaRecurso(context);
+            return mapper.Map<List<VncSubcategoriaRecursoAM>>(repository.All());
+        }
+
+        public VncSubcategoriaRecursoAM AgregarVncSubcategoriaRecurso(VncSubcategoriaRecursoAM objeto)
+        {
+            VncSubcategoriaRecurso vinculo = mapper.Map<VncSubcategoriaRecurso>(objeto);
+            InterfaceVncSubcategoriaRecurso<VncSubcategoriaRecurso> repository = new RepositoryVncSubcategoriaRecurso(context);
+            repository.Add(vinculo);
+            this.context.SaveChanges();
+            VncSubcategoriaRecursoAM vinculoAM = mapper.Map<VncSubcategoriaRecursoAM>(vinculo);
+            return vinculoAM;
+        }
+
+        public VncSubcategoriaRecursoAM ObtenerVncSubcategoriaRecurso(int id)
+        {
+            InterfaceVncSubcategoriaRecurso<VncSubcategoriaRecurso> repository = new RepositoryVncSubcategoriaRecurso(context);
+            return mapper.Map<VncSubcategoriaRecursoAM>(repository.GetId(id));
+        }
+
+        //Tercer Nivel ---- Recurso
+        public IList<VncTercerNvlRecursoAM> TodosVncTercerNvlRecurso()
+        {
+            InterfaceVncTercerNvlRecurso<VncTercerNvlRecurso> repository = new RepositoryVncTercerNvlRecurso(context);
+            return mapper.Map<List<VncTercerNvlRecursoAM>>(repository.All());
+        }
+
+        public VncTercerNvlRecursoAM AgregarVncTercerNvlRecurso(VncTercerNvlRecursoAM objeto)
+        {
+            VncTercerNvlRecurso vinculo = mapper.Map<VncTercerNvlRecurso>(objeto);
+            InterfaceVncTercerNvlRecurso<VncTercerNvlRecurso> repository = new RepositoryVncTercerNvlRecurso(context);
+            repository.Add(vinculo);
+            this.context.SaveChanges();
+            VncTercerNvlRecursoAM vinculoAM = mapper.Map<VncTercerNvlRecursoAM>(vinculo);
+            return vinculoAM;
+        }
+
+        public VncTercerNvlRecursoAM ObtenerVncTercerNvlRecurso(int id)
+        {
+            InterfaceVncTercerNvlRecurso<VncTercerNvlRecurso> repository = new RepositoryVncTercerNvlRecurso(context);
+            return mapper.Map<VncTercerNvlRecursoAM>(repository.GetId(id));
         }
     }
 }

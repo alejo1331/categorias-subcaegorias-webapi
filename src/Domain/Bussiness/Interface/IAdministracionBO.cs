@@ -50,6 +50,13 @@ namespace Domain.Bussiness.Interface
 
         //Recurso
         IList<RecursoAM> TodosRecurso();
+        RecursoAM AgregarRecurso(RecursoAM objeto);
+
+        //Tipo Paramtero
+        IList<TipoParametroAM> TodosTipoParamtero();
+        TipoParametroAM AgregarTipoParametro(TipoParametroAM objeto);
+        TipoParametroAM ObtenerTipoParametro(int id);
+        TipoParametroAM ActualizarTipoParametro(TipoParametroAM objeto);
 
 
         //Vinculaciones
@@ -69,6 +76,27 @@ namespace Domain.Bussiness.Interface
         IList<VncTercerNvlSubcategoriaAM> TodosVncTercerNvlSubcategoria();
         VncTercerNvlSubcategoriaAM AgregarVncTercerNvlSubcategoria(VncTercerNvlSubcategoriaAM objeto);
         VncTercerNvlSubcategoriaAM ObtenerVncTercerNvlSubcategoria(int id);
+
+        //Tipo Categoria ---- Recurso
+        IList<VncTipoCtgRecursoAM> TodosVncTipoCtgRecurso();
+        VncTipoCtgRecursoAM AgregarVncTipoCtgRecurso(VncTipoCtgRecursoAM objeto);
+        VncTipoCtgRecursoAM ObtenerVncTipoCtgRecurso(int id);
+
+
+         //Categoria ---- Recurso
+        IList<VncCategoriaRecursoAM> TodosVncCategoriaRecurso();
+        VncCategoriaRecursoAM AgregarVncCategoriaRecurso(VncCategoriaRecursoAM objeto);
+        VncCategoriaRecursoAM ObtenerVncCategoriaRecurso(int id);
+
+        //Subcategoria ---- Recurso
+        IList<VncSubcategoriaRecursoAM> TodosVncSubcategoriaRecurso();
+        VncSubcategoriaRecursoAM AgregarVncSubcategoriaRecurso(VncSubcategoriaRecursoAM objeto);
+        VncSubcategoriaRecursoAM ObtenerVncSubcategoriaRecurso(int id);
+
+        //Tercer Nivel ---- Recurso
+        IList<VncTercerNvlRecursoAM> TodosVncTercerNvlRecurso();
+        VncTercerNvlRecursoAM AgregarVncTercerNvlRecurso(VncTercerNvlRecursoAM objeto);
+        VncTercerNvlRecursoAM ObtenerVncTercerNvlRecurso(int id);
 
     }
 }

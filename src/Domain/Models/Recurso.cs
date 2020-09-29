@@ -34,6 +34,13 @@ namespace Domain.Models
         [ForeignKey("tipoRecurso")]
         public TipoRecurso Tipo { get; set; }
 
+        
+        [Column("CTP_ID", TypeName = "int")]
+        public int? tipoParametro { get; set; }
+
+        [ForeignKey("tipoParametro")]
+        public TipoParametro TipoParametro { get; set; }
+
         //
 
         [Column("ORDEN", TypeName = "tinyint")]
@@ -41,5 +48,8 @@ namespace Domain.Models
 
         [Column("URL_RECURSO", TypeName = "varchar(400)")]
         public string url { get; set; }
+
+        [Column("PARAMETRO_ID", TypeName = "int")]
+        public int? idParametro { get; set; }
     }
 }

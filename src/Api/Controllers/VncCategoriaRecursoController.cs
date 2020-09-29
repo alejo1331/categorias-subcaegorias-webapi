@@ -17,11 +17,11 @@ namespace Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class VncTercerNvlSubcategoriaController : ControllerBase
+    public class VncCategoriaRecursoController : ControllerBase
     {
         private readonly IAdministracionBO administracionBO;
 
-        public VncTercerNvlSubcategoriaController(Context context)
+        public VncCategoriaRecursoController(Context context)
         {
             administracionBO = new AdministracionBO(context);
         }
@@ -29,25 +29,25 @@ namespace Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return new JsonResult(this.administracionBO.TodosVncTercerNvlSubcategoria());
+            return new JsonResult(this.administracionBO.TodosVncCategoriaRecurso());
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] VncTercerNvlSubcategoriaAM objeto)
+        public IActionResult Post([FromBody] VncCategoriaRecursoAM objeto)
         {
             if (objeto == null)
             {
                 return BadRequest("Owner object is null");
             }
-            return new JsonResult(this.administracionBO.AgregarVncTercerNvlSubcategoria(objeto));
+            return new JsonResult(this.administracionBO.AgregarVncCategoriaRecurso(objeto));
         }
 
         [HttpGet("{id}")]
-        public IActionResult getVncTercerNvlSubcategoria(int id)
+        public IActionResult getId(int id)
         {
             JsonResult response = new JsonResult(false);
 
-            VncTercerNvlSubcategoriaAM vinculo = administracionBO.ObtenerVncTercerNvlSubcategoria(id);
+            VncCategoriaRecursoAM vinculo = administracionBO.ObtenerVncCategoriaRecurso(id);
             if (vinculo != null)
             {
                 return new JsonResult(vinculo);

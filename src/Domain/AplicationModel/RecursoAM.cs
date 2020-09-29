@@ -14,10 +14,14 @@ namespace Domain.AplicationModel
 
         public int tipoRecurso { get; set; }
 
+        public int? tipoParametro { get; set; }
+
         //
 
         public int orden { get; set; }
 
         public string url { get; set; }
+
+        public int? idParametro { get; set; }
     }
 }

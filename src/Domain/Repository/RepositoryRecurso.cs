@@ -17,8 +17,17 @@ namespace Domain.Repository
             this.context = context;
         }
 
-        public IList<Recurso> All(){
+        public IList<Recurso> All()
+        {
             return this.context.Recursos.ToList();
+        }
+
+        public void Add(Recurso objeto)
+        {
+            if (objeto == null)
+                throw new ArgumentNullException(nameof(objeto));
+
+            this.context.Recursos.Add(objeto);
         }
     }
 }

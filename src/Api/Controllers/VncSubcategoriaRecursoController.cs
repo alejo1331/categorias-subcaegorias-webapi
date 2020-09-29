@@ -13,15 +13,16 @@ using Domain.Data;
 using Domain.AplicationModel;
 
 
+
 namespace Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class VncTercerNvlSubcategoriaController : ControllerBase
+    public class VncSubcategoriaRecursoController : ControllerBase
     {
         private readonly IAdministracionBO administracionBO;
 
-        public VncTercerNvlSubcategoriaController(Context context)
+        public VncSubcategoriaRecursoController(Context context)
         {
             administracionBO = new AdministracionBO(context);
         }
@@ -29,25 +30,25 @@ namespace Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return new JsonResult(this.administracionBO.TodosVncTercerNvlSubcategoria());
+            return new JsonResult(this.administracionBO.TodosVncSubcategoriaRecurso());
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] VncTercerNvlSubcategoriaAM objeto)
+        public IActionResult Post([FromBody] VncSubcategoriaRecursoAM objeto)
         {
             if (objeto == null)
             {
                 return BadRequest("Owner object is null");
             }
-            return new JsonResult(this.administracionBO.AgregarVncTercerNvlSubcategoria(objeto));
+            return new JsonResult(this.administracionBO.AgregarVncSubcategoriaRecurso(objeto));
         }
 
         [HttpGet("{id}")]
-        public IActionResult getVncTercerNvlSubcategoria(int id)
+        public IActionResult getId(int id)
         {
             JsonResult response = new JsonResult(false);
 
-            VncTercerNvlSubcategoriaAM vinculo = administracionBO.ObtenerVncTercerNvlSubcategoria(id);
+            VncSubcategoriaRecursoAM vinculo = administracionBO.ObtenerVncSubcategoriaRecurso(id);
             if (vinculo != null)
             {
                 return new JsonResult(vinculo);

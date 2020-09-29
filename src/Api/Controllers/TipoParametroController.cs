@@ -17,11 +17,11 @@ namespace Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class VncTercerNvlSubcategoriaController : ControllerBase
+    public class TipoParametroController : ControllerBase
     {
         private readonly IAdministracionBO administracionBO;
 
-        public VncTercerNvlSubcategoriaController(Context context)
+        public TipoParametroController(Context context)
         {
             administracionBO = new AdministracionBO(context);
         }
@@ -29,30 +29,41 @@ namespace Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return new JsonResult(this.administracionBO.TodosVncTercerNvlSubcategoria());
+            return new JsonResult(this.administracionBO.TodosTipoParamtero());
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] VncTercerNvlSubcategoriaAM objeto)
+        public IActionResult Post([FromBody] TipoParametroAM objeto)
         {
             if (objeto == null)
             {
                 return BadRequest("Owner object is null");
             }
-            return new JsonResult(this.administracionBO.AgregarVncTercerNvlSubcategoria(objeto));
+            return new JsonResult(this.administracionBO.AgregarTipoParametro(objeto));
         }
 
         [HttpGet("{id}")]
-        public IActionResult getVncTercerNvlSubcategoria(int id)
+        public IActionResult getTipoParametroId(int id)
         {
             JsonResult response = new JsonResult(false);
 
-            VncTercerNvlSubcategoriaAM vinculo = administracionBO.ObtenerVncTercerNvlSubcategoria(id);
-            if (vinculo != null)
+            TipoParametroAM parametro = administracionBO.ObtenerTipoParametro(id);
+            if (parametro != null)
             {
-                return new JsonResult(vinculo);
+                return new JsonResult(parametro);
             }
             return response;
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult PutTipoParametro(int id, [FromBody] TipoParametroAM objeto)
+        {
+            if (id != objeto.id)
+            {
+                return BadRequest();
+            }
+
+            return new JsonResult(this.administracionBO.ActualizarTipoParametro(objeto));
         }
     }
 }

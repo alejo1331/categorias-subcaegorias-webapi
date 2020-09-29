@@ -17,11 +17,16 @@ namespace Domain.Bussiness.Profiles
             CreateMap<TercerNivel, TercerNivelAM>().ReverseMap();
             CreateMap<TipoRecurso, TipoRecursoAM>().ReverseMap();
             CreateMap<Recurso, RecursoAM>().ReverseMap();
+            CreateMap<TipoParametro, TipoParametroAM>().ReverseMap();
 
             //Vinculaciones
             CreateMap<VncCategoriaTipoCtg, VncCategoriaTipoCtgAM>().ReverseMap();
             CreateMap<VncSubcategoriaCategoria, VncSubcategoriaCategoriaAM>().ReverseMap();
             CreateMap<VncTercerNvlSubcategoria, VncTercerNvlSubcategoriaAM>().ReverseMap();
+            CreateMap<VncTipoCtgRecurso, VncTipoCtgRecursoAM>().ReverseMap();
+            CreateMap<VncCategoriaRecurso, VncCategoriaRecursoAM>().ReverseMap();
+            CreateMap<VncSubcategoriaRecurso, VncSubcategoriaRecursoAM>().ReverseMap();
+            CreateMap<VncTercerNvlRecurso, VncTercerNvlRecursoAM>().ReverseMap();
         }
     }
 }
