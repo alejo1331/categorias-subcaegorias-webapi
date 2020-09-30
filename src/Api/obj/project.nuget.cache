@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "2TOuJvIha2tVDr0InlNQzzkECptXTXBKwEftw0c1IqNdkhG3CF/PbFbqwbJVj9Mxiwe6vPj59t6QxZ3U8D/7sg==",
+  "dgSpecHash": "HmDFYjBS6Qlf+wDCortRP/L9MF7YIb0Ox/FgkFVJ8dBUC1CLFib4Rn0hI0QeVdEWqMvxzWXLuooQJu43MQtJhA==",
   "success": true,
   "projectFilePath": "/home/fabricio/AND/categorias-subcategorias-webapi/src/Api/Api.csproj",
   "expectedPackageFiles": [
@@ -110,6 +110,7 @@
     "/home/fabricio/.nuget/packages/microsoft.net.http.headers/2.2.0/microsoft.net.http.headers.2.2.0.nupkg.sha512",
     "/home/fabricio/.nuget/packages/microsoft.netcore.platforms/2.0.0/microsoft.netcore.platforms.2.0.0.nupkg.sha512",
     "/home/fabricio/.nuget/packages/microsoft.netcore.targets/1.1.0/microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "/home/fabricio/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
     "/home/fabricio/.nuget/packages/microsoft.win32.primitives/4.3.0/microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "/home/fabricio/.nuget/packages/microsoft.win32.registry/4.5.0/microsoft.win32.registry.4.5.0.nupkg.sha512",
     "/home/fabricio/.nuget/packages/netstandard.library/1.6.1/netstandard.library.1.6.1.nupkg.sha512",
@@ -135,6 +136,9 @@
     "/home/fabricio/.nuget/packages/runtime.win-arm64.runtime.native.system.data.sqlclient.sni/4.4.0/runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "/home/fabricio/.nuget/packages/runtime.win-x64.runtime.native.system.data.sqlclient.sni/4.4.0/runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "/home/fabricio/.nuget/packages/runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0/runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "/home/fabricio/.nuget/packages/swashbuckle.aspnetcore.swagger/5.6.3/swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "/home/fabricio/.nuget/packages/swashbuckle.aspnetcore.swaggergen/5.6.3/swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "/home/fabricio/.nuget/packages/swashbuckle.aspnetcore.swaggerui/5.6.3/swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512",
     "/home/fabricio/.nuget/packages/system.appcontext/4.3.0/system.appcontext.4.3.0.nupkg.sha512",
     "/home/fabricio/.nuget/packages/system.buffers/4.5.0/system.buffers.4.5.0.nupkg.sha512",
     "/home/fabricio/.nuget/packages/system.collections/4.3.0/system.collections.4.3.0.nupkg.sha512",

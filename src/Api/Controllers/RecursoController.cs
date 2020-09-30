@@ -31,5 +31,40 @@ namespace Api.Controllers
         {
             return new JsonResult(this.administracionBO.TodosRecurso());
         }
+
+        [HttpPost]
+        public IActionResult Post([FromBody] RecursoAM objeto)
+        {
+            if (objeto == null)
+            {
+                return BadRequest("Owner object is null");
+            }
+            return Ok(this.administracionBO.AgregarRecurso(objeto));
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult getId(int id)
+        {
+            JsonResult response = new JsonResult(false);
+
+            RecursoAM recurso = administracionBO.ObtenerRecurso(id);
+            if (recurso != null)
+            {
+                return new JsonResult(recurso);
+            }
+            return response;
+
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody] RecursoAM objeto)
+        {
+            if (id != objeto.id)
+            {
+                return BadRequest();
+            }
+
+            return new JsonResult(this.administracionBO.ActualizarRecurso(objeto));
+        }
     }
 }

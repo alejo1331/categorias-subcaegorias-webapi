@@ -51,6 +51,8 @@ namespace Domain.Bussiness.Interface
         //Recurso
         IList<RecursoAM> TodosRecurso();
         RecursoAM AgregarRecurso(RecursoAM objeto);
+        RecursoAM ObtenerRecurso(int id);
+        RecursoAM ActualizarRecurso(RecursoAM objeto);
 
         //Tipo Paramtero
         IList<TipoParametroAM> TodosTipoParamtero();

@@ -284,7 +284,75 @@ namespace Domain.Bussiness.BO
 
         public RecursoAM AgregarRecurso(RecursoAM objeto)
         {
-            return null;
+            //Creacion de recurso
+            Recurso recurso = mapper.Map<Recurso>(objeto);
+            InterfaceRecurso<Recurso> repository = new RepositoryRecurso(context);
+            repository.Add(recurso);
+            this.context.SaveChanges();
+            Console.WriteLine("Tipo Parametro: " + recurso.parametro);
+            RecursoAM recursoAM = mapper.Map<RecursoAM>(recurso);
+
+            if (recurso.parametro != null && recurso.idParametro != null)
+            {
+                //Creacion del vinculo Inical
+                if (recurso.parametro == 1)
+                {
+                    VncTipoCtgRecursoAM vinculo = new VncTipoCtgRecursoAM();
+                    vinculo.idRecurso = recurso.id;
+                    vinculo.idTipoCtg = recurso.idParametro;
+                    vinculo.codigoEstado = 1;
+                    vinculo.user = 0;
+                    vinculo.vinculo = 1;
+                    this.AgregarVncTipoCtgRecurso(vinculo);
+                }
+                else if (recurso.parametro == 2)
+                {
+                    VncCategoriaRecursoAM vinculo = new VncCategoriaRecursoAM();
+                    vinculo.idRecurso = recurso.id;
+                    vinculo.idCtg = recurso.idParametro;
+                    vinculo.codigoEstado = 1;
+                    vinculo.user = 0;
+                    vinculo.vinculo = 1;
+                    this.AgregarVncCategoriaRecurso(vinculo);
+                }
+                else if (recurso.parametro == 3)
+                {
+                    VncSubcategoriaRecursoAM vinculo = new VncSubcategoriaRecursoAM();
+                    vinculo.idRecurso = recurso.id;
+                    vinculo.idSubCtg = recurso.idParametro;
+                    vinculo.codigoEstado = 1;
+                    vinculo.user = 0;
+                    vinculo.vinculo = 1;
+                    this.AgregarVncSubcategoriaRecurso(vinculo);
+                }
+                else if (recurso.parametro == 4)
+                {
+                    VncTercerNvlRecursoAM vinculo = new VncTercerNvlRecursoAM();
+                    vinculo.idRecurso = recurso.id;
+                    vinculo.idTercerNvl = recurso.idParametro;
+                    vinculo.codigoEstado = 1;
+                    vinculo.user = 0;
+                    vinculo.vinculo = 1;
+                    this.AgregarVncTercerNvlRecurso(vinculo);
+                }
+            }
+            return recursoAM;
+        }
+
+        public RecursoAM ObtenerRecurso(int id)
+        {
+            InterfaceRecurso<Recurso> repository = new RepositoryRecurso(context);
+            return mapper.Map<RecursoAM>(repository.GetId(id));
+        }
+
+        public RecursoAM ActualizarRecurso(RecursoAM objeto)
+        {
+            Recurso recurso = mapper.Map<Recurso>(objeto);
+            InterfaceRecurso<Recurso> repository = new RepositoryRecurso(context);
+            repository.Update(recurso);
+            this.context.SaveChanges();
+            RecursoAM recursoAM = mapper.Map<RecursoAM>(recurso);
+            return recursoAM;
         }
 
         //Tipo Parametro
