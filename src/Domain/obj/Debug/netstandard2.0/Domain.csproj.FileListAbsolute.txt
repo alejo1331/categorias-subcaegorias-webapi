@@ -1,0 +1,9 @@
+/home/fabricio/AND/categorias-subcategorias-webapi/src/Domain/bin/Debug/netstandard2.0/Domain.deps.json
+/home/fabricio/AND/categorias-subcategorias-webapi/src/Domain/bin/Debug/netstandard2.0/Domain.dll
+/home/fabricio/AND/categorias-subcategorias-webapi/src/Domain/bin/Debug/netstandard2.0/Domain.pdb
+/home/fabricio/AND/categorias-subcategorias-webapi/src/Domain/obj/Debug/netstandard2.0/Domain.csprojAssemblyReference.cache
+/home/fabricio/AND/categorias-subcategorias-webapi/src/Domain/obj/Debug/netstandard2.0/Domain.AssemblyInfoInputs.cache
+/home/fabricio/AND/categorias-subcategorias-webapi/src/Domain/obj/Debug/netstandard2.0/Domain.AssemblyInfo.cs
+/home/fabricio/AND/categorias-subcategorias-webapi/src/Domain/obj/Debug/netstandard2.0/Domain.csproj.CoreCompileInputs.cache
+/home/fabricio/AND/categorias-subcategorias-webapi/src/Domain/obj/Debug/netstandard2.0/Domain.dll
+/home/fabricio/AND/categorias-subcategorias-webapi/src/Domain/obj/Debug/netstandard2.0/Domain.pdb

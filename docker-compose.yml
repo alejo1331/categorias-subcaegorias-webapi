@@ -1,0 +1,15 @@
+version: '3.6'
+services:
+  webapi_dot_net:
+    container_name: Admin_ctg_webapi
+    build: .
+    ports:
+      - 8181:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    restart: always
+    networks:
+      - NETWORK_GOVCO_INTERNO
+networks:
+  NETWORK_GOVCO_INTERNO:
+    external: false
