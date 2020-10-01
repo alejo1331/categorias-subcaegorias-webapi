@@ -44,15 +44,13 @@ namespace Api.Controllers
         [HttpGet("{id}")]
         public IActionResult getPersonId(int id)
         {
-            JsonResult response = new JsonResult(false);
-
             EstadoAM estado = administracionBO.getIdEstado(id);
+
             if (estado != null)
             {
                 return new JsonResult(estado);
             }
-            return response;
-
+            return NotFound();
         }
     }
 }

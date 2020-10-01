@@ -405,7 +405,7 @@ namespace Domain.Bussiness.BO
             InterfaceVclCtgTipoCtg<VncCategoriaTipoCtg> repository = new RepositoryVncCategoriaTipoCtg(context);
             repository.Add(vinculo);
             this.context.SaveChanges();
-            VncCategoriaTipoCtgAM vinculoAM = mapper.Map<VncCategoriaTipoCtgAM>(objeto);
+            VncCategoriaTipoCtgAM vinculoAM = mapper.Map<VncCategoriaTipoCtgAM>(vinculo);
             return vinculoAM;
         }
 

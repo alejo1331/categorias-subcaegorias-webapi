@@ -35,24 +35,29 @@ namespace Api.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] TipoParametroAM objeto)
         {
-            if (objeto == null)
+            try
             {
-                return BadRequest("Owner object is null");
+                if (objeto == null)
+                {
+                    return BadRequest("Objeto nulo");
+                }
+                return new JsonResult(this.administracionBO.AgregarTipoParametro(objeto));
             }
-            return new JsonResult(this.administracionBO.AgregarTipoParametro(objeto));
+            catch (ArgumentNullException ex)
+            {
+                throw ex;
+            }
         }
 
         [HttpGet("{id}")]
         public IActionResult getTipoParametroId(int id)
         {
-            JsonResult response = new JsonResult(false);
-
             TipoParametroAM parametro = administracionBO.ObtenerTipoParametro(id);
             if (parametro != null)
             {
                 return new JsonResult(parametro);
             }
-            return response;
+            return NotFound();
         }
 
         [HttpPut("{id}")]
@@ -63,7 +68,15 @@ namespace Api.Controllers
                 return BadRequest();
             }
 
-            return new JsonResult(this.administracionBO.ActualizarTipoParametro(objeto));
+            try
+            {
+                return new JsonResult(this.administracionBO.ActualizarTipoParametro(objeto));
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw ex;
+            }
+            return NoContent();
         }
     }
 }

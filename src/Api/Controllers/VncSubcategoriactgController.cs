@@ -35,24 +35,29 @@ namespace Api.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] VncSubcategoriaCategoriaAM objeto)
         {
-            if (objeto == null)
+            try
             {
-                return BadRequest("Owner object is null");
+                if (objeto == null)
+                {
+                    return BadRequest("Objeto nulo");
+                }
+                return new JsonResult(this.administracionBO.AgregarVncCategoriaSubcategoria(objeto));
             }
-            return new JsonResult(this.administracionBO.AgregarVncCategoriaSubcategoria(objeto));
+            catch (ArgumentNullException ex)
+            {
+                throw ex;
+            }
         }
 
         [HttpGet("{id}")]
         public IActionResult getSubcategoriaId(int id)
         {
-            JsonResult response = new JsonResult(false);
-
             VncSubcategoriaCategoriaAM vinculo = administracionBO.ObtenerVncCategoriaSubcategoria(id);
             if (vinculo != null)
             {
                 return new JsonResult(vinculo);
             }
-            return response;
+            return NotFound();
         }
     }
 }

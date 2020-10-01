@@ -34,24 +34,30 @@ namespace Api.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] TipoCategoriaAM objeto)
         {
-            if (objeto == null)
+            try
             {
-                return BadRequest("Owner object is null");
+                if (objeto == null)
+                {
+                    return BadRequest("Objeto nulo");
+                }
+                return new JsonResult(this.administracionBO.Add(objeto));
             }
-            return new JsonResult(this.administracionBO.Add(objeto));
+            catch (ArgumentNullException ex)
+            {
+                throw ex;
+            }
         }
 
         [HttpGet("{id}")]
         public IActionResult getSubcategoriaId(int id)
         {
-            JsonResult response = new JsonResult(false);
 
             TipoCategoriaAM subcategoria = administracionBO.getTipoCtgId(id);
             if (subcategoria != null)
             {
                 return new JsonResult(subcategoria);
             }
-            return response;
+            return NotFound();
         }
 
         [HttpPut("{id}")]
@@ -62,7 +68,15 @@ namespace Api.Controllers
                 return BadRequest();
             }
 
-            return new JsonResult(this.administracionBO.ActualizarTipoCategoria(objeto));
+            try
+            {
+                return new JsonResult(this.administracionBO.ActualizarTipoCategoria(objeto));
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw ex;
+            }
+            return NoContent();
         }
     }
 }
