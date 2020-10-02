@@ -59,5 +59,11 @@ namespace Api.Controllers
             }
             return NotFound();
         }
+
+        [HttpGet("Subcategorias/{id}")]
+        public IActionResult getSubcategorias(int id)
+        {
+            return new JsonResult(this.administracionBO.TodosVncSubcategoria(id));
+        }
     }
 }

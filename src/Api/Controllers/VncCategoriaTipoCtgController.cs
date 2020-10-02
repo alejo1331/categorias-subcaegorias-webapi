@@ -59,5 +59,11 @@ namespace Api.Controllers
             }
             return NotFound();
         }
+
+        [HttpGet("Categorias/{id}")]
+        public IActionResult getCategoriaId(int id)
+        {
+            return new JsonResult(this.administracionBO.TodosVncCategorias(id));
+        }
     }
 }

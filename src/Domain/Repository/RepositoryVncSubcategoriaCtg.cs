@@ -34,5 +34,16 @@ namespace Domain.Repository
         {
             return this.context.VncSubcategoriaCategorias.Where(s => s.id == id).FirstOrDefault();
         }
+
+        public IList<Subcategoria> getSubcategory(int id)
+        {
+            var vinculos = this.context.VncSubcategoriaCategorias
+                                                    .Where(s => s.idCategoria == id && s.tipoVinculo == 1)
+                                                    .Select(s => s.idSubcategoria)
+                                                    .ToList();
+
+            IList<Subcategoria> subcategorias = this.context.Subcategorias.Where(s => vinculos.Contains(s.id)).ToList();
+            return subcategorias;
+        }
     }
 }

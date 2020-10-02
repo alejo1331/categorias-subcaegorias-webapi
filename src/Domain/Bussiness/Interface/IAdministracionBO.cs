@@ -66,12 +66,16 @@ namespace Domain.Bussiness.Interface
         IList<VncCategoriaTipoCtgAM> TodosVncCategoriaTipoCtg();
         VncCategoriaTipoCtgAM AgregarVncCategoriaTipoCtg(VncCategoriaTipoCtgAM objeto);
         VncCategoriaTipoCtgAM ObtenerVncCategoriaTipoCtg(int id);
+        IList<CategoriaAM> TodosVncCategorias(int id);
+        
 
 
         //Categoria ----- Subcategoria
         IList<VncSubcategoriaCategoriaAM> TodosVncCategoriaSubcategoria();
         VncSubcategoriaCategoriaAM AgregarVncCategoriaSubcategoria(VncSubcategoriaCategoriaAM objeto);
         VncSubcategoriaCategoriaAM ObtenerVncCategoriaSubcategoria(int id);
+
+        IList<SubcategoriaAM> TodosVncSubcategoria(int id);
 
 
         //Subcategoria ---- Tercer Nivel

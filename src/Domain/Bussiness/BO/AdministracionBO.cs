@@ -415,6 +415,12 @@ namespace Domain.Bussiness.BO
             return mapper.Map<VncCategoriaTipoCtgAM>(repository.GetId(id));
         }
 
+        public IList<CategoriaAM> TodosVncCategorias(int id)
+        {
+            InterfaceVclCtgTipoCtg<VncCategoriaTipoCtg> repository = new RepositoryVncCategoriaTipoCtg(context);
+            return mapper.Map<List<CategoriaAM>>(repository.getCategory(id));
+        }
+
 
         // Categoria ----- Subcategoria
         public IList<VncSubcategoriaCategoriaAM> TodosVncCategoriaSubcategoria()
@@ -437,6 +443,12 @@ namespace Domain.Bussiness.BO
         {
             InterfaceVncSubcategoriaCategoria<VncSubcategoriaCategoria> repository = new RepositoryVncSubcategoriaCtg(context);
             return mapper.Map<VncSubcategoriaCategoriaAM>(repository.GetId(id));
+        }
+
+        public IList<SubcategoriaAM> TodosVncSubcategoria(int id)
+        {
+            InterfaceVncSubcategoriaCategoria<VncSubcategoriaCategoria> repository = new RepositoryVncSubcategoriaCtg(context);
+            return mapper.Map<List<SubcategoriaAM>>(repository.getSubcategory(id));
         }
 
 
