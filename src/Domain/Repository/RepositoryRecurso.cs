@@ -29,5 +29,18 @@ namespace Domain.Repository
 
             this.context.Recursos.Add(objeto);
         }
+
+        public Recurso GetId(int id)
+        {
+            return this.context.Recursos.Where(s => s.id == id).FirstOrDefault();
+        }
+
+        public void Update(Recurso objeto)
+        {
+            if (objeto == null)
+                throw new ArgumentNullException(nameof(objeto));
+
+            this.context.Recursos.Update(objeto);
+        }
     }
 }

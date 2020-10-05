@@ -11,5 +11,7 @@ namespace Domain.Repository.Interface
     {
         IList<Recurso> All();
         void Add(Recurso objeto);
+        Recurso GetId(int id);
+        void Update(Recurso objeto);
     }
 }

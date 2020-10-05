@@ -35,24 +35,29 @@ namespace Api.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] TipoRecursoAM objeto)
         {
-            if (objeto == null)
+            try
             {
-                return BadRequest("Owner object is null");
+                if (objeto == null)
+                {
+                    return BadRequest("Objeto nulo");
+                }
+                return new JsonResult(this.administracionBO.AgregarTipoRecurso(objeto));
             }
-            return new JsonResult(this.administracionBO.AgregarTipoRecurso(objeto));
+            catch (ArgumentNullException ex)
+            {
+                throw ex;
+            }
         }
 
         [HttpGet("{id}")]
         public IActionResult getSubcategoriaId(int id)
         {
-            JsonResult response = new JsonResult(false);
-
             TipoRecursoAM tipo = administracionBO.ObtenerTipoRecurso(id);
             if (tipo != null)
             {
                 return new JsonResult(tipo);
             }
-            return response;
+            return NotFound();
         }
     }
 }

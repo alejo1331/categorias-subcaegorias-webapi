@@ -36,11 +36,18 @@ namespace Api.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] VncTipoCtgRecursoAM objeto)
         {
-            if (objeto == null)
+            try
             {
-                return BadRequest("Owner object is null");
+                if (objeto == null)
+                {
+                    return BadRequest("Owner object is null");
+                }
+                return new JsonResult(this.administracionBO.AgregarVncTipoCtgRecurso(objeto));
             }
-            return new JsonResult(this.administracionBO.AgregarVncTipoCtgRecurso(objeto));
+            catch (ArgumentNullException ex)
+            {
+                throw ex;
+            }
         }
 
         [HttpGet("{id}")]

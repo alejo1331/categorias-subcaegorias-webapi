@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Domain.Repository.Interface;
 using Domain.Models;
@@ -22,6 +23,9 @@ namespace Domain.Repository
 
         public void Add(Estado objeto)
         {
+            if (objeto == null)
+                throw new ArgumentNullException(nameof(objeto));
+
             this.context.Estados.Add(objeto);
         }
 

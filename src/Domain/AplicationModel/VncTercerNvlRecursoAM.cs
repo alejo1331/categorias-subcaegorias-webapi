@@ -7,7 +7,7 @@ namespace Domain.AplicationModel
         //Foreign Key
 
         public int idRecurso { get; set; }
-        public int idTercerNvl { get; set; }
+        public int? idTercerNvl { get; set; }
         public int codigoEstado { get; set; }
 
         //

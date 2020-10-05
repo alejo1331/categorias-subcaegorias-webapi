@@ -37,7 +37,7 @@ namespace Api.Controllers
         {
             if (objeto == null)
             {
-                return BadRequest("Owner object is null");
+                return BadRequest("Objeto es nulo");
             }
             return new JsonResult(this.administracionBO.AgregarSubcategoria(objeto));
         }
@@ -45,28 +45,23 @@ namespace Api.Controllers
         [HttpGet("{id}")]
         public IActionResult getSubcategoriaId(int id)
         {
-            JsonResult response = new JsonResult(false);
-
             SubcategoriaAM subcategoria = administracionBO.GetSubCategoria(id);
             if (subcategoria != null)
             {
                 return new JsonResult(subcategoria);
             }
-            return response;
+            return NotFound();
         }
 
         [HttpGet("Categoria/{id}")]
         public IActionResult getTipoCategoriaId(int id)
         {
-            JsonResult response = new JsonResult(false);
-
             CategoriaAM categoria = administracionBO.GetCategoriaSubcatgoria(id);
             if (categoria != null)
             {
                 return new JsonResult(categoria);
             }
-            return response;
-
+            return NotFound();
         }
 
         [HttpPut("{id}")]
@@ -77,7 +72,15 @@ namespace Api.Controllers
                 return BadRequest();
             }
 
-            return new JsonResult(this.administracionBO.ActualizarSubCategoria(objeto));
+            try
+            {
+                return new JsonResult(this.administracionBO.ActualizarSubCategoria(objeto));
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw ex;
+            }
+            return NoContent();
         }
     }
 }

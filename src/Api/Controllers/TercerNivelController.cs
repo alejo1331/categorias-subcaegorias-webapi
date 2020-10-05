@@ -37,34 +37,51 @@ namespace Api.Controllers
         {
             if (objeto == null)
             {
-                return BadRequest("Owner object is null");
+                return BadRequest("Objeto nulo");
             }
             return new JsonResult(this.administracionBO.AgregarTercerNivel(objeto));
         }
 
-        [HttpGet("Subcategoria/{id}")]
-        public IActionResult getTipoCategoriaId(int id)
+        [HttpGet("{id}")]
+        public IActionResult getId(int id)
         {
-            JsonResult response = new JsonResult(false);
+            TercerNivelAM tercer = administracionBO.ObtenerTercerNivel(id);
+            if (tercer != null)
+            {
+                return new JsonResult(tercer);
+            }
+            return NotFound();
+        }
 
+        [HttpGet("Subcategoria/{id}")]
+        public IActionResult getSubcategoriaId(int id)
+        {
             SubcategoriaAM categoria = administracionBO.GetSubcategoriaTercerNvl(id);
             if (categoria != null)
             {
                 return new JsonResult(categoria);
             }
-            return response;
-
+            return NotFound();
         }
 
         [HttpPut("{id}")]
-        public IActionResult PuttipoCategoria(int id, [FromBody] TercerNivelAM objeto)
+        public IActionResult Put(int id, [FromBody] TercerNivelAM objeto)
         {
             if (id != objeto.id)
             {
                 return BadRequest();
             }
 
-            return new JsonResult(this.administracionBO.ActualizarTercerNivel(objeto));
+            try
+            {
+                return new JsonResult(this.administracionBO.ActualizarTercerNivel(objeto));
+
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw ex;
+            }
+            return NoContent();
         }
     }
 }

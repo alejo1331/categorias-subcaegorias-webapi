@@ -36,9 +36,9 @@ namespace Domain.Models
 
         
         [Column("CTP_ID", TypeName = "int")]
-        public int? tipoParametro { get; set; }
+        public int? parametro { get; set; }
 
-        [ForeignKey("tipoParametro")]
+        [ForeignKey("parametro")]
         public TipoParametro TipoParametro { get; set; }
 
         //

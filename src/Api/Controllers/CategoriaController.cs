@@ -34,39 +34,40 @@ namespace Api.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] CategoriaAM objeto)
         {
-            if (objeto == null)
+            try
             {
-                return BadRequest("Owner object is null");
+                if (objeto == null)
+                {
+                    return BadRequest("Objeto Nulo");
+                }
+                return Ok(this.administracionBO.Add(objeto));
             }
-            return Ok(this.administracionBO.Add(objeto));
+            catch (ArgumentNullException ex)
+            {
+                throw ex;
+            }
         }
 
         [HttpGet("{id}")]
-        public IActionResult getCategoriaId(int id)
+        public IActionResult getId(int id)
         {
-            JsonResult response = new JsonResult(false);
-
             CategoriaAM categoria = administracionBO.GetCategoria(id);
             if (categoria != null)
             {
                 return new JsonResult(categoria);
             }
-            return response;
-
+            return NotFound();
         }
 
         [HttpGet("TipoCategoria/{id}")]
         public IActionResult getTipoCategoriaId(int id)
         {
-            JsonResult response = new JsonResult(false);
-
             TipoCategoriaAM tipo = administracionBO.ObtenerCategoriaTipoCtg(id);
             if (tipo != null)
             {
                 return new JsonResult(tipo);
             }
-            return response;
-
+            return NotFound();
         }
 
         [HttpPut("{id}")]
@@ -77,7 +78,15 @@ namespace Api.Controllers
                 return BadRequest();
             }
 
-            return new JsonResult(this.administracionBO.ActualizarCategoria(objeto));
+            try
+            {
+                return new JsonResult(this.administracionBO.ActualizarCategoria(objeto));
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw ex;
+            }
+            return NoContent();
         }
     }
 }

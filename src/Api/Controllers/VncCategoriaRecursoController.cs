@@ -35,11 +35,18 @@ namespace Api.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] VncCategoriaRecursoAM objeto)
         {
-            if (objeto == null)
+            try
             {
-                return BadRequest("Owner object is null");
+                if (objeto == null)
+                {
+                    return BadRequest("Objeto nulo");
+                }
+                return new JsonResult(this.administracionBO.AgregarVncCategoriaRecurso(objeto));
             }
-            return new JsonResult(this.administracionBO.AgregarVncCategoriaRecurso(objeto));
+            catch (ArgumentNullException ex)
+            {
+                throw ex;
+            }
         }
 
         [HttpGet("{id}")]
@@ -52,7 +59,7 @@ namespace Api.Controllers
             {
                 return new JsonResult(vinculo);
             }
-            return response;
+            return NotFound();
         }
     }
 }
