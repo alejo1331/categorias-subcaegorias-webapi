@@ -30,8 +30,33 @@ namespace Domain.Repository
             this.context.VncTercerNvlSubcategorias.Add(objeto);
         }
 
-        public VncTercerNvlSubcategoria GetId(int id){
+        public VncTercerNvlSubcategoria GetId(int id)
+        {
             return this.context.VncTercerNvlSubcategorias.Where(s => s.id == id).FirstOrDefault();
+        }
+
+        public VncTercerNvlSubcategoria GetId(int idpadre, int idhijo)
+        {
+            return this.context.VncTercerNvlSubcategorias.Where(s => s.idSubcategoria == idpadre && s.idTercerNvl == idhijo && s.vinculo == 1).FirstOrDefault();
+        }
+
+        public void Update(VncTercerNvlSubcategoria objeto)
+        {
+            if (objeto == null)
+                throw new ArgumentNullException(nameof(objeto));
+
+            this.context.VncTercerNvlSubcategorias.Update(objeto);
+        }
+
+        public IList<TercerNivel> getTercerNivel(int id)
+        {
+            var vinculos = this.context.VncTercerNvlSubcategorias
+                                                    .Where(s => s.idSubcategoria == id && s.vinculo == 1)
+                                                    .Select(s => s.idTercerNvl)
+                                                    .ToList();
+
+            IList<TercerNivel> lista = this.context.TercerNivels.Where(s => vinculos.Contains(s.id)).ToList();
+            return lista;
         }
     }
 }

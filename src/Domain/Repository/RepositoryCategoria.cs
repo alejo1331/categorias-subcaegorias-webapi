@@ -35,22 +35,27 @@ namespace Domain.Repository
         public TipoCategoria getIdCategoria(int id)
         {
             Categoria categoria = context.Categorias.Where(s => s.id == id).FirstOrDefault();
-            if( categoria == null)
+            if (categoria == null)
                 return null;
 
             TipoCategoria tipo = context.TipoCategorias.Where(s => s.id == categoria.padre).FirstOrDefault();
 
-            if( tipo == null)
+            if (tipo == null)
                 return null;
 
             return tipo;
+        }
+
+        public IList<Categoria> Search(string data)
+        {
+            return this.context.Categorias.Where(s => s.nombre.Contains(data) || s.descripcionCorta.Contains(data) || s.descripcionLarga.Contains(data)).ToList(); ;
         }
 
         public void update(Categoria objeto)
         {
             if (objeto == null)
                 throw new ArgumentNullException(nameof(objeto));
-                
+
             this.context.Categorias.Update(objeto);
         }
     }

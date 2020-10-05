@@ -46,6 +46,11 @@ namespace Domain.Repository
             return subcategoria;
         }
 
+        public IList<TercerNivel> Search(string data)
+        {
+            return this.context.TercerNivels.Where(s => s.nombre.Contains(data) || s.descripcionCorta.Contains(data) || s.descripcionLarga.Contains(data)).ToList();
+        }
+
         public void Update(TercerNivel objeto)
         {
             if (objeto == null)

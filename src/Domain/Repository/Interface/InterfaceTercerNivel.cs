@@ -14,5 +14,6 @@ namespace Domain.Repository.Interface
         TercerNivel GetId(int id);
         Subcategoria GetSubcategoria(int id);
         void Update(TercerNivel objeto);
+        IList<TercerNivel> Search(string data);
     }
 }

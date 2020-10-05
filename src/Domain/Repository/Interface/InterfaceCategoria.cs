@@ -11,5 +11,6 @@ namespace Domain.Repository.Interface
         Categoria GetId(int id);
         TipoCategoria getIdCategoria(int id);
         void update(Categoria objeto);
+        IList<Categoria> Search(string data);
     }
 }

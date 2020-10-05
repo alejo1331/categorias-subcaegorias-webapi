@@ -98,6 +98,12 @@ namespace Domain.Bussiness.BO
             return nuevo;
         }
 
+        public IList<TipoCategoriaAM> SearchTiposCtg(string data)
+        {
+            InterfaceTipoCategoria<TipoCategoria> repository = new RepositoryTipoCategoria(context);
+            return mapper.Map<List<TipoCategoriaAM>>(repository.Search(data));
+        }
+
         //Categoria
         public IList<CategoriaAM> AllCategorias()
         {
@@ -149,6 +155,12 @@ namespace Domain.Bussiness.BO
             return categoriaAM;
         }
 
+        public IList<CategoriaAM> SearchCategorias(string data)
+        {
+            InterfaceCategoria<Categoria> repository = new RepositoryCategoria(context);
+            return mapper.Map<List<CategoriaAM>>(repository.Search(data));
+        }
+
         //Subcategory
         public IList<SubcategoriaAM> TodosSubcategoria()
         {
@@ -197,6 +209,12 @@ namespace Domain.Bussiness.BO
             SubcategoriaAM subcategoriaAM = mapper.Map<SubcategoriaAM>(subcategoria);
             return subcategoriaAM;
         }
+
+        public IList<SubcategoriaAM> SearchSubcategoria(string data)
+        {
+            InterfaceSubcategoria<Subcategoria> repository = new RepositorySubcategoria(context);
+            return mapper.Map<List<SubcategoriaAM>>(repository.Search(data));
+        }        
 
 
         //Tercer Nivel
@@ -247,6 +265,12 @@ namespace Domain.Bussiness.BO
             this.context.SaveChanges();
             TercerNivelAM tercerAM = mapper.Map<TercerNivelAM>(tercer);
             return tercerAM;
+        }
+
+        public IList<TercerNivelAM> SearchTercerNivel(string data)
+        {
+            InterfaceTercerNivel<TercerNivel> repository = new RepositoryTercerNivel(context);
+            return mapper.Map<List<TercerNivelAM>>(repository.Search(data));
         }
 
 
@@ -421,6 +445,24 @@ namespace Domain.Bussiness.BO
             return mapper.Map<List<CategoriaAM>>(repository.getCategory(id));
         }
 
+        public VncCategoriaTipoCtgAM DesvncCategoriaTipoCtg(int idpadre, int idhijo)
+        {
+            InterfaceVclCtgTipoCtg<VncCategoriaTipoCtg> repository = new RepositoryVncCategoriaTipoCtg(context);
+            VncCategoriaTipoCtg vinculo = repository.GetId(idpadre, idhijo);
+            vinculo.tipoVinculo = 0;
+            this.context.SaveChanges();
+            return mapper.Map<VncCategoriaTipoCtgAM>(vinculo);
+        }
+
+        public void DesvncCategoriaTipo(DvcCategoriaTipoCtg objeto)
+        {
+            string[] ids = objeto.idscategorias.Split(',');
+            foreach (string id in ids)
+            {
+                DesvncCategoriaTipoCtg(objeto.idTipoCategoria, int.Parse(id));
+            }
+        }
+
 
         // Categoria ----- Subcategoria
         public IList<VncSubcategoriaCategoriaAM> TodosVncCategoriaSubcategoria()
@@ -473,6 +515,34 @@ namespace Domain.Bussiness.BO
         {
             InterfaceVnlTercerNvlSct<VncTercerNvlSubcategoria> repository = new RepositroyvVnlTercerNvlSbt(context);
             return mapper.Map<VncTercerNvlSubcategoriaAM>(repository.GetId(id));
+        }
+
+        public VncTercerNvlSubcategoriaAM DesvncTercerNvlSubcategoria(int idpadre, int idhijo)
+        {
+            InterfaceVnlTercerNvlSct<VncTercerNvlSubcategoria> repository = new RepositroyvVnlTercerNvlSbt(context);
+            VncTercerNvlSubcategoria vinculo = repository.GetId(idpadre, idhijo);
+            if (vinculo == null)
+                return null;
+
+            vinculo.vinculo = 0;
+            repository.Update(vinculo);
+            this.context.SaveChanges();
+            return mapper.Map<VncTercerNvlSubcategoriaAM>(vinculo);
+        }
+
+        public void DesvncTercerNvlSbc(DvcTercerNivelSct objeto)
+        {
+            string[] ids = objeto.idsTercerNivel.Split(',');
+            foreach (string id in ids)
+            {
+                DesvncTercerNvlSubcategoria(objeto.idSubcategoria, int.Parse(id));
+            }
+        }
+
+        public IList<TercerNivelAM> TodosVncTercerNivel(int id)
+        {
+            InterfaceVnlTercerNvlSct<VncTercerNvlSubcategoria> repository = new RepositroyvVnlTercerNvlSbt(context);
+            return mapper.Map<List<TercerNivelAM>>(repository.getTercerNivel(id));
         }
 
 

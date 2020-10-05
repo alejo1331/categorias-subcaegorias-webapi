@@ -12,6 +12,8 @@ namespace Domain.Repository.Interface
         IList<VncCategoriaTipoCtg> All();
         void Add(VncCategoriaTipoCtg objeto);
         VncCategoriaTipoCtg GetId(int id);
+        VncCategoriaTipoCtg GetId(int idpadre, int idhijo);
+        void Update(VncCategoriaTipoCtg objeto);
         IList<Categoria> getCategory(int id);
     }
 }

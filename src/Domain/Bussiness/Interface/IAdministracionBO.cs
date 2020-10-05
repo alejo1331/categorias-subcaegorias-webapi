@@ -20,6 +20,7 @@ namespace Domain.Bussiness.Interface
         TipoCategoriaAM Add(TipoCategoriaAM objeto);
         TipoCategoriaAM getTipoCtgId(int id);
         TipoCategoriaAM ActualizarTipoCategoria(TipoCategoriaAM objeto);
+        IList<TipoCategoriaAM> SearchTiposCtg(string data);
 
         //Categoria
         IList<CategoriaAM> AllCategorias();
@@ -27,6 +28,7 @@ namespace Domain.Bussiness.Interface
         CategoriaAM GetCategoria(int id);
         TipoCategoriaAM ObtenerCategoriaTipoCtg(int id);
         CategoriaAM ActualizarCategoria(CategoriaAM objeto);
+        IList<CategoriaAM> SearchCategorias(string data);
 
         //Subcategoria
         IList<SubcategoriaAM> TodosSubcategoria();
@@ -34,6 +36,7 @@ namespace Domain.Bussiness.Interface
         SubcategoriaAM GetSubCategoria(int id);
         CategoriaAM GetCategoriaSubcatgoria(int id);
         SubcategoriaAM ActualizarSubCategoria(SubcategoriaAM objeto);
+        IList<SubcategoriaAM> SearchSubcategoria(string data);
 
         //Tercer Nivel
         IList<TercerNivelAM> TodosTercerNivel();
@@ -41,6 +44,7 @@ namespace Domain.Bussiness.Interface
         TercerNivelAM ObtenerTercerNivel(int id);
         SubcategoriaAM GetSubcategoriaTercerNvl(int id);
         TercerNivelAM ActualizarTercerNivel(TercerNivelAM objeto);
+        IList<TercerNivelAM> SearchTercerNivel(string data);
 
 
         //Tipo Recurso
@@ -67,6 +71,8 @@ namespace Domain.Bussiness.Interface
         VncCategoriaTipoCtgAM AgregarVncCategoriaTipoCtg(VncCategoriaTipoCtgAM objeto);
         VncCategoriaTipoCtgAM ObtenerVncCategoriaTipoCtg(int id);
         IList<CategoriaAM> TodosVncCategorias(int id);
+        VncCategoriaTipoCtgAM DesvncCategoriaTipoCtg(int idpadre, int idhijo);
+        void DesvncCategoriaTipo(DvcCategoriaTipoCtg objeto);
         
 
 
@@ -74,7 +80,6 @@ namespace Domain.Bussiness.Interface
         IList<VncSubcategoriaCategoriaAM> TodosVncCategoriaSubcategoria();
         VncSubcategoriaCategoriaAM AgregarVncCategoriaSubcategoria(VncSubcategoriaCategoriaAM objeto);
         VncSubcategoriaCategoriaAM ObtenerVncCategoriaSubcategoria(int id);
-
         IList<SubcategoriaAM> TodosVncSubcategoria(int id);
 
 
@@ -82,6 +87,9 @@ namespace Domain.Bussiness.Interface
         IList<VncTercerNvlSubcategoriaAM> TodosVncTercerNvlSubcategoria();
         VncTercerNvlSubcategoriaAM AgregarVncTercerNvlSubcategoria(VncTercerNvlSubcategoriaAM objeto);
         VncTercerNvlSubcategoriaAM ObtenerVncTercerNvlSubcategoria(int id);
+        IList<TercerNivelAM> TodosVncTercerNivel(int id);
+        VncTercerNvlSubcategoriaAM DesvncTercerNvlSubcategoria(int idpadre, int idhijo);
+        void DesvncTercerNvlSbc(DvcTercerNivelSct objeto);
 
         //Tipo Categoria ---- Recurso
         IList<VncTipoCtgRecursoAM> TodosVncTipoCtgRecurso();

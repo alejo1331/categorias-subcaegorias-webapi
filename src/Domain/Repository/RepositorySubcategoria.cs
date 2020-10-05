@@ -44,6 +44,11 @@ namespace Domain.Repository
             return categoria;
         }
 
+        public IList<Subcategoria> Search(string data)
+        {
+            return this.context.Subcategorias.Where(s => s.nombre.Contains(data) || s.descripcionCorta.Contains(data) || s.descripcionLarga.Contains(data)).ToList();
+        }
+
         public void Update(Subcategoria objeto)
         {
             if (objeto == null)

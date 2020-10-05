@@ -42,5 +42,10 @@ namespace Domain.Repository
 
             this.context.TipoCategorias.Update(objeto);
         }
+
+        public IList<TipoCategoria> Search(string data)
+        {
+            return this.context.TipoCategorias.Where(s => s.nombre.Contains(data) || s.decripcionCorta.Contains(data) || s.decripcionLarga.Contains(data) ).ToList();
+        }
     }
 }

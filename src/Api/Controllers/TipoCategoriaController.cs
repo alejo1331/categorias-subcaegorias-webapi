@@ -60,6 +60,12 @@ namespace Api.Controllers
             return NotFound();
         }
 
+        [HttpGet("Buscar/{data}")]
+        public IActionResult getData(string data)
+        {
+            return new JsonResult(this.administracionBO.SearchTiposCtg(data));
+        }
+
         [HttpPut("{id}")]
         public IActionResult PuttipoCategoria(int id, [FromBody] TipoCategoriaAM objeto)
         {

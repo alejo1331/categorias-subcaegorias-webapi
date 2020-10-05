@@ -64,6 +64,12 @@ namespace Api.Controllers
             return NotFound();
         }
 
+        [HttpGet("Buscar/{data}")]
+        public IActionResult getData(string data)
+        {
+            return new JsonResult(this.administracionBO.SearchTercerNivel(data));
+        }
+
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] TercerNivelAM objeto)
         {
