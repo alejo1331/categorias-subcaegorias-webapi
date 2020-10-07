@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using Domain.Repository.Interface;
 using Domain.Models;
 using Domain.Data;
+
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Domain.Repository
 {
@@ -57,6 +60,33 @@ namespace Domain.Repository
                 throw new ArgumentNullException(nameof(objeto));
 
             this.context.Categorias.Update(objeto);
+        }
+
+        //Paginacion
+        public int Count(Expression<Func<Categoria, bool>> predicate)
+        {
+            return context.Categorias.Count(predicate);
+        }
+
+        public ICollection<Categoria> Get(Expression<Func<Categoria, bool>> predicate, int page, int size, Expression<Func<Categoria, object>> selector, bool descending)
+        {
+            try
+            {
+                if (descending)
+                    return context.Categorias
+                           .Include(s => s.TipoCategoria)
+                           .Include(s => s.Estado)
+                           .Where(predicate).OrderByDescending(selector).Skip(page).Take(size).ToList();
+                return context.Categorias
+                        .Include(s => s.TipoCategoria)
+                        .Include(s => s.Estado)
+                      .Where(predicate).OrderBy(selector).Skip(page).Take(size).ToList();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

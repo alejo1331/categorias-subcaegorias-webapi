@@ -1,10 +1,12 @@
+using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using Domain.Repository.Interface;
 using Domain.Models;
 using Domain.Data;
-using Domain.Repository.Interface;
 
-using System;
 using System.Linq;
-using System.Collections.Generic;
+using System.Linq.Expressions;
 
 
 namespace Domain.Repository
@@ -45,7 +47,34 @@ namespace Domain.Repository
 
         public IList<TipoCategoria> Search(string data)
         {
-            return this.context.TipoCategorias.Where(s => s.nombre.Contains(data) || s.decripcionCorta.Contains(data) || s.decripcionLarga.Contains(data) ).ToList();
+            return this.context.TipoCategorias.Where(s => s.nombre.Contains(data) || s.decripcionCorta.Contains(data) || s.decripcionLarga.Contains(data)).ToList();
+        }
+
+
+
+        //Paginacion
+        public int Count(Expression<Func<TipoCategoria, bool>> predicate)
+        {
+            return context.TipoCategorias.Count(predicate);
+        }
+
+        public ICollection<TipoCategoria> Get(Expression<Func<TipoCategoria, bool>> predicate, int page, int size, Expression<Func<TipoCategoria, object>> selector, bool descending)
+        {
+            try
+            {
+                if (descending)
+                    return context.TipoCategorias
+                           .Include(s => s.Estado)
+                           .Where(predicate).OrderByDescending(selector).Skip(page).Take(size).ToList();
+                return context.TipoCategorias
+                        .Include(s => s.Estado)
+                      .Where(predicate).OrderBy(selector).Skip(page).Take(size).ToList();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

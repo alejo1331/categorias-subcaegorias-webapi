@@ -1,10 +1,12 @@
+using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using Domain.Repository.Interface;
 using Domain.Models;
 using Domain.Data;
-using Domain.Repository.Interface;
 
-using System;
 using System.Linq;
-using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace Domain.Repository
 {
@@ -57,6 +59,35 @@ namespace Domain.Repository
                 throw new ArgumentNullException(nameof(objeto));
 
             this.context.TercerNivels.Update(objeto);
+        }
+
+
+
+        //Paginacion
+        public int Count(Expression<Func<TercerNivel, bool>> predicate)
+        {
+            return context.TercerNivels.Count(predicate);
+        }
+
+        public ICollection<TercerNivel> Get(Expression<Func<TercerNivel, bool>> predicate, int page, int size, Expression<Func<TercerNivel, object>> selector, bool descending)
+        {
+            try
+            {
+                if (descending)
+                    return context.TercerNivels
+                           .Include(s => s.Estado)
+                           .Include(s => s.Subcategoria)
+                           .Where(predicate).OrderByDescending(selector).Skip(page).Take(size).ToList();
+                return context.TercerNivels
+                        .Include(s => s.Estado)
+                        .Include(s => s.Subcategoria)
+                      .Where(predicate).OrderBy(selector).Skip(page).Take(size).ToList();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

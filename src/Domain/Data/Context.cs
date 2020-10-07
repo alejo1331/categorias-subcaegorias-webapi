@@ -31,19 +31,6 @@ namespace Domain.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("tramites_y_servicios");
-
-            /*modelBuilder.Entity<TipoCategoria>()
-            .HasOne(p => p.Estado)
-            .WithMany(b => b.TipoCategorias)
-            .IsRequired()
-            .HasForeignKey(p => p.estado);
-
-            modelBuilder.Entity<TipoCategoria>()
-            .HasOne(i => i.Estado)
-            .WithMany(c => c.TipoCategorias)
-            .IsRequired()
-            .OnDelete(DeleteBehavior.Cascade);*/
-
             base.OnModelCreating(modelBuilder);
         }
     }

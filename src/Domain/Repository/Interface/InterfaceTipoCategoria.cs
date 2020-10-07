@@ -2,7 +2,9 @@ using Domain.Models;
 
 using System;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Repository.Interface
 {
@@ -13,5 +15,10 @@ namespace Domain.Repository.Interface
         TipoCategoria GetId(int id);
         void update(TipoCategoria objeto);
         IList<TipoCategoria> Search(string data);
+
+
+        //Paginacion
+        int Count(Expression<Func<TipoCategoria, bool>> predicate);
+        ICollection<TipoCategoria> Get(Expression<Func<TipoCategoria, bool>> predicate, int page, int size, Expression<Func<TipoCategoria, object>> selector, bool descending);
     }
 }
