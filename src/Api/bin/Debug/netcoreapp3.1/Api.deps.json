@@ -31,6 +31,7 @@
           "Microsoft.EntityFrameworkCore": "3.1.8",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.8",
           "Microsoft.EntityFrameworkCore.Tools": "3.1.8",
+          "Serialize.Linq": "1.8.1",
           "Swashbuckle.AspNetCore.Swagger": "5.6.3",
           "Swashbuckle.AspNetCore.SwaggerGen": "5.6.3",
           "Swashbuckle.AspNetCore.SwaggerUI": "5.6.3",
@@ -1671,6 +1672,17 @@
             "assetType": "native",
             "fileVersion": "0.0.0.0"
           }
+        }
+      },
+      "Serialize.Linq/1.8.1": {
+        "runtime": {
+          "lib/netstandard2.0/Serialize.Linq.dll": {
+            "assemblyVersion": "1.8.1.0",
+            "fileVersion": "1.8.1.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Serialize.Linq.dll": {}
         }
       },
       "Swashbuckle.AspNetCore.Swagger/5.6.3": {
@@ -5156,6 +5168,13 @@
       "sha512": "sha512-YhEdSQUsTx+C8m8Bw7ar5/VesXvCFMItyZF7G1AUY+OM0VPZUOeAVpJ4Wl6fydBGUYZxojTDR3I6Bj/+BPkJNA==",
       "path": "runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0",
       "hashPath": "runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512"
+    },
+    "Serialize.Linq/1.8.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zM6vjZdr0BB+iEubOXt33BM5i+8aOyQ5iksVw9YXQ0BrimtBL1WKxdwZ+2VFK/dhP3o01kDv9HbbA4zg1K1F7g==",
+      "path": "serialize.linq/1.8.1",
+      "hashPath": "serialize.linq.1.8.1.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore.Swagger/5.6.3": {
       "type": "package",

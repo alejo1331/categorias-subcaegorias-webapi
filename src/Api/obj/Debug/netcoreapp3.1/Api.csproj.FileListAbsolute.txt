@@ -101,3 +101,4 @@
 /home/fabricio/AND/categorias-subcategorias-webapi/src/Api/bin/Debug/netcoreapp3.1/Swashbuckle.AspNetCore.Swagger.dll
 /home/fabricio/AND/categorias-subcategorias-webapi/src/Api/bin/Debug/netcoreapp3.1/Swashbuckle.AspNetCore.SwaggerGen.dll
 /home/fabricio/AND/categorias-subcategorias-webapi/src/Api/bin/Debug/netcoreapp3.1/Swashbuckle.AspNetCore.SwaggerUI.dll
+/home/fabricio/AND/categorias-subcategorias-webapi/src/Api/bin/Debug/netcoreapp3.1/Serialize.Linq.dll
