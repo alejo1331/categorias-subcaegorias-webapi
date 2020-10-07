@@ -59,5 +59,39 @@ namespace Api.Controllers
             }
             return NotFound();
         }
+
+        [HttpGet("TercerNivel/{id}")]
+        public IActionResult getTercerNivels(int id)
+        {
+            return new JsonResult(this.administracionBO.TodosVncTercerNivel(id));
+        }
+
+        [HttpPut("{idSubcategoria}/{idTercerNivel}")]
+        public IActionResult PuttipoCategoria(int idSubcategoria, int idTercerNivel)
+        {
+            try
+            {
+                VncTercerNvlSubcategoriaAM objeto = this.administracionBO.DesvncTercerNvlSubcategoria(idSubcategoria, idTercerNivel);
+                if (objeto == null)
+                    return BadRequest("Objeto nulo");
+
+                return new JsonResult(objeto);
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw ex;
+            }
+            return NoContent();
+        }
+
+        [HttpPut("Desvincular/TercerNivels")]
+        public IActionResult PuttipoCategoria(DvcTercerNivelSct objeto)
+        {
+            if(objeto == null)
+                return new JsonResult(false);
+
+            this.administracionBO.DesvncTercerNvlSbc(objeto);
+            return new JsonResult(true);
+        }
     }
 }

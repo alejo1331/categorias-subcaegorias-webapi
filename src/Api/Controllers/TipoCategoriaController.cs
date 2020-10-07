@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using Serialize.Linq.Serializers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -11,6 +13,7 @@ using Domain.Bussiness.Interface;
 using Domain.Bussiness.BO;
 using Domain.Data;
 using Domain.AplicationModel;
+using Api.Helpers;
 
 namespace Api.Controllers
 {
@@ -23,6 +26,55 @@ namespace Api.Controllers
         public TipoCategoriaController(Context context)
         {
             administracionBO = new AdministracionBO(context);
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        public IActionResult GetTipoCategoriaPaginated([FromBody] PaginateHelper paginateHelper)
+        {
+            JsonResult response = new JsonResult(false);
+            var serializer = new ExpressionSerializer(new BinarySerializer());
+
+            var predicateDeserialized = serializer.DeserializeBinary(paginateHelper.predicate);
+            var selectorDeserialized = serializer.DeserializeBinary(paginateHelper.selector);
+            try
+            {
+
+                var tipos = administracionBO.ObtenerTipoCategoria(predicateDeserialized as Expression<Func<TipoCategoriaAM, bool>>, paginateHelper.page, paginateHelper.size, selectorDeserialized as Expression<Func<TipoCategoriaAM, object>>, paginateHelper.descending);
+                response = new JsonResult(tipos);
+                return response;
+
+            }
+            catch (ArgumentException e)
+            {
+                //TODO: log error
+                return response;
+            }
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        public IActionResult GetTipoCategoriaTotal([FromBody] PaginateHelper paginateHelper)
+        {
+
+            JsonResult response = new JsonResult(false);
+            var serializer = new ExpressionSerializer(new BinarySerializer());
+
+            var predicateDeserialized = serializer.DeserializeBinary(paginateHelper.predicate);
+
+            try
+            {
+
+                var total = administracionBO.ObtenerTotalTipoCategoria(predicateDeserialized as Expression<Func<TipoCategoriaAM, bool>>);
+                response = new JsonResult(total);
+                return response;
+
+            }
+            catch
+            {
+                //TODO: log error
+                return response;
+            }
         }
 
         [HttpGet]
@@ -58,6 +110,12 @@ namespace Api.Controllers
                 return new JsonResult(subcategoria);
             }
             return NotFound();
+        }
+
+        [HttpGet("Buscar/{data}")]
+        public IActionResult getData(string data)
+        {
+            return new JsonResult(this.administracionBO.SearchTiposCtg(data));
         }
 
         [HttpPut("{id}")]

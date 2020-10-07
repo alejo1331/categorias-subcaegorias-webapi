@@ -1,10 +1,12 @@
+using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using Domain.Repository.Interface;
 using Domain.Models;
 using Domain.Data;
-using Domain.Repository.Interface;
 
-using System;
 using System.Linq;
-using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace Domain.Repository
 {
@@ -44,12 +46,45 @@ namespace Domain.Repository
             return categoria;
         }
 
+        public IList<Subcategoria> Search(string data)
+        {
+            return this.context.Subcategorias.Where(s => s.nombre.Contains(data) || s.descripcionCorta.Contains(data) || s.descripcionLarga.Contains(data)).ToList();
+        }
+
         public void Update(Subcategoria objeto)
         {
             if (objeto == null)
                 throw new ArgumentNullException(nameof(objeto));
 
             this.context.Subcategorias.Update(objeto);
+        }
+
+
+        //Paginacion
+        public int Count(Expression<Func<Subcategoria, bool>> predicate)
+        {
+            return context.Subcategorias.Count(predicate);
+        }
+
+        public ICollection<Subcategoria> Get(Expression<Func<Subcategoria, bool>> predicate, int page, int size, Expression<Func<Subcategoria, object>> selector, bool descending)
+        {
+            try
+            {
+                if (descending)
+                    return context.Subcategorias
+                           .Include(s => s.Estado)
+                           .Include(s => s.Categoria)
+                           .Where(predicate).OrderByDescending(selector).Skip(page).Take(size).ToList();
+                return context.Subcategorias
+                        .Include(s => s.Estado)
+                        .Include(s => s.Categoria)
+                      .Where(predicate).OrderBy(selector).Skip(page).Take(size).ToList();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

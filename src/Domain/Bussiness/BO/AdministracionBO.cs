@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 using AutoMapper;
 using AutoMapper.Extensions.ExpressionMapping;
 using Microsoft.AspNetCore.Mvc;
@@ -98,6 +100,27 @@ namespace Domain.Bussiness.BO
             return nuevo;
         }
 
+        public IList<TipoCategoriaAM> SearchTiposCtg(string data)
+        {
+            InterfaceTipoCategoria<TipoCategoria> repository = new RepositoryTipoCategoria(context);
+            return mapper.Map<List<TipoCategoriaAM>>(repository.Search(data));
+        }
+
+        public long ObtenerTotalTipoCategoria(Expression<Func<TipoCategoriaAM, bool>> predicate)
+        {
+            InterfaceTipoCategoria<TipoCategoria> repository = new RepositoryTipoCategoria(context);
+            return repository.Count(mapper.Map<Expression<Func<TipoCategoria, bool>>>(predicate));
+        }
+
+        public ICollection<TipoCategoriaAM> ObtenerTipoCategoria(Expression<Func<TipoCategoriaAM, bool>> predicate, int page, int size, Expression<Func<TipoCategoriaAM, object>> selector, bool descending)
+        {
+            InterfaceTipoCategoria<TipoCategoria> repository = new RepositoryTipoCategoria(context);
+            var predicateMapped = mapper.Map<Expression<Func<TipoCategoria, bool>>>(predicate);
+            var selectorMapped = mapper.Map<Expression<Func<TipoCategoria, object>>>(selector);
+            ICollection<TipoCategoria> tipoCategorias = repository.Get(predicateMapped, page, size, selectorMapped, descending);
+            return mapper.Map<ICollection<TipoCategoriaAM>>(tipoCategorias);
+        }
+
         //Categoria
         public IList<CategoriaAM> AllCategorias()
         {
@@ -149,6 +172,27 @@ namespace Domain.Bussiness.BO
             return categoriaAM;
         }
 
+        public IList<CategoriaAM> SearchCategorias(string data)
+        {
+            InterfaceCategoria<Categoria> repository = new RepositoryCategoria(context);
+            return mapper.Map<List<CategoriaAM>>(repository.Search(data));
+        }
+
+        public long ObtenerTotalCategoria(Expression<Func<CategoriaAM, bool>> predicate)
+        {
+            InterfaceCategoria<Categoria> repository = new RepositoryCategoria(context);
+            return repository.Count(mapper.Map<Expression<Func<Categoria, bool>>>(predicate));
+        }
+
+        public ICollection<CategoriaAM> ObtenerCategoria(Expression<Func<CategoriaAM, bool>> predicate, int page, int size, Expression<Func<CategoriaAM, object>> selector, bool descending)
+        {
+            InterfaceCategoria<Categoria> repository = new RepositoryCategoria(context);
+            var predicateMapped = mapper.Map<Expression<Func<Categoria, bool>>>(predicate);
+            var selectorMapped = mapper.Map<Expression<Func<Categoria, object>>>(selector);
+            ICollection<Categoria> categorias = repository.Get(predicateMapped, page, size, selectorMapped, descending);
+            return mapper.Map<ICollection<CategoriaAM>>(categorias);
+        }
+
         //Subcategory
         public IList<SubcategoriaAM> TodosSubcategoria()
         {
@@ -196,6 +240,27 @@ namespace Domain.Bussiness.BO
             this.context.SaveChanges();
             SubcategoriaAM subcategoriaAM = mapper.Map<SubcategoriaAM>(subcategoria);
             return subcategoriaAM;
+        }
+
+        public IList<SubcategoriaAM> SearchSubcategoria(string data)
+        {
+            InterfaceSubcategoria<Subcategoria> repository = new RepositorySubcategoria(context);
+            return mapper.Map<List<SubcategoriaAM>>(repository.Search(data));
+        }
+
+        public long ObtenerTotalSubcategoria(Expression<Func<SubcategoriaAM, bool>> predicate)
+        {
+            InterfaceSubcategoria<Subcategoria> repository = new RepositorySubcategoria(context);
+            return repository.Count(mapper.Map<Expression<Func<Subcategoria, bool>>>(predicate));
+        }
+
+        public ICollection<SubcategoriaAM> ObtenerSubcategoria(Expression<Func<SubcategoriaAM, bool>> predicate, int page, int size, Expression<Func<SubcategoriaAM, object>> selector, bool descending)
+        {
+            InterfaceSubcategoria<Subcategoria> repository = new RepositorySubcategoria(context);
+            var predicateMapped = mapper.Map<Expression<Func<Subcategoria, bool>>>(predicate);
+            var selectorMapped = mapper.Map<Expression<Func<Subcategoria, object>>>(selector);
+            ICollection<Subcategoria> subcategorias = repository.Get(predicateMapped, page, size, selectorMapped, descending);
+            return mapper.Map<ICollection<SubcategoriaAM>>(subcategorias);
         }
 
 
@@ -247,6 +312,27 @@ namespace Domain.Bussiness.BO
             this.context.SaveChanges();
             TercerNivelAM tercerAM = mapper.Map<TercerNivelAM>(tercer);
             return tercerAM;
+        }
+
+        public IList<TercerNivelAM> SearchTercerNivel(string data)
+        {
+            InterfaceTercerNivel<TercerNivel> repository = new RepositoryTercerNivel(context);
+            return mapper.Map<List<TercerNivelAM>>(repository.Search(data));
+        }
+
+        public long ObtenerTotalTercerNivel(Expression<Func<TercerNivelAM, bool>> predicate)
+        {
+            InterfaceTercerNivel<TercerNivel> repository = new RepositoryTercerNivel(context);
+            return repository.Count(mapper.Map<Expression<Func<TercerNivel, bool>>>(predicate));
+        }
+
+        public ICollection<TercerNivelAM> ObtenerTercerNivel(Expression<Func<TercerNivelAM, bool>> predicate, int page, int size, Expression<Func<TercerNivelAM, object>> selector, bool descending)
+        {
+            InterfaceTercerNivel<TercerNivel> repository = new RepositoryTercerNivel(context);
+            var predicateMapped = mapper.Map<Expression<Func<TercerNivel, bool>>>(predicate);
+            var selectorMapped = mapper.Map<Expression<Func<TercerNivel, object>>>(selector);
+            ICollection<TercerNivel> TercerNivels = repository.Get(predicateMapped, page, size, selectorMapped, descending);
+            return mapper.Map<ICollection<TercerNivelAM>>(TercerNivels);
         }
 
 
@@ -355,6 +441,21 @@ namespace Domain.Bussiness.BO
             return recursoAM;
         }
 
+        public long ObtenerTotalRecurso(Expression<Func<RecursoAM, bool>> predicate)
+        {
+            InterfaceRecurso<Recurso> repository = new RepositoryRecurso(context);
+            return repository.Count(mapper.Map<Expression<Func<Recurso, bool>>>(predicate));
+        }
+
+        public ICollection<RecursoAM> ObtenerRecurso(Expression<Func<RecursoAM, bool>> predicate, int page, int size, Expression<Func<RecursoAM, object>> selector, bool descending)
+        {
+            InterfaceRecurso<Recurso> repository = new RepositoryRecurso(context);
+            var predicateMapped = mapper.Map<Expression<Func<Recurso, bool>>>(predicate);
+            var selectorMapped = mapper.Map<Expression<Func<Recurso, object>>>(selector);
+            ICollection<Recurso> Recursos = repository.Get(predicateMapped, page, size, selectorMapped, descending);
+            return mapper.Map<ICollection<RecursoAM>>(Recursos);
+        }
+
         //Tipo Parametro
         public IList<TipoParametroAM> TodosTipoParamtero()
         {
@@ -421,6 +522,24 @@ namespace Domain.Bussiness.BO
             return mapper.Map<List<CategoriaAM>>(repository.getCategory(id));
         }
 
+        public VncCategoriaTipoCtgAM DesvncCategoriaTipoCtg(int idpadre, int idhijo)
+        {
+            InterfaceVclCtgTipoCtg<VncCategoriaTipoCtg> repository = new RepositoryVncCategoriaTipoCtg(context);
+            VncCategoriaTipoCtg vinculo = repository.GetId(idpadre, idhijo);
+            vinculo.tipoVinculo = 0;
+            this.context.SaveChanges();
+            return mapper.Map<VncCategoriaTipoCtgAM>(vinculo);
+        }
+
+        public void DesvncCategoriaTipo(DvcCategoriaTipoCtg objeto)
+        {
+            string[] ids = objeto.idscategorias.Split(',');
+            foreach (string id in ids)
+            {
+                DesvncCategoriaTipoCtg(objeto.idTipoCategoria, int.Parse(id));
+            }
+        }
+
 
         // Categoria ----- Subcategoria
         public IList<VncSubcategoriaCategoriaAM> TodosVncCategoriaSubcategoria()
@@ -473,6 +592,34 @@ namespace Domain.Bussiness.BO
         {
             InterfaceVnlTercerNvlSct<VncTercerNvlSubcategoria> repository = new RepositroyvVnlTercerNvlSbt(context);
             return mapper.Map<VncTercerNvlSubcategoriaAM>(repository.GetId(id));
+        }
+
+        public VncTercerNvlSubcategoriaAM DesvncTercerNvlSubcategoria(int idpadre, int idhijo)
+        {
+            InterfaceVnlTercerNvlSct<VncTercerNvlSubcategoria> repository = new RepositroyvVnlTercerNvlSbt(context);
+            VncTercerNvlSubcategoria vinculo = repository.GetId(idpadre, idhijo);
+            if (vinculo == null)
+                return null;
+
+            vinculo.vinculo = 0;
+            repository.Update(vinculo);
+            this.context.SaveChanges();
+            return mapper.Map<VncTercerNvlSubcategoriaAM>(vinculo);
+        }
+
+        public void DesvncTercerNvlSbc(DvcTercerNivelSct objeto)
+        {
+            string[] ids = objeto.idsTercerNivel.Split(',');
+            foreach (string id in ids)
+            {
+                DesvncTercerNvlSubcategoria(objeto.idSubcategoria, int.Parse(id));
+            }
+        }
+
+        public IList<TercerNivelAM> TodosVncTercerNivel(int id)
+        {
+            InterfaceVnlTercerNvlSct<VncTercerNvlSubcategoria> repository = new RepositroyvVnlTercerNvlSbt(context);
+            return mapper.Map<List<TercerNivelAM>>(repository.getTercerNivel(id));
         }
 
 
