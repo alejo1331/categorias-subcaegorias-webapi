@@ -19,6 +19,6 @@ namespace Domain.Repository.Interface
 
         //Paginacion
         int Count(Expression<Func<TipoCategoria, bool>> predicate);
-        ICollection<TipoCategoria> Get(Expression<Func<TipoCategoria, bool>> predicate, int page, int size, Expression<Func<TipoCategoria, object>> selector, bool descending);
+        IList<TipoCategoria> Get(Expression<Func<TipoCategoria, bool>> predicate, int page, int size, Expression<Func<TipoCategoria, object>> selector, bool descending);
     }
 }

@@ -1,6 +1,6 @@
 using AutoMapper;
 using Domain.Models;
-using Domain.AplicationModel;
+using Domain.Categorias.AplicationModel;
 
 
 namespace Domain.Bussiness.Profiles

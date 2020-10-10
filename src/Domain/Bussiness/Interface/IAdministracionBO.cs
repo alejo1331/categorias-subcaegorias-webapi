@@ -3,7 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using Domain.AplicationModel;
+using Domain.Categorias.AplicationModel;
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,7 +26,7 @@ namespace Domain.Bussiness.Interface
         TipoCategoriaAM ActualizarTipoCategoria(TipoCategoriaAM objeto);
         IList<TipoCategoriaAM> SearchTiposCtg(string data);
         long ObtenerTotalTipoCategoria(Expression<Func<TipoCategoriaAM, bool>> predicate);
-        ICollection<TipoCategoriaAM> ObtenerTipoCategoria(Expression<Func<TipoCategoriaAM, bool>> predicate, int page, int size, Expression<Func<TipoCategoriaAM, object>> selector, bool descending);
+        IList<TipoCategoriaAM> ObtenerTipoCategoria(Expression<Func<TipoCategoriaAM, bool>> predicate, int page, int size, Expression<Func<TipoCategoriaAM, object>> selector, bool descending);
 
         //Categoria
         IList<CategoriaAM> AllCategorias();

@@ -12,14 +12,14 @@ using System.Text;
 using Domain.Bussiness.Interface;
 using Domain.Bussiness.BO;
 using Domain.Data;
-using Domain.AplicationModel;
+using Domain.Categorias.AplicationModel;
 using Api.Helpers;
 
 
 namespace Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/CategoriasSubcategorias/[controller]")]
     public class TercerNivelController : ControllerBase
     {
         private readonly IAdministracionBO administracionBO;

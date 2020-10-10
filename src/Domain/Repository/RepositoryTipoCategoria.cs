@@ -58,7 +58,7 @@ namespace Domain.Repository
             return context.TipoCategorias.Count(predicate);
         }
 
-        public ICollection<TipoCategoria> Get(Expression<Func<TipoCategoria, bool>> predicate, int page, int size, Expression<Func<TipoCategoria, object>> selector, bool descending)
+        public IList<TipoCategoria> Get(Expression<Func<TipoCategoria, bool>> predicate, int page, int size, Expression<Func<TipoCategoria, object>> selector, bool descending)
         {
             try
             {

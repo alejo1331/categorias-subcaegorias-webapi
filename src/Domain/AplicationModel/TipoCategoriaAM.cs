@@ -1,4 +1,4 @@
-namespace Domain.AplicationModel
+namespace Domain.Categorias.AplicationModel
 {
     public class TipoCategoriaAM
     {
@@ -16,6 +16,7 @@ namespace Domain.AplicationModel
 
         //Foreign key
         public int codigoEstado { get; set; }
+        public virtual EstadoAM Estado {get; set;}
         //
 
         public int user { get; set; }

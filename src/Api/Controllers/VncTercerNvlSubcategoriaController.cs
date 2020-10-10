@@ -10,13 +10,13 @@ using System.Text;
 using Domain.Bussiness.Interface;
 using Domain.Bussiness.BO;
 using Domain.Data;
-using Domain.AplicationModel;
+using Domain.Categorias.AplicationModel;
 
 
 namespace Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/CategoriasSubcategorias/[controller]")]
     public class VncTercerNvlSubcategoriaController : ControllerBase
     {
         private readonly IAdministracionBO administracionBO;

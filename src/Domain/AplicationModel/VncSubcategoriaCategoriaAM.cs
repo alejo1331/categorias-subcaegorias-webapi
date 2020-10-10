@@ -1,4 +1,4 @@
-namespace Domain.AplicationModel
+namespace Domain.Categorias.AplicationModel
 {
     public class VncSubcategoriaCategoriaAM
     {
