@@ -140,5 +140,11 @@ namespace Api.Controllers
             }
             return NoContent();
         }
+
+        [HttpGet("Categoria/Subcategorias/{idCategoria}")]
+        public IActionResult GetSonsCategoria(int idCategoria)
+        {
+            return new JsonResult(this.administracionBO.SonsCategoria(idCategoria));
+        }
     }
 }

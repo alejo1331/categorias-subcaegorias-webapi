@@ -59,6 +59,11 @@ namespace Domain.Repository
             this.context.Subcategorias.Update(objeto);
         }
 
+        public IList<Subcategoria> SonsCategoria(int id)
+        {
+            return this.context.Subcategorias.Where(s => s.padre == id).ToList();
+        }
+
 
         //Paginacion
         public int Count(Expression<Func<Subcategoria, bool>> predicate)

@@ -17,6 +17,7 @@ namespace Domain.Repository.Interface
         Subcategoria GetSubcategoria(int id);
         void Update(TercerNivel objeto);
         IList<TercerNivel> Search(string data);
+        IList<TercerNivel> SonsSubcategoria(int id);
 
 
         //Paginacion

@@ -146,5 +146,11 @@ namespace Api.Controllers
             }
             return NoContent();
         }
+
+        [HttpGet("TipoCategoria/Categorias/{idTipoCategoria}")]
+        public IActionResult GetSonsTipoCategoria(int idTipoCategoria)
+        {
+            return new JsonResult(this.administracionBO.SonsTipoCategoria(idTipoCategoria));
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace Domain.Repository.Interface
         Categoria GetCategoria(int id);
         void Update(Subcategoria objeto);
         IList<Subcategoria> Search(string data);
+        IList<Subcategoria> SonsCategoria(int id);
 
 
         //Paginacion

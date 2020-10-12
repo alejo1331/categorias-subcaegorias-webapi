@@ -141,5 +141,11 @@ namespace Api.Controllers
             }
             return NoContent();
         }
+
+        [HttpGet("Subcategoria/TercerNivels/{idSubcategoria}")]
+        public IActionResult GetSonsSubcategoria(int idSubcategoria)
+        {
+            return new JsonResult(this.administracionBO.SonsSubcategoria(idSubcategoria));
+        }
     }
 }

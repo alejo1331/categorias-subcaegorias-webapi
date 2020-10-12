@@ -16,6 +16,8 @@ namespace Domain.Repository.Interface
         TipoCategoria getIdCategoria(int id);
         void update(Categoria objeto);
         IList<Categoria> Search(string data);
+        IList<Categoria> SonsTipoCategoria(int id);
+
 
         //Paginacion
         int Count(Expression<Func<Categoria, bool>> predicate);
