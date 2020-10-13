@@ -61,6 +61,11 @@ namespace Domain.Repository
             this.context.TercerNivels.Update(objeto);
         }
 
+        public IList<TercerNivel> SonsSubcategoria(int id)
+        {
+            return this.context.TercerNivels.Where(s => s.padre == id).ToList();
+        }
+
 
 
         //Paginacion

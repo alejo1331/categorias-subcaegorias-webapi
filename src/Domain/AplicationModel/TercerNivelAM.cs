@@ -1,4 +1,4 @@
-namespace Domain.AplicationModel
+namespace Domain.Categorias.AplicationModel
 {
     public class TercerNivelAM
     {
@@ -17,7 +17,9 @@ namespace Domain.AplicationModel
         //Foreign Key
 
         public int codigoEstado { get; set; }
+        public virtual EstadoAM Estado { get; set; }
         public int padre { get; set; }
+        public virtual SubcategoriaAM Subcategoria { get; set; }
         //
 
         public int user { get; set; }

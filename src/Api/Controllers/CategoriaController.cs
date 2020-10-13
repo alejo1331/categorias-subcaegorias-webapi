@@ -12,13 +12,13 @@ using System.Text;
 using Domain.Bussiness.Interface;
 using Domain.Bussiness.BO;
 using Domain.Data;
-using Domain.AplicationModel;
+using Domain.Categorias.AplicationModel;
 using Api.Helpers;
 
 namespace Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/CategoriasSubcategorias/[controller]")]
     public class CategoriaController : ControllerBase
     {
         private readonly IAdministracionBO administracionBO;
@@ -145,6 +145,12 @@ namespace Api.Controllers
                 throw ex;
             }
             return NoContent();
+        }
+
+        [HttpGet("TipoCategoria/Categorias/{idTipoCategoria}")]
+        public IActionResult GetSonsTipoCategoria(int idTipoCategoria)
+        {
+            return new JsonResult(this.administracionBO.SonsTipoCategoria(idTipoCategoria));
         }
     }
 }

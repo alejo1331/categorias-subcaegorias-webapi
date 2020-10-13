@@ -12,13 +12,13 @@ using System.Text;
 using Domain.Bussiness.Interface;
 using Domain.Bussiness.BO;
 using Domain.Data;
-using Domain.AplicationModel;
+using Domain.Categorias.AplicationModel;
 using Api.Helpers;
 
 namespace Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/CategoriasSubcategorias/[controller]")]
     public class TipoCategoriaController : ControllerBase
     {
         private readonly IAdministracionBO administracionBO;
@@ -28,8 +28,7 @@ namespace Api.Controllers
             administracionBO = new AdministracionBO(context);
         }
 
-        [HttpPost]
-        [Route("[action]")]
+        [HttpPost("Paginado")]
         public IActionResult GetTipoCategoriaPaginated([FromBody] PaginateHelper paginateHelper)
         {
             JsonResult response = new JsonResult(false);
@@ -52,8 +51,7 @@ namespace Api.Controllers
             }
         }
 
-        [HttpPost]
-        [Route("[action]")]
+        [HttpPost("Total")]
         public IActionResult GetTipoCategoriaTotal([FromBody] PaginateHelper paginateHelper)
         {
 

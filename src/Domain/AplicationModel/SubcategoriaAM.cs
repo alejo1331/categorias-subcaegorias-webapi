@@ -1,4 +1,4 @@
-namespace Domain.AplicationModel
+namespace Domain.Categorias.AplicationModel
 {
     public class SubcategoriaAM
     {
@@ -10,7 +10,9 @@ namespace Domain.AplicationModel
 
         //Foreign Key
         public int codigoEstado { get; set; }
+        public virtual EstadoAM Estado { get; set; }
         public int padre { get; set; }
+        public virtual CategoriaAM Categoria { get; set; }
         //
 
         public int orden { get; set; }

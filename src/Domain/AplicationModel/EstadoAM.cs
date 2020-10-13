@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Domain.AplicationModel
+namespace Domain.Categorias.AplicationModel
 {
     public class EstadoAM
     {

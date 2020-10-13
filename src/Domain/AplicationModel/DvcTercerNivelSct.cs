@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 
 
-namespace Domain.AplicationModel
+namespace Domain.Categorias.AplicationModel
 {
     public class DvcTercerNivelSct
     {
