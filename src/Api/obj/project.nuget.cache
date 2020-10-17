@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "tniqAwOTkL57rA37rEAlCt1ZEQvSKhYqxGYWvOwfnGLiHFxigNNZvOfrYJZp9htVttn2tg/MmA6jv0gyuytYAA==",
+  "dgSpecHash": "Xtn6+Bp28p9+0VOS322tdfO2Ya8arNNEPFOofxgeWV+rJlhgvaLBmkwPPkSA/ZdoTK+uSV1185ZGCZevmGa0Cg==",
   "success": true,
   "projectFilePath": "/home/fabricio/AND/categorias-subcategorias-webapi/src/Api/Api.csproj",
   "expectedPackageFiles": [

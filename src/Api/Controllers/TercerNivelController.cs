@@ -147,5 +147,12 @@ namespace Api.Controllers
         {
             return new JsonResult(this.administracionBO.SonsSubcategoria(idSubcategoria));
         }
+
+        [HttpPut("Estado/{id}")]
+        public IActionResult PutTercerNivel(int id)
+        {
+            TercerNivelAM objeto = this.administracionBO.CambioEstadoTercerNivel(id);
+            return new JsonResult(objeto);
+        }
     }
 }

@@ -93,5 +93,15 @@ namespace Api.Controllers
             this.administracionBO.DesvncCategoriaTipo(objeto);
             return new JsonResult(true);
         }
+
+        [HttpPost("Vincular/Categorias")]
+        public IActionResult PutVincular(DvcCategoriaTipoCtg objeto)
+        {
+            if (objeto == null)
+                return new JsonResult(false);
+
+            this.administracionBO.VincularCategoriaTipo(objeto);
+            return new JsonResult(true);
+        }
     }
 }

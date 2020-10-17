@@ -18,6 +18,7 @@ namespace Domain.Repository.Interface
         void Update(Subcategoria objeto);
         IList<Subcategoria> Search(string data);
         IList<Subcategoria> SonsCategoria(int id);
+        void ChangeState(int id);
 
 
         //Paginacion

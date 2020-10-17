@@ -134,5 +134,12 @@ namespace Api.Controllers
             }
             return NoContent();
         }
+
+        [HttpPut("Estado/{id}")]
+        public IActionResult PuttipoCategoria(int id)
+        {
+            TipoCategoriaAM objeto = this.administracionBO.CambioEstadoTipoCategoria(id);
+            return new JsonResult(objeto);
+        }
     }
 }

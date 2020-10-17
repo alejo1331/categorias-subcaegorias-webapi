@@ -25,6 +25,7 @@ namespace Domain.Bussiness.Interface
         TipoCategoriaAM getTipoCtgId(int id);
         TipoCategoriaAM ActualizarTipoCategoria(TipoCategoriaAM objeto);
         IList<TipoCategoriaAM> SearchTiposCtg(string data);
+        TipoCategoriaAM CambioEstadoTipoCategoria(int id);
         long ObtenerTotalTipoCategoria(Expression<Func<TipoCategoriaAM, bool>> predicate);
         IList<TipoCategoriaAM> ObtenerTipoCategoria(Expression<Func<TipoCategoriaAM, bool>> predicate, int page, int size, Expression<Func<TipoCategoriaAM, object>> selector, bool descending);
 
@@ -36,6 +37,7 @@ namespace Domain.Bussiness.Interface
         CategoriaAM ActualizarCategoria(CategoriaAM objeto);
         IList<CategoriaAM> SearchCategorias(string data);
         IList<CategoriaAM> SonsTipoCategoria(int id);
+        CategoriaAM CambioEstadoCategoria(int id);
         long ObtenerTotalCategoria(Expression<Func<CategoriaAM, bool>> predicate);
         ICollection<CategoriaAM> ObtenerCategoria(Expression<Func<CategoriaAM, bool>> predicate, int page, int size, Expression<Func<CategoriaAM, object>> selector, bool descending);
 
@@ -47,6 +49,7 @@ namespace Domain.Bussiness.Interface
         SubcategoriaAM ActualizarSubCategoria(SubcategoriaAM objeto);
         IList<SubcategoriaAM> SearchSubcategoria(string data);
         IList<SubcategoriaAM> SonsCategoria(int id);
+        SubcategoriaAM CambioEstadoSubcategoria(int id);
         long ObtenerTotalSubcategoria(Expression<Func<SubcategoriaAM, bool>> predicate);
         ICollection<SubcategoriaAM> ObtenerSubcategoria(Expression<Func<SubcategoriaAM, bool>> predicate, int page, int size, Expression<Func<SubcategoriaAM, object>> selector, bool descending);
 
@@ -58,6 +61,7 @@ namespace Domain.Bussiness.Interface
         TercerNivelAM ActualizarTercerNivel(TercerNivelAM objeto);
         IList<TercerNivelAM> SearchTercerNivel(string data);
         IList<TercerNivelAM> SonsSubcategoria(int id);
+        TercerNivelAM CambioEstadoTercerNivel(int id);
         long ObtenerTotalTercerNivel(Expression<Func<TercerNivelAM, bool>> predicate);
         ICollection<TercerNivelAM> ObtenerTercerNivel(Expression<Func<TercerNivelAM, bool>> predicate, int page, int size, Expression<Func<TercerNivelAM, object>> selector, bool descending);
 
@@ -90,6 +94,7 @@ namespace Domain.Bussiness.Interface
         IList<CategoriaAM> TodosVncCategorias(int id);
         VncCategoriaTipoCtgAM DesvncCategoriaTipoCtg(int idpadre, int idhijo);
         void DesvncCategoriaTipo(DvcCategoriaTipoCtg objeto);
+        void VincularCategoriaTipo(DvcCategoriaTipoCtg objeto);
 
 
 
@@ -98,6 +103,9 @@ namespace Domain.Bussiness.Interface
         VncSubcategoriaCategoriaAM AgregarVncCategoriaSubcategoria(VncSubcategoriaCategoriaAM objeto);
         VncSubcategoriaCategoriaAM ObtenerVncCategoriaSubcategoria(int id);
         IList<SubcategoriaAM> TodosVncSubcategoria(int id);
+        VncSubcategoriaCategoriaAM DesvncSubcategoriasCategoria(int idpadre, int idhijo);
+        void VincularSubcategoriasCategoria(DvcSubcategoriaCategoria objeto);
+        void DesvncSubcategoriasCategoria(DvcSubcategoriaCategoria objeto);
 
 
         //Subcategoria ---- Tercer Nivel
@@ -107,6 +115,7 @@ namespace Domain.Bussiness.Interface
         IList<TercerNivelAM> TodosVncTercerNivel(int id);
         VncTercerNvlSubcategoriaAM DesvncTercerNvlSubcategoria(int idpadre, int idhijo);
         void DesvncTercerNvlSbc(DvcTercerNivelSct objeto);
+        void VincularTercerNvlSbc(DvcTercerNivelSct objeto);
 
         //Tipo Categoria ---- Recurso
         IList<VncTipoCtgRecursoAM> TodosVncTipoCtgRecurso();

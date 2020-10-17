@@ -146,5 +146,12 @@ namespace Api.Controllers
         {
             return new JsonResult(this.administracionBO.SonsCategoria(idCategoria));
         }
+
+        [HttpPut("Estado/{id}")]
+        public IActionResult PutSubcategoria(int id)
+        {
+            SubcategoriaAM objeto = this.administracionBO.CambioEstadoSubcategoria(id);
+            return new JsonResult(objeto);
+        }
     }
 }

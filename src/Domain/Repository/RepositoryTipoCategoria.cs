@@ -50,6 +50,17 @@ namespace Domain.Repository
             return this.context.TipoCategorias.Where(s => s.nombre.Contains(data) || s.decripcionCorta.Contains(data) || s.decripcionLarga.Contains(data)).ToList();
         }
 
+        public void ChangeState(int id)
+        {
+            TipoCategoria objeto = this.context.TipoCategorias.Where(s => s.id == id).FirstOrDefault();
+            if (objeto.codigoEstado == 1)
+                objeto.codigoEstado = 2;
+            else
+                objeto.codigoEstado = 1;
+
+            this.context.TipoCategorias.Update(objeto);
+        }
+
 
 
         //Paginacion

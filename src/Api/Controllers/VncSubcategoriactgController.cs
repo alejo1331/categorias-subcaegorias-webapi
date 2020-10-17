@@ -65,5 +65,43 @@ namespace Api.Controllers
         {
             return new JsonResult(this.administracionBO.TodosVncSubcategoria(id));
         }
+
+        [HttpPut("{idCategoria}/{idSubcategoria}")]
+        public IActionResult PutCategoria(int idCategoria, int idSubcategoria)
+        {
+            try
+            {
+                VncSubcategoriaCategoriaAM objeto = this.administracionBO.DesvncSubcategoriasCategoria(idCategoria, idSubcategoria);
+                if (objeto == null)
+                    return BadRequest("Objeto nulo");
+
+                return new JsonResult(objeto);
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw ex;
+            }
+            return NoContent();
+        }
+
+        [HttpPut("Desvincular/Subategorias")]
+        public IActionResult PuttipoCategoria(DvcSubcategoriaCategoria objeto)
+        {
+            if (objeto == null)
+                return new JsonResult(false);
+
+            this.administracionBO.DesvncSubcategoriasCategoria(objeto);
+            return new JsonResult(true);
+        }
+
+        [HttpPost("Vincular/Subcategorias")]
+        public IActionResult PutVincular(DvcSubcategoriaCategoria objeto)
+        {
+            if (objeto == null)
+                return new JsonResult(false);
+
+            this.administracionBO.VincularSubcategoriasCategoria(objeto);
+            return new JsonResult(true);
+        }
     }
 }

@@ -15,6 +15,7 @@ namespace Domain.Repository.Interface
         TipoCategoria GetId(int id);
         void update(TipoCategoria objeto);
         IList<TipoCategoria> Search(string data);
+        void ChangeState(int id);
 
 
         //Paginacion
