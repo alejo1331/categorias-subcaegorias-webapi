@@ -64,6 +64,17 @@ namespace Domain.Repository
             return this.context.Subcategorias.Where(s => s.padre == id).ToList();
         }
 
+        public void ChangeState(int id)
+        {
+            Subcategoria objeto = this.context.Subcategorias.Where(s => s.id == id).FirstOrDefault();
+            if (objeto.codigoEstado == 1)
+                objeto.codigoEstado = 2;
+            else
+                objeto.codigoEstado = 1;
+
+            this.context.Subcategorias.Update(objeto);
+        }
+
 
         //Paginacion
         public int Count(Expression<Func<Subcategoria, bool>> predicate)

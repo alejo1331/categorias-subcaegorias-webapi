@@ -129,7 +129,7 @@ namespace Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult PuttipoCategoria(int id, [FromBody] CategoriaAM objeto)
+        public IActionResult PutCategoria(int id, [FromBody] CategoriaAM objeto)
         {
             if (id != objeto.id)
             {
@@ -151,6 +151,13 @@ namespace Api.Controllers
         public IActionResult GetSonsTipoCategoria(int idTipoCategoria)
         {
             return new JsonResult(this.administracionBO.SonsTipoCategoria(idTipoCategoria));
+        }
+
+        [HttpPut("Estado/{id}")]
+        public IActionResult PutCategoria(int id)
+        {
+            CategoriaAM objeto = this.administracionBO.CambioEstadoCategoria(id);
+            return new JsonResult(objeto);
         }
     }
 }

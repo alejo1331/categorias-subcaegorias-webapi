@@ -18,6 +18,7 @@ namespace Domain.Repository.Interface
         void Update(TercerNivel objeto);
         IList<TercerNivel> Search(string data);
         IList<TercerNivel> SonsSubcategoria(int id);
+        void ChangeState(int id);
 
 
         //Paginacion

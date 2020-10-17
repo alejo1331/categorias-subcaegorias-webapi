@@ -93,5 +93,15 @@ namespace Api.Controllers
             this.administracionBO.DesvncTercerNvlSbc(objeto);
             return new JsonResult(true);
         }
+
+        [HttpPut("Vincular/TercerNivels")]
+        public IActionResult PutTercerNivel(DvcTercerNivelSct objeto)
+        {
+            if(objeto == null)
+                return new JsonResult(false);
+
+            this.administracionBO.VincularTercerNvlSbc(objeto);
+            return new JsonResult(true);
+        }
     }
 }

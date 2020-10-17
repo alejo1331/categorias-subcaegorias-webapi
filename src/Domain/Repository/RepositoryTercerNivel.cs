@@ -66,6 +66,17 @@ namespace Domain.Repository
             return this.context.TercerNivels.Where(s => s.padre == id).ToList();
         }
 
+        public void ChangeState(int id)
+        {
+            TercerNivel objeto = this.context.TercerNivels.Where(s => s.id == id).FirstOrDefault();
+            if (objeto.codigoEstado == 1)
+                objeto.codigoEstado = 2;
+            else
+                objeto.codigoEstado = 1;
+
+            this.context.TercerNivels.Update(objeto);
+        }
+
 
 
         //Paginacion

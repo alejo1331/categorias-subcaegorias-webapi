@@ -106,6 +106,15 @@ namespace Domain.Bussiness.BO
             return mapper.Map<List<TipoCategoriaAM>>(repository.Search(data));
         }
 
+        public TipoCategoriaAM CambioEstadoTipoCategoria(int id)
+        {
+            InterfaceTipoCategoria<TipoCategoria> repository = new RepositoryTipoCategoria(context);
+            repository.ChangeState(id);
+            this.context.SaveChanges();
+            TipoCategoriaAM objeto = mapper.Map<TipoCategoriaAM>(repository.GetId(id));
+            return objeto;
+        }
+
         public long ObtenerTotalTipoCategoria(Expression<Func<TipoCategoriaAM, bool>> predicate)
         {
             InterfaceTipoCategoria<TipoCategoria> repository = new RepositoryTipoCategoria(context);
@@ -181,6 +190,15 @@ namespace Domain.Bussiness.BO
         {
             InterfaceCategoria<Categoria> repository = new RepositoryCategoria(context);
             return mapper.Map<List<CategoriaAM>>(repository.SonsTipoCategoria(id));
+        }
+
+        public CategoriaAM CambioEstadoCategoria(int id)
+        {
+            InterfaceCategoria<Categoria> repository = new RepositoryCategoria(context);
+            repository.ChangeState(id);
+            this.context.SaveChanges();
+            CategoriaAM objeto = mapper.Map<CategoriaAM>(repository.GetId(id));
+            return objeto;
         }
 
         public long ObtenerTotalCategoria(Expression<Func<CategoriaAM, bool>> predicate)
@@ -274,6 +292,15 @@ namespace Domain.Bussiness.BO
             return mapper.Map<ICollection<SubcategoriaAM>>(subcategorias);
         }
 
+        public SubcategoriaAM CambioEstadoSubcategoria(int id)
+        {
+            InterfaceSubcategoria<Subcategoria> repository = new RepositorySubcategoria(context);
+            repository.ChangeState(id);
+            this.context.SaveChanges();
+            SubcategoriaAM objeto = mapper.Map<SubcategoriaAM>(repository.GetId(id));
+            return objeto;
+        }
+
 
         //Tercer Nivel
         public IList<TercerNivelAM> TodosTercerNivel()
@@ -335,6 +362,15 @@ namespace Domain.Bussiness.BO
         {
             InterfaceTercerNivel<TercerNivel> repository = new RepositoryTercerNivel(context);
             return mapper.Map<List<TercerNivelAM>>(repository.SonsSubcategoria(id));
+        }
+
+        public TercerNivelAM CambioEstadoTercerNivel(int id)
+        {
+            InterfaceTercerNivel<TercerNivel> repository = new RepositoryTercerNivel(context);
+            repository.ChangeState(id);
+            this.context.SaveChanges();
+            TercerNivelAM objeto = mapper.Map<TercerNivelAM>(repository.GetId(id));
+            return objeto;
         }
 
         public long ObtenerTotalTercerNivel(Expression<Func<TercerNivelAM, bool>> predicate)
@@ -557,6 +593,21 @@ namespace Domain.Bussiness.BO
             }
         }
 
+        public void VincularCategoriaTipo(DvcCategoriaTipoCtg objeto)
+        {
+            string[] ids = objeto.idscategorias.Split(',');
+            foreach (string id in ids)
+            {
+                VncCategoriaTipoCtgAM nuevo = new VncCategoriaTipoCtgAM();
+                nuevo.idTipoCtg = objeto.idTipoCategoria;
+                nuevo.idCategoria = int.Parse(id);
+                nuevo.codigoEstado = 1;
+                nuevo.tipoVinculo = 1;
+                nuevo.user = 0;
+                AgregarVncCategoriaTipoCtg(nuevo);
+            }
+        }
+
 
         // Categoria ----- Subcategoria
         public IList<VncSubcategoriaCategoriaAM> TodosVncCategoriaSubcategoria()
@@ -579,6 +630,39 @@ namespace Domain.Bussiness.BO
         {
             InterfaceVncSubcategoriaCategoria<VncSubcategoriaCategoria> repository = new RepositoryVncSubcategoriaCtg(context);
             return mapper.Map<VncSubcategoriaCategoriaAM>(repository.GetId(id));
+        }
+
+        public void VincularSubcategoriasCategoria(DvcSubcategoriaCategoria objeto)
+        {
+            string[] ids = objeto.idssubcategorias.Split(',');
+            foreach (string id in ids)
+            {
+                VncSubcategoriaCategoriaAM nuevo = new VncSubcategoriaCategoriaAM();
+                nuevo.idCategoria = objeto.idCategoria;
+                nuevo.idSubcategoria = int.Parse(id);
+                nuevo.codigoEstado = 1;
+                nuevo.tipoVinculo = 1;
+                nuevo.user = 0;
+                AgregarVncCategoriaSubcategoria(nuevo);
+            }
+        }
+
+        public VncSubcategoriaCategoriaAM DesvncSubcategoriasCategoria(int idpadre, int idhijo)
+        {
+            InterfaceVncSubcategoriaCategoria<VncSubcategoriaCategoria> repository = new RepositoryVncSubcategoriaCtg(context);
+            VncSubcategoriaCategoria vinculo = repository.GetId(idpadre, idhijo);
+            vinculo.tipoVinculo = 0;
+            this.context.SaveChanges();
+            return mapper.Map<VncSubcategoriaCategoriaAM>(vinculo);
+        }
+
+        public void DesvncSubcategoriasCategoria(DvcSubcategoriaCategoria objeto)
+        {
+            string[] ids = objeto.idssubcategorias.Split(',');
+            foreach (string id in ids)
+            {
+                DesvncSubcategoriasCategoria(objeto.idCategoria, int.Parse(id));
+            }
         }
 
         public IList<SubcategoriaAM> TodosVncSubcategoria(int id)
@@ -630,6 +714,21 @@ namespace Domain.Bussiness.BO
             foreach (string id in ids)
             {
                 DesvncTercerNvlSubcategoria(objeto.idSubcategoria, int.Parse(id));
+            }
+        }
+
+        public void VincularTercerNvlSbc(DvcTercerNivelSct objeto)
+        {
+            string[] ids = objeto.idsTercerNivel.Split(',');
+            foreach (string id in ids)
+            {
+                VncTercerNvlSubcategoriaAM nuevo = new VncTercerNvlSubcategoriaAM();
+                nuevo.idSubcategoria = objeto.idSubcategoria;
+                nuevo.idTercerNvl = int.Parse(id);
+                nuevo.codigoEstado = 1;
+                nuevo.vinculo = 1;
+                nuevo.user = 0;
+                AgregarVncTercerNvlSubcategoria(nuevo);
             }
         }
 
