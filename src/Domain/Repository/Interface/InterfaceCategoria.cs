@@ -18,6 +18,7 @@ namespace Domain.Repository.Interface
         IList<Categoria> Search(string data);
         IList<Categoria> SonsTipoCategoria(int id);
         void ChangeState(int id);
+        IList<string> Agrupar();
 
 
         //Paginacion

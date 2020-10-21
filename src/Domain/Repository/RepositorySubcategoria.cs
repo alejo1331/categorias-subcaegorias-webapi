@@ -102,5 +102,19 @@ namespace Domain.Repository
                 throw ex;
             }
         }
+
+        public IList<string> Agrupar()
+        {
+             List<String> lista1 = new List<string>(); 
+
+            var sql = this.context.Subcategorias.Include(x => x.Categoria).ToList().GroupBy(x => x.Categoria.nombre);
+            foreach( var x in sql){
+                foreach(var y in x){
+                    lista1.Add(y.Categoria.nombre);
+                    break;
+                }
+            } 
+            return lista1;
+        }
     }
 }

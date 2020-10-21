@@ -153,5 +153,11 @@ namespace Api.Controllers
             SubcategoriaAM objeto = this.administracionBO.CambioEstadoSubcategoria(id);
             return new JsonResult(objeto);
         }
+
+        [HttpGet("Agrupar")]
+        public IActionResult GetCategoria()
+        {
+            return new JsonResult(this.administracionBO.AgruparCtg());
+        }
     }
 }

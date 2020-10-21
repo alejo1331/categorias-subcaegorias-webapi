@@ -77,6 +77,20 @@ namespace Domain.Repository
             this.context.TercerNivels.Update(objeto);
         }
 
+        public IList<string> Agrupar()
+        {
+             List<String> lista1 = new List<string>(); 
+
+            var sql = this.context.TercerNivels.Include(x => x.Subcategoria).ToList().GroupBy(x => x.Subcategoria.nombre);
+            foreach( var x in sql){
+                foreach(var y in x){
+                    lista1.Add(y.Subcategoria.nombre);
+                    break;
+                }
+            } 
+            return lista1;
+        }
+
 
 
         //Paginacion
