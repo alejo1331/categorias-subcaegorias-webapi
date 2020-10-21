@@ -38,6 +38,7 @@ namespace Domain.Bussiness.Interface
         IList<CategoriaAM> SearchCategorias(string data);
         IList<CategoriaAM> SonsTipoCategoria(int id);
         CategoriaAM CambioEstadoCategoria(int id);
+        IList<string> AgruparTiposCtg();
         long ObtenerTotalCategoria(Expression<Func<CategoriaAM, bool>> predicate);
         ICollection<CategoriaAM> ObtenerCategoria(Expression<Func<CategoriaAM, bool>> predicate, int page, int size, Expression<Func<CategoriaAM, object>> selector, bool descending);
 
@@ -50,6 +51,7 @@ namespace Domain.Bussiness.Interface
         IList<SubcategoriaAM> SearchSubcategoria(string data);
         IList<SubcategoriaAM> SonsCategoria(int id);
         SubcategoriaAM CambioEstadoSubcategoria(int id);
+        IList<string> AgruparCtg();
         long ObtenerTotalSubcategoria(Expression<Func<SubcategoriaAM, bool>> predicate);
         ICollection<SubcategoriaAM> ObtenerSubcategoria(Expression<Func<SubcategoriaAM, bool>> predicate, int page, int size, Expression<Func<SubcategoriaAM, object>> selector, bool descending);
 
@@ -62,6 +64,7 @@ namespace Domain.Bussiness.Interface
         IList<TercerNivelAM> SearchTercerNivel(string data);
         IList<TercerNivelAM> SonsSubcategoria(int id);
         TercerNivelAM CambioEstadoTercerNivel(int id);
+        IList<string> AgruparScgtTCr();
         long ObtenerTotalTercerNivel(Expression<Func<TercerNivelAM, bool>> predicate);
         ICollection<TercerNivelAM> ObtenerTercerNivel(Expression<Func<TercerNivelAM, bool>> predicate, int page, int size, Expression<Func<TercerNivelAM, object>> selector, bool descending);
 

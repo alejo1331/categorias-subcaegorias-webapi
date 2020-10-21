@@ -154,5 +154,12 @@ namespace Api.Controllers
             TercerNivelAM objeto = this.administracionBO.CambioEstadoTercerNivel(id);
             return new JsonResult(objeto);
         }
+
+        [HttpGet("Agrupar")]
+        public IActionResult GetPaddres()
+        {
+            return new JsonResult(this.administracionBO.AgruparScgtTCr());
+        }
+        
     }
 }

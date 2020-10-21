@@ -216,7 +216,19 @@ namespace Domain.Bussiness.BO
             return mapper.Map<ICollection<CategoriaAM>>(categorias);
         }
 
+        public IList<string> AgruparTiposCtg()
+        {
+            InterfaceCategoria<Categoria> repository = new RepositoryCategoria(context);
+            return repository.Agrupar();
+        }
+
         //Subcategory
+
+        public IList<string> AgruparCtg()
+        {
+            InterfaceSubcategoria<Subcategoria> repository = new RepositorySubcategoria(context);
+            return repository.Agrupar();
+        }
         public IList<SubcategoriaAM> TodosSubcategoria()
         {
             InterfaceSubcategoria<Subcategoria> repository = new RepositorySubcategoria(context);
@@ -307,6 +319,12 @@ namespace Domain.Bussiness.BO
         {
             InterfaceTercerNivel<TercerNivel> repository = new RepositoryTercerNivel(context);
             return mapper.Map<List<TercerNivelAM>>(repository.All());
+        }
+
+        public IList<string> AgruparScgtTCr()
+        {
+            InterfaceTercerNivel<TercerNivel> repository = new RepositoryTercerNivel(context);
+            return repository.Agrupar();
         }
 
         public TercerNivelAM AgregarTercerNivel(TercerNivelAM objeto)

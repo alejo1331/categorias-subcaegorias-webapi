@@ -30,6 +30,20 @@ namespace Domain.Repository
             this.context.Categorias.Add(objeto);
         }
 
+        public IList<string> Agrupar()
+        {        
+             List<String> lista1 = new List<string>(); 
+
+            var sql = this.context.Categorias.Include(x => x.TipoCategoria).ToList().GroupBy(x => x.TipoCategoria.nombre);
+            foreach( var x in sql){
+                foreach(var y in x){
+                    lista1.Add(y.TipoCategoria.nombre);
+                    break;
+                }
+            } 
+            return lista1;
+        }
+
         public Categoria GetId(int id)
         {
             return context.Categorias.Where(s => s.id == id).FirstOrDefault();
