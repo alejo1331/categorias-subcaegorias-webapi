@@ -19,6 +19,7 @@ namespace Domain.Repository.Interface
         IList<Categoria> SonsTipoCategoria(int id);
         void ChangeState(int id);
         IList<string> Agrupar();
+        bool Existe(string data);
 
 
         //Paginacion

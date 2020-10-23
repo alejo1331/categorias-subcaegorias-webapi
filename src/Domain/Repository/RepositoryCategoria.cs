@@ -118,5 +118,13 @@ namespace Domain.Repository
                 throw ex;
             }
         }
+
+        public bool Existe(string data)
+        {
+            Categoria objeto = this.context.Categorias.Where(s => s.nombre == data).FirstOrDefault();
+            if(objeto == null)
+                return false;
+            return true;
+        }
     }
 }

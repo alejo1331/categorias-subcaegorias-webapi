@@ -20,6 +20,7 @@ namespace Domain.Repository.Interface
         IList<TercerNivel> SonsSubcategoria(int id);
         void ChangeState(int id);
         IList<string> Agrupar();
+        bool Existe(string data);
 
 
         //Paginacion

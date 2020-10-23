@@ -160,6 +160,13 @@ namespace Api.Controllers
         {
             return new JsonResult(this.administracionBO.AgruparScgtTCr());
         }
+
+        [HttpGet("Existe/{data}")]
+        public IActionResult Existe(string data)
+        {
+            bool objeto = this.administracionBO.ExisteTercerNivel(data);
+            return new JsonResult(objeto);
+        }
         
     }
 }

@@ -116,5 +116,13 @@ namespace Domain.Repository
             } 
             return lista1;
         }
+
+        public bool Existe(string data)
+        {
+            Subcategoria objeto = this.context.Subcategorias.Where(s => s.nombre == data).FirstOrDefault();
+            if(objeto == null)
+                return false;
+            return true;
+        }
     }
 }
