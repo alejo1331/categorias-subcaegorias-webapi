@@ -165,5 +165,12 @@ namespace Api.Controllers
         {
             return new JsonResult(this.administracionBO.AgruparTiposCtg());
         }
+
+        [HttpGet("Existe/{data}")]
+        public IActionResult Existe(string data)
+        {
+            bool objeto = this.administracionBO.ExisteCategoria(data);
+            return new JsonResult(objeto);
+        }
     }
 }

@@ -141,5 +141,12 @@ namespace Api.Controllers
             TipoCategoriaAM objeto = this.administracionBO.CambioEstadoTipoCategoria(id);
             return new JsonResult(objeto);
         }
+
+        [HttpGet("Existe/{data}")]
+        public IActionResult Existe(string data)
+        {
+            bool objeto = this.administracionBO.ExisteTipoCategoria(data);
+            return new JsonResult(objeto);
+        }
     }
 }

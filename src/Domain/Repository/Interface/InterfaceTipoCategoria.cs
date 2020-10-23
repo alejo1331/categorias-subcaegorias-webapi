@@ -16,6 +16,7 @@ namespace Domain.Repository.Interface
         void update(TipoCategoria objeto);
         IList<TipoCategoria> Search(string data);
         void ChangeState(int id);
+        bool Existe(string data);
 
 
         //Paginacion

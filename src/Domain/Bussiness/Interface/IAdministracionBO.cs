@@ -26,6 +26,7 @@ namespace Domain.Bussiness.Interface
         TipoCategoriaAM ActualizarTipoCategoria(TipoCategoriaAM objeto);
         IList<TipoCategoriaAM> SearchTiposCtg(string data);
         TipoCategoriaAM CambioEstadoTipoCategoria(int id);
+        bool ExisteTipoCategoria(string data);
         long ObtenerTotalTipoCategoria(Expression<Func<TipoCategoriaAM, bool>> predicate);
         IList<TipoCategoriaAM> ObtenerTipoCategoria(Expression<Func<TipoCategoriaAM, bool>> predicate, int page, int size, Expression<Func<TipoCategoriaAM, object>> selector, bool descending);
 
@@ -39,6 +40,7 @@ namespace Domain.Bussiness.Interface
         IList<CategoriaAM> SonsTipoCategoria(int id);
         CategoriaAM CambioEstadoCategoria(int id);
         IList<string> AgruparTiposCtg();
+        bool ExisteCategoria(string data);
         long ObtenerTotalCategoria(Expression<Func<CategoriaAM, bool>> predicate);
         ICollection<CategoriaAM> ObtenerCategoria(Expression<Func<CategoriaAM, bool>> predicate, int page, int size, Expression<Func<CategoriaAM, object>> selector, bool descending);
 
@@ -52,10 +54,12 @@ namespace Domain.Bussiness.Interface
         IList<SubcategoriaAM> SonsCategoria(int id);
         SubcategoriaAM CambioEstadoSubcategoria(int id);
         IList<string> AgruparCtg();
+        bool ExisteSubcategoria(string data);
         long ObtenerTotalSubcategoria(Expression<Func<SubcategoriaAM, bool>> predicate);
         ICollection<SubcategoriaAM> ObtenerSubcategoria(Expression<Func<SubcategoriaAM, bool>> predicate, int page, int size, Expression<Func<SubcategoriaAM, object>> selector, bool descending);
 
         //Tercer Nivel
+        bool ExisteTercerNivel(string data);
         IList<TercerNivelAM> TodosTercerNivel();
         TercerNivelAM AgregarTercerNivel(TercerNivelAM objeto);
         TercerNivelAM ObtenerTercerNivel(int id);

@@ -119,5 +119,13 @@ namespace Domain.Repository
                 throw ex;
             }
         }
+
+        public bool Existe(string data)
+        {
+            TercerNivel objeto = this.context.TercerNivels.Where(s => s.nombre == data).FirstOrDefault();
+            if(objeto == null)
+                return false;
+            return true;
+        }
     }
 }

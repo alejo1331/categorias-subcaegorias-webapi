@@ -129,7 +129,20 @@ namespace Domain.Bussiness.BO
             return mapper.Map<List<TipoCategoriaAM>>(repository.Get(predicateMapped, page, size, selectorMapped, descending));
         }
 
+        public bool ExisteTipoCategoria(string data)
+        {
+            InterfaceTipoCategoria<TipoCategoria> repository = new RepositoryTipoCategoria(context);
+            return repository.Existe(data);
+        }
+
         //Categoria
+
+        public bool ExisteCategoria(string data)
+        {
+            InterfaceCategoria<Categoria> repository = new RepositoryCategoria(context);
+            return repository.Existe(data);
+        }
+
         public IList<CategoriaAM> AllCategorias()
         {
             InterfaceCategoria<Categoria> repository = new RepositoryCategoria(context);
@@ -224,6 +237,12 @@ namespace Domain.Bussiness.BO
 
         //Subcategory
 
+        public bool ExisteSubcategoria(string data)
+        {
+            InterfaceSubcategoria<Subcategoria> repository = new RepositorySubcategoria(context);
+            return repository.Existe(data);
+        }
+
         public IList<string> AgruparCtg()
         {
             InterfaceSubcategoria<Subcategoria> repository = new RepositorySubcategoria(context);
@@ -315,6 +334,11 @@ namespace Domain.Bussiness.BO
 
 
         //Tercer Nivel
+        public bool ExisteTercerNivel(string data)
+        {
+            InterfaceTercerNivel<TercerNivel> repository = new RepositoryTercerNivel(context);
+            return repository.Existe(data);
+        }
         public IList<TercerNivelAM> TodosTercerNivel()
         {
             InterfaceTercerNivel<TercerNivel> repository = new RepositoryTercerNivel(context);
