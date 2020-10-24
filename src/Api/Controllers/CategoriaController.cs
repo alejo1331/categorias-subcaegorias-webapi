@@ -83,6 +83,12 @@ namespace Api.Controllers
             return new JsonResult(this.administracionBO.AllCategorias());
         }
 
+        [HttpGet("Activas")]
+        public IActionResult GetActivas()
+        {
+            return new JsonResult(this.administracionBO.ActivasCategorias());
+        }
+
         [HttpPost]
         public IActionResult Post([FromBody] CategoriaAM objeto)
         {
