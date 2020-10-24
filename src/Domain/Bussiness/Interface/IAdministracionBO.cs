@@ -32,6 +32,7 @@ namespace Domain.Bussiness.Interface
 
         //Categoria
         IList<CategoriaAM> AllCategorias();
+        IList<CategoriaAM> ActivasCategorias();
         CategoriaAM Add(CategoriaAM objeto);
         CategoriaAM GetCategoria(int id);
         TipoCategoriaAM ObtenerCategoriaTipoCtg(int id);

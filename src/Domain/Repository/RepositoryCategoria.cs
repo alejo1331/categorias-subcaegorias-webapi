@@ -31,16 +31,18 @@ namespace Domain.Repository
         }
 
         public IList<string> Agrupar()
-        {        
-             List<String> lista1 = new List<string>(); 
+        {
+            List<String> lista1 = new List<string>();
 
             var sql = this.context.Categorias.Include(x => x.TipoCategoria).ToList().GroupBy(x => x.TipoCategoria.nombre);
-            foreach( var x in sql){
-                foreach(var y in x){
+            foreach (var x in sql)
+            {
+                foreach (var y in x)
+                {
                     lista1.Add(y.TipoCategoria.nombre);
                     break;
                 }
-            } 
+            }
             return lista1;
         }
 
@@ -122,9 +124,14 @@ namespace Domain.Repository
         public bool Existe(string data)
         {
             Categoria objeto = this.context.Categorias.Where(s => s.nombre == data).FirstOrDefault();
-            if(objeto == null)
+            if (objeto == null)
                 return false;
             return true;
+        }
+
+        public IList<Categoria> Activas()
+        {
+            return this.context.Categorias.Where(s => s.codigoEstado == 1).ToList();
         }
     }
 }
