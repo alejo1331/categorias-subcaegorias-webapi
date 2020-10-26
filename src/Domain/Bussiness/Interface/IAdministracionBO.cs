@@ -27,11 +27,13 @@ namespace Domain.Bussiness.Interface
         IList<TipoCategoriaAM> SearchTiposCtg(string data);
         TipoCategoriaAM CambioEstadoTipoCategoria(int id);
         bool ExisteTipoCategoria(string data);
+        long CountOrdenTipoCtg(int orden);
         long ObtenerTotalTipoCategoria(Expression<Func<TipoCategoriaAM, bool>> predicate);
         IList<TipoCategoriaAM> ObtenerTipoCategoria(Expression<Func<TipoCategoriaAM, bool>> predicate, int page, int size, Expression<Func<TipoCategoriaAM, object>> selector, bool descending);
 
         //Categoria
         IList<CategoriaAM> AllCategorias();
+        long CountOrdenCtg(int orden);
         IList<CategoriaAM> ActivasCategorias();
         CategoriaAM Add(CategoriaAM objeto);
         CategoriaAM GetCategoria(int id);
@@ -47,6 +49,7 @@ namespace Domain.Bussiness.Interface
 
         //Subcategoria
         IList<SubcategoriaAM> TodosSubcategoria();
+        long CountOrdenSbtg(int orden);
         SubcategoriaAM AgregarSubcategoria(SubcategoriaAM objeto);
         SubcategoriaAM GetSubCategoria(int id);
         CategoriaAM GetCategoriaSubcatgoria(int id);
@@ -60,6 +63,7 @@ namespace Domain.Bussiness.Interface
         ICollection<SubcategoriaAM> ObtenerSubcategoria(Expression<Func<SubcategoriaAM, bool>> predicate, int page, int size, Expression<Func<SubcategoriaAM, object>> selector, bool descending);
 
         //Tercer Nivel
+        long CountOrdenTercerNivel(int orden);
         bool ExisteTercerNivel(string data);
         IList<TercerNivelAM> TodosTercerNivel();
         TercerNivelAM AgregarTercerNivel(TercerNivelAM objeto);

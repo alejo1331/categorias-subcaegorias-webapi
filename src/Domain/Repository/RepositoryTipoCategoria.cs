@@ -95,5 +95,10 @@ namespace Domain.Repository
                 return false;
             return true;
         }
+
+        public int Count(int orden)
+        {
+            return this.context.TipoCategorias.Where(s => s.ordenPresentacion == orden).Count();
+        }
     }
 }

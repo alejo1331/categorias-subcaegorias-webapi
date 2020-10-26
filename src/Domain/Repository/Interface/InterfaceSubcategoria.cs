@@ -21,6 +21,7 @@ namespace Domain.Repository.Interface
         void ChangeState(int id);
         IList<string> Agrupar();
         bool Existe(string data);
+        int Count(int orden);
 
 
         //Paginacion

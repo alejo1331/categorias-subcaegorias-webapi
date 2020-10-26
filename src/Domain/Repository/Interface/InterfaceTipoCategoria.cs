@@ -17,6 +17,7 @@ namespace Domain.Repository.Interface
         IList<TipoCategoria> Search(string data);
         void ChangeState(int id);
         bool Existe(string data);
+        int Count(int orden);
 
 
         //Paginacion
