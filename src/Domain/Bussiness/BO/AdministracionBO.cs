@@ -135,8 +135,21 @@ namespace Domain.Bussiness.BO
             return repository.Existe(data);
         }
 
+        public long CountOrdenTipoCtg(int orden)
+        {
+            InterfaceTipoCategoria<TipoCategoria> repository = new RepositoryTipoCategoria(context);
+            return repository.Count(orden);
+        }
+
         //Categoria
-        public IList<CategoriaAM> ActivasCategorias(){
+
+        public long CountOrdenCtg(int orden)
+        {
+            InterfaceCategoria<Categoria> repository = new RepositoryCategoria(context);
+            return repository.Count(orden);
+        }
+        public IList<CategoriaAM> ActivasCategorias()
+        {
             InterfaceCategoria<Categoria> repository = new RepositoryCategoria(context);
             return mapper.Map<List<CategoriaAM>>(repository.Activas());
         }
@@ -241,6 +254,12 @@ namespace Domain.Bussiness.BO
 
         //Subcategory
 
+        public long CountOrdenSbtg(int orden)
+        {
+            InterfaceSubcategoria<Subcategoria> repository = new RepositorySubcategoria(context);
+            return repository.Count(orden);
+        }
+
         public bool ExisteSubcategoria(string data)
         {
             InterfaceSubcategoria<Subcategoria> repository = new RepositorySubcategoria(context);
@@ -338,6 +357,11 @@ namespace Domain.Bussiness.BO
 
 
         //Tercer Nivel
+        public long CountOrdenTercerNivel(int orden)
+        {
+            InterfaceTercerNivel<TercerNivel> repository = new RepositoryTercerNivel(context);
+            return repository.Count(orden);
+        }
         public bool ExisteTercerNivel(string data)
         {
             InterfaceTercerNivel<TercerNivel> repository = new RepositoryTercerNivel(context);

@@ -131,7 +131,12 @@ namespace Domain.Repository
 
         public IList<Categoria> Activas()
         {
-            return this.context.Categorias.Where(s => s.codigoEstado == 1).ToList();
+            return this.context.Categorias.Where(s => s.codigoEstado == 1).OrderBy(s => s.orden).ThenBy(s => s.nombre).ToList();
+        }
+
+        public int Count(int orden)
+        {
+            return this.context.Categorias.Where(s => s.orden == orden).Count();
         }
     }
 }

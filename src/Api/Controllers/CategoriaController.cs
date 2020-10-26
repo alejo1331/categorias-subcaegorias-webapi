@@ -178,5 +178,11 @@ namespace Api.Controllers
             bool objeto = this.administracionBO.ExisteCategoria(data);
             return new JsonResult(objeto);
         }
+
+        [HttpGet("ContarOden/{orden}")]
+        public IActionResult Count(int orden)
+        {
+            return new JsonResult(this.administracionBO.CountOrdenCtg(orden));
+        }
     }
 }

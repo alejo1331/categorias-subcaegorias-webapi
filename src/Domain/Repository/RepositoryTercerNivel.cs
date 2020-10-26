@@ -127,5 +127,10 @@ namespace Domain.Repository
                 return false;
             return true;
         }
+
+        public int Count(int orden)
+        {
+            return this.context.TercerNivels.Where(s => s.orden == orden).Count();
+        }
     }
 }
