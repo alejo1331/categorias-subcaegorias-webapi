@@ -35,7 +35,7 @@ namespace Domain.Models
         public TipoCategoria TipoCategoria { get; set; }
         //
 
-        [Column("ORDEN", TypeName = "tinyint")]
+        [Column("ORDEN", TypeName = "int")]
         public int orden { get; set; }
 
         [Column("ICONO", TypeName = "varchar(200)")]
