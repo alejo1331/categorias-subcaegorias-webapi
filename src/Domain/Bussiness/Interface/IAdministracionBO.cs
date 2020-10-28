@@ -103,10 +103,13 @@ namespace Domain.Bussiness.Interface
         IList<VncCategoriaTipoCtgAM> TodosVncCategoriaTipoCtg();
         VncCategoriaTipoCtgAM AgregarVncCategoriaTipoCtg(VncCategoriaTipoCtgAM objeto);
         VncCategoriaTipoCtgAM ObtenerVncCategoriaTipoCtg(int id);
-        IList<CategoriaAM> TodosVncCategorias(int id);
+        IList<CategoriaAM> TodosVncCategorias(int id, int page, int size);
         VncCategoriaTipoCtgAM DesvncCategoriaTipoCtg(int idpadre, int idhijo);
         void DesvncCategoriaTipo(DvcCategoriaTipoCtg objeto);
         void VincularCategoriaTipo(DvcCategoriaTipoCtg objeto);
+        IList<CategoriaAM> VincularCategorias(int id, int page, int size);
+        long VincularCategoriasTotal(int id);
+        long DesvincularCategoriasTotal(int id);
 
 
 

@@ -11,6 +11,7 @@ using Domain.Bussiness.Interface;
 using Domain.Bussiness.BO;
 using Domain.Data;
 using Domain.Categorias.AplicationModel;
+using Api.Helpers;
 
 
 namespace Api.Controllers
@@ -60,10 +61,10 @@ namespace Api.Controllers
             return NotFound();
         }
 
-        [HttpGet("Categorias/{id}")]
-        public IActionResult getCategoriaId(int id)
+        [HttpPost("Desvincular")]
+        public IActionResult getCategoriaId(PaginateVincular desvincular)
         {
-            return new JsonResult(this.administracionBO.TodosVncCategorias(id));
+            return new JsonResult(this.administracionBO.TodosVncCategorias(desvincular.idParametro, desvincular.page, desvincular.size));
         }
 
         [HttpPut("{idTipoCategoria}/{idCategoria}")]
@@ -102,6 +103,24 @@ namespace Api.Controllers
 
             this.administracionBO.VincularCategoriaTipo(objeto);
             return new JsonResult(true);
+        }
+
+        [HttpPost("Vincular")]
+        public IActionResult getVincular(PaginateVincular vincular)
+        {
+            return new JsonResult(administracionBO.VincularCategorias(vincular.idParametro, vincular.page, vincular.size));
+        }
+
+        [HttpGet("Vincular/Total/{id}")]
+        public IActionResult getVincularTotal(int id)
+        {
+            return new JsonResult(administracionBO.VincularCategoriasTotal(id));
+        }
+
+        [HttpGet("Desvincular/Total/{id}")]
+        public IActionResult getDevincularTotal(int id)
+        {
+            return new JsonResult(administracionBO.DesvincularCategoriasTotal(id));
         }
     }
 }

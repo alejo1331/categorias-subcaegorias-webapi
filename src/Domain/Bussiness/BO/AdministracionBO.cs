@@ -617,6 +617,24 @@ namespace Domain.Bussiness.BO
 
         //Tipo Categoria ---- Categoria
 
+        public IList<CategoriaAM> VincularCategorias(int id, int page, int size)
+        {
+            InterfaceVclCtgTipoCtg<VncCategoriaTipoCtg> repository = new RepositoryVncCategoriaTipoCtg(context);
+            return mapper.Map<List<CategoriaAM>>(repository.Vincular(id, page, size));
+        }
+
+        public long VincularCategoriasTotal(int id)
+        {
+            InterfaceVclCtgTipoCtg<VncCategoriaTipoCtg> repository = new RepositoryVncCategoriaTipoCtg(context);
+            return repository.VincularTotal(id);
+        }
+
+        public long DesvincularCategoriasTotal(int id)
+        {
+            InterfaceVclCtgTipoCtg<VncCategoriaTipoCtg> repository = new RepositoryVncCategoriaTipoCtg(context);
+            return repository.DesvincularTotal(id);
+        }
+
         public IList<VncCategoriaTipoCtgAM> TodosVncCategoriaTipoCtg()
         {
             InterfaceVclCtgTipoCtg<VncCategoriaTipoCtg> repository = new RepositoryVncCategoriaTipoCtg(context);
@@ -639,10 +657,10 @@ namespace Domain.Bussiness.BO
             return mapper.Map<VncCategoriaTipoCtgAM>(repository.GetId(id));
         }
 
-        public IList<CategoriaAM> TodosVncCategorias(int id)
+        public IList<CategoriaAM> TodosVncCategorias(int id, int page, int size)
         {
             InterfaceVclCtgTipoCtg<VncCategoriaTipoCtg> repository = new RepositoryVncCategoriaTipoCtg(context);
-            return mapper.Map<List<CategoriaAM>>(repository.getCategory(id));
+            return mapper.Map<List<CategoriaAM>>(repository.getCategory(id, page, size));
         }
 
         public VncCategoriaTipoCtgAM DesvncCategoriaTipoCtg(int idpadre, int idhijo)
