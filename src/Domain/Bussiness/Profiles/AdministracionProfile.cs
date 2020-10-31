@@ -27,6 +27,14 @@ namespace Domain.Bussiness.Profiles
             CreateMap<VncCategoriaRecurso, VncCategoriaRecursoAM>().ReverseMap();
             CreateMap<VncSubcategoriaRecurso, VncSubcategoriaRecursoAM>().ReverseMap();
             CreateMap<VncTercerNvlRecurso, VncTercerNvlRecursoAM>().ReverseMap();
+
+            //Elementos
+            CreateMap<PPT, PPTAM>();
+            CreateMap<TramiteServicio, TramiteServicioAM>();
+            CreateMap<VentanillaUnica, VentanillaUnicaAM>();
+            CreateMap<SedeElectronica, SedeElectronicaAM>();  
+            CreateMap<TipoElemento, TipoElementoAM>();  
+            CreateMap<ElementoCategoria, ElementoCategoriaAM>();        
         }
     }
 }

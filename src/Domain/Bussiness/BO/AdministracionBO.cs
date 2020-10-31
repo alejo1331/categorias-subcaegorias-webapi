@@ -918,5 +918,95 @@ namespace Domain.Bussiness.BO
             InterfaceVncTercerNvlRecurso<VncTercerNvlRecurso> repository = new RepositoryVncTercerNvlRecurso(context);
             return mapper.Map<VncTercerNvlRecursoAM>(repository.GetId(id));
         }
+
+
+
+        //Elementos
+        public IList<PPTAM> TodasPPT()
+        {
+            InterfacePPT<PPT> repository = new RepositoryPPT(context);
+            return mapper.Map<List<PPTAM>>(repository.All());
+        }
+
+        public PPTAM PPTId(int id)
+        {
+            InterfacePPT<PPT> repository = new RepositoryPPT(context);
+            return mapper.Map<PPTAM>(repository.GetId(id));
+        }
+
+        //Tramites y servicios
+        public IList<TramiteServicioAM> TodasTramiteServicio()
+        {
+            InterfaceTramiteServicio<TramiteServicio> repository = new RepositoryTramiteServicio(context);
+            return mapper.Map<List<TramiteServicioAM>>(repository.All());
+        }
+
+        public TramiteServicioAM TramiteServicioId(string id)
+        {
+            InterfaceTramiteServicio<TramiteServicio> repository = new RepositoryTramiteServicio(context);
+            return mapper.Map<TramiteServicioAM>(repository.GetId(id));
+        }
+
+
+        //Ventanilla Unica
+        public IList<VentanillaUnicaAM> TodasVentanillaUnica()
+        {
+            InterfaceVentanillaUnica<VentanillaUnica> repository = new RepositoryVentanillaUnica(context);
+            return mapper.Map<List<VentanillaUnicaAM>>(repository.All());
+        }
+
+        public VentanillaUnicaAM VentanillaUnicaId(int id)
+        {
+            InterfaceVentanillaUnica<VentanillaUnica> repository = new RepositoryVentanillaUnica(context);
+            return mapper.Map<VentanillaUnicaAM>(repository.GetId(id));
+        }
+
+
+        //Sede electronica
+        public IList<SedeElectronicaAM> TodasSedeElectronica()
+        {
+            InterfaceSedeElectronica<SedeElectronica> repository = new RepositorySedeElectronica(context);
+            return mapper.Map<List<SedeElectronicaAM>>(repository.All());
+        }
+        public SedeElectronicaAM SedeElectronicaId(int id)
+        {
+            InterfaceSedeElectronica<SedeElectronica> repository = new RepositorySedeElectronica(context);
+            return mapper.Map<SedeElectronicaAM>(repository.GetId(id));
+        }
+
+        //Tipo Elemento
+        public IList<TipoElementoAM> TodasTipoElemento()
+        {
+            InterfaceTipoElemento<TipoElemento> repository = new RepositoryTipoElemento(context);
+            return mapper.Map<List<TipoElementoAM>>(repository.All());
+        }
+        public TipoElementoAM TipoElementoId(int id)
+        {
+            InterfaceTipoElemento<TipoElemento> repository = new RepositoryTipoElemento(context);
+            return mapper.Map<TipoElementoAM>(repository.GetId(id));
+        }
+
+
+        //Elemento Categoria
+        public IList<ElementoCategoriaAM> TodasElementoCategoria()
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return mapper.Map<List<ElementoCategoriaAM>>(repository.All());
+        }
+        public ElementoCategoriaAM ElementoCategoriaId(int id)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return mapper.Map<ElementoCategoriaAM>(repository.GetId(id));
+        }
+
+        public ElementoCategoriaAM AgregarElementoCategoria(ElementoCategoriaAM objeto)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            ElementoCategoria nuevo = mapper.Map<ElementoCategoria>(objeto);
+            repository.Add(nuevo);
+            this.context.SaveChanges();
+            ElementoCategoriaAM mapeo = mapper.Map<ElementoCategoriaAM>(nuevo);
+            return mapeo;
+        }
     }
 }
