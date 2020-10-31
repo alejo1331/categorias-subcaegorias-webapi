@@ -69,7 +69,7 @@ namespace Domain.Repository
                                                     .Select(s => s.idCategoria)
                                                     .ToList();
             IList<Categoria> categorias = this.context.Categorias
-                                                .Where(s => !vinculos.Contains(s.id) && s.codigoEstado == 1).Skip(page).Take(size)
+                                                .Where(s => !vinculos.Contains(s.id) && s.codigoEstado == 1).Skip((page -1 )*size).Take(size)
                                                 .ToList();
 
 

@@ -153,5 +153,31 @@ namespace Domain.Bussiness.Interface
         VncTercerNvlRecursoAM AgregarVncTercerNvlRecurso(VncTercerNvlRecursoAM objeto);
         VncTercerNvlRecursoAM ObtenerVncTercerNvlRecurso(int id);
 
+
+        //Elemento 
+        //PPT
+        IList<PPTAM> TodasPPT();
+        PPTAM PPTId(int id);
+
+        //TramiteServicio
+        IList<TramiteServicioAM> TodasTramiteServicio();
+        TramiteServicioAM TramiteServicioId(string id);
+
+        //Ventanilla Unica
+        IList<VentanillaUnicaAM> TodasVentanillaUnica();
+        VentanillaUnicaAM VentanillaUnicaId(int id);
+
+        //Sede electronica
+        IList<SedeElectronicaAM> TodasSedeElectronica();
+        SedeElectronicaAM SedeElectronicaId(int id);
+
+        //Tipo Elemento
+        IList<TipoElementoAM> TodasTipoElemento();
+        TipoElementoAM TipoElementoId(int id);
+
+        //Elemento Categoria
+        IList<ElementoCategoriaAM> TodasElementoCategoria();
+        ElementoCategoriaAM ElementoCategoriaId(int id);
+        ElementoCategoriaAM AgregarElementoCategoria(ElementoCategoriaAM objeto);
     }
 }

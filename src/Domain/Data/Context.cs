@@ -15,6 +15,12 @@ namespace Domain.Data
         public DbSet<TipoRecurso> TipoRecursos { get; set; }
         public DbSet<Recurso> Recursos { get; set; }
         public DbSet<TipoParametro> TipoParametros { get; set; }
+        public DbSet<PPT> PPTs { get; set; }
+        public DbSet<TramiteServicio> TramiteServicios { get; set; }
+        public DbSet<VentanillaUnica> VentanillaUnicas { get; set; } 
+        public DbSet<SedeElectronica> SedeElectronicas { get; set; }  
+        public DbSet<TipoElemento> TipoElementos { get; set; }   
+        public DbSet<ElementoCategoria> ElementoCategorias { get; set; } 
 
         //Vinculos
         public DbSet<VncCategoriaTipoCtg> VncCategoriaTipoCtgs { get; set; }
