@@ -58,5 +58,29 @@ namespace Domain.Repository
         {
             return this.context.VncSubcategoriaCategorias.Where(s => s.idCategoria == idpadre && s.idSubcategoria == idhijo && s.tipoVinculo == 1).FirstOrDefault();
         }
+
+        public IList<Subcategoria> Vinculadas(int id, int page, int size)
+        {
+            var vinculos = this.context.VncSubcategoriaCategorias
+                                                    .Where(s => s.idCategoria == id && s.tipoVinculo == 1)
+                                                    .Select(s => s.idSubcategoria)
+                                                    .ToList();
+
+            IList<Subcategoria> subcategorias = this.context.Subcategorias.Where(s => vinculos.Contains(s.id)).Skip((page - 1) * size).Take(size).ToList();
+            return subcategorias;
+        }
+
+        public long VinculadasTotal(int id)
+        {
+            var vinculos = this.context.VncSubcategoriaCategorias
+                                                    .Where(s => s.idCategoria == id && s.tipoVinculo == 1)
+                                                    .Select(s => s.idSubcategoria)
+                                                    .ToList();
+
+            long total = this.context.Subcategorias.Count(s => vinculos.Contains(s.id));
+
+            return total;
+
+        }
     }
 }

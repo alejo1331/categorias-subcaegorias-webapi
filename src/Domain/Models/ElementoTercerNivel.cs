@@ -7,11 +7,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Models
 {
-    [Table("TBL_CSC_ELEMENTO_CATEGORIA", Schema = "tramites_y_servicios")]
-    public class ElementoCategoria
+    [Table("TBL_CSC_ELEMENTO_TERCER_NIVEL", Schema = "tramites_y_servicios")]
+    public class ElementoTercerNivel
     {
         [Key]
-        [Column("CEC_ID", TypeName = "int")]
+        [Column("CEN_ID", TypeName = "int")]
         public int id { get; set; }
         [Column("ELEMENTO_ID", TypeName = "int")]
         public int elementoId { get; set; }
@@ -22,26 +22,26 @@ namespace Domain.Models
         [ForeignKey("tipoElementoId")]
         public TipoElemento TipoElemento { get; set; }
 
-        [Column("CATEGORIA_ID", TypeName = "int")]
-        public int categoriaId { get; set; }
-        [ForeignKey("categoriaId")]
-        public Categoria Categoria { get; set; }
+        [Column("CTN_ID", TypeName = "int")]
+        public int tercerNivelId { get; set; }
+        [ForeignKey("tercerNivelId")]
+        public TercerNivel TercerNivel { get; set; }
 
         [Column("CODIGO_ESTADO", TypeName = "int")]
         public int codigoEstado { get; set; }
         [ForeignKey("codigoEstado")]
         public Estado Estado { get; set; }
         //
-        [Column("CEC_VINCULO", TypeName = "int")]
+        [Column("CEN_VINCULO", TypeName = "int")]
         public int vinculo { get; set; }
 
-        [Column("CEC_FECHA_CREACION", TypeName = "smalldatetime")]
+        [Column("CEN_FECHA_CREACION", TypeName = "smalldatetime")]
         public DateTime fechaCreacion { get; set; }
 
         [Column("USUARIO_CREACION", TypeName = "int")]
         public int usuario { get; set; }
 
-        [Column("CEC_FECHA_MODIFICACION", TypeName = "smalldatetime")]
+        [Column("CEN_FECHA_MODIFICACION", TypeName = "smalldatetime")]
         public DateTime fechaModificacion { get; set; }
     }
 }

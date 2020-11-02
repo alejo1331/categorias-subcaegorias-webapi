@@ -56,7 +56,7 @@ namespace Domain.Repository
                                                     .ToList();
             IList<Categoria> categorias = this.context.Categorias
                                                 .Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1)
-                                                .Skip(page).Take(size)
+                                                .Skip((page -1 )*size).Take(size)
                                                 .ToList();
 
             return categorias;

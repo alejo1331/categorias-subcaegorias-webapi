@@ -12,6 +12,8 @@ using Domain.Bussiness.BO;
 using Domain.Data;
 using Domain.Categorias.AplicationModel;
 
+using Api.Helpers;
+
 
 namespace Api.Controllers
 {
@@ -102,6 +104,18 @@ namespace Api.Controllers
 
             this.administracionBO.VincularSubcategoriasCategoria(objeto);
             return new JsonResult(true);
+        }
+
+        [HttpPost("Vinculadas")]
+        public IActionResult getVinculadas(PaginateVincular vincular)
+        {
+            return new JsonResult(administracionBO.VinculadasSubcategoria(vincular.idParametro, vincular.page, vincular.size));
+        }
+
+        [HttpGet("Vinculadas/Total/{id}")]
+        public IActionResult getVinculadasTotal(int id)
+        {
+            return new JsonResult(administracionBO.VinculadasSubcategoriasTotal(id));
         }
     }
 }

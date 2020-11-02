@@ -121,6 +121,8 @@ namespace Domain.Bussiness.Interface
         VncSubcategoriaCategoriaAM DesvncSubcategoriasCategoria(int idpadre, int idhijo);
         void VincularSubcategoriasCategoria(DvcSubcategoriaCategoria objeto);
         void DesvncSubcategoriasCategoria(DvcSubcategoriaCategoria objeto);
+        IList<SubcategoriaAM> VinculadasSubcategoria(int id, int page, int size);
+        long VinculadasSubcategoriasTotal(int id);
 
 
         //Subcategoria ---- Tercer Nivel
@@ -131,6 +133,8 @@ namespace Domain.Bussiness.Interface
         VncTercerNvlSubcategoriaAM DesvncTercerNvlSubcategoria(int idpadre, int idhijo);
         void DesvncTercerNvlSbc(DvcTercerNivelSct objeto);
         void VincularTercerNvlSbc(DvcTercerNivelSct objeto);
+        IList<TercerNivelAM> VinculadasTercerNivel(int id, int page, int size);
+        long VinculadasTercerNivelTotal(int id);
 
         //Tipo Categoria ---- Recurso
         IList<VncTipoCtgRecursoAM> TodosVncTipoCtgRecurso();
@@ -179,5 +183,28 @@ namespace Domain.Bussiness.Interface
         IList<ElementoCategoriaAM> TodasElementoCategoria();
         ElementoCategoriaAM ElementoCategoriaId(int id);
         ElementoCategoriaAM AgregarElementoCategoria(ElementoCategoriaAM objeto);
+        IList<PPTAM> VinculadasPPT(int id, int page, int size);
+        IList<PPTAM> VincularPPT(int id, int page, int size);
+        IList<SedeElectronicaAM> VinculadasSedeElectronica(int id, int page, int size);
+        IList<SedeElectronicaAM> VincularSedeElectronica(int id, int page, int size);
+        IList<VentanillaUnicaAM> VinculadasVentanillaUnica(int id, int page, int size);
+        IList<VentanillaUnicaAM> VincularVentanillaUnica(int id, int page, int size);
+        IList<TramiteServicioAM> VinculadasTramiteServicio(int id, int page, int size);
+        IList<TramiteServicioAM> VincularTramiteServicio(int id, int page, int size);
+
+        //Elemento Subcategoria
+        IList<ElementoSubcategoriaAM> TodasElementoSubcategoria();
+        ElementoSubcategoriaAM ElementoSubcategoriaId(int id);
+        ElementoSubcategoriaAM AgregarElementoSubcategoria(ElementoSubcategoriaAM objeto);
+        IList<VentanillaUnicaAM> VinculadasVentanillaUnicaSubcategoria(int id, int page, int size);
+        IList<SedeElectronicaAM> VinculadasSedeElectronicaSubcategoria(int id, int page, int size);
+
+
+        //Elemento Tercer Nivel
+        IList<ElementoTercerNivelAM> TodasElementoTercerNivel();
+        ElementoTercerNivelAM ElementoTercerNivelId(int id);
+        ElementoTercerNivelAM AgregarElementoTercerNivel(ElementoTercerNivelAM objeto);
+        IList<VentanillaUnicaAM> VinculadasVentanillaUnicaTercerNivel(int id, int page, int size);
+        IList<SedeElectronicaAM> VinculadasSedeElectronicaTercerNivel(int id, int page, int size);
     }
 }

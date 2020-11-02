@@ -15,5 +15,7 @@ namespace Domain.Repository.Interface
         VncTercerNvlSubcategoria GetId(int idpadre, int idhijo);
         void Update(VncTercerNvlSubcategoria objeto);
         IList<TercerNivel> getTercerNivel(int id);
+        IList<TercerNivel> Vinculadas(int id, int page, int size);
+        long VinculadasTota(int id);
     }
 }

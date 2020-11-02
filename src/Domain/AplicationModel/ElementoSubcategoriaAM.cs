@@ -3,18 +3,18 @@ using System;
 
 namespace Domain.Categorias.AplicationModel
 {
-    public class ElementoCategoriaAM
+    public class ElementoSubcategoriaAM
     {
         public int id { get; set; }
         public int elementoId { get; set; }
 
         //Foreign Key
-        public int tipoElementoId { get; set; }  
+        public int tipoElementoId { get; set; }
         public virtual TipoElementoAM TipoElemento { get; set; }
-        public int categoriaId { get; set; }
-        public virtual CategoriaAM Categoria { get; set; }
+        public int subcategoriaId { get; set; }
+        public virtual SubcategoriaAM Subcategoria { get; set; }
         public int codigoEstado { get; set; }
-        public virtual EstadoAM Estado { get; set; }
+        public EstadoAM Estado { get; set; }
         //
         public int vinculo { get; set; }
         public DateTime fechaCreacion { get; set; }

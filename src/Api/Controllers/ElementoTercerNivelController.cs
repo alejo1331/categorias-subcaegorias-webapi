@@ -17,11 +17,11 @@ namespace Api.Controllers
 {
     [ApiController]
     [Route("api/CategoriasSubcategorias/[controller]")]
-    public class ElementoCategoriaController : ControllerBase
+    public class ElementoTercerNivelController : ControllerBase
     {
         private readonly IAdministracionBO administracionBO;
 
-        public ElementoCategoriaController(Context context)
+        public ElementoTercerNivelController(Context context)
         {
             administracionBO = new AdministracionBO(context);
         }
@@ -29,13 +29,13 @@ namespace Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return new JsonResult(this.administracionBO.TodasElementoCategoria());
+            return new JsonResult(this.administracionBO.TodasElementoTercerNivel());
         }
 
         [HttpGet("{id}")]
         public IActionResult getId(int id)
         {
-            ElementoCategoriaAM objeto = administracionBO.ElementoCategoriaId(id);
+            ElementoTercerNivelAM objeto = administracionBO.ElementoTercerNivelId(id);
 
             if (objeto != null)
             {
@@ -45,7 +45,7 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] ElementoCategoriaAM objeto)
+        public IActionResult Post([FromBody] ElementoTercerNivelAM objeto)
         {
             try
             {
@@ -53,7 +53,7 @@ namespace Api.Controllers
                 {
                     return BadRequest("Objeto Nulo");
                 }
-                return Ok(this.administracionBO.AgregarElementoCategoria(objeto));
+                return Ok(this.administracionBO.AgregarElementoTercerNivel(objeto));
             }
             catch (ArgumentNullException ex)
             {
@@ -61,7 +61,19 @@ namespace Api.Controllers
             }
         }
 
-        [HttpPost("VinculadasPPT")]
+        [HttpPost("VinculadasVentanillaUnica")]
+        public IActionResult getVinculadasVentanillaUnica(PaginateVincular objeto)
+        {
+            return new JsonResult(administracionBO.VinculadasVentanillaUnicaTercerNivel(objeto.idParametro, objeto.page, objeto.size));
+        }
+
+        [HttpPost("VinculadasSedeElectronica")]
+        public IActionResult getVinculadasSedeElectronica(PaginateVincular objeto)
+        {
+            return new JsonResult(administracionBO.VinculadasSedeElectronicaTercerNivel(objeto.idParametro, objeto.page, objeto.size));
+        }
+
+        /*[HttpPost("VinculadasPPT")]
         public IActionResult getVinculadasPPT(PaginateVincular objeto)
         {
             return new JsonResult(administracionBO.VinculadasPPT(objeto.idParametro, objeto.page, objeto.size));
@@ -73,11 +85,7 @@ namespace Api.Controllers
             return new JsonResult(administracionBO.VincularPPT(objeto.idParametro, objeto.page, objeto.size));
         }
         
-        [HttpPost("VinculadasSedeElectronica")]
-        public IActionResult getVinculadasSedeElectronica(PaginateVincular objeto)
-        {
-            return new JsonResult(administracionBO.VinculadasSedeElectronica(objeto.idParametro, objeto.page, objeto.size));
-        }
+        
 
         [HttpPost("VincularSedeElectronica")]
         public IActionResult getVincularSedeElectronica(PaginateVincular objeto)
@@ -107,6 +115,6 @@ namespace Api.Controllers
         public IActionResult getVincularTramiteServicio(PaginateVincular objeto)
         {
             return new JsonResult(administracionBO.VincularTramiteServicio(objeto.idParametro, objeto.page, objeto.size));
-        }
+        }*/
     }
 }
