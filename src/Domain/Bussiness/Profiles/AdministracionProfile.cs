@@ -30,11 +30,13 @@ namespace Domain.Bussiness.Profiles
 
             //Elementos
             CreateMap<PPT, PPTAM>();
-            CreateMap<TramiteServicio, TramiteServicioAM>();
-            CreateMap<VentanillaUnica, VentanillaUnicaAM>();
-            CreateMap<SedeElectronica, SedeElectronicaAM>();  
-            CreateMap<TipoElemento, TipoElementoAM>();  
-            CreateMap<ElementoCategoria, ElementoCategoriaAM>();        
+            CreateMap<TramiteServicio, TramiteServicioAM>().ReverseMap();
+            CreateMap<VentanillaUnica, VentanillaUnicaAM>().ReverseMap();
+            CreateMap<SedeElectronica, SedeElectronicaAM>().ReverseMap();  
+            CreateMap<TipoElemento, TipoElementoAM>().ReverseMap();  
+            CreateMap<ElementoCategoria, ElementoCategoriaAM>().ReverseMap();   
+            CreateMap<ElementoSubcategoria, ElementoSubcategoriaAM>().ReverseMap();    
+            CreateMap<ElementoTercerNivel, ElementoTercerNivelAM>().ReverseMap();  
         }
     }
 }

@@ -58,5 +58,27 @@ namespace Domain.Repository
             IList<TercerNivel> lista = this.context.TercerNivels.Where(s => vinculos.Contains(s.id)).ToList();
             return lista;
         }
+
+        public IList<TercerNivel> Vinculadas(int id, int page, int size)
+        {
+            var vinculos = this.context.VncTercerNvlSubcategorias
+                                                    .Where(s => s.idSubcategoria == id && s.vinculo == 1)
+                                                    .Select(s => s.idTercerNvl)
+                                                    .ToList();
+
+            IList<TercerNivel> lista = this.context.TercerNivels.Where(s => vinculos.Contains(s.id)).Skip((page -1 )*size).Take(size).ToList();
+            return lista;
+        }
+
+        public long VinculadasTota(int id)
+        {
+            var vinculos = this.context.VncTercerNvlSubcategorias
+                                                    .Where(s => s.idSubcategoria == id && s.vinculo == 1)
+                                                    .Select(s => s.idTercerNvl)
+                                                    .ToList();
+
+            long lista = this.context.TercerNivels.Count(s => vinculos.Contains(s.id));
+            return lista;
+        }
     }
 }

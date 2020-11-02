@@ -20,7 +20,10 @@ namespace Domain.Data
         public DbSet<VentanillaUnica> VentanillaUnicas { get; set; } 
         public DbSet<SedeElectronica> SedeElectronicas { get; set; }  
         public DbSet<TipoElemento> TipoElementos { get; set; }   
-        public DbSet<ElementoCategoria> ElementoCategorias { get; set; } 
+        public DbSet<ElementoCategoria> ElementoCategorias { get; set; }
+        public DbSet<ElementoSubcategoria> ElementoSubcategorias { get; set; }
+        public DbSet<ElementoTercerNivel> ElementoTercerNivels { get; set; }         
+        
 
         //Vinculos
         public DbSet<VncCategoriaTipoCtg> VncCategoriaTipoCtgs { get; set; }

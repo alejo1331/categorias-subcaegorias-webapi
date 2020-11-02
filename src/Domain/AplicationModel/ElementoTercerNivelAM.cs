@@ -3,16 +3,16 @@ using System;
 
 namespace Domain.Categorias.AplicationModel
 {
-    public class ElementoCategoriaAM
+    public class ElementoTercerNivelAM
     {
         public int id { get; set; }
         public int elementoId { get; set; }
 
         //Foreign Key
-        public int tipoElementoId { get; set; }  
+        public int tipoElementoId { get; set; }
         public virtual TipoElementoAM TipoElemento { get; set; }
-        public int categoriaId { get; set; }
-        public virtual CategoriaAM Categoria { get; set; }
+        public int tercerNivelId { get; set; }
+        public virtual TercerNivelAM TercerNivel { get; set; }
         public int codigoEstado { get; set; }
         public virtual EstadoAM Estado { get; set; }
         //
