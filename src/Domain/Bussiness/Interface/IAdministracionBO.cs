@@ -108,6 +108,7 @@ namespace Domain.Bussiness.Interface
         void DesvncCategoriaTipo(DvcCategoriaTipoCtg objeto);
         void VincularCategoriaTipo(DvcCategoriaTipoCtg objeto);
         IList<CategoriaAM> VincularCategorias(int id, int page, int size);
+        IList<CategoriaAM> TodosVncCategorias(int id);
         long VincularCategoriasTotal(int id);
         long DesvincularCategoriasTotal(int id);
 
@@ -122,6 +123,7 @@ namespace Domain.Bussiness.Interface
         void VincularSubcategoriasCategoria(DvcSubcategoriaCategoria objeto);
         void DesvncSubcategoriasCategoria(DvcSubcategoriaCategoria objeto);
         IList<SubcategoriaAM> VinculadasSubcategoria(int id, int page, int size);
+        IList<SubcategoriaAM> VinculadasSubcategoria(int id);
         long VinculadasSubcategoriasTotal(int id);
 
 
@@ -134,6 +136,7 @@ namespace Domain.Bussiness.Interface
         void DesvncTercerNvlSbc(DvcTercerNivelSct objeto);
         void VincularTercerNvlSbc(DvcTercerNivelSct objeto);
         IList<TercerNivelAM> VinculadasTercerNivel(int id, int page, int size);
+        IList<TercerNivelAM> VinculadasTercerNivel(int id);
         long VinculadasTercerNivelTotal(int id);
 
         //Tipo Categoria ---- Recurso
@@ -197,7 +200,6 @@ namespace Domain.Bussiness.Interface
         ElementoSubcategoriaAM ElementoSubcategoriaId(int id);
         ElementoSubcategoriaAM AgregarElementoSubcategoria(ElementoSubcategoriaAM objeto);
         IList<VentanillaUnicaAM> VinculadasVentanillaUnicaSubcategoria(int id, int page, int size);
-        IList<SedeElectronicaAM> VinculadasSedeElectronicaSubcategoria(int id, int page, int size);
 
 
         //Elemento Tercer Nivel
@@ -206,5 +208,22 @@ namespace Domain.Bussiness.Interface
         ElementoTercerNivelAM AgregarElementoTercerNivel(ElementoTercerNivelAM objeto);
         IList<VentanillaUnicaAM> VinculadasVentanillaUnicaTercerNivel(int id, int page, int size);
         IList<SedeElectronicaAM> VinculadasSedeElectronicaTercerNivel(int id, int page, int size);
+
+        IList<ElementosUnionAM> Todo(int id, int page, int size);
+        IList<ElementosUnionAM> Todo(int id);
+        IList<ElementosUnionAM> TodoSubcategorias(int id);
+        IList<ElementosUnionAM> TodoSubcategorias(int id, int page, int size);
+        IList<ElementosUnionAM> TodoTercerNivels(int id);
+        IList<ElementosUnionAM> TodoTercerNivels(int id, int page, int size);
+        long TodoTotal(int id);
+        long TodoTotalSubcategorias(int id);
+        long TodoTotalTercerNivels(int id);
+
+        IList<SedeElectronicaAM> VinculadasSedeElectronicaSubcategoria(int id, int page, int size);
+
+
+        //Porta Transversal
+        IList<PortalTransversalAM> TodasPortalTransversal();
+        PortalTransversalAM PortalTransversalId(int id);
     }
 }

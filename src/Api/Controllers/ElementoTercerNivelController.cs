@@ -73,6 +73,24 @@ namespace Api.Controllers
             return new JsonResult(administracionBO.VinculadasSedeElectronicaTercerNivel(objeto.idParametro, objeto.page, objeto.size));
         }
 
+        [HttpPost("TodosElementos")]
+        public IActionResult GetTodosElementos(PaginateVincular objeto)
+        {
+            return new JsonResult(this.administracionBO.TodoTercerNivels(objeto.idParametro, objeto.page, objeto.size));
+        }
+
+        [HttpGet("TodosElementos/{id}")]
+        public IActionResult GetTodosElementos(int id)
+        {
+            return new JsonResult(this.administracionBO.TodoTercerNivels(id));
+        }
+
+        [HttpGet("TodosElementos/Total/{id}")]
+        public IActionResult GetTodosElementosTotal(int id)
+        {
+            return new JsonResult(this.administracionBO.TodoTotalTercerNivels(id));
+        }
+
         /*[HttpPost("VinculadasPPT")]
         public IActionResult getVinculadasPPT(PaginateVincular objeto)
         {

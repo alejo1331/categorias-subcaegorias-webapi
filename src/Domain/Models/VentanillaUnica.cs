@@ -13,7 +13,7 @@ namespace Domain.Models
         [Column("vtu_id", TypeName = "int")]
         public int id { get; set; }
         [Column("vtu_nombre_corto", TypeName = "varchar(200)")]
-        public string nombreCorto { get; set; }
+        public string nombre { get; set; }
         [Column("vtu_nombre_largo", TypeName = "varchar(500)")]
         public string nombreLargo { get; set; }
         [Column("vtu_descripcion", TypeName = "text")]
@@ -38,5 +38,12 @@ namespace Domain.Models
         public DateTime fechaModificacion { get; set; }
         [Column("vtu_solicitud_id", TypeName = "int")]
         public int solicitudId { get; set; }
+
+        //Foreign Key
+        [Column("vtu_codigo_estado", TypeName = "int")]
+        public int codigoEstado { get; set; }
+        [ForeignKey("codigoEstado")]
+        public Estado Estado { get; set; }
+        //
     }
 }

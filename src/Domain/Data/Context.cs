@@ -22,7 +22,8 @@ namespace Domain.Data
         public DbSet<TipoElemento> TipoElementos { get; set; }   
         public DbSet<ElementoCategoria> ElementoCategorias { get; set; }
         public DbSet<ElementoSubcategoria> ElementoSubcategorias { get; set; }
-        public DbSet<ElementoTercerNivel> ElementoTercerNivels { get; set; }         
+        public DbSet<ElementoTercerNivel> ElementoTercerNivels { get; set; }
+        public DbSet<PortalTransversal> PortalTransversals { get; set; }         
         
 
         //Vinculos
