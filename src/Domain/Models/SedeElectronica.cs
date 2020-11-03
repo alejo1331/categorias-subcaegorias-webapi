@@ -15,7 +15,7 @@ namespace Domain.Models
         [Column("TRA_ID", TypeName = "int")]
         public int id { get; set; }
         [Column("TRA_RAZON_SOCIAL", TypeName = "varchar(120)")]
-        public string razonSocial { get; set; }
+        public string nombre { get; set; }
         [Column("TRA_NIT", TypeName = "varchar(50)")]
         public string nit { get; set; }
         [Column("TRA_DIRECCION", TypeName = "varchar(200)")]

@@ -67,6 +67,12 @@ namespace Api.Controllers
             return new JsonResult(this.administracionBO.TodosVncCategorias(desvincular.idParametro, desvincular.page, desvincular.size));
         }
 
+        [HttpGet("Desvincular/{id}")]
+        public IActionResult getCategoriaId(int id)
+        {
+            return new JsonResult(this.administracionBO.TodosVncCategorias(id));
+        }
+
         [HttpPut("{idTipoCategoria}/{idCategoria}")]
         public IActionResult PuttipoCategoria(int idTipoCategoria, int idCategoria)
         {

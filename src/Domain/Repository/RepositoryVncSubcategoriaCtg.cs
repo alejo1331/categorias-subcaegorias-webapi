@@ -70,6 +70,17 @@ namespace Domain.Repository
             return subcategorias;
         }
 
+        public IList<Subcategoria> Vinculadas(int id)
+        {
+            var vinculos = this.context.VncSubcategoriaCategorias
+                                                    .Where(s => s.idCategoria == id && s.tipoVinculo == 1)
+                                                    .Select(s => s.idSubcategoria)
+                                                    .ToList();
+
+            IList<Subcategoria> subcategorias = this.context.Subcategorias.Where(s => vinculos.Contains(s.id)).ToList();
+            return subcategorias;
+        }
+
         public long VinculadasTotal(int id)
         {
             var vinculos = this.context.VncSubcategoriaCategorias

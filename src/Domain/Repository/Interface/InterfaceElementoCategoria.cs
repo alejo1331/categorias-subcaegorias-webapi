@@ -17,6 +17,8 @@ namespace Domain.Repository.Interface
         IList<VentanillaUnica> VincularVentanillaUnica(int id, int page, int size);
         IList<TramiteServicio> VinculadasTramiteServicio(int id, int page, int size);
         IList<TramiteServicio> VincularTramiteServicio(int id, int page, int size);
-        
+        IList<ElementosUnion> TodosElementos(int id, int page, int size);   
+        IList<ElementosUnion> TodosElementos(int id);   
+        long totalTodos(int id);   
     }
 }

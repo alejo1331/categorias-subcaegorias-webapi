@@ -11,6 +11,9 @@ namespace Domain.Repository.Interface
         void Add(ElementoSubcategoria objeto);
         IList<VentanillaUnica> VinculadasVentanillaUnica(int id, int page, int size);
         IList<SedeElectronica> VinculadasSedeElectronica(int id, int page, int size);
+        IList<ElementosUnion> TodosElementos(int id);
+        IList<ElementosUnion> TodosElementos(int id, int page, int size);
+        long totalTodos(int id); 
         /*IList<PPT> VinculadasPPT(int id, int page, int size);
         IList<PPT> VincularPPT(int id, int page, int size);
         
@@ -19,6 +22,6 @@ namespace Domain.Repository.Interface
         IList<VentanillaUnica> VincularVentanillaUnica(int id, int page, int size);
         IList<TramiteServicio> VinculadasTramiteServicio(int id, int page, int size);
         IList<TramiteServicio> VincularTramiteServicio(int id, int page, int size);*/
-        
+
     }
 }

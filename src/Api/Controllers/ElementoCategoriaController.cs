@@ -108,5 +108,23 @@ namespace Api.Controllers
         {
             return new JsonResult(administracionBO.VincularTramiteServicio(objeto.idParametro, objeto.page, objeto.size));
         }
+
+        [HttpPost("TodosElementos")]
+        public IActionResult GetTodosElementos(PaginateVincular objeto)
+        {
+            return new JsonResult(this.administracionBO.Todo(objeto.idParametro, objeto.page, objeto.size));
+        }
+
+        [HttpGet("TodosElementos/{id}")]
+        public IActionResult GetTodosElementos(int id)
+        {
+            return new JsonResult(this.administracionBO.Todo(id));
+        }
+
+        [HttpGet("TodosElementos/Total/{id}")]
+        public IActionResult GetTodosElementosTotal(int id)
+        {
+            return new JsonResult(this.administracionBO.TodoTotal(id));
+        }
     }
 }

@@ -112,6 +112,12 @@ namespace Api.Controllers
             return new JsonResult(administracionBO.VinculadasSubcategoria(vincular.idParametro, vincular.page, vincular.size));
         }
 
+        [HttpGet("Vinculadas/{id}")]
+        public IActionResult getVinculadas(int id)
+        {
+            return new JsonResult(administracionBO.VinculadasSubcategoria(id));
+        }
+
         [HttpGet("Vinculadas/Total/{id}")]
         public IActionResult getVinculadasTotal(int id)
         {

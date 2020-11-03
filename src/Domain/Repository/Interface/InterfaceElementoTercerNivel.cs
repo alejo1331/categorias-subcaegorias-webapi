@@ -11,6 +11,9 @@ namespace Domain.Repository.Interface
         void Add(ElementoTercerNivel objeto);
         IList<VentanillaUnica> VinculadasVentanillaUnica(int id, int page, int size);
         IList<SedeElectronica> VinculadasSedeElectronica(int id, int page, int size);
+        IList<ElementosUnion> TodosElementos(int id);
+        IList<ElementosUnion> TodosElementos(int id, int page, int size);
+        long totalTodos(int id);
         /*IList<PPT> VinculadasPPT(int id, int page, int size);
         IList<PPT> VincularPPT(int id, int page, int size);
         
