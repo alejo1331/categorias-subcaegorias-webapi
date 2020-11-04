@@ -112,6 +112,18 @@ namespace Api.Controllers
             return new JsonResult(administracionBO.VinculadasTercerNivel(vincular.idParametro, vincular.page, vincular.size));
         }
 
+        [HttpPost("Vincular")]
+        public IActionResult getVincular(PaginateVincular vincular)
+        {
+            return new JsonResult(administracionBO.VincularTercerNivel(vincular.idParametro, vincular.page, vincular.size));
+        }
+
+        [HttpPost("Vinculadas/Activas")]
+        public IActionResult getVinculadasActivas(PaginateVincular vincular)
+        {
+            return new JsonResult(administracionBO.VinculadasTercerNivelActivas(vincular.idParametro, vincular.page, vincular.size));
+        }
+
         [HttpGet("Vinculadas/{id}")]
         public IActionResult getVinculadas(int id)
         {
@@ -123,5 +135,18 @@ namespace Api.Controllers
         {
             return new JsonResult(administracionBO.VinculadasTercerNivelTotal(id));
         }
+
+        [HttpGet("Vinculadas/Total/Activas/{id}")]
+        public IActionResult getVinculadasTotalActivas(int id)
+        {
+            return new JsonResult(administracionBO.VinculadasTercerNivelTotalActivas(id));
+        }
+
+        [HttpGet("Vincular/Total/{id}")]
+        public IActionResult getVincularTotal(int id)
+        {
+            return new JsonResult(administracionBO.VincularTercerNivelTotal(id));
+        }
+        
     }
 }

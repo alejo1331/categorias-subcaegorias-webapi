@@ -635,6 +635,12 @@ namespace Domain.Bussiness.BO
             return repository.DesvincularTotal(id);
         }
 
+        public long DesvincularCategoriasTotalActivas(int id)
+        {
+            InterfaceVclCtgTipoCtg<VncCategoriaTipoCtg> repository = new RepositoryVncCategoriaTipoCtg(context);
+            return repository.DesvincularTotalActivas(id);
+        }
+
         public IList<VncCategoriaTipoCtgAM> TodosVncCategoriaTipoCtg()
         {
             InterfaceVclCtgTipoCtg<VncCategoriaTipoCtg> repository = new RepositoryVncCategoriaTipoCtg(context);
@@ -663,6 +669,12 @@ namespace Domain.Bussiness.BO
             return mapper.Map<List<CategoriaAM>>(repository.getCategory(id, page, size));
         }
 
+        public IList<CategoriaAM> TodosVncCategoriasActivas(int id, int page, int size)
+        {
+            InterfaceVclCtgTipoCtg<VncCategoriaTipoCtg> repository = new RepositoryVncCategoriaTipoCtg(context);
+            return mapper.Map<List<CategoriaAM>>(repository.getCategoryActivos(id, page, size));
+        }
+
         public IList<CategoriaAM> TodosVncCategorias(int id)
         {
             InterfaceVclCtgTipoCtg<VncCategoriaTipoCtg> repository = new RepositoryVncCategoriaTipoCtg(context);
@@ -673,7 +685,7 @@ namespace Domain.Bussiness.BO
         {
             InterfaceVclCtgTipoCtg<VncCategoriaTipoCtg> repository = new RepositoryVncCategoriaTipoCtg(context);
             VncCategoriaTipoCtg vinculo = repository.GetId(idpadre, idhijo);
-            vinculo.tipoVinculo = 0;
+            vinculo.codigoEstado = 2;
             this.context.SaveChanges();
             return mapper.Map<VncCategoriaTipoCtgAM>(vinculo);
         }
@@ -696,7 +708,7 @@ namespace Domain.Bussiness.BO
                 nuevo.idTipoCtg = objeto.idTipoCategoria;
                 nuevo.idCategoria = int.Parse(id);
                 nuevo.codigoEstado = 1;
-                nuevo.tipoVinculo = 1;
+                nuevo.tipoVinculo = 0;
                 nuevo.user = 0;
                 AgregarVncCategoriaTipoCtg(nuevo);
             }
@@ -735,7 +747,7 @@ namespace Domain.Bussiness.BO
                 nuevo.idCategoria = objeto.idCategoria;
                 nuevo.idSubcategoria = int.Parse(id);
                 nuevo.codigoEstado = 1;
-                nuevo.tipoVinculo = 1;
+                nuevo.tipoVinculo = 0;
                 nuevo.user = 0;
                 AgregarVncCategoriaSubcategoria(nuevo);
             }
@@ -745,7 +757,7 @@ namespace Domain.Bussiness.BO
         {
             InterfaceVncSubcategoriaCategoria<VncSubcategoriaCategoria> repository = new RepositoryVncSubcategoriaCtg(context);
             VncSubcategoriaCategoria vinculo = repository.GetId(idpadre, idhijo);
-            vinculo.tipoVinculo = 0;
+            vinculo.codigoEstado = 2;
             this.context.SaveChanges();
             return mapper.Map<VncSubcategoriaCategoriaAM>(vinculo);
         }
@@ -771,16 +783,47 @@ namespace Domain.Bussiness.BO
             return mapper.Map<List<SubcategoriaAM>>(repository.Vinculadas(id, page, size));
         }
 
+        public IList<SubcategoriaAM> VincularSubcategoria(int id)
+        {
+            
+            InterfaceVncSubcategoriaCategoria<VncSubcategoriaCategoria> repository = new RepositoryVncSubcategoriaCtg(context);
+            return mapper.Map<List<SubcategoriaAM>>(repository.Vincular(id));
+        }
+
         public IList<SubcategoriaAM> VinculadasSubcategoria(int id)
         {
             InterfaceVncSubcategoriaCategoria<VncSubcategoriaCategoria> repository = new RepositoryVncSubcategoriaCtg(context);
             return mapper.Map<List<SubcategoriaAM>>(repository.Vinculadas(id));
         }
 
+        public IList<SubcategoriaAM> VincularSubcategoria(int id, int page, int size)
+        {
+            InterfaceVncSubcategoriaCategoria<VncSubcategoriaCategoria> repository = new RepositoryVncSubcategoriaCtg(context);
+            return mapper.Map<List<SubcategoriaAM>>(repository.Vincular(id, page, size));
+        }
+
         public long VinculadasSubcategoriasTotal(int id)
         {
             InterfaceVncSubcategoriaCategoria<VncSubcategoriaCategoria> repository = new RepositoryVncSubcategoriaCtg(context);
             return repository.VinculadasTotal(id);
+        }
+
+        public IList<SubcategoriaAM> VinculadasSubcategoriaActivas(int id, int page, int size)
+        {
+            InterfaceVncSubcategoriaCategoria<VncSubcategoriaCategoria> repository = new RepositoryVncSubcategoriaCtg(context);
+            return mapper.Map<List<SubcategoriaAM>>(repository.VinculadasActivas(id, page, size));
+        }
+
+        public long VinculadasSubcategoriasTotalActivas(int id)
+        {
+            InterfaceVncSubcategoriaCategoria<VncSubcategoriaCategoria> repository = new RepositoryVncSubcategoriaCtg(context);
+            return repository.VinculadasTotalActivas(id);
+        }
+
+        public long VincularSubcategoriasTotal(int id)
+        {
+            InterfaceVncSubcategoriaCategoria<VncSubcategoriaCategoria> repository = new RepositoryVncSubcategoriaCtg(context);
+            return repository.VincularTotal(id);
         }
 
 
@@ -814,7 +857,7 @@ namespace Domain.Bussiness.BO
             if (vinculo == null)
                 return null;
 
-            vinculo.vinculo = 0;
+            vinculo.codigoEstado = 0;
             repository.Update(vinculo);
             this.context.SaveChanges();
             return mapper.Map<VncTercerNvlSubcategoriaAM>(vinculo);
@@ -838,7 +881,7 @@ namespace Domain.Bussiness.BO
                 nuevo.idSubcategoria = objeto.idSubcategoria;
                 nuevo.idTercerNvl = int.Parse(id);
                 nuevo.codigoEstado = 1;
-                nuevo.vinculo = 1;
+                nuevo.vinculo = 0;
                 nuevo.user = 0;
                 AgregarVncTercerNvlSubcategoria(nuevo);
             }
@@ -856,6 +899,12 @@ namespace Domain.Bussiness.BO
             return mapper.Map<List<TercerNivelAM>>(repository.Vinculadas(id, page, size));
         }
 
+        public IList<TercerNivelAM> VinculadasTercerNivelActivas(int id, int page, int size)
+        {
+            InterfaceVnlTercerNvlSct<VncTercerNvlSubcategoria> repository = new RepositroyvVnlTercerNvlSbt(context);
+            return mapper.Map<List<TercerNivelAM>>(repository.VinculadasActivas(id, page, size));
+        }
+
         public IList<TercerNivelAM> VinculadasTercerNivel(int id)
         {
             InterfaceVnlTercerNvlSct<VncTercerNvlSubcategoria> repository = new RepositroyvVnlTercerNvlSbt(context);
@@ -866,6 +915,24 @@ namespace Domain.Bussiness.BO
         {
             InterfaceVnlTercerNvlSct<VncTercerNvlSubcategoria> repository = new RepositroyvVnlTercerNvlSbt(context);
             return repository.VinculadasTota(id);
+        }
+
+        public long VinculadasTercerNivelTotalActivas(int id)
+        {
+            InterfaceVnlTercerNvlSct<VncTercerNvlSubcategoria> repository = new RepositroyvVnlTercerNvlSbt(context);
+            return repository.VinculadasTotaActivas(id);
+        }
+
+        public IList<TercerNivelAM> VincularTercerNivel(int id, int page, int size)
+        {
+            InterfaceVnlTercerNvlSct<VncTercerNvlSubcategoria> repository = new RepositroyvVnlTercerNvlSbt(context);
+            return mapper.Map<List<TercerNivelAM>>(repository.Vincular(id, page, size));
+        }
+
+        public long VincularTercerNivelTotal(int id)
+        {
+            InterfaceVnlTercerNvlSct<VncTercerNvlSubcategoria> repository = new RepositroyvVnlTercerNvlSbt(context);
+            return repository.VincularTota(id);
         }
 
 

@@ -16,7 +16,12 @@ namespace Domain.Repository.Interface
         IList<Subcategoria> getSubcategory(int id);
         void Update(VncSubcategoriaCategoria objeto);
         IList<Subcategoria> Vinculadas(int id, int page, int size);
+        IList<Subcategoria> VinculadasActivas(int id, int page, int size);
         IList<Subcategoria> Vinculadas(int id);
+        IList<Subcategoria> Vincular(int id);
+        IList<Subcategoria> Vincular(int id, int page, int size);
         long VinculadasTotal(int id);
+        long VinculadasTotalActivas(int id);
+        long VincularTotal(int id);
     }
 }

@@ -63,6 +63,20 @@ namespace Domain.Repository
             return categorias;
         }
 
+        public IList<Categoria> getCategoryActivos(int id, int page, int size)
+        {
+            var vinculos = this.context.VncCategoriaTipoCtgs
+                                                    .Where(s => s.idTipoCtg == id && s.codigoEstado == 1)
+                                                    .Select(s => s.idCategoria)
+                                                    .ToList();
+            IList<Categoria> categorias = this.context.Categorias
+                                                .Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1)
+                                                .Skip((page -1 )*size).Take(size)
+                                                .ToList();
+
+            return categorias;
+        }
+
         //Vinculados
 
         public IList<Categoria> getCategory(int id)
@@ -83,7 +97,7 @@ namespace Domain.Repository
         public IList<Categoria> Vincular(int id, int page, int size)
         {
             var vinculos = this.context.VncCategoriaTipoCtgs
-                                                    .Where(s => s.idTipoCtg == id && s.tipoVinculo == 1)
+                                                    .Where(s => s.idTipoCtg == id && s.codigoEstado == 1)
                                                     .Select(s => s.idCategoria)
                                                     .ToList();
             IList<Categoria> categorias = this.context.Categorias
@@ -116,6 +130,19 @@ namespace Domain.Repository
                                                     .ToList();
             long categorias = this.context.Categorias
                                                 .Count(s => vinculos.Contains(s.id));
+
+            return categorias;
+        }
+
+        //Total Vinculadas Activas
+        public long DesvincularTotalActivas(int id)
+        {
+            var vinculos = this.context.VncCategoriaTipoCtgs
+                                                    .Where(s => s.idTipoCtg == id && s.codigoEstado == 1)
+                                                    .Select(s => s.idCategoria)
+                                                    .ToList();
+            long categorias = this.context.Categorias
+                                                .Count(s => vinculos.Contains(s.id) && s.codigoEstado == 1);
 
             return categorias;
         }
