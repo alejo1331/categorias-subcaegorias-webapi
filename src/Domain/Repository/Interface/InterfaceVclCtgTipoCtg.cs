@@ -15,9 +15,11 @@ namespace Domain.Repository.Interface
         VncCategoriaTipoCtg GetId(int idpadre, int idhijo);
         void Update(VncCategoriaTipoCtg objeto);
         IList<Categoria> getCategory(int id, int page, int size);
+        IList<Categoria> getCategoryActivos(int id, int page, int size);
         IList<Categoria> getCategory(int id);
         IList<Categoria> Vincular(int id, int page, int size);
         long VincularTotal(int id);
         long DesvincularTotal(int id);
+        long DesvincularTotalActivas(int id);
     }
 }

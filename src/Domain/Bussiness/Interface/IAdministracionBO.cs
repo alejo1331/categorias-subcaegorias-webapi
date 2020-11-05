@@ -104,6 +104,7 @@ namespace Domain.Bussiness.Interface
         VncCategoriaTipoCtgAM AgregarVncCategoriaTipoCtg(VncCategoriaTipoCtgAM objeto);
         VncCategoriaTipoCtgAM ObtenerVncCategoriaTipoCtg(int id);
         IList<CategoriaAM> TodosVncCategorias(int id, int page, int size);
+        IList<CategoriaAM> TodosVncCategoriasActivas(int id, int page, int size);
         VncCategoriaTipoCtgAM DesvncCategoriaTipoCtg(int idpadre, int idhijo);
         void DesvncCategoriaTipo(DvcCategoriaTipoCtg objeto);
         void VincularCategoriaTipo(DvcCategoriaTipoCtg objeto);
@@ -111,6 +112,7 @@ namespace Domain.Bussiness.Interface
         IList<CategoriaAM> TodosVncCategorias(int id);
         long VincularCategoriasTotal(int id);
         long DesvincularCategoriasTotal(int id);
+        long DesvincularCategoriasTotalActivas(int id);
 
 
 
@@ -123,8 +125,14 @@ namespace Domain.Bussiness.Interface
         void VincularSubcategoriasCategoria(DvcSubcategoriaCategoria objeto);
         void DesvncSubcategoriasCategoria(DvcSubcategoriaCategoria objeto);
         IList<SubcategoriaAM> VinculadasSubcategoria(int id, int page, int size);
+        IList<SubcategoriaAM> VinculadasSubcategoriaActivas(int id, int page, int size);
         IList<SubcategoriaAM> VinculadasSubcategoria(int id);
+        IList<SubcategoriaAM> VincularSubcategoria(int id);
+        IList<SubcategoriaAM> VincularSubcategoria(int id, int page, int size);
         long VinculadasSubcategoriasTotal(int id);
+        long VinculadasSubcategoriasTotalActivas(int id);
+
+        long VincularSubcategoriasTotal(int id);
 
 
         //Subcategoria ---- Tercer Nivel
@@ -136,8 +144,12 @@ namespace Domain.Bussiness.Interface
         void DesvncTercerNvlSbc(DvcTercerNivelSct objeto);
         void VincularTercerNvlSbc(DvcTercerNivelSct objeto);
         IList<TercerNivelAM> VinculadasTercerNivel(int id, int page, int size);
+        IList<TercerNivelAM> VinculadasTercerNivelActivas(int id, int page, int size);
         IList<TercerNivelAM> VinculadasTercerNivel(int id);
         long VinculadasTercerNivelTotal(int id);
+        long VinculadasTercerNivelTotalActivas(int id);
+        IList<TercerNivelAM> VincularTercerNivel(int id, int page, int size);
+        long VincularTercerNivelTotal(int id);
 
         //Tipo Categoria ---- Recurso
         IList<VncTipoCtgRecursoAM> TodosVncTipoCtgRecurso();
