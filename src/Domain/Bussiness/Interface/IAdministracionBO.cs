@@ -206,12 +206,45 @@ namespace Domain.Bussiness.Interface
         IList<VentanillaUnicaAM> VincularVentanillaUnica(int id, int page, int size);
         IList<TramiteServicioAM> VinculadasTramiteServicio(int id, int page, int size);
         IList<TramiteServicioAM> VincularTramiteServicio(int id, int page, int size);
+        IList<PortalTransversalAM> VincularPortalTransversal(int id, int page, int size);
+        IList<PortalTransversalAM> VinculadasPortalTransversal(int id, int page, int size);
+        IList<RecursoAM> VincularRecurso(int id, int page, int size);
+        IList<RecursoAM> VinculadasRecurso(int id, int page, int size);
+        long VincularSedeElectronicaCategoriaTotal(int id);
+        long VinculadasSedeElectronicaCategoriaTotal(int id);
+        long VincularVentanillaUnicaCategoriaTotal(int id);
+        long VinculadasVentanillaUnicaCategoriaTotal(int id);
+        long VincularTramiteServicioCategoriaTotal(int id);
+        long VinculadasTramiteServicioCategoriaTotal(int id);
+        long VincularPortalTransversalCategoriaTotal(int id);
+        long VinculadasPortalTransversalCategoriaTotal(int id);
+        long VincularRecursoCategoriaTotal(int id);
+        long VinculadasRecursoCategoriaTotal(int id);
 
         //Elemento Subcategoria
         IList<ElementoSubcategoriaAM> TodasElementoSubcategoria();
         ElementoSubcategoriaAM ElementoSubcategoriaId(int id);
         ElementoSubcategoriaAM AgregarElementoSubcategoria(ElementoSubcategoriaAM objeto);
+        IList<SedeElectronicaAM> VincularSedeElectronicaSubcategoria(int id, int page, int size);
+        IList<SedeElectronicaAM> VinculadasSedeElectronicaSubcategoria(int id, int page, int size);
         IList<VentanillaUnicaAM> VinculadasVentanillaUnicaSubcategoria(int id, int page, int size);
+        IList<VentanillaUnicaAM> VincularVentanillaUnicaSubcategoria(int id, int page, int size);
+        IList<TramiteServicioAM> VincularTramiteServicioSubcategoria(int id, int page, int size);
+        IList<TramiteServicioAM> VinculadasTramiteServicioSubcategoria(int id, int page, int size);
+        IList<PortalTransversalAM> VincularPortalTransversalSubcategoria(int id, int page, int size);
+        IList<PortalTransversalAM> VinculadasPortalTransversalSubcategoria(int id, int page, int size);
+        IList<RecursoAM> VincularRecursoSubcategoria(int id, int page, int size);
+        IList<RecursoAM> VinculadasRecursoSubcategoria(int id, int page, int size);
+        long VincularSedeElectronicaSubcategoriaTotal(int id);
+        long VinculadasSedeElectronicaSubcategoriaTotal(int id);
+        long VincularVentanillaUnicaSubcategoriaTotal(int id);
+        long VinculadasVentanillaUnicaSubcategoriaTotal(int id);
+        long VincularTramiteServicioSubcategoriaTotal(int id);
+        long VinculadasTramiteServicioSubcategoriaTotal(int id);
+        long VincularPortalTransversalSubcategoriaTotal(int id);
+        long VinculadasPortalTransversalSubcategoriaTotal(int id);
+        long VincularRecursoSubcategoriaTotal(int id);
+        long VinculadasRecursoSubcategoriaTotal(int id);
 
 
         //Elemento Tercer Nivel
@@ -219,7 +252,17 @@ namespace Domain.Bussiness.Interface
         ElementoTercerNivelAM ElementoTercerNivelId(int id);
         ElementoTercerNivelAM AgregarElementoTercerNivel(ElementoTercerNivelAM objeto);
         IList<VentanillaUnicaAM> VinculadasVentanillaUnicaTercerNivel(int id, int page, int size);
+        IList<VentanillaUnicaAM> VincularVentanillaUnicaTercerNivel(int id, int page, int size);
         IList<SedeElectronicaAM> VinculadasSedeElectronicaTercerNivel(int id, int page, int size);
+        IList<SedeElectronicaAM> VincularSedeElectronicaTercerNivel(int id, int page, int size);
+
+        IList<TramiteServicioAM> VincularTramiteServicioTercerNivel(int id, int page, int size);
+        IList<TramiteServicioAM> VinculadasTramiteServicioTercerNivel(int id, int page, int size);
+        IList<PortalTransversalAM> VincularPortalTransversalTercerNivel(int id, int page, int size);
+        IList<PortalTransversalAM> VinculadasPortalTransversalTercerNivel(int id, int page, int size);
+        IList<RecursoAM> VincularRecursoTercerNivel(int id, int page, int size);
+        IList<RecursoAM> VinculadasRecursoTercerNivel(int id, int page, int size);
+
 
         IList<ElementosUnionAM> Todo(int id, int page, int size);
         IList<ElementosUnionAM> Todo(int id);
@@ -231,7 +274,18 @@ namespace Domain.Bussiness.Interface
         long TodoTotalSubcategorias(int id);
         long TodoTotalTercerNivels(int id);
 
-        IList<SedeElectronicaAM> VinculadasSedeElectronicaSubcategoria(int id, int page, int size);
+        long VincularSedeElectronicaTercerNivelsTotal(int id);
+        long VinculadasSedeElectronicaTercerNivelsTotal(int id);
+
+        long VincularVentanillaUnicaTercerNivelsTotal(int id);
+        long VinculadasVentanillaUnicaTercerNivelsTotal(int id);
+        long VincularTramiteServicioTercerNivelsTotal(int id);
+        long VinculadasTramiteServicioTercerNivelsTotal(int id);
+        long VincularPortalTransversalTercerNivelsTotal(int id);
+        long VinculadasPortalTransversalTercerNivelsTotal(int id);
+        long VincularRecursoTercerNivelsTotal(int id);
+        long VinculadasRecursoTercerNivelsTotal(int id);
+
 
 
         //Porta Transversal

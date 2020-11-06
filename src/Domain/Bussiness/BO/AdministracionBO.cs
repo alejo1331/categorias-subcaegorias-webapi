@@ -785,7 +785,7 @@ namespace Domain.Bussiness.BO
 
         public IList<SubcategoriaAM> VincularSubcategoria(int id)
         {
-            
+
             InterfaceVncSubcategoriaCategoria<VncSubcategoriaCategoria> repository = new RepositoryVncSubcategoriaCtg(context);
             return mapper.Map<List<SubcategoriaAM>>(repository.Vincular(id));
         }
@@ -959,7 +959,7 @@ namespace Domain.Bussiness.BO
             return mapper.Map<VncTipoCtgRecursoAM>(repository.GetId(id));
         }
 
-        
+
 
         //Categoria ---- Recurso
         public IList<VncCategoriaRecursoAM> TodosVncCategoriaRecurso()
@@ -1144,6 +1144,18 @@ namespace Domain.Bussiness.BO
             return mapper.Map<List<SedeElectronicaAM>>(repository.VincularSedeElectronica(id, page, size));
         }
 
+        public long VincularSedeElectronicaCategoriaTotal(int id)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return repository.VincularSedeElectronicaTotal(id);
+        }
+
+        public long VinculadasSedeElectronicaCategoriaTotal(int id)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return repository.VinculadasSedeElectronicaTotal(id);
+        }
+
         public IList<VentanillaUnicaAM> VinculadasVentanillaUnica(int id, int page, int size)
         {
             InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
@@ -1156,6 +1168,18 @@ namespace Domain.Bussiness.BO
             return mapper.Map<List<VentanillaUnicaAM>>(repository.VincularVentanillaUnica(id, page, size));
         }
 
+        public long VincularVentanillaUnicaCategoriaTotal(int id)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return repository.VincularVentanillaUnicaTotal(id);
+        }
+
+        public long VinculadasVentanillaUnicaCategoriaTotal(int id)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return repository.VinculadasVentanillaUnicaTotal(id);
+        }
+
         public IList<TramiteServicioAM> VinculadasTramiteServicio(int id, int page, int size)
         {
             InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
@@ -1166,6 +1190,66 @@ namespace Domain.Bussiness.BO
         {
             InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
             return mapper.Map<List<TramiteServicioAM>>(repository.VincularTramiteServicio(id, page, size));
+        }
+
+        public long VincularTramiteServicioCategoriaTotal(int id)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return repository.VincularTramiteServicioTotal(id);
+        }
+
+        public long VinculadasTramiteServicioCategoriaTotal(int id)
+        {
+             InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return repository.VinculadasTramiteServicioTotal(id);
+        }
+
+        public IList<PortalTransversalAM> VincularPortalTransversal(int id, int page, int size)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return mapper.Map<List<PortalTransversalAM>>(repository.VincularPortalTransversal(id, page, size));
+        }
+
+        public IList<PortalTransversalAM> VinculadasPortalTransversal(int id, int page, int size)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return mapper.Map<List<PortalTransversalAM>>(repository.VinculadasPortalTransversal(id, page, size));
+        }
+
+        public long VincularPortalTransversalCategoriaTotal(int id)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return repository.VincularPortalTransversalTotal(id);
+        }
+
+        public long VinculadasPortalTransversalCategoriaTotal(int id)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return repository.VinculadasPortalTransversalTotal(id);
+        }
+
+        public IList<RecursoAM> VincularRecurso(int id, int page, int size)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return mapper.Map<List<RecursoAM>>(repository.VincularRecurso(id, page, size));
+        }
+
+        public IList<RecursoAM> VinculadasRecurso(int id, int page, int size)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return mapper.Map<List<RecursoAM>>(repository.VinculadasRecurso(id, page, size));
+        }
+
+        public long VincularRecursoCategoriaTotal(int id)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return repository.VincularRecursoTotal(id);
+        }
+
+        public long VinculadasRecursoCategoriaTotal(int id)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return repository.VinculadasRecursoTotal(id);
         }
 
 
@@ -1192,11 +1276,11 @@ namespace Domain.Bussiness.BO
             return guardado;
         }
 
-        public IList<VentanillaUnicaAM> VinculadasVentanillaUnicaSubcategoria(int id, int page, int size)
+        public IList<SedeElectronicaAM> VincularSedeElectronicaSubcategoria(int id, int page, int size)
         {
             InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
-            return mapper.Map<List<VentanillaUnicaAM>>(repository.VinculadasVentanillaUnica(id, page, size));
-        }
+            return mapper.Map<List<SedeElectronicaAM>>(repository.VincularSedeElectronica(id, page, size));
+        }        
 
         public IList<SedeElectronicaAM> VinculadasSedeElectronicaSubcategoria(int id, int page, int size)
         {
@@ -1204,6 +1288,113 @@ namespace Domain.Bussiness.BO
             return mapper.Map<List<SedeElectronicaAM>>(repository.VinculadasSedeElectronica(id, page, size));
         }
 
+        public IList<VentanillaUnicaAM> VinculadasVentanillaUnicaSubcategoria(int id, int page, int size)
+        {
+            InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
+            return mapper.Map<List<VentanillaUnicaAM>>(repository.VinculadasVentanillaUnica(id, page, size));
+        }
+
+        public IList<VentanillaUnicaAM> VincularVentanillaUnicaSubcategoria(int id, int page, int size)
+        {
+            InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
+            return mapper.Map<List<VentanillaUnicaAM>>(repository.VincularVentanillaUnica(id, page, size));
+        }
+        
+        public IList<TramiteServicioAM> VincularTramiteServicioSubcategoria(int id, int page, int size)
+        {
+            InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
+            return mapper.Map<List<TramiteServicioAM>>(repository.VincularTramiteServicio(id, page, size));
+        }
+
+        public IList<TramiteServicioAM> VinculadasTramiteServicioSubcategoria(int id, int page, int size)
+        {
+            InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
+            return mapper.Map<List<TramiteServicioAM>>(repository.VinculadasTramiteServicio(id, page, size));
+        }
+
+        public IList<PortalTransversalAM> VincularPortalTransversalSubcategoria(int id, int page, int size)
+        {
+            InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
+            return mapper.Map<List<PortalTransversalAM>>(repository.VincularPortalTransversal(id, page, size));
+        }
+
+        public IList<PortalTransversalAM> VinculadasPortalTransversalSubcategoria(int id, int page, int size)
+        {
+            InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
+            return mapper.Map<List<PortalTransversalAM>>(repository.VinculadasPortalTransversal(id, page, size));
+        }
+
+        public IList<RecursoAM> VincularRecursoSubcategoria(int id, int page, int size)
+        {
+            InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
+            return mapper.Map<List<RecursoAM>>(repository.VincularRecurso(id, page, size));
+        }
+
+        public IList<RecursoAM> VinculadasRecursoSubcategoria(int id, int page, int size)
+        {
+            InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
+            return mapper.Map<List<RecursoAM>>(repository.VinculadasRecurso(id, page, size));
+        }
+
+        public long VincularSedeElectronicaSubcategoriaTotal(int id)
+        {
+            InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
+            return repository.VincularSedeElectronicaTotal(id);
+        }
+
+        public long VinculadasSedeElectronicaSubcategoriaTotal(int id)
+        {
+            InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
+            return repository.VinculadasSedeElectronicaTotal(id);
+        }
+
+        public long VincularVentanillaUnicaSubcategoriaTotal(int id)
+        {
+            InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
+            return repository.VincularVentanillaUnicaTotal(id);
+        }
+
+        public long VinculadasVentanillaUnicaSubcategoriaTotal(int id)
+        {
+            InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
+            return repository.VinculadasVentanillaUnicaTotal(id);
+        }
+
+        public long VincularTramiteServicioSubcategoriaTotal(int id)
+        {
+            InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
+            return repository.VincularTramiteServicioTotal(id);
+        }
+
+        public  long VinculadasTramiteServicioSubcategoriaTotal(int id)
+        {
+            InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
+            return repository.VinculadasTramiteServicioTotal(id);
+        }
+
+        public long VincularPortalTransversalSubcategoriaTotal(int id)
+        {
+            InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
+            return repository.VincularPortalTransversalTotal(id);
+        }
+
+        public long VinculadasPortalTransversalSubcategoriaTotal(int id)
+        {
+            InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
+            return repository.VinculadasPortalTransversalTotal(id);
+        }
+
+        public long VincularRecursoSubcategoriaTotal(int id)
+        {
+            InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
+            return repository.VincularRecursoTotal(id);
+        }
+
+        public long VinculadasRecursoSubcategoriaTotal(int id)
+        {
+            InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
+            return repository.VinculadasRecursoTotal(id);
+        }
 
         //Elemento Tercer Nivel
 
@@ -1235,10 +1426,58 @@ namespace Domain.Bussiness.BO
             return mapper.Map<List<VentanillaUnicaAM>>(repository.VinculadasVentanillaUnica(id, page, size));
         }
 
+        public IList<VentanillaUnicaAM> VincularVentanillaUnicaTercerNivel(int id, int page, int size)
+        {
+            InterfaceElementoTercerNivel<ElementoTercerNivel> repository = new RepositoryElementoTercerNivel(context);
+            return mapper.Map<List<VentanillaUnicaAM>>(repository.VincularVentanillaUnica(id, page, size));
+        }
+
         public IList<SedeElectronicaAM> VinculadasSedeElectronicaTercerNivel(int id, int page, int size)
         {
             InterfaceElementoTercerNivel<ElementoTercerNivel> repository = new RepositoryElementoTercerNivel(context);
             return mapper.Map<List<SedeElectronicaAM>>(repository.VinculadasSedeElectronica(id, page, size));
+        }
+
+        public IList<SedeElectronicaAM> VincularSedeElectronicaTercerNivel(int id, int page, int size)
+        {
+            InterfaceElementoTercerNivel<ElementoTercerNivel> repository = new RepositoryElementoTercerNivel(context);
+            return mapper.Map<List<SedeElectronicaAM>>(repository.VincularSedeElectronica(id, page, size));
+        }
+
+        public IList<TramiteServicioAM> VincularTramiteServicioTercerNivel(int id, int page, int size)
+        {
+            InterfaceElementoTercerNivel<ElementoTercerNivel> repository = new RepositoryElementoTercerNivel(context);
+            return mapper.Map<List<TramiteServicioAM>>(repository.VincularTramiteServicio(id, page, size));
+        }
+
+        public IList<TramiteServicioAM> VinculadasTramiteServicioTercerNivel(int id, int page, int size)
+        {
+            InterfaceElementoTercerNivel<ElementoTercerNivel> repository = new RepositoryElementoTercerNivel(context);
+            return mapper.Map<List<TramiteServicioAM>>(repository.VinculadasTramiteServicio(id, page, size));
+        }
+
+        public  IList<PortalTransversalAM> VincularPortalTransversalTercerNivel(int id, int page, int size)
+        {
+            InterfaceElementoTercerNivel<ElementoTercerNivel> repository = new RepositoryElementoTercerNivel(context);
+            return mapper.Map<List<PortalTransversalAM>>(repository.VincularPortalTransversal(id, page, size));
+        }
+
+        public IList<PortalTransversalAM> VinculadasPortalTransversalTercerNivel(int id, int page, int size)
+        {
+            InterfaceElementoTercerNivel<ElementoTercerNivel> repository = new RepositoryElementoTercerNivel(context);
+            return mapper.Map<List<PortalTransversalAM>>(repository.VinculadasPortalTransversal(id, page, size));
+        }
+
+        public  IList<RecursoAM> VincularRecursoTercerNivel(int id, int page, int size)
+        {
+            InterfaceElementoTercerNivel<ElementoTercerNivel> repository = new RepositoryElementoTercerNivel(context);
+            return mapper.Map<List<RecursoAM>>(repository.VincularRecurso(id, page, size));
+        }
+
+        public IList<RecursoAM> VinculadasRecursoTercerNivel(int id, int page, int size)
+        {
+            InterfaceElementoTercerNivel<ElementoTercerNivel> repository = new RepositoryElementoTercerNivel(context);
+            return mapper.Map<List<RecursoAM>>(repository.VinculadasRecurso(id, page, size));
         }
 
         public IList<ElementosUnionAM> Todo(int id, int page, int size)
@@ -1266,6 +1505,68 @@ namespace Domain.Bussiness.BO
             InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
             return mapper.Map<List<ElementosUnionAM>>(repository.TodosElementos(id));
         }
+
+        public long VincularSedeElectronicaTercerNivelsTotal(int id)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return repository.VincularSedeElectronicaTotal(id);
+        }
+
+        public long VinculadasSedeElectronicaTercerNivelsTotal(int id)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return repository.VinculadasSedeElectronicaTotal(id);
+        }
+
+        public long VincularVentanillaUnicaTercerNivelsTotal(int id)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return repository.VincularVentanillaUnicaTotal(id);
+        }
+
+        public long VinculadasVentanillaUnicaTercerNivelsTotal(int id)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return repository.VinculadasVentanillaUnicaTotal(id);
+        }
+
+        public long VincularTramiteServicioTercerNivelsTotal(int id)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return repository.VincularTramiteServicioTotal(id);
+        }
+
+        public long VinculadasTramiteServicioTercerNivelsTotal(int id)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return repository.VinculadasTramiteServicioTotal(id);
+        }
+
+        public long VincularPortalTransversalTercerNivelsTotal(int id)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return repository.VincularPortalTransversalTotal(id);
+        }
+
+        public long VinculadasPortalTransversalTercerNivelsTotal(int id)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return repository.VinculadasPortalTransversalTotal(id);
+        }
+
+        public long VincularRecursoTercerNivelsTotal(int id)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return repository.VincularRecursoTotal(id);
+        }
+
+        public long VinculadasRecursoTercerNivelsTotal(int id)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return repository.VinculadasRecursoTotal(id);
+        }
+
+        
 
         public long TodoTotal(int id)
         {

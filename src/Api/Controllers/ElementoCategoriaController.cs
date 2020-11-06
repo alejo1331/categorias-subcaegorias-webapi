@@ -126,5 +126,89 @@ namespace Api.Controllers
         {
             return new JsonResult(this.administracionBO.TodoTotal(id));
         }
+
+        [HttpPost("VincularPortalTransversal")]
+        public IActionResult getVincularPortalTransversal(PaginateVincular objeto)
+        {
+            return new JsonResult(administracionBO.VincularPortalTransversal(objeto.idParametro, objeto.page, objeto.size));
+        }
+
+        [HttpPost("VinculadasPortalTransversal")]
+        public IActionResult getVinculadasPortalTransversal(PaginateVincular objeto)
+        {
+            return new JsonResult(administracionBO.VinculadasPortalTransversal(objeto.idParametro, objeto.page, objeto.size));
+        }
+
+        [HttpPost("VincularRecurso")]
+        public IActionResult getVincularRecurso(PaginateVincular objeto)
+        {
+            return new JsonResult(administracionBO.VincularRecurso(objeto.idParametro, objeto.page, objeto.size));
+        }
+
+        [HttpPost("VinculadasRecurso")]
+        public IActionResult getVinculadasRecurso(PaginateVincular objeto)
+        {
+            return new JsonResult(administracionBO.VinculadasRecurso(objeto.idParametro, objeto.page, objeto.size));
+        }
+
+        [HttpGet("Vincular/SedeElectrocnica/Total/{id}")]
+        public IActionResult GetVincularSedeElectrocnicaTotal(int id)
+        {
+            return new JsonResult(this.administracionBO.VincularSedeElectronicaCategoriaTotal(id));
+        }
+
+        [HttpGet("Vinculadas/SedeElectrocnica/Total/{id}")]
+        public IActionResult GetVinculadasSedeElectrocnicaTotal(int id)
+        {
+            return new JsonResult(this.administracionBO.VinculadasSedeElectronicaCategoriaTotal(id));
+        }
+
+        [HttpGet("Vincular/VentanillaUnica/Total/{id}")]
+        public IActionResult GetVincularVentanillaUnicaTotal(int id)
+        {
+            return new JsonResult(this.administracionBO.VincularVentanillaUnicaCategoriaTotal(id));
+        }
+
+        [HttpGet("Vinculadas/VentanillaUnica/Total/{id}")]
+        public IActionResult GetVinculadasVentanillaUnicaTotal(int id)
+        {
+            return new JsonResult(this.administracionBO.VinculadasVentanillaUnicaCategoriaTotal(id));
+        }
+
+        [HttpGet("Vinculadas/TramiteServicio/Total/{id}")]
+        public IActionResult GetVinculadasTramiteServicioTotal(int id)
+        {
+            return new JsonResult(this.administracionBO.VinculadasTramiteServicioCategoriaTotal(id));
+        }
+
+        [HttpGet("Vincular/TramiteServicio/Total/{id}")]
+        public IActionResult GetVincularTramiteServicioTotal(int id)
+        {
+            return new JsonResult(this.administracionBO.VincularTramiteServicioCategoriaTotal(id));
+        }
+
+        [HttpGet("Vincular/PortalTransversal/Total/{id}")]
+        public IActionResult GetVincularPortalTransversalTotal(int id)
+        {
+            return new JsonResult(this.administracionBO.VincularPortalTransversalCategoriaTotal(id));
+        }
+
+        [HttpGet("Vinculadas/PortalTransversal/Total/{id}")]
+        public IActionResult GetVinculadasPortalTransversalTotal(int id)
+        {
+            return new JsonResult(this.administracionBO.VinculadasPortalTransversalCategoriaTotal(id));
+        }
+
+        [HttpGet("Vincular/Recurso/Total/{id}")]
+        public IActionResult GetVincularRecursoTotal(int id)
+        {
+            return new JsonResult(this.administracionBO.VincularRecursoCategoriaTotal(id));
+        }
+
+        [HttpGet("Vinculadas/Recurso/Total/{id}")]
+        public IActionResult GetVinculadasRecursoTotal(int id)
+        {
+            return new JsonResult(this.administracionBO.VinculadasRecursoCategoriaTotal(id));
+        }
     }
 }
