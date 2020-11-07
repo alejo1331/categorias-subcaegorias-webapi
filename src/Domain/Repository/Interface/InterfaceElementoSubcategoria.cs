@@ -6,8 +6,13 @@ namespace Domain.Repository.Interface
 {
     public interface InterfaceElementoSubcategoria<ElementoSubcategoria>
     {
+        void update(ElementoSubcategoria objeto);
         IList<ElementoSubcategoria> All();
         ElementoSubcategoria GetId(int id);
+        ElementoSubcategoria GetSedeElectronicaId(int id);
+        ElementoSubcategoria GetVentanillaUnicaId(int id);
+        ElementoSubcategoria GetTramiteServicioId(int id);
+        ElementoSubcategoria GetPortalTransversalId(int id);
         void Add(ElementoSubcategoria objeto);
         IList<VentanillaUnica> VinculadasVentanillaUnica(int id, int page, int size);
         IList<VentanillaUnica> VincularVentanillaUnica(int id, int page, int size);

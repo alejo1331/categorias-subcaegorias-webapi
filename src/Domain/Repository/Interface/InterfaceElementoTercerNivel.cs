@@ -6,8 +6,13 @@ namespace Domain.Repository.Interface
 {
     public interface InterfaceElementoTercerNivel<ElementoTercerNivel>
     {
+        void update(ElementoTercerNivel objeto);
         IList<ElementoTercerNivel> All();
         ElementoTercerNivel GetId(int id);
+        ElementoTercerNivel GetSedeElectronicaId(int id);
+        ElementoTercerNivel GetVentanillaUnicaId(int id);
+        ElementoTercerNivel GetTramiteServicioId(int id);
+        ElementoTercerNivel GetPortalTransversalId(int id);
         void Add(ElementoTercerNivel objeto);
         IList<SedeElectronica> VinculadasSedeElectronica(int id, int page, int size);
         IList<SedeElectronica> VincularSedeElectronica(int id, int page, int size);

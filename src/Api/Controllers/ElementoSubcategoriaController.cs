@@ -26,6 +26,25 @@ namespace Api.Controllers
             administracionBO = new AdministracionBO(context);
         }
 
+        [HttpPut("{id}")]
+        public IActionResult PutCategoria(int id, [FromBody] ElementoSubcategoriaAM objeto)
+        {
+            if (id != objeto.id)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                return new JsonResult(this.administracionBO.ActualizarElementoSubcategoria(objeto));
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw ex;
+            }
+            return NoContent();
+        }
+
         [HttpGet]
         public IActionResult Get()
         {
@@ -36,6 +55,54 @@ namespace Api.Controllers
         public IActionResult getId(int id)
         {
             ElementoSubcategoriaAM objeto = administracionBO.ElementoSubcategoriaId(id);
+
+            if (objeto != null)
+            {
+                return new JsonResult(objeto);
+            }
+            return NotFound();
+        }
+
+        [HttpGet("SedeElectronica/{id}")]
+        public IActionResult getSedeElectronicaId(int id)
+        {
+            ElementoSubcategoriaAM objeto = administracionBO.ElementoSubcategoriaSedeElectronicaId(id);
+
+            if (objeto != null)
+            {
+                return new JsonResult(objeto);
+            }
+            return NotFound();
+        }
+
+        [HttpGet("VentanillaUnica/{id}")]
+        public IActionResult getVentanillaUnicaId(int id)
+        {
+            ElementoSubcategoriaAM objeto = administracionBO.ElementoSubcategoriaVentanillaUnicaId(id);
+
+            if (objeto != null)
+            {
+                return new JsonResult(objeto);
+            }
+            return NotFound();
+        }
+
+        [HttpGet("TramiteServicio/{id}")]
+        public IActionResult getTramiteServicioId(int id)
+        {
+            ElementoSubcategoriaAM objeto = administracionBO.ElementoSubcategoriaTramisteServicioId(id);
+
+            if (objeto != null)
+            {
+                return new JsonResult(objeto);
+            }
+            return NotFound();
+        }
+
+        [HttpGet("PortalTransversal/{id}")]
+        public IActionResult getPortalTransversalId(int id)
+        {
+            ElementoSubcategoriaAM objeto = administracionBO.ElementoSubcategoriaPortalTransversalId(id);
 
             if (objeto != null)
             {

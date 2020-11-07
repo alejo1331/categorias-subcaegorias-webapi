@@ -98,7 +98,7 @@ namespace Domain.Bussiness.BO
             this.context.SaveChanges();
             TipoCategoriaAM nuevo = mapper.Map<TipoCategoriaAM>(tipo);
             return nuevo;
-        }
+        }        
 
         public IList<TipoCategoriaAM> SearchTiposCtg(string data)
         {
@@ -1099,15 +1099,51 @@ namespace Domain.Bussiness.BO
 
 
         //Elemento Categoria
+
+        public ElementoCategoriaAM ActualizarElementoCategoria(ElementoCategoriaAM objeto)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            ElementoCategoria tipo = mapper.Map<ElementoCategoria>(objeto);
+            repository.update(tipo);
+            this.context.SaveChanges();
+            ElementoCategoriaAM nuevo = mapper.Map<ElementoCategoriaAM>(tipo);
+            return nuevo;
+        }
+
         public IList<ElementoCategoriaAM> TodasElementoCategoria()
         {
             InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
             return mapper.Map<List<ElementoCategoriaAM>>(repository.All());
         }
+
         public ElementoCategoriaAM ElementoCategoriaId(int id)
         {
             InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
             return mapper.Map<ElementoCategoriaAM>(repository.GetId(id));
+        }
+
+        public ElementoCategoriaAM ElementoCategoriaSedeElectronicaId(int id)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return mapper.Map<ElementoCategoriaAM>(repository.GetSedeElectronicaId(id));
+        }
+
+        public ElementoCategoriaAM ElementoCategoriaVentanillaUnicaId(int id)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return mapper.Map<ElementoCategoriaAM>(repository.GetVentanillaUnicaId(id));
+        }
+
+        public ElementoCategoriaAM ElementoCategoriaTramisteServicioId(int id)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return mapper.Map<ElementoCategoriaAM>(repository.GetTramiteServicioId(id));
+        }
+
+        public ElementoCategoriaAM ElementoCategoriaPortalTransversalId(int id)
+        {
+            InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
+            return mapper.Map<ElementoCategoriaAM>(repository.GetPortalTransversalId(id));
         }
 
         public ElementoCategoriaAM AgregarElementoCategoria(ElementoCategoriaAM objeto)
@@ -1254,6 +1290,16 @@ namespace Domain.Bussiness.BO
 
 
         /// Elemento Subcategoria
+
+        public ElementoSubcategoriaAM ActualizarElementoSubcategoria(ElementoSubcategoriaAM objeto)
+        {
+            InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
+            ElementoSubcategoria tipo = mapper.Map<ElementoSubcategoria>(objeto);
+            repository.update(tipo);
+            this.context.SaveChanges();
+            ElementoSubcategoriaAM nuevo = mapper.Map<ElementoSubcategoriaAM>(tipo);
+            return nuevo;
+        }
         public IList<ElementoSubcategoriaAM> TodasElementoSubcategoria()
         {
             InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
@@ -1264,6 +1310,30 @@ namespace Domain.Bussiness.BO
         {
             InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
             return mapper.Map<ElementoSubcategoriaAM>(repository.GetId(id));
+        }
+
+        public ElementoSubcategoriaAM ElementoSubcategoriaSedeElectronicaId(int id)
+        {
+            InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
+            return mapper.Map<ElementoSubcategoriaAM>(repository.GetSedeElectronicaId(id));
+        }
+
+        public ElementoSubcategoriaAM ElementoSubcategoriaVentanillaUnicaId(int id)
+        {
+            InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
+            return mapper.Map<ElementoSubcategoriaAM>(repository.GetVentanillaUnicaId(id));
+        }
+
+        public ElementoSubcategoriaAM ElementoSubcategoriaTramisteServicioId(int id)
+        {
+            InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
+            return mapper.Map<ElementoSubcategoriaAM>(repository.GetTramiteServicioId(id));
+        }
+
+        public ElementoSubcategoriaAM ElementoSubcategoriaPortalTransversalId(int id)
+        {
+            InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
+            return mapper.Map<ElementoSubcategoriaAM>(repository.GetPortalTransversalId(id));
         }
 
         public ElementoSubcategoriaAM AgregarElementoSubcategoria(ElementoSubcategoriaAM objeto)
@@ -1397,6 +1467,40 @@ namespace Domain.Bussiness.BO
         }
 
         //Elemento Tercer Nivel
+
+        public ElementoTercerNivelAM ElementoTercerNivelSedeElectronicaId(int id)
+        {
+            InterfaceElementoTercerNivel<ElementoTercerNivel> repository = new RepositoryElementoTercerNivel(context);
+            return mapper.Map<ElementoTercerNivelAM>(repository.GetSedeElectronicaId(id));
+        }
+
+        public ElementoTercerNivelAM ElementoTercerNivelVentanillaUnicaId(int id)
+        {
+            InterfaceElementoTercerNivel<ElementoTercerNivel> repository = new RepositoryElementoTercerNivel(context);
+            return mapper.Map<ElementoTercerNivelAM>(repository.GetVentanillaUnicaId(id));
+        }
+
+        public ElementoTercerNivelAM ElementoTercerNivelTramisteServicioId(int id)
+        {
+            InterfaceElementoTercerNivel<ElementoTercerNivel> repository = new RepositoryElementoTercerNivel(context);
+            return mapper.Map<ElementoTercerNivelAM>(repository.GetTramiteServicioId(id));
+        }
+
+        public ElementoTercerNivelAM ElementoTercerNivelPortalTransversalId(int id)
+        {
+            InterfaceElementoTercerNivel<ElementoTercerNivel> repository = new RepositoryElementoTercerNivel(context);
+            return mapper.Map<ElementoTercerNivelAM>(repository.GetPortalTransversalId(id));
+        }
+
+        public ElementoTercerNivelAM ActualizarElementoTercerNivel(ElementoTercerNivelAM objeto)
+        {
+            InterfaceElementoTercerNivel<ElementoTercerNivel> repository = new RepositoryElementoTercerNivel(context);
+            ElementoTercerNivel tipo = mapper.Map<ElementoTercerNivel>(objeto);
+            repository.update(tipo);
+            this.context.SaveChanges();
+            ElementoTercerNivelAM nuevo = mapper.Map<ElementoTercerNivelAM>(tipo);
+            return nuevo;
+        }
 
         public IList<ElementoTercerNivelAM> TodasElementoTercerNivel()
         {
