@@ -26,6 +26,25 @@ namespace Api.Controllers
             administracionBO = new AdministracionBO(context);
         }
 
+        [HttpPut("{id}")]
+        public IActionResult PutCategoria(int id, [FromBody] ElementoTercerNivelAM objeto)
+        {
+            if (id != objeto.id)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                return new JsonResult(this.administracionBO.ActualizarElementoTercerNivel(objeto));
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw ex;
+            }
+            return NoContent();
+        }
+
         [HttpGet]
         public IActionResult Get()
         {
@@ -36,6 +55,54 @@ namespace Api.Controllers
         public IActionResult getId(int id)
         {
             ElementoTercerNivelAM objeto = administracionBO.ElementoTercerNivelId(id);
+
+            if (objeto != null)
+            {
+                return new JsonResult(objeto);
+            }
+            return NotFound();
+        }
+
+        [HttpGet("SedeElectronica/{id}")]
+        public IActionResult getSedeElectronicaId(int id)
+        {
+            ElementoTercerNivelAM objeto = administracionBO.ElementoTercerNivelSedeElectronicaId(id);
+
+            if (objeto != null)
+            {
+                return new JsonResult(objeto);
+            }
+            return NotFound();
+        }
+
+        [HttpGet("VentanillaUnica/{id}")]
+        public IActionResult getVentanillaUnicaId(int id)
+        {
+            ElementoTercerNivelAM objeto = administracionBO.ElementoTercerNivelVentanillaUnicaId(id);
+
+            if (objeto != null)
+            {
+                return new JsonResult(objeto);
+            }
+            return NotFound();
+        }
+
+        [HttpGet("TramiteServicio/{id}")]
+        public IActionResult getTramiteServicioId(int id)
+        {
+            ElementoTercerNivelAM objeto = administracionBO.ElementoTercerNivelTramisteServicioId(id);
+
+            if (objeto != null)
+            {
+                return new JsonResult(objeto);
+            }
+            return NotFound();
+        }
+
+        [HttpGet("PortalTransversal/{id}")]
+        public IActionResult getPortalTransversalId(int id)
+        {
+            ElementoTercerNivelAM objeto = administracionBO.ElementoTercerNivelPortalTransversalId(id);
 
             if (objeto != null)
             {

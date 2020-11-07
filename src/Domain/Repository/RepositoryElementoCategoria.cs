@@ -16,6 +16,14 @@ namespace Domain.Repository
             this.context = context;
         }
 
+        public void update(ElementoCategoria objeto)
+        {
+            if (objeto == null)
+                throw new ArgumentNullException(nameof(objeto));
+
+            this.context.ElementoCategorias.Update(objeto);
+        }
+
         public IList<ElementoCategoria> All()
         {
             return this.context.ElementoCategorias.ToList();
@@ -24,6 +32,26 @@ namespace Domain.Repository
         public ElementoCategoria GetId(int id)
         {
             return context.ElementoCategorias.Where(s => s.id == id).FirstOrDefault();
+        }
+
+        public ElementoCategoria GetSedeElectronicaId(int id)
+        {
+            return context.ElementoCategorias.Where(s => s.elementoId == id && s.tipoElementoId == 3 && s.codigoEstado == 1).FirstOrDefault();
+        }
+
+        public ElementoCategoria GetVentanillaUnicaId(int id)
+        {
+            return context.ElementoCategorias.Where(s => s.elementoId == id && s.tipoElementoId == 4 && s.codigoEstado == 1).FirstOrDefault();
+        }
+
+        public ElementoCategoria GetTramiteServicioId(int id)
+        {
+            return context.ElementoCategorias.Where(s => s.elementoId == id && s.tipoElementoId == 6 && s.codigoEstado == 1).FirstOrDefault();
+        }
+
+        public ElementoCategoria GetPortalTransversalId(int id)
+        {
+            return context.ElementoCategorias.Where(s => s.elementoId == id && s.tipoElementoId == 5 && s.codigoEstado == 1).FirstOrDefault();
         }
 
         public void Add(ElementoCategoria objeto)

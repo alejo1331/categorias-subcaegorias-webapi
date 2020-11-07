@@ -16,6 +16,14 @@ namespace Domain.Repository
             this.context = context;
         }
 
+        public void update(ElementoSubcategoria objeto)
+        {
+            if (objeto == null)
+                throw new ArgumentNullException(nameof(objeto));
+
+            this.context.ElementoSubcategorias.Update(objeto);
+        }
+
         public IList<ElementoSubcategoria> All()
         {
             return this.context.ElementoSubcategorias.ToList();
@@ -24,6 +32,26 @@ namespace Domain.Repository
         public ElementoSubcategoria GetId(int id)
         {
             return context.ElementoSubcategorias.Where(s => s.id == id).FirstOrDefault();
+        }
+
+        public ElementoSubcategoria GetSedeElectronicaId(int id)
+        {
+            return context.ElementoSubcategorias.Where(s => s.elementoId == id && s.tipoElementoId == 3 && s.codigoEstado == 1).FirstOrDefault();
+        }
+
+        public ElementoSubcategoria GetVentanillaUnicaId(int id)
+        {
+            return context.ElementoSubcategorias.Where(s => s.elementoId == id && s.tipoElementoId == 4 && s.codigoEstado == 1).FirstOrDefault();
+        }
+
+        public ElementoSubcategoria GetTramiteServicioId(int id)
+        {
+            return context.ElementoSubcategorias.Where(s => s.elementoId == id && s.tipoElementoId == 6 && s.codigoEstado == 1).FirstOrDefault();
+        }
+
+        public ElementoSubcategoria GetPortalTransversalId(int id)
+        {
+            return context.ElementoSubcategorias.Where(s => s.elementoId == id && s.tipoElementoId == 5 && s.codigoEstado == 1).FirstOrDefault();
         }
 
         public void Add(ElementoSubcategoria objeto)

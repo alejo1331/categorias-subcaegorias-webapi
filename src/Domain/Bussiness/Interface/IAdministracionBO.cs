@@ -195,8 +195,13 @@ namespace Domain.Bussiness.Interface
         TipoElementoAM TipoElementoId(int id);
 
         //Elemento Categoria
+        ElementoCategoriaAM ActualizarElementoCategoria(ElementoCategoriaAM objeto);
         IList<ElementoCategoriaAM> TodasElementoCategoria();
         ElementoCategoriaAM ElementoCategoriaId(int id);
+        ElementoCategoriaAM ElementoCategoriaSedeElectronicaId(int id);
+        ElementoCategoriaAM ElementoCategoriaVentanillaUnicaId(int id);
+        ElementoCategoriaAM ElementoCategoriaTramisteServicioId(int id);
+        ElementoCategoriaAM ElementoCategoriaPortalTransversalId(int id);
         ElementoCategoriaAM AgregarElementoCategoria(ElementoCategoriaAM objeto);
         IList<PPTAM> VinculadasPPT(int id, int page, int size);
         IList<PPTAM> VincularPPT(int id, int page, int size);
@@ -222,6 +227,11 @@ namespace Domain.Bussiness.Interface
         long VinculadasRecursoCategoriaTotal(int id);
 
         //Elemento Subcategoria
+        ElementoSubcategoriaAM ElementoSubcategoriaSedeElectronicaId(int id);
+        ElementoSubcategoriaAM ElementoSubcategoriaVentanillaUnicaId(int id);
+        ElementoSubcategoriaAM ElementoSubcategoriaTramisteServicioId(int id);
+        ElementoSubcategoriaAM ElementoSubcategoriaPortalTransversalId(int id);
+        ElementoSubcategoriaAM ActualizarElementoSubcategoria(ElementoSubcategoriaAM objeto);
         IList<ElementoSubcategoriaAM> TodasElementoSubcategoria();
         ElementoSubcategoriaAM ElementoSubcategoriaId(int id);
         ElementoSubcategoriaAM AgregarElementoSubcategoria(ElementoSubcategoriaAM objeto);
@@ -248,6 +258,11 @@ namespace Domain.Bussiness.Interface
 
 
         //Elemento Tercer Nivel
+        ElementoTercerNivelAM ElementoTercerNivelSedeElectronicaId(int id);
+        ElementoTercerNivelAM ElementoTercerNivelVentanillaUnicaId(int id);
+        ElementoTercerNivelAM ElementoTercerNivelTramisteServicioId(int id);
+        ElementoTercerNivelAM ElementoTercerNivelPortalTransversalId(int id);
+        ElementoTercerNivelAM ActualizarElementoTercerNivel(ElementoTercerNivelAM objeto);
         IList<ElementoTercerNivelAM> TodasElementoTercerNivel();
         ElementoTercerNivelAM ElementoTercerNivelId(int id);
         ElementoTercerNivelAM AgregarElementoTercerNivel(ElementoTercerNivelAM objeto);

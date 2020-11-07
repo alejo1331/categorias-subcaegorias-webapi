@@ -16,6 +16,14 @@ namespace Domain.Repository
             this.context = context;
         }
 
+        public void update(ElementoTercerNivel objeto)
+        {
+            if (objeto == null)
+                throw new ArgumentNullException(nameof(objeto));
+
+            this.context.ElementoTercerNivels.Update(objeto);
+        }
+
         public IList<ElementoTercerNivel> All()
         {
             return this.context.ElementoTercerNivels.ToList();
@@ -24,6 +32,26 @@ namespace Domain.Repository
         public ElementoTercerNivel GetId(int id)
         {
             return context.ElementoTercerNivels.Where(s => s.id == id).FirstOrDefault();
+        }
+
+        public ElementoTercerNivel GetSedeElectronicaId(int id)
+        {
+            return context.ElementoTercerNivels.Where(s => s.elementoId == id && s.tipoElementoId == 3 && s.codigoEstado == 1).FirstOrDefault();
+        }
+
+        public ElementoTercerNivel GetVentanillaUnicaId(int id)
+        {
+            return context.ElementoTercerNivels.Where(s => s.elementoId == id && s.tipoElementoId == 4 && s.codigoEstado == 1).FirstOrDefault();
+        }
+
+        public ElementoTercerNivel GetTramiteServicioId(int id)
+        {
+            return context.ElementoTercerNivels.Where(s => s.elementoId == id && s.tipoElementoId == 6 && s.codigoEstado == 1).FirstOrDefault();
+        }
+
+        public ElementoTercerNivel GetPortalTransversalId(int id)
+        {
+            return context.ElementoTercerNivels.Where(s => s.elementoId == id && s.tipoElementoId == 5 && s.codigoEstado == 1).FirstOrDefault();
         }
 
         public void Add(ElementoTercerNivel objeto)
