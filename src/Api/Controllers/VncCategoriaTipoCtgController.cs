@@ -64,13 +64,19 @@ namespace Api.Controllers
         [HttpPost("Desvincular")]
         public IActionResult getCategoriaId(PaginateVincular desvincular)
         {
-            return new JsonResult(this.administracionBO.TodosVncCategorias(desvincular.idParametro, desvincular.page, desvincular.size));
+            return new JsonResult(this.administracionBO.TodosVncCategorias(desvincular.idParametro, desvincular.page, desvincular.size, desvincular.orden, desvincular.ascd));
         }
 
         [HttpPost("Desvincular/Activas")]
         public IActionResult getCategoriaActivas(PaginateVincular desvincular)
         {
-            return new JsonResult(this.administracionBO.TodosVncCategoriasActivas(desvincular.idParametro, desvincular.page, desvincular.size));
+            return new JsonResult(this.administracionBO.TodosVncCategoriasActivas(desvincular.idParametro, desvincular.page, desvincular.size, desvincular.orden, desvincular.ascd));
+        }
+
+        [HttpPost("Desvincular/Inactivas")]
+        public IActionResult getCategoriaInactivas(PaginateVincular desvincular)
+        {
+            return new JsonResult(this.administracionBO.TodosVncCategoriasInactivas(desvincular.idParametro, desvincular.page, desvincular.size, desvincular.orden, desvincular.ascd));
         }
 
         [HttpGet("Desvincular/{id}")]
@@ -138,6 +144,12 @@ namespace Api.Controllers
         public IActionResult getDevincularTotalActivas(int id)
         {
             return new JsonResult(administracionBO.DesvincularCategoriasTotalActivas(id));
+        }
+
+        [HttpGet("Desvincular/Total/Inactivas/{id}")]
+        public IActionResult getDevincularTotalinactivas(int id)
+        {
+            return new JsonResult(administracionBO.DesvincularCategoriasTotalInactivas(id));
         }
     }
 }

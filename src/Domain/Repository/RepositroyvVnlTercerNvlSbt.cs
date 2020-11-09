@@ -59,25 +59,117 @@ namespace Domain.Repository
             return lista;
         }
 
-        public IList<TercerNivel> Vinculadas(int id, int page, int size)
+        public IList<TercerNivel> Vinculadas(int id, int page, int size, int orden, bool ascd)
         {
             var vinculos = this.context.VncTercerNvlSubcategorias
                                                     .Where(s => s.idSubcategoria == id && s.codigoEstado == 1)
                                                     .Select(s => s.idTercerNvl)
                                                     .ToList();
+            
+            List<TercerNivel> lista = new List<TercerNivel>();
 
-            IList<TercerNivel> lista = this.context.TercerNivels.Where(s => vinculos.Contains(s.id)).Skip((page - 1) * size).Take(size).ToList();
+            if(orden == 1)
+            {
+                if(!ascd)
+                {
+                    lista = this.context.TercerNivels.Where(s => vinculos.Contains(s.id)).Skip((page - 1) * size).OrderBy(s => s.nombre).Take(size).ToList();
+                }
+                else
+                {
+                    lista = this.context.TercerNivels.Where(s => vinculos.Contains(s.id)).Skip((page - 1) * size).OrderByDescending(s => s.nombre).Take(size).ToList();
+                }
+            }
+            else if(orden == 2)
+            {
+                if(!ascd)
+                {
+                    lista = this.context.TercerNivels.Where(s => vinculos.Contains(s.id)).Skip((page - 1) * size).OrderBy(s => s.orden).Take(size).ToList();
+                }
+                else
+                {
+                    lista = this.context.TercerNivels.Where(s => vinculos.Contains(s.id)).Skip((page - 1) * size).OrderByDescending(s => s.orden).Take(size).ToList();
+                }
+            }
+            else
+            {
+                lista = this.context.TercerNivels.Where(s => vinculos.Contains(s.id)).Skip((page - 1) * size).OrderByDescending(s => s.orden).Take(size).ToList();
+            }
             return lista;
         }
 
-        public IList<TercerNivel> VinculadasActivas(int id, int page, int size)
+        public IList<TercerNivel> VinculadasActivas(int id, int page, int size, int orden, bool ascd)
         {
             var vinculos = this.context.VncTercerNvlSubcategorias
                                                     .Where(s => s.idSubcategoria == id && s.codigoEstado == 1)
                                                     .Select(s => s.idTercerNvl)
                                                     .ToList();
 
-            IList<TercerNivel> lista = this.context.TercerNivels.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).Take(size).ToList();
+            List<TercerNivel> lista = new List<TercerNivel>();
+
+            if(orden == 1)
+            {
+                if(!ascd)
+                {
+                    lista = this.context.TercerNivels.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1).OrderBy(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                }
+                else
+                {
+                    lista = this.context.TercerNivels.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1).OrderByDescending(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                }
+            }
+            else if(orden == 2)
+            {
+                if(!ascd)
+                {
+                    lista = this.context.TercerNivels.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1).OrderBy(s => s.orden).Skip((page - 1) * size).Take(size).ToList();
+                }
+                else
+                {
+                    lista = this.context.TercerNivels.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1).OrderByDescending(s => s.orden).Skip((page - 1) * size).Take(size).ToList();
+                }
+            }
+            else
+            {
+                lista = this.context.TercerNivels.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).Take(size).ToList();
+            }
+            return lista;
+        }
+
+        public IList<TercerNivel> VinculadasInactivas(int id, int page, int size, int orden, bool ascd)
+        {
+            var vinculos = this.context.VncTercerNvlSubcategorias
+                                                    .Where(s => s.idSubcategoria == id && s.codigoEstado == 1)
+                                                    .Select(s => s.idTercerNvl)
+                                                    .ToList();
+
+            List<TercerNivel> lista = new List<TercerNivel>();
+
+            if(orden == 1)
+            {
+                if(!ascd)
+                {
+                    lista = this.context.TercerNivels.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 2).OrderBy(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                }
+                else
+                {
+                    lista = this.context.TercerNivels.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 2).OrderByDescending(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                }
+            }
+            else if(orden == 2)
+            {
+                if(!ascd)
+                {
+                    lista = this.context.TercerNivels.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 2).OrderBy(s => s.orden).Skip((page - 1) * size).Take(size).ToList();
+                }
+                else
+                {
+                    lista = this.context.TercerNivels.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 2).OrderByDescending(s => s.orden).Skip((page - 1) * size).Take(size).ToList();
+                }
+            }
+            else
+            {
+                lista = this.context.TercerNivels.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 2).Skip((page - 1) * size).Take(size).ToList();
+            }
             return lista;
         }
 
@@ -111,6 +203,17 @@ namespace Domain.Repository
                                                     .ToList();
 
             long lista = this.context.TercerNivels.Count(s => vinculos.Contains(s.id) && s.codigoEstado == 1);
+            return lista;
+        }
+
+        public long VinculadasTotaInactivas(int id)
+        {
+            var vinculos = this.context.VncTercerNvlSubcategorias
+                                                    .Where(s => s.idSubcategoria == id && s.codigoEstado == 1)
+                                                    .Select(s => s.idTercerNvl)
+                                                    .ToList();
+
+            long lista = this.context.TercerNivels.Count(s => vinculos.Contains(s.id) && s.codigoEstado == 2);
             return lista;
         }
 

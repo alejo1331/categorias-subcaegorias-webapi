@@ -62,17 +62,86 @@ namespace Domain.Repository
             this.context.ElementoTercerNivels.Add(objeto);
         }
 
-        public IList<VentanillaUnica> VinculadasVentanillaUnica(int id, int page, int size)
+        public IList<VentanillaUnica> VinculadasVentanillaUnica(int id, int page, int size, int orden, bool ascd)
         {
             var vinculadas = this.context.ElementoTercerNivels.Where(s => s.tercerNivelId == id && s.tipoElementoId == 4 && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
-            List<VentanillaUnica> VentanillaUnicas = this.context.VentanillaUnicas.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).Take(size).ToList();
+            List<VentanillaUnica> VentanillaUnicas = new List<VentanillaUnica>();
+            if(orden == 1)
+            {
+                if(!ascd)
+                {
+                    VentanillaUnicas = this.context.VentanillaUnicas.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderBy(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                }
+                else
+                {
+                    VentanillaUnicas = this.context.VentanillaUnicas.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderByDescending(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                }
+            }
+            else if(orden == 2)
+            {
+                if(!ascd)
+                {
+                    VentanillaUnicas = this.context.VentanillaUnicas.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderBy(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                }
+                else
+                {
+                    VentanillaUnicas = this.context.VentanillaUnicas.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderByDescending(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                }
+            }
+            else
+            {
+                VentanillaUnicas = this.context.VentanillaUnicas.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).Take(size).ToList();
+            }
             return VentanillaUnicas;
         }
 
-        public IList<VentanillaUnica> VincularVentanillaUnica(int id, int page, int size)
+        public IList<VentanillaUnica> VinculadasVentanillaUnica(int id)
         {
             var vinculadas = this.context.ElementoTercerNivels.Where(s => s.tercerNivelId == id && s.tipoElementoId == 4 && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
-            List<VentanillaUnica> VentanillaUnicas = this.context.VentanillaUnicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).Take(size).ToList();
+            List<VentanillaUnica> VentanillaUnicas = new List<VentanillaUnica>();
+            VentanillaUnicas = this.context.VentanillaUnicas.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).ToList();
+            return VentanillaUnicas;
+        }
+
+        public IList<VentanillaUnica> VincularVentanillaUnica(int id, int page, int size, int orden, bool ascd)
+        {
+            var vinculadas = this.context.ElementoTercerNivels.Where(s => s.tercerNivelId == id && s.tipoElementoId == 4 && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
+            List<VentanillaUnica> VentanillaUnicas = new List<VentanillaUnica>();
+            if(orden == 1)
+            {
+                if(!ascd)
+                {
+                    VentanillaUnicas = this.context.VentanillaUnicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderBy(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                }
+                else
+                {
+                    VentanillaUnicas = this.context.VentanillaUnicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderByDescending(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                }
+            }
+            else if(orden == 2)
+            {
+                if(!ascd)
+                {
+                    VentanillaUnicas = this.context.VentanillaUnicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderBy(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                }
+                else
+                {
+                    VentanillaUnicas = this.context.VentanillaUnicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderByDescending(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                }
+            }
+            else
+            {
+                VentanillaUnicas = this.context.VentanillaUnicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).Take(size).ToList();
+            }
+            
+            return VentanillaUnicas;
+        }
+
+        public IList<VentanillaUnica> VincularVentanillaUnica(int id)
+        {
+            var vinculadas = this.context.ElementoTercerNivels.Where(s => s.tercerNivelId == id && s.tipoElementoId == 4 && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
+            List<VentanillaUnica> VentanillaUnicas = new List<VentanillaUnica>();
+            VentanillaUnicas = this.context.VentanillaUnicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).ToList();
             return VentanillaUnicas;
         }
 
@@ -90,17 +159,85 @@ namespace Domain.Repository
             return VentanillaUnicas;
         }
 
-        public IList<SedeElectronica> VinculadasSedeElectronica(int id, int page, int size)
+        public IList<SedeElectronica> VinculadasSedeElectronica(int id, int page, int size, int orden, bool ascd)
         {
             var vinculadas = this.context.ElementoTercerNivels.Where(s => s.tercerNivelId == id && s.tipoElementoId == 3 && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
-            List<SedeElectronica> SedeElectronicas = this.context.SedeElectronicas.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).Take(size).ToList();
+            List<SedeElectronica> SedeElectronicas = new List<SedeElectronica>();
+            if(orden == 1)
+            {
+                if(!ascd)
+                {
+                    SedeElectronicas = this.context.SedeElectronicas.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderBy(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                }
+                else
+                {
+                    SedeElectronicas = this.context.SedeElectronicas.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderByDescending(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                }
+            }
+            else if(orden == 2)
+            {
+                if(!ascd)
+                {
+                    SedeElectronicas = this.context.SedeElectronicas.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderBy(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                }
+                else
+                {
+                    SedeElectronicas = this.context.SedeElectronicas.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderByDescending(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                }
+            }
+            else
+            {
+                SedeElectronicas = this.context.SedeElectronicas.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).Take(size).ToList();
+            }
             return SedeElectronicas;
         }
 
-        public IList<SedeElectronica> VincularSedeElectronica(int id, int page, int size)
+        public IList<SedeElectronica> VinculadasSedeElectronica(int id)
         {
             var vinculadas = this.context.ElementoTercerNivels.Where(s => s.tercerNivelId == id && s.tipoElementoId == 3 && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
-            List<SedeElectronica> SedeElectronicas = this.context.SedeElectronicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).Take(size).ToList();
+            List<SedeElectronica> SedeElectronicas = new List<SedeElectronica>();
+            SedeElectronicas = this.context.SedeElectronicas.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).ToList();
+            return SedeElectronicas;
+        }
+
+        public IList<SedeElectronica> VincularSedeElectronica(int id, int page, int size, int orden, bool ascd)
+        {
+            var vinculadas = this.context.ElementoTercerNivels.Where(s => s.tercerNivelId == id && s.tipoElementoId == 3 && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
+            List<SedeElectronica> SedeElectronicas = new List<SedeElectronica>();
+            if(orden == 1)
+            {
+                if(!ascd)
+                {
+                    SedeElectronicas = this.context.SedeElectronicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderBy(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                }
+                else
+                {
+                    SedeElectronicas = this.context.SedeElectronicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderByDescending(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                }
+            }
+            else if(orden == 2)
+            {
+                if(!ascd)
+                {
+                    SedeElectronicas = this.context.SedeElectronicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderBy(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                }
+                else
+                {
+                    SedeElectronicas = this.context.SedeElectronicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderByDescending(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                }
+            }
+            else
+            {
+                SedeElectronicas = this.context.SedeElectronicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).Take(size).ToList();
+            }
+            return SedeElectronicas;
+        }
+
+        public IList<SedeElectronica> VincularSedeElectronica(int id)
+        {
+            var vinculadas = this.context.ElementoTercerNivels.Where(s => s.tercerNivelId == id && s.tipoElementoId == 3 && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
+            List<SedeElectronica> SedeElectronicas = new List<SedeElectronica>();
+            SedeElectronicas = this.context.SedeElectronicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).ToList();
             return SedeElectronicas;
         }
 
@@ -118,17 +255,85 @@ namespace Domain.Repository
             return SedeElectronicas;
         }
 
-        public IList<TramiteServicio> VinculadasTramiteServicio(int id, int page, int size)
+        public IList<TramiteServicio> VinculadasTramiteServicio(int id, int page, int size, int orden, bool ascd)
         {
             var vinculadas = this.context.ElementoTercerNivels.Where(s => s.tercerNivelId == id && s.tipoElementoId == 6 && s.codigoEstado == 1).Select(s => s.elementoId.ToString()).ToList();
-            List<TramiteServicio> TramiteServicios = this.context.TramiteServicios.Where(s => vinculadas.Contains(s.id)).Skip((page - 1) * size).Take(size).ToList();
+            List<TramiteServicio> TramiteServicios = new List<TramiteServicio>();
+            if(orden == 1)
+            {
+                if(!ascd)
+                {
+                    TramiteServicios = this.context.TramiteServicios.Where(s => vinculadas.Contains(s.id)).OrderBy(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                }
+                else
+                {
+                    TramiteServicios = this.context.TramiteServicios.Where(s => vinculadas.Contains(s.id)).OrderByDescending(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                }
+            }
+            else if(orden == 2)
+            {
+                if(!ascd)
+                {
+                    TramiteServicios = this.context.TramiteServicios.Where(s => vinculadas.Contains(s.id)).OrderBy(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                }
+                else
+                {
+                    TramiteServicios = this.context.TramiteServicios.Where(s => vinculadas.Contains(s.id)).OrderByDescending(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                }
+            }
+            else
+            {
+                TramiteServicios = this.context.TramiteServicios.Where(s => vinculadas.Contains(s.id)).Skip((page - 1) * size).Take(size).ToList();
+            }
             return TramiteServicios;
         }
 
-        public IList<TramiteServicio> VincularTramiteServicio(int id, int page, int size)
+        public IList<TramiteServicio> VinculadasTramiteServicio(int id)
         {
             var vinculadas = this.context.ElementoTercerNivels.Where(s => s.tercerNivelId == id && s.tipoElementoId == 6 && s.codigoEstado == 1).Select(s => s.elementoId.ToString()).ToList();
-            List<TramiteServicio> TramiteServicios = this.context.TramiteServicios.Where(s => !vinculadas.Contains(s.id)).Skip((page - 1) * size).Take(size).ToList();
+            List<TramiteServicio> TramiteServicios = new List<TramiteServicio>();
+            TramiteServicios = this.context.TramiteServicios.Where(s => vinculadas.Contains(s.id)).ToList();
+            return TramiteServicios;
+        }
+
+        public IList<TramiteServicio> VincularTramiteServicio(int id, int page, int size, int orden, bool ascd)
+        {
+            var vinculadas = this.context.ElementoTercerNivels.Where(s => s.tercerNivelId == id && s.tipoElementoId == 6 && s.codigoEstado == 1).Select(s => s.elementoId.ToString()).ToList();
+            List<TramiteServicio> TramiteServicios = new List<TramiteServicio>();
+            if(orden == 1)
+            {
+                if(!ascd)
+                {
+                    TramiteServicios = this.context.TramiteServicios.Where(s => !vinculadas.Contains(s.id)).OrderBy(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                }
+                else
+                {
+                    TramiteServicios = this.context.TramiteServicios.Where(s => !vinculadas.Contains(s.id)).OrderByDescending(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                }
+            }
+            else if(orden == 2)
+            {
+                if(!ascd)
+                {
+                    TramiteServicios = this.context.TramiteServicios.Where(s => !vinculadas.Contains(s.id)).OrderBy(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                }
+                else
+                {
+                    TramiteServicios = this.context.TramiteServicios.Where(s => !vinculadas.Contains(s.id)).OrderByDescending(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                }
+            }
+            else
+            {
+                TramiteServicios = this.context.TramiteServicios.Where(s => !vinculadas.Contains(s.id)).Skip((page - 1) * size).Take(size).ToList();
+            }
+            return TramiteServicios;
+        }
+
+        public IList<TramiteServicio> VincularTramiteServicio(int id)
+        {
+            var vinculadas = this.context.ElementoTercerNivels.Where(s => s.tercerNivelId == id && s.tipoElementoId == 6 && s.codigoEstado == 1).Select(s => s.elementoId.ToString()).ToList();
+            List<TramiteServicio> TramiteServicios = new List<TramiteServicio>();
+            TramiteServicios = this.context.TramiteServicios.Where(s => !vinculadas.Contains(s.id)).ToList();
             return TramiteServicios;
         }
 
@@ -146,17 +351,85 @@ namespace Domain.Repository
             return TramiteServicios;
         }
 
-        public IList<PortalTransversal> VincularPortalTransversal(int id, int page, int size)
+        public IList<PortalTransversal> VincularPortalTransversal(int id, int page, int size, int orden, bool ascd)
         {
             var vinculadas = this.context.ElementoTercerNivels.Where(s => s.tercerNivelId == id && s.tipoElementoId == 5 && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
-            IList<PortalTransversal> lista = this.context.PortalTransversals.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).Take(size).ToList();
+            List<PortalTransversal> lista = new List<PortalTransversal>();
+            if(orden == 1)
+            {
+                if(!ascd)
+                {
+                    lista = this.context.PortalTransversals.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderBy(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                }
+                else
+                {
+                    lista = this.context.PortalTransversals.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderByDescending(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                }
+            }
+            else if(orden == 2)
+            {
+                if(!ascd)
+                {
+                    lista = this.context.PortalTransversals.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderBy(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                }
+                else
+                {
+                    lista = this.context.PortalTransversals.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderByDescending(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                }
+            }
+            else
+            {
+                lista = this.context.PortalTransversals.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).Take(size).ToList();
+            }
             return lista;
         }
 
-        public IList<PortalTransversal> VinculadasPortalTransversal(int id, int page, int size)
+        public IList<PortalTransversal> VincularPortalTransversal(int id)
         {
             var vinculadas = this.context.ElementoTercerNivels.Where(s => s.tercerNivelId == id && s.tipoElementoId == 5 && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
-            IList<PortalTransversal> lista = this.context.PortalTransversals.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).Take(size).ToList();
+            List<PortalTransversal> lista = new List<PortalTransversal>();
+            lista = this.context.PortalTransversals.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).ToList();
+            return lista;
+        }
+
+        public IList<PortalTransversal> VinculadasPortalTransversal(int id, int page, int size, int orden, bool ascd)
+        {
+            var vinculadas = this.context.ElementoTercerNivels.Where(s => s.tercerNivelId == id && s.tipoElementoId == 5 && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
+            List<PortalTransversal> lista = new List<PortalTransversal>();
+            if(orden == 1)
+            {
+                if(!ascd)
+                {
+                    lista = this.context.PortalTransversals.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderBy(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                }
+                else
+                {
+                    lista = this.context.PortalTransversals.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderByDescending(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                }
+            }
+            else if(orden == 2)
+            {
+                if(!ascd)
+                {
+                    lista = this.context.PortalTransversals.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderBy(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                }
+                else
+                {
+                    lista = this.context.PortalTransversals.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderByDescending(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                }
+            }
+            else
+            {
+                lista = this.context.PortalTransversals.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).Take(size).ToList();
+            }
+            return lista;
+        }
+
+        public IList<PortalTransversal> VinculadasPortalTransversal(int id)
+        {
+            var vinculadas = this.context.ElementoTercerNivels.Where(s => s.tercerNivelId == id && s.tipoElementoId == 5 && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
+            List<PortalTransversal> lista = new List<PortalTransversal>();
+            lista = this.context.PortalTransversals.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).ToList();
             return lista;
         }
 

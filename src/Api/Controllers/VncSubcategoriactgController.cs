@@ -109,7 +109,7 @@ namespace Api.Controllers
         [HttpPost("Vinculadas")]
         public IActionResult getVinculadas(PaginateVincular vincular)
         {
-            return new JsonResult(administracionBO.VinculadasSubcategoria(vincular.idParametro, vincular.page, vincular.size));
+            return new JsonResult(administracionBO.VinculadasSubcategoria(vincular.idParametro, vincular.page, vincular.size, vincular.orden, vincular.ascd));
         }
 
         [HttpPost("Vincular")]
@@ -121,7 +121,13 @@ namespace Api.Controllers
         [HttpPost("Vinculadas/Activas")]
         public IActionResult getVinculadasActivas(PaginateVincular vincular)
         {
-            return new JsonResult(administracionBO.VinculadasSubcategoriaActivas(vincular.idParametro, vincular.page, vincular.size));
+            return new JsonResult(administracionBO.VinculadasSubcategoriaActivas(vincular.idParametro, vincular.page, vincular.size, vincular.orden, vincular.ascd));
+        }
+
+        [HttpPost("Vinculadas/Inactivas")]
+        public IActionResult getVinculadasInactivas(PaginateVincular vincular)
+        {
+            return new JsonResult(administracionBO.VinculadasSubcategoriaInactivas(vincular.idParametro, vincular.page, vincular.size, vincular.orden, vincular.ascd));
         }
 
         [HttpGet("Vinculadas/{id}")]
@@ -140,6 +146,12 @@ namespace Api.Controllers
         public IActionResult getVinculadasTotalActivas(int id)
         {
             return new JsonResult(administracionBO.VinculadasSubcategoriasTotalActivas(id));
+        }
+
+        [HttpGet("Vinculadas/Total/Inactivas/{id}")]
+        public IActionResult getVinculadasTotalInactivas(int id)
+        {
+            return new JsonResult(administracionBO.VinculadasSubcategoriasTotalInactivas(id));
         }
 
         [HttpGet("Vincular/Total/{id}")]
