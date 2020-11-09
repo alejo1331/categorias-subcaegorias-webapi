@@ -59,14 +59,41 @@ namespace Domain.Repository
             return this.context.VncSubcategoriaCategorias.Where(s => s.idCategoria == idpadre && s.idSubcategoria == idhijo && s.tipoVinculo == 1).FirstOrDefault();
         }
 
-        public IList<Subcategoria> Vinculadas(int id, int page, int size)
+        public IList<Subcategoria> Vinculadas(int id, int page, int size, int orden, bool ascd)
         {
             var vinculos = this.context.VncSubcategoriaCategorias
                                                     .Where(s => s.idCategoria == id && s.codigoEstado == 1)
                                                     .Select(s => s.idSubcategoria)
                                                     .ToList();
 
-            IList<Subcategoria> subcategorias = this.context.Subcategorias.Where(s => vinculos.Contains(s.id)).Skip((page - 1) * size).Take(size).ToList();
+            List<Subcategoria> subcategorias = new List<Subcategoria>();
+
+            if(orden == 1)
+            {
+                if(!ascd)
+                {
+                    subcategorias = this.context.Subcategorias.Where(s => vinculos.Contains(s.id)).OrderBy(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                }
+                else
+                {
+                    subcategorias = this.context.Subcategorias.Where(s => vinculos.Contains(s.id)).OrderByDescending(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                }
+            }
+            else if(orden == 2)
+            {
+                if(!ascd)
+                {
+                    subcategorias = this.context.Subcategorias.Where(s => vinculos.Contains(s.id)).OrderBy(s => s.orden).Skip((page - 1) * size).Take(size).ToList();
+                }
+                else
+                {
+                    subcategorias = this.context.Subcategorias.Where(s => vinculos.Contains(s.id)).OrderByDescending(s => s.orden).Skip((page - 1) * size).Take(size).ToList();
+                }
+            }
+            else
+            {
+                subcategorias = this.context.Subcategorias.Where(s => vinculos.Contains(s.id)).Skip((page - 1) * size).Take(size).ToList();
+            }
             return subcategorias;
         }
 
@@ -94,17 +121,60 @@ namespace Domain.Repository
 
         }
 
-        public IList<Subcategoria> VinculadasActivas(int id, int page, int size)
+        public IList<Subcategoria> VinculadasActivas(int id, int page, int size, int orden, bool ascd)
         {
             var vinculos = this.context.VncSubcategoriaCategorias
                                                     .Where(s => s.idCategoria == id && s.codigoEstado == 1)
                                                     .Select(s => s.idSubcategoria)
                                                     .ToList();
 
-            IList<Subcategoria> subcategorias = this.context.Subcategorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1)
+            List<Subcategoria> subcategorias = new List<Subcategoria>();
+
+            if(orden == 1)
+            {
+                if(!ascd)
+                {
+                    subcategorias = this.context.Subcategorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1)
+                                                                            .OrderBy(s => s.nombre)
                                                                             .Skip((page - 1) * size)
                                                                             .Take(size)
                                                                             .ToList();
+                }
+                else
+                {
+                    subcategorias = this.context.Subcategorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1)
+                                                                            .OrderByDescending(s => s.nombre)
+                                                                            .Skip((page - 1) * size)
+                                                                            .Take(size)
+                                                                            .ToList();
+                }
+            }
+            else if(orden == 2)
+            {
+                if(!ascd)
+                {
+                    subcategorias = this.context.Subcategorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1)
+                                                                            .OrderBy(s => s.orden)
+                                                                            .Skip((page - 1) * size)
+                                                                            .Take(size)
+                                                                            .ToList();
+                }
+                else
+                {
+                    subcategorias = this.context.Subcategorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1)
+                                                                            .OrderByDescending(s => s.orden)
+                                                                            .Skip((page - 1) * size)
+                                                                            .Take(size)
+                                                                            .ToList();
+                }
+            }
+            else
+            {
+                subcategorias = this.context.Subcategorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1)
+                                                                            .Skip((page - 1) * size)
+                                                                            .Take(size)
+                                                                            .ToList();
+            }
             return subcategorias;
         }
 
@@ -116,6 +186,75 @@ namespace Domain.Repository
                                                     .ToList();
 
             long subcategorias = this.context.Subcategorias.Count(s => vinculos.Contains(s.id) && s.codigoEstado == 1);
+            return subcategorias;
+        }
+
+        public IList<Subcategoria> VinculadasInactivas(int id, int page, int size, int orden, bool ascd)
+        {
+             var vinculos = this.context.VncSubcategoriaCategorias
+                                                    .Where(s => s.idCategoria == id && s.codigoEstado == 1)
+                                                    .Select(s => s.idSubcategoria)
+                                                    .ToList();
+
+            List<Subcategoria> subcategorias = new List<Subcategoria>();
+
+            if(orden == 1)
+            {
+                if(!ascd)
+                {
+                    subcategorias = this.context.Subcategorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 2)
+                                                                            .OrderBy(s => s.nombre)
+                                                                            .Skip((page - 1) * size)
+                                                                            .Take(size)
+                                                                            .ToList();
+                }
+                else
+                {
+                    subcategorias = this.context.Subcategorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 2)
+                                                                            .OrderByDescending(s => s.nombre)
+                                                                            .Skip((page - 1) * size)
+                                                                            .Take(size)
+                                                                            .ToList();
+                }
+            }
+            else if(orden == 2)
+            {
+                if(!ascd)
+                {
+                    subcategorias = this.context.Subcategorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 2)
+                                                                            .OrderBy(s => s.nombre)
+                                                                            .Skip((page - 1) * size)
+                                                                            .Take(size)
+                                                                            .ToList();
+                }
+                else
+                {
+                    subcategorias = this.context.Subcategorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 2)
+                                                                            .OrderByDescending(s => s.nombre)
+                                                                            .Skip((page - 1) * size)
+                                                                            .Take(size)
+                                                                            .ToList();
+                }
+            }
+            else
+            {
+                subcategorias = this.context.Subcategorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 2)
+                                                                            .Skip((page - 1) * size)
+                                                                            .Take(size)
+                                                                            .ToList();
+            }
+            return subcategorias;
+        }
+
+
+        public long VinculadasTotalInactivas(int id)
+        {
+            var vinculos = this.context.VncSubcategoriaCategorias
+                                                    .Where(s => s.idCategoria == id && s.codigoEstado == 1)
+                                                    .Select(s => s.idSubcategoria)
+                                                    .ToList();
+
+            long subcategorias = this.context.Subcategorias.Count(s => vinculos.Contains(s.id) && s.codigoEstado == 2);
             return subcategorias;
         }
 

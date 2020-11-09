@@ -15,13 +15,15 @@ namespace Domain.Repository.Interface
         VncSubcategoriaCategoria GetId(int idpadre, int idhijo);
         IList<Subcategoria> getSubcategory(int id);
         void Update(VncSubcategoriaCategoria objeto);
-        IList<Subcategoria> Vinculadas(int id, int page, int size);
-        IList<Subcategoria> VinculadasActivas(int id, int page, int size);
+        IList<Subcategoria> Vinculadas(int id, int page, int size, int orden, bool ascd);
+        IList<Subcategoria> VinculadasActivas(int id, int page, int size, int orden, bool ascd);
+        IList<Subcategoria> VinculadasInactivas(int id, int page, int size, int orden, bool ascd);
         IList<Subcategoria> Vinculadas(int id);
         IList<Subcategoria> Vincular(int id);
         IList<Subcategoria> Vincular(int id, int page, int size);
         long VinculadasTotal(int id);
         long VinculadasTotalActivas(int id);
+        long VinculadasTotalInactivas(int id);
         long VincularTotal(int id);
     }
 }

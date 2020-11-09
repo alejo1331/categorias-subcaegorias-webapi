@@ -131,13 +131,25 @@ namespace Api.Controllers
         [HttpPost("VinculadasVentanillaUnica")]
         public IActionResult getVinculadasVentanillaUnica(PaginateVincular objeto)
         {
-            return new JsonResult(administracionBO.VinculadasVentanillaUnicaSubcategoria(objeto.idParametro, objeto.page, objeto.size));
+            return new JsonResult(administracionBO.VinculadasVentanillaUnicaSubcategoria(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd));
+        }
+
+        [HttpGet("VinculadasVentanillaUnica/{id}")]
+        public IActionResult getVinculadasVentanillaUnica(int id)
+        {
+            return new JsonResult(administracionBO.VinculadasVentanillaUnicaSubcategoria(id));
         }
 
         [HttpPost("VincularVentanillaUnica")]
         public IActionResult getVincularVentanillaUnica(PaginateVincular objeto)
         {
-            return new JsonResult(administracionBO.VincularVentanillaUnicaSubcategoria(objeto.idParametro, objeto.page, objeto.size));
+            return new JsonResult(administracionBO.VincularVentanillaUnicaSubcategoria(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd));
+        }
+
+        [HttpGet("VincularVentanillaUnica/{id}")]
+        public IActionResult getVincularVentanillaUnica(int id)
+        {
+            return new JsonResult(administracionBO.VinculadasVentanillaUnicaSubcategoria(id));
         }
 
         [HttpGet("Vincular/VentanillaUnica/Total/{id}")]
@@ -174,13 +186,25 @@ namespace Api.Controllers
         [HttpPost("VinculadasSedeElectronica")]
         public IActionResult getVinculadasSedeElectronica(PaginateVincular objeto)
         {
-            return new JsonResult(administracionBO.VinculadasSedeElectronicaSubcategoria(objeto.idParametro, objeto.page, objeto.size));
+            return new JsonResult(administracionBO.VinculadasSedeElectronicaSubcategoria(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd));
+        }
+
+        [HttpGet("VinculadasSedeElectronica/{id}")]
+        public IActionResult getVinculadasSedeElectronica(int id)
+        {
+            return new JsonResult(administracionBO.VinculadasSedeElectronicaSubcategoria(id));
         }
 
         [HttpPost("VincularSedeElectronica")]
         public IActionResult getVincularSedeElectronica(PaginateVincular objeto)
         {
-            return new JsonResult(administracionBO.VincularSedeElectronicaSubcategoria(objeto.idParametro, objeto.page, objeto.size));
+            return new JsonResult(administracionBO.VincularSedeElectronicaSubcategoria(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd));
+        }
+
+        [HttpGet("VincularSedeElectronica/{id}")]
+        public IActionResult getVincularSedeElectronica(int id)
+        {
+            return new JsonResult(administracionBO.VincularSedeElectronicaSubcategoria(id));
         }
 
         [HttpGet("Vincular/SedeElectronica/Total/{id}")]
@@ -198,13 +222,25 @@ namespace Api.Controllers
         [HttpPost("VinculadasTramiteServicio")]
         public IActionResult getVinculadasTramiteServicio(PaginateVincular objeto)
         {
-            return new JsonResult(administracionBO.VinculadasTramiteServicioSubcategoria(objeto.idParametro, objeto.page, objeto.size));
+            return new JsonResult(administracionBO.VinculadasTramiteServicioSubcategoria(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd));
+        }
+
+        [HttpGet("VinculadasTramiteServicio/{id}")]
+        public IActionResult getVinculadasTramiteServicio(int id)
+        {
+            return new JsonResult(administracionBO.VinculadasTramiteServicioSubcategoria(id));
         }
 
         [HttpPost("VincularTramiteServicio")]
         public IActionResult getVincularTramiteServicio(PaginateVincular objeto)
         {
-            return new JsonResult(administracionBO.VincularTramiteServicioSubcategoria(objeto.idParametro, objeto.page, objeto.size));
+            return new JsonResult(administracionBO.VincularTramiteServicioSubcategoria(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd));
+        }
+
+        [HttpGet("VincularTramiteServicio/{id}")]
+        public IActionResult getVincularTramiteServicio(int id)
+        {
+            return new JsonResult(administracionBO.VincularTramiteServicioSubcategoria(id));
         }
 
         [HttpGet("Vincular/TramiteServicio/Total/{id}")]
@@ -222,13 +258,25 @@ namespace Api.Controllers
         [HttpPost("VinculadasPortalTransversal")]
         public IActionResult getVinculadasPortalTransversal(PaginateVincular objeto)
         {
-            return new JsonResult(administracionBO.VinculadasPortalTransversalSubcategoria(objeto.idParametro, objeto.page, objeto.size));
+            return new JsonResult(administracionBO.VinculadasPortalTransversalSubcategoria(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd));
+        }
+
+        [HttpGet("VinculadasPortalTransversal/{id}")]
+        public IActionResult getVinculadasPortalTransversal(int id)
+        {
+            return new JsonResult(administracionBO.VinculadasPortalTransversalSubcategoria(id));
         }
 
         [HttpPost("VincularPortalTransversal")]
         public IActionResult getVincularPortalTransversal(PaginateVincular objeto)
         {
-            return new JsonResult(administracionBO.VincularPortalTransversalSubcategoria(objeto.idParametro, objeto.page, objeto.size));
+            return new JsonResult(administracionBO.VincularPortalTransversalSubcategoria(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd));
+        }
+
+        [HttpGet("VincularPortalTransversal/{id}")]
+        public IActionResult getVincularPortalTransversal(int id)
+        {
+            return new JsonResult(administracionBO.VincularPortalTransversalSubcategoria(id));
         }
 
         [HttpGet("Vincular/PortalTransversal/Total/{id}")]
