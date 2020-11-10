@@ -293,7 +293,7 @@ namespace Domain.Repository
             }
             else if(orden == 2)
             {
-                if(!ascd)
+                if(ascd)
                 {
                     SedeElectronicas = SedeElectronicas.OrderBy(s => s.nombre).ToList();
                 }
@@ -303,10 +303,9 @@ namespace Domain.Repository
                 }
             }else
             {
-                
-            }
+                SedeElectronicas = SedeElectronicas.Skip((page - 1) * size).Take(size).ToList();
+            }            
             
-            SedeElectronicas = SedeElectronicas.Skip((page - 1) * size).Take(size).ToList();
             return SedeElectronicas;
         }
 
@@ -349,7 +348,7 @@ namespace Domain.Repository
             }
             else if(orden == 2)
             {
-                if(ascd)
+                if(!ascd)
                 {
                     sedeElectronicas = sedeElectronicas.OrderBy(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
                 }
