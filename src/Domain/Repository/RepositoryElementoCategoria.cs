@@ -62,37 +62,46 @@ namespace Domain.Repository
             this.context.ElementoCategorias.Add(objeto);
         }
 
-        public IList<PortalTransversal> VincularPortalTransversal(int id, int page, int size, int orden, bool ascd)
+        public IList<PortalTransversal> VincularPortalTransversal(int id, int page, int size, int orden, bool ascd, int tipo, string filtro)
         {
             var vinculadas = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == 5 && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
             List<PortalTransversal> lista = new List<PortalTransversal>();
+            lista = this.context.PortalTransversals.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).ToList();
+
+            if(tipo == 1)
+            {
+                int idFiltro = int.Parse(filtro);
+                lista = lista.Where(s => s.id == idFiltro).ToList();
+            }
+            else if(tipo == 2)
+            {
+                lista = lista.Where(s => s.nombre.Contains(filtro)).ToList();
+            }
 
             if(orden == 1)
             {
                 if(!ascd)
                 {
-                    lista = this.context.PortalTransversals.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderBy(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                    lista = lista.OrderBy(s => s.id).ToList();
                 }
                 else
                 {
-                    lista = this.context.PortalTransversals.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderByDescending(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                    lista = lista.OrderByDescending(s => s.id).ToList();
                 }
             }
             else if(orden == 2)
             {
                 if(!ascd)
                 {
-                    lista = this.context.PortalTransversals.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderBy(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                    lista =lista.OrderBy(s => s.nombre).ToList();
                 }
                 else
                 {
-                    lista = this.context.PortalTransversals.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderByDescending(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                    lista = lista.OrderByDescending(s => s.nombre).ToList();
                 }
             }
-            else
-            {
-                lista = this.context.PortalTransversals.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).Take(size).ToList();
-            }
+
+            lista = lista.Skip((page - 1) * size).Take(size).ToList();
             return lista;
         }
 
@@ -104,37 +113,46 @@ namespace Domain.Repository
             return lista;
         }
 
-        public IList<PortalTransversal> VinculadasPortalTransversal(int id, int page, int size, int orden, bool ascd)
+        public IList<PortalTransversal> VinculadasPortalTransversal(int id, int page, int size, int orden, bool ascd, int tipo, string filtro)
         {
             var vinculadas = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == 5 && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
             List<PortalTransversal> lista = new List<PortalTransversal>();
+            lista = this.context.PortalTransversals.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).ToList();
+
+            if(tipo == 1)
+            {
+                int idFiltro = int.Parse(filtro);
+                lista = lista.Where(s => s.id == idFiltro).ToList();
+            }
+            else if(tipo == 2)
+            {
+                lista = lista.Where(s => s.nombre.Contains(filtro)).ToList();
+            }
 
             if(orden == 1)
             {
                 if(!ascd)
                 {
-                    lista = this.context.PortalTransversals.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderBy(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                    lista = lista.OrderBy(s => s.id).ToList();
                 }
                 else
                 {
-                    lista = this.context.PortalTransversals.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderByDescending(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                    lista = lista.OrderByDescending(s => s.id).ToList();
                 }
             }
             else if(orden == 2)
             {
                 if(!ascd)
                 {
-                    lista = this.context.PortalTransversals.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderBy(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                    lista = lista.OrderBy(s => s.nombre).ToList();
                 }
                 else
                 {
-                    lista = this.context.PortalTransversals.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderByDescending(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                    lista = lista.OrderByDescending(s => s.nombre).ToList();
                 }
             }
-            else
-            {
-                lista = this.context.PortalTransversals.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).Take(size).ToList();
-            }
+            
+            lista = lista.Skip((page - 1) * size).Take(size).ToList();
             return lista;
         }
 
@@ -153,11 +171,55 @@ namespace Domain.Repository
             return lista;
         }
 
+        public long VincularPortalTransversalTotal(int id, int tipo, string filtro)
+        {
+            var vinculadas = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == 5 && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
+            List<PortalTransversal> lista = new List<PortalTransversal>();
+            lista = this.context.PortalTransversals.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).ToList();
+            long contador = 0;
+            if(tipo == 1)
+            {
+                int idFiltro = int.Parse(filtro);
+                contador = lista.Count(s => s.id == idFiltro);
+            }
+            else if(tipo == 2)
+            {
+                contador = lista.Count(s => s.nombre.Contains(filtro));
+            }
+            else
+            {
+                contador = lista.Count();
+            }
+            return contador;
+        }
+
         public long VinculadasPortalTransversalTotal(int id)
         {
             var vinculadas = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == 5 && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
             long lista = this.context.PortalTransversals.Count(s => vinculadas.Contains(s.id) && s.codigoEstado == 1);
             return lista;
+        }
+
+        public long VinculadasPortalTransversalTotal(int id, int tipo, string filtro)
+        {
+            var vinculadas = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == 5 && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
+            List<PortalTransversal> lista = new List<PortalTransversal>();
+            lista = this.context.PortalTransversals.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).ToList();
+            long contador = 0;
+            if(tipo == 1)
+            {
+                int idFiltro = int.Parse(filtro);
+                contador = lista.Count(s => s.id == idFiltro);
+            }
+            else if(tipo == 2)
+            {
+                contador = lista.Count(s => s.nombre.Contains(filtro));
+            }
+            else
+            {
+                contador = lista.Count();
+            }
+            return contador;
         }
 
         public IList<Recurso> VincularRecurso(int id, int page, int size)
@@ -202,38 +264,49 @@ namespace Domain.Repository
             return PPTs;
         }
 
-        public IList<SedeElectronica> VinculadasSedeElectronica(int id, int page, int size, int orden, bool ascd)
+        public IList<SedeElectronica> VinculadasSedeElectronica(int id, int page, int size, int orden, bool ascd, int tipo, string filtro)
         {
             var vinculadas = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == 3 && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
-
             List<SedeElectronica> SedeElectronicas = new List<SedeElectronica>();
+            SedeElectronicas = this.context.SedeElectronicas.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).ToList();
+
+            if(tipo == 1)
+            {
+                int idFiltro = int.Parse(filtro);
+                SedeElectronicas = SedeElectronicas.Where(s => s.id == idFiltro).ToList();
+            }
+            else if(tipo == 2)
+            {
+                SedeElectronicas = SedeElectronicas.Where(s => s.nombre.Contains(filtro)).ToList();
+            }
 
             if(orden == 1)
             {
                 if(!ascd)
                 {
-                    SedeElectronicas = this.context.SedeElectronicas.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderBy(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                    SedeElectronicas = SedeElectronicas.OrderBy(s => s.id).ToList();
                 }
                 else
                 {
-                    SedeElectronicas = this.context.SedeElectronicas.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderByDescending(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                    SedeElectronicas = SedeElectronicas.OrderByDescending(s => s.id).ToList();
                 }
             }
             else if(orden == 2)
             {
                 if(!ascd)
                 {
-                    SedeElectronicas = this.context.SedeElectronicas.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderBy(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                    SedeElectronicas = SedeElectronicas.OrderBy(s => s.nombre).ToList();
                 }
                 else
                 {
-                    SedeElectronicas = this.context.SedeElectronicas.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderByDescending(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                    SedeElectronicas = SedeElectronicas.OrderByDescending(s => s.nombre).ToList();
                 }
-            }
-            else
+            }else
             {
-                SedeElectronicas = this.context.SedeElectronicas.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).Take(size).ToList();
+                
             }
+            
+            SedeElectronicas = SedeElectronicas.Skip((page - 1) * size).Take(size).ToList();
             return SedeElectronicas;
         }
 
@@ -245,42 +318,53 @@ namespace Domain.Repository
             return SedeElectronicas;
         }
 
-        public IList<SedeElectronica> VincularSedeElectronica(int id, int page, int size, int orden, bool ascd)
+        public IList<SedeElectronica> VincularSedeElectronica(int id, int page, int size, int orden, bool ascd, int tipo, string filtro)
         {
             var vinculadas = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == 3 && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
 
-            List<SedeElectronica> SedeElectronicas = new List<SedeElectronica>();
+            List<SedeElectronica> sedeElectronicas = new List<SedeElectronica>();
+            sedeElectronicas = this.context.SedeElectronicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).ToList();
+
+            if(tipo == 1)
+            {
+                int idFiltro = int.Parse(filtro);
+                sedeElectronicas = sedeElectronicas.Where(s => s.id == idFiltro).ToList();
+            }
+            else if(tipo == 2)
+            {
+                sedeElectronicas = sedeElectronicas.Where(s => s.nombre.Contains(filtro)).ToList();
+            }
 
             if(orden == 1)
             {
                 if(!ascd)
                 {
-                    SedeElectronicas = this.context.SedeElectronicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderBy(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                    sedeElectronicas = sedeElectronicas.OrderBy(s => s.id).Skip((page - 1) * size).Take(size).ToList();
                 }
                 else
                 {
-                    SedeElectronicas = this.context.SedeElectronicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderByDescending(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                    sedeElectronicas = sedeElectronicas.OrderByDescending(s => s.id).Skip((page - 1) * size).Take(size).ToList();
 
                 }
             }
             else if(orden == 2)
             {
-                if(!ascd)
+                if(ascd)
                 {
-                    SedeElectronicas = this.context.SedeElectronicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderBy(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                    sedeElectronicas = sedeElectronicas.OrderBy(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
                 }
                 else
                 {
-                    SedeElectronicas = this.context.SedeElectronicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderByDescending(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                    sedeElectronicas = sedeElectronicas.OrderByDescending(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
 
                 }
-            }
+            } 
             else
             {
-                SedeElectronicas = this.context.SedeElectronicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).Take(size).ToList();
+                sedeElectronicas = sedeElectronicas.Skip((page - 1) * size).Take(size).ToList();
+            }            
 
-            }
-            return SedeElectronicas;
+            return sedeElectronicas;
         }
 
         public IList<SedeElectronica> VincularSedeElectronica(int id)
@@ -291,11 +375,34 @@ namespace Domain.Repository
             return SedeElectronicas;
         }
 
+        public long VincularSedeElectronicaTotal(int id, int tipo, string filtro)
+        {
+            var vinculadas = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == 3 && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
+            List<SedeElectronica> SedeElectronicas = new List<SedeElectronica>();
+            SedeElectronicas = this.context.SedeElectronicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).ToList();
+            long SedeElectronicasNumero = 0;
+            if(tipo == 1)
+            {
+                int idFiltro = int.Parse(filtro);
+                SedeElectronicasNumero = SedeElectronicas.Count(s => s.id == idFiltro);
+            }
+            else if(tipo == 2)
+            {
+                SedeElectronicasNumero = SedeElectronicas.Count(s => s.nombre.Contains(filtro));
+            }
+            else
+            {
+                SedeElectronicasNumero = SedeElectronicas.Count();
+            }
+            return SedeElectronicasNumero;
+        }
+
         public long VincularSedeElectronicaTotal(int id)
         {
             var vinculadas = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == 3 && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
-            long SedeElectronicas = this.context.SedeElectronicas.Count(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1);
-            return SedeElectronicas;
+            long SedeElectronicasNumero = this.context.SedeElectronicas.Count(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1);
+            
+            return SedeElectronicasNumero;
         }
 
         public long VinculadasSedeElectronicaTotal(int id)
@@ -305,36 +412,68 @@ namespace Domain.Repository
             return SedeElectronicas;
         }
 
-        public IList<VentanillaUnica> VinculadasVentanillaUnica(int id, int page, int size, int orden, bool ascd)
+        public long VinculadasSedeElectronicaTotal(int id, int tipo, string filtro)
+        {
+            var vinculadas = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == 3 && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
+            List<SedeElectronica> SedeElectronicas = new List<SedeElectronica>();
+            SedeElectronicas = this.context.SedeElectronicas.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).ToList();
+            long SedeElectronicasNumero = 0;
+            if(tipo == 1)
+            {
+                int idFiltro = int.Parse(filtro);
+                SedeElectronicasNumero = SedeElectronicas.Count(s => s.id == idFiltro);
+            }
+            else if(tipo == 2)
+            {
+                SedeElectronicasNumero = SedeElectronicas.Count(s => s.nombre.Contains(filtro));
+            }
+            else
+            {
+                SedeElectronicasNumero = SedeElectronicas.Count();
+            }
+            return SedeElectronicasNumero;
+        }
+
+        public IList<VentanillaUnica> VinculadasVentanillaUnica(int id, int page, int size, int orden, bool ascd, int tipo, string filtro)
         {
             var vinculadas = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == 4 && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
             List<VentanillaUnica> VentanillaUnicas = new List<VentanillaUnica>();
+            VentanillaUnicas = this.context.VentanillaUnicas.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).ToList();
+
+            if(tipo == 1)
+            {
+                int idFiltro = int.Parse(filtro);
+                VentanillaUnicas = VentanillaUnicas.Where(s => s.id == idFiltro).ToList();
+            }
+            else if(tipo == 2)
+            {
+                VentanillaUnicas = VentanillaUnicas.Where(s => s.nombre.Contains(filtro)).ToList();
+            }
+
             if(orden == 1)
             {
                 if(!ascd)
                 {
-                    VentanillaUnicas = this.context.VentanillaUnicas.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderBy(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                    VentanillaUnicas = VentanillaUnicas.OrderBy(s => s.id).ToList();
                 }
                 else
                 {
-                    VentanillaUnicas = this.context.VentanillaUnicas.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderByDescending(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                    VentanillaUnicas = VentanillaUnicas.OrderByDescending(s => s.id).ToList();
                 }
             }
             else if(orden == 2)
             {
                 if(!ascd)
                 {
-                    VentanillaUnicas = this.context.VentanillaUnicas.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderBy(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                    VentanillaUnicas = VentanillaUnicas.OrderBy(s => s.nombre).ToList();
                 }
                 else
                 {
-                    VentanillaUnicas = this.context.VentanillaUnicas.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderByDescending(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                    VentanillaUnicas = VentanillaUnicas.OrderByDescending(s => s.nombre).ToList();
                 }
             }
-            else
-            {
-                VentanillaUnicas = this.context.VentanillaUnicas.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).Take(size).ToList();
-            }
+            
+            VentanillaUnicas = VentanillaUnicas.Skip((page - 1) * size).Take(size).ToList();
             return VentanillaUnicas;
         }
 
@@ -346,37 +485,50 @@ namespace Domain.Repository
             return VentanillaUnicas;
         }
 
-        public IList<VentanillaUnica> VincularVentanillaUnica(int id, int page, int size, int orden, bool ascd)
+        public IList<VentanillaUnica> VincularVentanillaUnica(int id, int page, int size, int orden, bool ascd, int tipo, string filtro)
         {
             var vinculadas = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == 4 && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
-
             List<VentanillaUnica> VentanillaUnicas = new List<VentanillaUnica>();
+            VentanillaUnicas = this.context.VentanillaUnicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).Take(size).ToList();
+
+            if(tipo == 1)
+            {
+                int idFiltro = int.Parse(filtro);
+                VentanillaUnicas = VentanillaUnicas.Where(s => s.id == idFiltro).Skip((page - 1) * size).Take(size).ToList();
+            }
+            else if(tipo == 2)
+            {
+                VentanillaUnicas = VentanillaUnicas.Where(s => s.nombre.Contains(filtro)).Skip((page - 1) * size).Take(size).ToList();
+            }
+
             if(orden == 1)
             {
                 if(!ascd)
                 {
-                    VentanillaUnicas = this.context.VentanillaUnicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderBy(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                    VentanillaUnicas = VentanillaUnicas.OrderBy(s => s.id).Skip((page - 1) * size).Take(size).ToList();
                 }
                 else
                 {
-                    VentanillaUnicas = this.context.VentanillaUnicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderByDescending(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                    VentanillaUnicas = VentanillaUnicas.OrderByDescending(s => s.id).Skip((page - 1) * size).Take(size).ToList();
                 }
             }
             else if(orden == 2)
             {
                 if(!ascd)
                 {
-                    VentanillaUnicas = this.context.VentanillaUnicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderBy(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                    VentanillaUnicas = VentanillaUnicas.OrderBy(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
                 }
                 else
                 {
-                    VentanillaUnicas = this.context.VentanillaUnicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).OrderByDescending(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                    VentanillaUnicas = VentanillaUnicas.OrderByDescending(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
                 }
             }
             else
             {
-                VentanillaUnicas = this.context.VentanillaUnicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).Take(size).ToList();
+                VentanillaUnicas = VentanillaUnicas.Skip((page - 1) * size).Take(size).ToList();
             }
+
+            
             return VentanillaUnicas;
         }
 
@@ -395,6 +547,30 @@ namespace Domain.Repository
             return VentanillaUnicas;
         }
 
+        public long VincularVentanillaUnicaTotal(int id, int tipo, string filtro)
+        {
+            var vinculadas = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == 4 && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
+            List<VentanillaUnica> VentanillaUnicas = new List<VentanillaUnica>();
+            VentanillaUnicas = this.context.VentanillaUnicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).ToList();
+            long VentanillaUnicasNumero = 0;
+
+            if(tipo == 1)
+            {
+                int idFiltro = int.Parse(filtro);
+                VentanillaUnicasNumero = VentanillaUnicas.Count(s => s.id == idFiltro);
+            }
+            else if(tipo == 2)
+            {
+                VentanillaUnicasNumero = VentanillaUnicas.Count(s => s.nombre.Contains(filtro));
+            }
+            else
+            {
+                VentanillaUnicasNumero = VentanillaUnicas.Count();
+            }
+
+            return VentanillaUnicasNumero;
+        }
+
         public long VinculadasVentanillaUnicaTotal(int id)
         {
             var vinculadas = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == 4 ).Select(s => s.elementoId).ToList();
@@ -402,37 +578,71 @@ namespace Domain.Repository
             return VentanillaUnicas;
         }
 
-        public IList<TramiteServicio> VinculadasTramiteServicio(int id, int page, int size, int orden, bool ascd)
+        public long VinculadasVentanillaUnicaTotal(int id, int tipo, string filtro)
+        {
+            var vinculadas = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == 4 ).Select(s => s.elementoId).ToList();
+            List<VentanillaUnica> VentanillaUnicas = new List<VentanillaUnica>();
+            VentanillaUnicas = this.context.VentanillaUnicas.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == 1).ToList();
+            long VentanillaUnicasNumero = 0;
+
+            if(tipo == 1)
+            {
+                int idFiltro = int.Parse(filtro);
+                VentanillaUnicasNumero = VentanillaUnicas.Count(s => s.id == idFiltro);
+            }
+            else if(tipo == 2)
+            {
+                VentanillaUnicasNumero = VentanillaUnicas.Count(s => s.nombre.Contains(filtro));
+            }
+            else
+            {
+                VentanillaUnicasNumero = VentanillaUnicas.Count();
+            }
+
+            return VentanillaUnicasNumero;
+        }
+
+        public IList<TramiteServicio> VinculadasTramiteServicio(int id, int page, int size, int orden, bool ascd, int tipo, string filtro)
         {
             var vinculadas = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == 6 && s.codigoEstado == 1).Select(s => s.elementoId.ToString()).ToList();
             List<TramiteServicio> TramiteServicios = new List<TramiteServicio>();
+            TramiteServicios = this.context.TramiteServicios.Where(s => vinculadas.Contains(s.id) && s.estadoCodigo == "PUBLICADO").ToList();
+
+            if(tipo == 1)
+            {
+                int idFiltro = int.Parse(filtro);
+                TramiteServicios = TramiteServicios.Where(s => s.id == filtro).ToList();
+            }
+            else if(tipo == 2)
+            {
+                TramiteServicios = TramiteServicios.Where(s => s.nombre.Contains(filtro)).ToList();
+            }
 
             if(orden == 1)
             {
                 if(!ascd)
                 {
-                    TramiteServicios = this.context.TramiteServicios.Where(s => vinculadas.Contains(s.id) ).OrderBy(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                    TramiteServicios = TramiteServicios.OrderBy(s => s.id).ToList();
                 }
                 else
                 {
-                    TramiteServicios = this.context.TramiteServicios.Where(s => vinculadas.Contains(s.id) ).OrderByDescending(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                    TramiteServicios = TramiteServicios.OrderByDescending(s => s.id).ToList();
                 }
             }
             else if(orden == 2)
             {
                 if(!ascd)
                 {
-                    TramiteServicios = this.context.TramiteServicios.Where(s => vinculadas.Contains(s.id) ).OrderBy(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                    TramiteServicios = TramiteServicios.OrderBy(s => s.nombre).ToList();
                 }
                 else
                 {
-                    TramiteServicios = this.context.TramiteServicios.Where(s => vinculadas.Contains(s.id) ).OrderByDescending(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                    TramiteServicios = TramiteServicios.OrderByDescending(s => s.nombre).ToList();
                 }
             }
-            else
-            {
-                TramiteServicios = this.context.TramiteServicios.Where(s => vinculadas.Contains(s.id) ).Skip((page - 1) * size).Take(size).ToList();
-            }
+
+            TramiteServicios = TramiteServicios.Skip((page - 1) * size).Take(size).ToList();           
+            
             return TramiteServicios;
         }
 
@@ -445,37 +655,44 @@ namespace Domain.Repository
         }
         
 
-        public IList<TramiteServicio> VincularTramiteServicio(int id, int page, int size, int orden, bool ascd)
+        public IList<TramiteServicio> VincularTramiteServicio(int id, int page, int size, int orden, bool ascd, int tipo, string filtro)
         {
             var vinculadas = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == 6 && s.codigoEstado == 1).Select(s => s.elementoId.ToString()).ToList();
             List<TramiteServicio> TramiteServicios = new List<TramiteServicio>();
+            TramiteServicios = this.context.TramiteServicios.Where(s => !vinculadas.Contains(s.id) && s.estadoCodigo == "PUBLICADO" ).ToList();
+
+            if(tipo == 1)
+            {
+                TramiteServicios = TramiteServicios.Where(s => s.id == filtro).ToList();
+            }
+            else if(tipo == 2)
+            {
+                TramiteServicios = TramiteServicios.Where(s => s.nombre.Contains(filtro)).ToList();
+            }
 
             if(orden == 1)
             {
                 if(!ascd)
                 {
-                    TramiteServicios = this.context.TramiteServicios.Where(s => !vinculadas.Contains(s.id) ).OrderBy(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                    TramiteServicios = TramiteServicios.OrderBy(s => s.id).ToList();
                 }
                 else
                 {
-                    TramiteServicios = this.context.TramiteServicios.Where(s => !vinculadas.Contains(s.id) ).OrderByDescending(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                    TramiteServicios = TramiteServicios.OrderByDescending(s => s.id).ToList();
                 }
             }
             else if(orden == 2)
             {
                 if(!ascd)
                 {
-                    TramiteServicios = this.context.TramiteServicios.Where(s => !vinculadas.Contains(s.id) ).OrderBy(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                    TramiteServicios = TramiteServicios.OrderBy(s => s.nombre).ToList();
                 }
                 else
                 {
-                    TramiteServicios = this.context.TramiteServicios.Where(s => !vinculadas.Contains(s.id) ).OrderByDescending(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                    TramiteServicios = TramiteServicios.OrderByDescending(s => s.nombre).ToList();
                 }
             }
-            else
-            {
-                TramiteServicios = this.context.TramiteServicios.Where(s => !vinculadas.Contains(s.id) ).Skip((page - 1) * size).Take(size).ToList();
-            }
+            TramiteServicios = TramiteServicios.Skip((page - 1) * size).Take(size).ToList();                      
 
             return TramiteServicios;
         }
@@ -484,22 +701,66 @@ namespace Domain.Repository
         {
             var vinculadas = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == 6 && s.codigoEstado == 1).Select(s => s.elementoId.ToString()).ToList();
             List<TramiteServicio> TramiteServicios = new List<TramiteServicio>();
-            TramiteServicios = this.context.TramiteServicios.Where(s => !vinculadas.Contains(s.id) ).ToList();
+            TramiteServicios = this.context.TramiteServicios.Where(s => !vinculadas.Contains(s.id) && s.estadoCodigo == "PUBLICADO" ).ToList();
             return TramiteServicios;
         }
 
         public long VincularTramiteServicioTotal(int id)
         {
             var vinculadas = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == 6 && s.codigoEstado == 1).Select(s => s.elementoId.ToString()).ToList();
-            long TramiteServicios = this.context.TramiteServicios.Count(s => !vinculadas.Contains(s.id));
+            long TramiteServicios = this.context.TramiteServicios.Count(s => !vinculadas.Contains(s.id) && s.estadoCodigo == "PUBLICADO");
             return TramiteServicios;
+        }
+
+        public long VincularTramiteServicioTotal(int id, int tipo, string filtro)
+        {
+            var vinculadas = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == 6 && s.codigoEstado == 1).Select(s => s.elementoId.ToString()).ToList();
+            long TramiteServiciosNumero = 0;
+            List<TramiteServicio> TramiteServicios = new List<TramiteServicio>();
+            TramiteServicios = this.context.TramiteServicios.Where(s => !vinculadas.Contains(s.id) && s.estadoCodigo == "PUBLICADO" ).ToList();
+
+            if(tipo == 1)
+            {
+                TramiteServiciosNumero = TramiteServicios.Count(s => s.id == filtro);
+            }
+            else if(tipo == 2)
+            {
+                TramiteServiciosNumero = TramiteServicios.Count(s => s.nombre.Contains(filtro));
+            }
+            else
+            {
+                TramiteServiciosNumero = TramiteServicios.Count();
+            }
+            return TramiteServiciosNumero;
         }
 
         public long VinculadasTramiteServicioTotal(int id)
         {
             var vinculadas = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == 6 && s.codigoEstado == 1).Select(s => s.elementoId.ToString()).ToList();
-            long TramiteServicios = this.context.TramiteServicios.Count(s => vinculadas.Contains(s.id));
+            long TramiteServicios = this.context.TramiteServicios.Count(s => vinculadas.Contains(s.id) && s.estadoCodigo == "PUBLICADO");
             return TramiteServicios;
+        }
+
+        public long VinculadasTramiteServicioTotal(int id, int tipo, string filtro)
+        {
+            var vinculadas = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == 6 && s.codigoEstado == 1).Select(s => s.elementoId.ToString()).ToList();
+            long TramiteServiciosNumero = 0;
+            List<TramiteServicio> TramiteServicios = new List<TramiteServicio>();
+            TramiteServicios = this.context.TramiteServicios.Where(s => vinculadas.Contains(s.id) && s.estadoCodigo == "PUBLICADO").ToList();
+
+            if(tipo == 1)
+            {
+                TramiteServiciosNumero = TramiteServicios.Count(s => s.id == filtro);
+            }
+            else if(tipo == 2)
+            {
+                TramiteServiciosNumero = TramiteServicios.Count(s => s.nombre.Contains(filtro));
+            }
+            else
+            {
+                TramiteServiciosNumero = TramiteServicios.Count();
+            }
+            return TramiteServiciosNumero;
         }
 
         public IList<ElementosUnion> TodosElementos(int id, int page, int size)

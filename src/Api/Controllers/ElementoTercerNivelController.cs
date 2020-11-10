@@ -131,7 +131,7 @@ namespace Api.Controllers
         [HttpPost("VinculadasVentanillaUnica")]
         public IActionResult getVinculadasVentanillaUnica(PaginateVincular objeto)
         {
-            return new JsonResult(administracionBO.VinculadasVentanillaUnicaTercerNivel(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd));
+            return new JsonResult(administracionBO.VinculadasVentanillaUnicaTercerNivel(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd, objeto.tipo, objeto.filtro));
         }
 
         [HttpGet("VinculadasVentanillaUnica/{id}")]
@@ -143,7 +143,7 @@ namespace Api.Controllers
         [HttpPost("VincularVentanillaUnica")]
         public IActionResult getVincularVentanillaUnica(PaginateVincular objeto)
         {
-            return new JsonResult(administracionBO.VincularVentanillaUnicaTercerNivel(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd));
+            return new JsonResult(administracionBO.VincularVentanillaUnicaTercerNivel(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd, objeto.tipo, objeto.filtro));
         }
 
         [HttpGet("VincularVentanillaUnica/{id}")]
@@ -158,16 +158,28 @@ namespace Api.Controllers
             return new JsonResult(this.administracionBO.VincularVentanillaUnicaTercerNivelsTotal(id));
         }
 
+        [HttpGet("Vincular/VentanillaUnica/Total/{id}/{tipo}/{filtro}")]
+        public IActionResult GetVincularVentanillaUnicaTotal(int id, int tipo, string filtro)
+        {
+            return new JsonResult(this.administracionBO.VincularVentanillaUnicaTercerNivelsTotal(id, tipo, filtro));
+        }
+
         [HttpGet("Vinculadas/VentanillaUnica/Total/{id}")]
         public IActionResult GetVinculadasVentanillaUnicaTotal(int id)
         {
             return new JsonResult(this.administracionBO.VinculadasVentanillaUnicaTercerNivelsTotal(id));
         }
 
+        [HttpGet("Vinculadas/VentanillaUnica/Total/{id}/{tipo}/{filtro}")]
+        public IActionResult GetVinculadasVentanillaUnicaTotal(int id, int tipo, string filtro)
+        {
+            return new JsonResult(this.administracionBO.VinculadasVentanillaUnicaTercerNivelsTotal(id, tipo, filtro));
+        }
+
         [HttpPost("VinculadasSedeElectronica")]
         public IActionResult getVinculadasSedeElectronica(PaginateVincular objeto)
         {
-            return new JsonResult(administracionBO.VinculadasSedeElectronicaTercerNivel(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd));
+            return new JsonResult(administracionBO.VinculadasSedeElectronicaTercerNivel(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd, objeto.tipo, objeto.filtro));
         }
 
         [HttpGet("VinculadasSedeElectronica/{id}")]
@@ -179,7 +191,7 @@ namespace Api.Controllers
         [HttpPost("VincularSedeElectronica")]
         public IActionResult getVincularSedeElectronica(PaginateVincular objeto)
         {
-            return new JsonResult(administracionBO.VincularSedeElectronicaTercerNivel(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd));
+            return new JsonResult(administracionBO.VincularSedeElectronicaTercerNivel(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd, objeto.tipo, objeto.filtro));
         }
 
         [HttpGet("VincularSedeElectronica/{id}")]
@@ -194,16 +206,28 @@ namespace Api.Controllers
             return new JsonResult(this.administracionBO.VincularSedeElectronicaTercerNivelsTotal(id));
         }
 
+        [HttpGet("Vincular/SedeElectronica/Total/{id}/{tipo}/{filtro}")]
+        public IActionResult GetVincularSedeElectronicaTotal(int id, int tipo, string filtro)
+        {
+            return new JsonResult(this.administracionBO.VincularSedeElectronicaTercerNivelsTotal(id, tipo, filtro));
+        }
+
         [HttpGet("Vinculadas/SedeElectronica/Total/{id}")]
         public IActionResult GetVinculadasSedeElectronicaTotal(int id)
         {
             return new JsonResult(this.administracionBO.VinculadasSedeElectronicaTercerNivelsTotal(id));
         }
 
+        [HttpGet("Vinculadas/SedeElectronica/Total/{id}/{tipo}/{filtro}")]
+        public IActionResult GetVinculadasSedeElectronicaTotal(int id, int tipo, string filtro)
+        {
+            return new JsonResult(this.administracionBO.VinculadasSedeElectronicaTercerNivelsTotal(id, tipo, filtro));
+        }
+
         [HttpPost("VinculadasTramiteServicio")]
         public IActionResult getVinculadasTramiteServicio(PaginateVincular objeto)
         {
-            return new JsonResult(administracionBO.VinculadasTramiteServicioTercerNivel(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd));
+            return new JsonResult(administracionBO.VinculadasTramiteServicioTercerNivel(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd, objeto.tipo, objeto.filtro));
         }
 
         [HttpGet("VinculadasTramiteServicio/{id}")]
@@ -215,7 +239,7 @@ namespace Api.Controllers
         [HttpPost("VincularTramiteServicio")]
         public IActionResult getVincularTramiteServicio(PaginateVincular objeto)
         {
-            return new JsonResult(administracionBO.VincularTramiteServicioTercerNivel(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd));
+            return new JsonResult(administracionBO.VincularTramiteServicioTercerNivel(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd, objeto.tipo, objeto.filtro));
         }
 
         [HttpGet("VincularTramiteServicio/{id}")]
@@ -230,16 +254,28 @@ namespace Api.Controllers
             return new JsonResult(this.administracionBO.VincularTramiteServicioTercerNivelsTotal(id));
         }
 
+        [HttpGet("Vincular/TramiteServicio/Total/{id}/{tipo}/{filtro}")]
+        public IActionResult GetVincularTramiteServicioTotal(int id, int tipo, string filtro)
+        {
+            return new JsonResult(this.administracionBO.VincularTramiteServicioTercerNivelsTotal(id, tipo, filtro));
+        }
+
         [HttpGet("Vinculadas/TramiteServicio/Total/{id}")]
         public IActionResult GetVinculadasTramiteServicioTotal(int id)
         {
             return new JsonResult(this.administracionBO.VinculadasTramiteServicioTercerNivelsTotal(id));
         }
 
+        [HttpGet("Vinculadas/TramiteServicio/Total/{id}/{tipo}/{filtro}")]
+        public IActionResult GetVinculadasTramiteServicioTotal(int id, int tipo, string filtro)
+        {
+            return new JsonResult(this.administracionBO.VinculadasTramiteServicioTercerNivelsTotal(id, tipo, filtro));
+        }
+
         [HttpPost("VinculadasPortalTransversal")]
         public IActionResult getVinculadasPortalTransversal(PaginateVincular objeto)
         {
-            return new JsonResult(administracionBO.VinculadasPortalTransversalTercerNivel(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd));
+            return new JsonResult(administracionBO.VinculadasPortalTransversalTercerNivel(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd, objeto.tipo, objeto.filtro));
         }
 
         [HttpGet("VinculadasPortalTransversal/{id}")]
@@ -251,7 +287,7 @@ namespace Api.Controllers
         [HttpPost("VincularPortalTransversal")]
         public IActionResult getVincularPortalTransversal(PaginateVincular objeto)
         {
-            return new JsonResult(administracionBO.VincularPortalTransversalTercerNivel(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd));
+            return new JsonResult(administracionBO.VincularPortalTransversalTercerNivel(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd, objeto.tipo, objeto.filtro));
         }
 
         [HttpGet("VincularPortalTransversal/{id}")]
@@ -266,10 +302,22 @@ namespace Api.Controllers
             return new JsonResult(this.administracionBO.VincularPortalTransversalTercerNivelsTotal(id));
         }
 
+        [HttpGet("Vincular/PortalTransversal/Total/{id}/{tipo}/{filtro}")]
+        public IActionResult GetVincularPortalTransversalTotal(int id, int tipo, string filtro)
+        {
+            return new JsonResult(this.administracionBO.VincularPortalTransversalTercerNivelsTotal(id, tipo, filtro));
+        }
+
         [HttpGet("Vinculadas/PortalTransversal/Total/{id}")]
         public IActionResult GetVinculadasPortalTransversalTotal(int id)
         {
             return new JsonResult(this.administracionBO.VinculadasPortalTransversalTercerNivelsTotal(id));
+        }
+
+        [HttpGet("Vinculadas/PortalTransversal/Total/{id}/{tipo}/{filtro}")]
+        public IActionResult GetVinculadasPortalTransversalTotal(int id, int tipo, string filtro)
+        {
+            return new JsonResult(this.administracionBO.VinculadasPortalTransversalTercerNivelsTotal(id, tipo, filtro));
         }
 
         [HttpPost("VinculadasRecurso")]
