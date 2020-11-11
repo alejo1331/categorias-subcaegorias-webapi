@@ -56,51 +56,31 @@ namespace Domain.Repository
                                                     .Select(s => s.idCategoria)
                                                     .ToList();
             List<Categoria> categorias =  new List<Categoria>();
-            if(orden == 1)
+            categorias = this.context.Categorias.Where(s => vinculos.Contains(s.id)).ToList();
+            if (orden == 1)
             {
                 if(!ascd)
                 {
-                    categorias = this.context.Categorias
-                                                .Where(s => vinculos.Contains(s.id))
-                                                .OrderBy(s => s.nombre)
-                                                .Skip((page -1 )*size).Take(size)
-                                                .ToList();
+                    categorias = categorias.OrderBy(s => s.nombre).ToList();          
                 }
                 else
                 {
-                    categorias = this.context.Categorias
-                                                .Where(s => vinculos.Contains(s.id))
-                                                .OrderByDescending(s => s.nombre)
-                                                .Skip((page -1 )*size).Take(size)
-                                                .ToList();
+                    categorias = categorias.OrderByDescending(s => s.nombre).ToList();
                 }
             }
-            else if(orden == 2)
+            else if (orden == 2)
             {
                 if(!ascd)
                 {
-                    categorias = this.context.Categorias
-                                                .Where(s => vinculos.Contains(s.id))
-                                                .OrderBy(s => s.orden)
-                                                .Skip((page -1 )*size).Take(size)
-                                                .ToList();
+                    categorias = categorias.OrderBy(s => s.orden).ToList();
                 }
                 else
                 {
-                    categorias = this.context.Categorias
-                                                .Where(s => vinculos.Contains(s.id))
-                                                .OrderByDescending(s => s.orden)
-                                                .Skip((page -1 )*size).Take(size)
-                                                .ToList();
+                    categorias = categorias.OrderByDescending(s => s.orden).ToList();
                 }
             }
-            else
-            {
-                    categorias = this.context.Categorias
-                                                .Where(s => vinculos.Contains(s.id))
-                                                .Skip((page -1 )*size).Take(size)
-                                                .ToList();
-            }
+            
+            categorias = categorias.Skip((page -1 )*size).Take(size).ToList();
 
             return categorias;
         }
@@ -112,51 +92,31 @@ namespace Domain.Repository
                                                     .Select(s => s.idCategoria)
                                                     .ToList();
             List<Categoria> categorias =  new List<Categoria>();
+            categorias = this.context.Categorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1).ToList();
             if (orden == 1)
             {
                 if(!ascd)
                 {
-                    categorias = this.context.Categorias
-                                                .Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1)
-                                                .OrderBy(s => s.nombre)
-                                                .Skip((page -1 )*size).Take(size)
-                                                .ToList();
+                    categorias = categorias.OrderBy(s => s.nombre).ToList();          
                 }
                 else
                 {
-                    categorias = this.context.Categorias
-                                                .Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1)
-                                                .OrderByDescending(s => s.nombre)
-                                                .Skip((page -1 )*size).Take(size)
-                                                .ToList();
+                    categorias = categorias.OrderByDescending(s => s.nombre).ToList();
                 }
             }
             else if (orden == 2)
             {
                 if(!ascd)
                 {
-                    categorias = this.context.Categorias
-                                                .Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1)
-                                                .OrderBy(s => s.orden)
-                                                .Skip((page -1 )*size).Take(size)
-                                                .ToList();
+                    categorias = categorias.OrderBy(s => s.orden).ToList();
                 }
                 else
                 {
-                    categorias = this.context.Categorias
-                                                .Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1)
-                                                .OrderByDescending(s => s.orden)
-                                                .Skip((page -1 )*size).Take(size)
-                                                .ToList();
+                    categorias = categorias.OrderByDescending(s => s.orden).ToList();
                 }
             }
-            else
-            {
-                categorias = this.context.Categorias
-                                                .Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1)
-                                                .Skip((page -1 )*size).Take(size)
-                                                .ToList();
-            }
+            
+            categorias = categorias.Skip((page -1 )*size).Take(size).ToList();
 
             return categorias;
         }

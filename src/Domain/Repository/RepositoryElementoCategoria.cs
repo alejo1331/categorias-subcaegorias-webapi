@@ -301,10 +301,9 @@ namespace Domain.Repository
                 {
                     SedeElectronicas = SedeElectronicas.OrderByDescending(s => s.nombre).ToList();
                 }
-            }else
-            {
-                SedeElectronicas = SedeElectronicas.Skip((page - 1) * size).Take(size).ToList();
-            }            
+            }
+
+             SedeElectronicas = SedeElectronicas.Skip((page - 1) * size).Take(size).ToList();            
             
             return SedeElectronicas;
         }
@@ -488,46 +487,42 @@ namespace Domain.Repository
         {
             var vinculadas = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == 4 && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
             List<VentanillaUnica> VentanillaUnicas = new List<VentanillaUnica>();
-            VentanillaUnicas = this.context.VentanillaUnicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).Take(size).ToList();
+            VentanillaUnicas = this.context.VentanillaUnicas.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == 1).ToList();
 
             if(tipo == 1)
             {
                 int idFiltro = int.Parse(filtro);
-                VentanillaUnicas = VentanillaUnicas.Where(s => s.id == idFiltro).Skip((page - 1) * size).Take(size).ToList();
+                VentanillaUnicas = VentanillaUnicas.Where(s => s.id == idFiltro).ToList();
             }
             else if(tipo == 2)
             {
-                VentanillaUnicas = VentanillaUnicas.Where(s => s.nombre.Contains(filtro)).Skip((page - 1) * size).Take(size).ToList();
+                VentanillaUnicas = VentanillaUnicas.Where(s => s.nombre.Contains(filtro)).ToList();
             }
 
             if(orden == 1)
             {
                 if(!ascd)
                 {
-                    VentanillaUnicas = VentanillaUnicas.OrderBy(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                    VentanillaUnicas = VentanillaUnicas.OrderBy(s => s.id).ToList();
                 }
                 else
                 {
-                    VentanillaUnicas = VentanillaUnicas.OrderByDescending(s => s.id).Skip((page - 1) * size).Take(size).ToList();
+                    VentanillaUnicas = VentanillaUnicas.OrderByDescending(s => s.id).ToList();
                 }
             }
             else if(orden == 2)
             {
                 if(!ascd)
                 {
-                    VentanillaUnicas = VentanillaUnicas.OrderBy(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                    VentanillaUnicas = VentanillaUnicas.OrderBy(s => s.nombre).ToList();
                 }
                 else
                 {
-                    VentanillaUnicas = VentanillaUnicas.OrderByDescending(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                    VentanillaUnicas = VentanillaUnicas.OrderByDescending(s => s.nombre).ToList();
                 }
             }
-            else
-            {
-                VentanillaUnicas = VentanillaUnicas.Skip((page - 1) * size).Take(size).ToList();
-            }
-
             
+            VentanillaUnicas = VentanillaUnicas.Skip((page - 1) * size).Take(size).ToList();            
             return VentanillaUnicas;
         }
 
@@ -762,7 +757,7 @@ namespace Domain.Repository
             return TramiteServiciosNumero;
         }
 
-        public IList<ElementosUnion> TodosElementos(int id, int page, int size)
+        public IList<ElementosUnion> TodosElementos(int id, int page, int size, int orden, bool ascd)
         {
             var paginado = (page - 1) * size;
             Console.WriteLine(paginado);
@@ -798,9 +793,48 @@ namespace Domain.Repository
 
             union = union.Union(PortalTransversals);
 
-            union = union.Union(Recursos);
+            union = union.Union(Recursos);            
 
-            union = union.Union(TramiteServicios).Skip(paginado).Take(size);
+            union = union.Union(TramiteServicios);
+
+            if( orden == 1 )
+            {
+                if(!ascd)
+                {
+                    union = union.OrderBy(s => s.id).Skip(paginado).Take(size).ToList();
+                }
+                else
+                {
+                    union = union.OrderByDescending(s => s.id).Skip(paginado).Take(size).ToList();
+                }
+            }
+            else if( orden == 2 ) 
+            {
+                if(!ascd)
+                {
+                    union = union.OrderBy(s => s.tipo).Skip(paginado).Take(size).ToList();
+                }
+                else
+                {
+                    union = union.OrderByDescending(s => s.tipo).Skip(paginado).Take(size).ToList();
+                }
+            }
+            else if( orden == 3 ) 
+            {
+                if(!ascd)
+                {
+                    union = union.OrderBy(s => s.nombre).Skip(paginado).Take(size).ToList();
+                }
+                else
+                {
+                    union = union.OrderByDescending(s => s.nombre).Skip(paginado).Take(size).ToList();
+                }
+            }
+            else
+            {
+                union = union.Skip(paginado).Take(size).ToList();
+            }
+            
 
             foreach (var item in union)
             {
