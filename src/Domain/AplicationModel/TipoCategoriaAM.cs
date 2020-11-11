@@ -1,3 +1,5 @@
+using System;
+
 namespace Domain.Categorias.AplicationModel
 {
     public class TipoCategoriaAM
@@ -22,5 +24,9 @@ namespace Domain.Categorias.AplicationModel
         public int user { get; set; }
 
         public string icono { get; set; }
+
+        public DateTime? fechaCreacion { get; set; }
+
+        public DateTime? fechaModificacion { get; set; }
     }
 }

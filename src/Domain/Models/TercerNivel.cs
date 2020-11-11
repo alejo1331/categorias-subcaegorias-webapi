@@ -44,5 +44,11 @@ namespace Domain.Models
 
         [Column("USUARIO_CREACION", TypeName = "int")]
         public int user { get; set; }
+
+        [Column("CTN_FECHA_CREACION", TypeName = "smalldatetime")]
+        public DateTime? fechaCreacion { get; set; }
+
+        [Column("CTN_FECHA_MODIFICACION", TypeName = "smalldatetime")]
+        public DateTime? fechaModificacion { get; set; }
     }
 }

@@ -1,3 +1,5 @@
+using System;
+
 namespace Domain.Categorias.AplicationModel
 {
     public class TercerNivelAM
@@ -23,5 +25,8 @@ namespace Domain.Categorias.AplicationModel
         //
 
         public int user { get; set; }
+        public DateTime? fechaCreacion { get; set; }
+
+        public DateTime? fechaModificacion { get; set; }
     }
 }
