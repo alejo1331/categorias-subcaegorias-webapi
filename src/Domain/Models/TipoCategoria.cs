@@ -43,5 +43,11 @@ namespace Domain.Models
 
         [Column("CTC_LOGO", TypeName = "varchar(200)")]
         public string icono { get; set; }
+
+        [Column("CTC_FECHA_CREACION", TypeName = "smalldatetime")]
+        public DateTime? fechaCreacion { get; set; }
+
+        [Column("CTC_FECHA_MODIFICACION", TypeName = "smalldatetime")]
+        public DateTime? fechaModificacion { get; set; }
     }
 }

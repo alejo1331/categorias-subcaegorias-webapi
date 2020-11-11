@@ -41,5 +41,14 @@ namespace Domain.Models
 
         [Column("ICONO", TypeName = "varchar(200)")]
         public string icono { get; set; }
+
+        [Column("USUARIO_CREACION", TypeName = "int")]
+        public int? user { get; set; }
+
+        [Column("FECHA_CREACION", TypeName = "smalldatetime")]
+        public DateTime? fechaCreacion { get; set; }
+
+        [Column("FECHA_MODIFICACION", TypeName = "smalldatetime")]
+        public DateTime? fechaModificacion { get; set; } 
     }
 }

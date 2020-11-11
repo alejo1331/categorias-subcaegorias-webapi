@@ -293,7 +293,7 @@ namespace Domain.Repository
             }
             else if(orden == 2)
             {
-                if(ascd)
+                if(!ascd)
                 {
                     SedeElectronicas = SedeElectronicas.OrderBy(s => s.nombre).ToList();
                 }

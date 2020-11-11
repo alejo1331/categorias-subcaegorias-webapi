@@ -1,3 +1,5 @@
+using System;
+
 namespace Domain.Categorias.AplicationModel
 {
     public class SubcategoriaAM
@@ -20,5 +22,11 @@ namespace Domain.Categorias.AplicationModel
         public string descripcionLarga { get; set; }
 
         public string icono { get; set; }
+
+        public int? user { get; set; }
+
+        public DateTime? fechaCreacion { get; set; }
+
+        public DateTime? fechaModificacion { get; set; } 
     }
 }
