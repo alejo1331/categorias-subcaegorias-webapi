@@ -780,7 +780,7 @@ namespace Domain.Repository
             return Union;
         }
 
-        public IList<ElementosUnion> TodosElementos(int id, int page, int size)
+        public IList<ElementosUnion> TodosElementos(int id, int page, int size, int orden, bool ascd)
         {
             var paginado = (page - 1) * size;
             var vinculadas = this.context.ElementoSubcategorias.Where(s => s.subcategoriaId == id && s.tipoElementoId == 3 && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
@@ -817,7 +817,45 @@ namespace Domain.Repository
 
             union = union.Union(Recursos);
 
-            union = union.Union(TramiteServicios).Skip(paginado).Take(size);
+            union = union.Union(TramiteServicios);
+
+            if(orden == 1)
+            {
+                if(!ascd)
+                {
+                    union = union.OrderBy(s => s.id).Skip(paginado).Take(size).ToList();
+                }
+                else
+                {
+                    union = union.OrderByDescending(s => s.id).Skip(paginado).Take(size).ToList();
+                }
+            }
+            else if(orden == 2)
+            {
+                if(!ascd)
+                {
+                    union = union.OrderBy(s => s.tipo).Skip(paginado).Take(size).ToList();
+                }
+                else
+                {
+                    union = union.OrderByDescending(s => s.tipo).Skip(paginado).Take(size).ToList();
+                }
+            }
+            else if(orden == 3)
+            {
+                if(!ascd)
+                {
+                    union = union.OrderBy(s => s.nombre).Skip(paginado).Take(size).ToList();
+                }
+                else
+                {
+                    union = union.OrderByDescending(s => s.nombre).Skip(paginado).Take(size).ToList();
+                }
+            }
+            else
+            {
+                union = union.Skip(paginado).Take(size).ToList();
+            }
 
             foreach (var item in union)
             {

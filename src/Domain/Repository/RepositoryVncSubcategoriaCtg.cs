@@ -68,32 +68,32 @@ namespace Domain.Repository
 
             List<Subcategoria> subcategorias = new List<Subcategoria>();
 
+            subcategorias = this.context.Subcategorias.Where(s => vinculos.Contains(s.id)).ToList();
+
             if(orden == 1)
             {
                 if(!ascd)
                 {
-                    subcategorias = this.context.Subcategorias.Where(s => vinculos.Contains(s.id)).OrderBy(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                    subcategorias = subcategorias.OrderBy(s => s.nombre).ToList();
                 }
                 else
                 {
-                    subcategorias = this.context.Subcategorias.Where(s => vinculos.Contains(s.id)).OrderByDescending(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                    subcategorias = subcategorias.OrderByDescending(s => s.nombre).ToList();
                 }
             }
             else if(orden == 2)
             {
                 if(!ascd)
                 {
-                    subcategorias = this.context.Subcategorias.Where(s => vinculos.Contains(s.id)).OrderBy(s => s.orden).Skip((page - 1) * size).Take(size).ToList();
+                    subcategorias = subcategorias.OrderBy(s => s.orden).ToList();
                 }
                 else
                 {
-                    subcategorias = this.context.Subcategorias.Where(s => vinculos.Contains(s.id)).OrderByDescending(s => s.orden).Skip((page - 1) * size).Take(size).ToList();
+                    subcategorias = subcategorias.OrderByDescending(s => s.orden).ToList();
                 }
             }
-            else
-            {
-                subcategorias = this.context.Subcategorias.Where(s => vinculos.Contains(s.id)).Skip((page - 1) * size).Take(size).ToList();
-            }
+            
+            subcategorias = subcategorias.Skip((page - 1) * size).Take(size).ToList();
             return subcategorias;
         }
 

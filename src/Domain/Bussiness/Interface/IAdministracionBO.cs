@@ -324,12 +324,12 @@ namespace Domain.Bussiness.Interface
         IList<RecursoAM> VinculadasRecursoTercerNivel(int id, int page, int size);
 
 
-        IList<ElementosUnionAM> Todo(int id, int page, int size);
+        IList<ElementosUnionAM> Todo(int id, int page, int size, int orden, bool ascd);
         IList<ElementosUnionAM> Todo(int id);
         IList<ElementosUnionAM> TodoSubcategorias(int id);
-        IList<ElementosUnionAM> TodoSubcategorias(int id, int page, int size);
+        IList<ElementosUnionAM> TodoSubcategorias(int id, int page, int size, int orden, bool ascd);
         IList<ElementosUnionAM> TodoTercerNivels(int id);
-        IList<ElementosUnionAM> TodoTercerNivels(int id, int page, int size);
+        IList<ElementosUnionAM> TodoTercerNivels(int id, int page, int size, int orden, bool ascd);
         long TodoTotal(int id);
         long TodoTotalSubcategorias(int id);
         long TodoTotalTercerNivels(int id);

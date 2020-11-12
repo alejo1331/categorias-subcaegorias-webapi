@@ -1860,10 +1860,10 @@ namespace Domain.Bussiness.BO
             return mapper.Map<List<RecursoAM>>(repository.VinculadasRecurso(id, page, size));
         }
 
-        public IList<ElementosUnionAM> Todo(int id, int page, int size)
+        public IList<ElementosUnionAM> Todo(int id, int page, int size, int orden, bool ascd)
         {
             InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
-            return mapper.Map<List<ElementosUnionAM>>(repository.TodosElementos(id, page, size));
+            return mapper.Map<List<ElementosUnionAM>>(repository.TodosElementos(id, page, size, orden, ascd));
         }
 
         //Porta Transversal
@@ -2008,10 +2008,10 @@ namespace Domain.Bussiness.BO
             return mapper.Map<List<ElementosUnionAM>>(repository.TodosElementos(id));
         }
 
-        public IList<ElementosUnionAM> TodoSubcategorias(int id, int page, int size)
+        public IList<ElementosUnionAM> TodoSubcategorias(int id, int page, int size, int orden, bool ascd)
         {
             InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
-            return mapper.Map<List<ElementosUnionAM>>(repository.TodosElementos(id, page, size));
+            return mapper.Map<List<ElementosUnionAM>>(repository.TodosElementos(id, page, size, orden, ascd));
         }
 
         public long TodoTotalSubcategorias(int id)
@@ -2026,10 +2026,10 @@ namespace Domain.Bussiness.BO
             return mapper.Map<List<ElementosUnionAM>>(repository.TodosElementos(id));
         }
 
-        public IList<ElementosUnionAM> TodoTercerNivels(int id, int page, int size)
+        public IList<ElementosUnionAM> TodoTercerNivels(int id, int page, int size, int orden, bool ascd)
         {
             InterfaceElementoTercerNivel<ElementoTercerNivel> repository = new RepositoryElementoTercerNivel(context);
-            return mapper.Map<List<ElementosUnionAM>>(repository.TodosElementos(id, page, size));
+            return mapper.Map<List<ElementosUnionAM>>(repository.TodosElementos(id, page, size, orden, ascd));
         }
 
         public long TodoTotalTercerNivels(int id)
