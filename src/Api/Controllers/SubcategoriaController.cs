@@ -160,10 +160,10 @@ namespace Api.Controllers
             return new JsonResult(this.administracionBO.AgruparCtg());
         }
 
-        [HttpGet("Existe/{data}")]
-        public IActionResult Existe(string data)
+        [HttpGet("Existe/{data}/{padre}")]
+        public IActionResult Existe(string data, int padre)
         {
-            bool objeto = this.administracionBO.ExisteSubcategoria(data);
+            bool objeto = this.administracionBO.ExisteSubcategoria(data, padre);
             return new JsonResult(objeto);
         }
 
