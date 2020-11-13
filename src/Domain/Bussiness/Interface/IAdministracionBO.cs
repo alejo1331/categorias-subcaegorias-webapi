@@ -43,7 +43,7 @@ namespace Domain.Bussiness.Interface
         IList<CategoriaAM> SonsTipoCategoria(int id);
         CategoriaAM CambioEstadoCategoria(int id);
         IList<string> AgruparTiposCtg();
-        bool ExisteCategoria(string data);
+        bool ExisteCategoria(string data, int padre);
         long ObtenerTotalCategoria(Expression<Func<CategoriaAM, bool>> predicate);
         ICollection<CategoriaAM> ObtenerCategoria(Expression<Func<CategoriaAM, bool>> predicate, int page, int size, Expression<Func<CategoriaAM, object>> selector, bool descending);
 
@@ -58,13 +58,13 @@ namespace Domain.Bussiness.Interface
         IList<SubcategoriaAM> SonsCategoria(int id);
         SubcategoriaAM CambioEstadoSubcategoria(int id);
         IList<string> AgruparCtg();
-        bool ExisteSubcategoria(string data);
+        bool ExisteSubcategoria(string data, int padre);
         long ObtenerTotalSubcategoria(Expression<Func<SubcategoriaAM, bool>> predicate);
         ICollection<SubcategoriaAM> ObtenerSubcategoria(Expression<Func<SubcategoriaAM, bool>> predicate, int page, int size, Expression<Func<SubcategoriaAM, object>> selector, bool descending);
 
         //Tercer Nivel
         long CountOrdenTercerNivel(int orden);
-        bool ExisteTercerNivel(string data);
+        bool ExisteTercerNivel(string data, int padre);
         IList<TercerNivelAM> TodosTercerNivel();
         TercerNivelAM AgregarTercerNivel(TercerNivelAM objeto);
         TercerNivelAM ObtenerTercerNivel(int id);
@@ -356,8 +356,10 @@ namespace Domain.Bussiness.Interface
 
 
 
-        //Porta Transversal
+        //Portal Transversal
         IList<PortalTransversalAM> TodasPortalTransversal();
         PortalTransversalAM PortalTransversalId(int id);
+
+        
     }
 }

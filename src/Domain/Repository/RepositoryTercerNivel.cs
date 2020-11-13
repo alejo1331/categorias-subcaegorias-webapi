@@ -120,9 +120,9 @@ namespace Domain.Repository
             }
         }
 
-        public bool Existe(string data)
+        public bool Existe(string data, int padre)
         {
-            TercerNivel objeto = this.context.TercerNivels.Where(s => s.nombre == data).FirstOrDefault();
+            TercerNivel objeto = this.context.TercerNivels.Where(s => s.nombre == data && s.padre == padre).FirstOrDefault();
             if(objeto == null)
                 return false;
             return true;

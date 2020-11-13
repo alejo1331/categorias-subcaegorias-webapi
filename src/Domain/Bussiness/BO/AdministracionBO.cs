@@ -154,10 +154,10 @@ namespace Domain.Bussiness.BO
             return mapper.Map<List<CategoriaAM>>(repository.Activas());
         }
 
-        public bool ExisteCategoria(string data)
+        public bool ExisteCategoria(string data, int padre)
         {
             InterfaceCategoria<Categoria> repository = new RepositoryCategoria(context);
-            return repository.Existe(data);
+            return repository.Existe(data, padre);
         }
 
         public IList<CategoriaAM> AllCategorias()
@@ -260,10 +260,10 @@ namespace Domain.Bussiness.BO
             return repository.Count(orden);
         }
 
-        public bool ExisteSubcategoria(string data)
+        public bool ExisteSubcategoria(string data, int padre)
         {
             InterfaceSubcategoria<Subcategoria> repository = new RepositorySubcategoria(context);
-            return repository.Existe(data);
+            return repository.Existe(data, padre);
         }
 
         public IList<string> AgruparCtg()
@@ -362,10 +362,10 @@ namespace Domain.Bussiness.BO
             InterfaceTercerNivel<TercerNivel> repository = new RepositoryTercerNivel(context);
             return repository.Count(orden);
         }
-        public bool ExisteTercerNivel(string data)
+        public bool ExisteTercerNivel(string data, int padre)
         {
             InterfaceTercerNivel<TercerNivel> repository = new RepositoryTercerNivel(context);
-            return repository.Existe(data);
+            return repository.Existe(data, padre);
         }
         public IList<TercerNivelAM> TodosTercerNivel()
         {
@@ -2037,6 +2037,9 @@ namespace Domain.Bussiness.BO
             InterfaceElementoTercerNivel<ElementoTercerNivel> repository = new RepositoryElementoTercerNivel(context);
             return repository.totalTodos(id);
         }
+
+
+        
 
     }
 }

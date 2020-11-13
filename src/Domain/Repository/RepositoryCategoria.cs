@@ -121,9 +121,9 @@ namespace Domain.Repository
             }
         }
 
-        public bool Existe(string data)
+        public bool Existe(string data, int padre)
         {
-            Categoria objeto = this.context.Categorias.Where(s => s.nombre == data).FirstOrDefault();
+            Categoria objeto = this.context.Categorias.Where(s => s.nombre == data && s.padre == padre).FirstOrDefault();
             if (objeto == null)
                 return false;
             return true;

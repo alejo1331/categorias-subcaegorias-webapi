@@ -117,9 +117,9 @@ namespace Domain.Repository
             return lista1;
         }
 
-        public bool Existe(string data)
+        public bool Existe(string data, int padre)
         {
-            Subcategoria objeto = this.context.Subcategorias.Where(s => s.nombre == data).FirstOrDefault();
+            Subcategoria objeto = this.context.Subcategorias.Where(s => s.nombre == data && s.padre == padre).FirstOrDefault();
             if(objeto == null)
                 return false;
             return true;
