@@ -7,8 +7,13 @@ namespace Domain.Categorias.AplicationModel
         //Foreign key
 
         public int idSubcategoria { get; set; }
+        public virtual SubcategoriaAM Subcategoria {get; set;}
+
         public int idTercerNvl { get; set; }
+        public virtual TercerNivelAM TercerNivel {get; set;}
+
         public int codigoEstado { get; set; }
+        public virtual EstadoAM Estado { get; set; }
 
         //
 

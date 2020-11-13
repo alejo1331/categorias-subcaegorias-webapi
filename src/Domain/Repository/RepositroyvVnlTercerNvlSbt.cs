@@ -37,7 +37,7 @@ namespace Domain.Repository
 
         public VncTercerNvlSubcategoria GetId(int idpadre, int idhijo)
         {
-            return this.context.VncTercerNvlSubcategorias.Where(s => s.idSubcategoria == idpadre && s.idTercerNvl == idhijo && s.vinculo == 1).FirstOrDefault();
+            return this.context.VncTercerNvlSubcategorias.Where(s => s.idSubcategoria == idpadre && s.idTercerNvl == idhijo && s.codigoEstado == 1).FirstOrDefault();
         }
 
         public void Update(VncTercerNvlSubcategoria objeto)
@@ -93,6 +93,44 @@ namespace Domain.Repository
             else
             {
                 lista = this.context.TercerNivels.Where(s => vinculos.Contains(s.id)).Skip((page - 1) * size).OrderByDescending(s => s.orden).Take(size).ToList();
+            }
+            return lista;
+        }
+
+        public IList<TercerNivel> VinculadasTipoCero(int id, int page, int size, int orden, bool ascd)
+        {
+            var vinculos = this.context.VncTercerNvlSubcategorias
+                                                    .Where(s => s.idSubcategoria == id && s.codigoEstado == 1 && s.vinculo == 0)
+                                                    .Select(s => s.idTercerNvl)
+                                                    .ToList();
+            
+            List<TercerNivel> lista = new List<TercerNivel>();
+
+            if(orden == 1)
+            {
+                if(!ascd)
+                {
+                    lista = this.context.TercerNivels.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).OrderBy(s => s.nombre).Take(size).ToList();
+                }
+                else
+                {
+                    lista = this.context.TercerNivels.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).OrderByDescending(s => s.nombre).Take(size).ToList();
+                }
+            }
+            else if(orden == 2)
+            {
+                if(!ascd)
+                {
+                    lista = this.context.TercerNivels.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).OrderBy(s => s.orden).Take(size).ToList();
+                }
+                else
+                {
+                    lista = this.context.TercerNivels.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).OrderByDescending(s => s.orden).Take(size).ToList();
+                }
+            }
+            else
+            {
+                lista = this.context.TercerNivels.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).OrderByDescending(s => s.orden).Take(size).ToList();
             }
             return lista;
         }
@@ -188,6 +226,17 @@ namespace Domain.Repository
         {
             var vinculos = this.context.VncTercerNvlSubcategorias
                                                     .Where(s => s.idSubcategoria == id && s.codigoEstado == 1)
+                                                    .Select(s => s.idTercerNvl)
+                                                    .ToList();
+
+            long lista = this.context.TercerNivels.Count(s => vinculos.Contains(s.id) && s.codigoEstado == 1);
+            return lista;
+        }
+
+        public long VinculadasTotaTipoCero(int id)
+        {
+            var vinculos = this.context.VncTercerNvlSubcategorias
+                                                    .Where(s => s.idSubcategoria == id && s.codigoEstado == 1 && s.vinculo == 0)
                                                     .Select(s => s.idTercerNvl)
                                                     .ToList();
 

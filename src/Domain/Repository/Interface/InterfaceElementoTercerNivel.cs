@@ -9,10 +9,10 @@ namespace Domain.Repository.Interface
         void update(ElementoTercerNivel objeto);
         IList<ElementoTercerNivel> All();
         ElementoTercerNivel GetId(int id);
-        ElementoTercerNivel GetSedeElectronicaId(int id);
-        ElementoTercerNivel GetVentanillaUnicaId(int id);
-        ElementoTercerNivel GetTramiteServicioId(int id);
-        ElementoTercerNivel GetPortalTransversalId(int id);
+        ElementoTercerNivel GetSedeElectronicaId(int id, int padre);
+        ElementoTercerNivel GetVentanillaUnicaId(int id, int padre);
+        ElementoTercerNivel GetTramiteServicioId(int id, int padre);
+        ElementoTercerNivel GetPortalTransversalId(int id, int padre);
         void Add(ElementoTercerNivel objeto);
         IList<SedeElectronica> VinculadasSedeElectronica(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<SedeElectronica> VincularSedeElectronica(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);

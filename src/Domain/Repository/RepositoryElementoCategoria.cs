@@ -34,24 +34,24 @@ namespace Domain.Repository
             return context.ElementoCategorias.Where(s => s.id == id).FirstOrDefault();
         }
 
-        public ElementoCategoria GetSedeElectronicaId(int id)
+        public ElementoCategoria GetSedeElectronicaId(int id, int padre)
         {
-            return context.ElementoCategorias.Where(s => s.elementoId == id && s.tipoElementoId == 3 && s.codigoEstado == 1).FirstOrDefault();
+            return context.ElementoCategorias.Where(s => s.elementoId == id && s.tipoElementoId == 3 && s.codigoEstado == 1 && s.categoriaId == padre).FirstOrDefault();
         }
 
-        public ElementoCategoria GetVentanillaUnicaId(int id)
+        public ElementoCategoria GetVentanillaUnicaId(int id, int padre)
         {
-            return context.ElementoCategorias.Where(s => s.elementoId == id && s.tipoElementoId == 4 && s.codigoEstado == 1).FirstOrDefault();
+            return context.ElementoCategorias.Where(s => s.elementoId == id && s.tipoElementoId == 4 && s.codigoEstado == 1 && s.categoriaId == padre).FirstOrDefault();
         }
 
-        public ElementoCategoria GetTramiteServicioId(int id)
+        public ElementoCategoria GetTramiteServicioId(int id, int padre)
         {
-            return context.ElementoCategorias.Where(s => s.elementoId == id && s.tipoElementoId == 6 && s.codigoEstado == 1).FirstOrDefault();
+            return context.ElementoCategorias.Where(s => s.elementoId == id && s.tipoElementoId == 6 && s.codigoEstado == 1 && s.categoriaId == padre).FirstOrDefault();
         }
 
-        public ElementoCategoria GetPortalTransversalId(int id)
+        public ElementoCategoria GetPortalTransversalId(int id, int padre)
         {
-            return context.ElementoCategorias.Where(s => s.elementoId == id && s.tipoElementoId == 5 && s.codigoEstado == 1).FirstOrDefault();
+            return context.ElementoCategorias.Where(s => s.elementoId == id && s.tipoElementoId == 5 && s.codigoEstado == 1 && s.categoriaId == padre).FirstOrDefault();
         }
 
         public void Add(ElementoCategoria objeto)

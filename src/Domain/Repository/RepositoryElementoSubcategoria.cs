@@ -34,24 +34,24 @@ namespace Domain.Repository
             return context.ElementoSubcategorias.Where(s => s.id == id).FirstOrDefault();
         }
 
-        public ElementoSubcategoria GetSedeElectronicaId(int id)
+        public ElementoSubcategoria GetSedeElectronicaId(int id, int padre)
         {
-            return context.ElementoSubcategorias.Where(s => s.elementoId == id && s.tipoElementoId == 3 && s.codigoEstado == 1).FirstOrDefault();
+            return context.ElementoSubcategorias.Where(s => s.elementoId == id && s.tipoElementoId == 3 && s.codigoEstado == 1 && s.subcategoriaId == padre).FirstOrDefault();
         }
 
-        public ElementoSubcategoria GetVentanillaUnicaId(int id)
+        public ElementoSubcategoria GetVentanillaUnicaId(int id, int padre)
         {
-            return context.ElementoSubcategorias.Where(s => s.elementoId == id && s.tipoElementoId == 4 && s.codigoEstado == 1).FirstOrDefault();
+            return context.ElementoSubcategorias.Where(s => s.elementoId == id && s.tipoElementoId == 4 && s.codigoEstado == 1 && s.subcategoriaId == padre).FirstOrDefault();
         }
 
-        public ElementoSubcategoria GetTramiteServicioId(int id)
+        public ElementoSubcategoria GetTramiteServicioId(int id, int padre)
         {
-            return context.ElementoSubcategorias.Where(s => s.elementoId == id && s.tipoElementoId == 6 && s.codigoEstado == 1).FirstOrDefault();
+            return context.ElementoSubcategorias.Where(s => s.elementoId == id && s.tipoElementoId == 6 && s.codigoEstado == 1 && s.subcategoriaId == padre).FirstOrDefault();
         }
 
-        public ElementoSubcategoria GetPortalTransversalId(int id)
+        public ElementoSubcategoria GetPortalTransversalId(int id, int padre)
         {
-            return context.ElementoSubcategorias.Where(s => s.elementoId == id && s.tipoElementoId == 5 && s.codigoEstado == 1).FirstOrDefault();
+            return context.ElementoSubcategorias.Where(s => s.elementoId == id && s.tipoElementoId == 5 && s.codigoEstado == 1 && s.subcategoriaId == padre).FirstOrDefault();
         }
 
         public void Add(ElementoSubcategoria objeto)
