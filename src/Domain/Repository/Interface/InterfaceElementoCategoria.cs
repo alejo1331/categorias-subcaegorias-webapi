@@ -9,10 +9,10 @@ namespace Domain.Repository.Interface
         void update(ElementoCategoria objeto);
         IList<ElementoCategoria> All();
         ElementoCategoria GetId(int id);
-        ElementoCategoria GetSedeElectronicaId(int id);
-        ElementoCategoria GetVentanillaUnicaId(int id);
-        ElementoCategoria GetTramiteServicioId(int id);
-        ElementoCategoria GetPortalTransversalId(int id);
+        ElementoCategoria GetSedeElectronicaId(int id, int padre);
+        ElementoCategoria GetVentanillaUnicaId(int id, int padre);
+        ElementoCategoria GetTramiteServicioId(int id, int padre);
+        ElementoCategoria GetPortalTransversalId(int id, int padre);
         void Add(ElementoCategoria objeto);
         IList<PPT> VinculadasPPT(int id, int page, int size);
         IList<PPT> VincularPPT(int id, int page, int size);

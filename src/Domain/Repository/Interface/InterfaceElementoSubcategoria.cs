@@ -9,10 +9,10 @@ namespace Domain.Repository.Interface
         void update(ElementoSubcategoria objeto);
         IList<ElementoSubcategoria> All();
         ElementoSubcategoria GetId(int id);
-        ElementoSubcategoria GetSedeElectronicaId(int id);
-        ElementoSubcategoria GetVentanillaUnicaId(int id);
-        ElementoSubcategoria GetTramiteServicioId(int id);
-        ElementoSubcategoria GetPortalTransversalId(int id);
+        ElementoSubcategoria GetSedeElectronicaId(int id, int padre);
+        ElementoSubcategoria GetVentanillaUnicaId(int id, int padre);
+        ElementoSubcategoria GetTramiteServicioId(int id, int padre);
+        ElementoSubcategoria GetPortalTransversalId(int id, int padre);
         void Add(ElementoSubcategoria objeto);
         IList<VentanillaUnica> VinculadasVentanillaUnica(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<VentanillaUnica> VincularVentanillaUnica(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);

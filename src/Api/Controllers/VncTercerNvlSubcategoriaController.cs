@@ -28,6 +28,29 @@ namespace Api.Controllers
             administracionBO = new AdministracionBO(context);
         }
 
+        [HttpPut("Actualizar/{id}")]
+        public IActionResult PutCategoria(int id, VncTercerNvlSubcategoriaAM objeto)
+        {
+            try
+            {
+                if (objeto == null)
+                {
+                    return BadRequest("Owner object is null");
+                }
+                
+                if(objeto.id != id)
+                {
+                    return BadRequest("Owner object is null for id");
+                }
+                return new JsonResult(this.administracionBO.ActualizarVncTercerNvlSubcategoria(objeto));
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw ex;
+            }
+            return NoContent();
+        }
+
         [HttpGet]
         public IActionResult Get()
         {
@@ -55,6 +78,17 @@ namespace Api.Controllers
         public IActionResult getVncTercerNvlSubcategoria(int id)
         {
             VncTercerNvlSubcategoriaAM vinculo = administracionBO.ObtenerVncTercerNvlSubcategoria(id);
+            if (vinculo != null)
+            {
+                return new JsonResult(vinculo);
+            }
+            return NotFound();
+        }
+
+        [HttpGet("{padre}/{id}")]
+        public IActionResult getVncTercerNvlSubcategoria(int padre, int id)
+        {
+            VncTercerNvlSubcategoriaAM vinculo = administracionBO.ObtenerVncTercerNvlSubcategoria(padre, id);
             if (vinculo != null)
             {
                 return new JsonResult(vinculo);
@@ -112,6 +146,12 @@ namespace Api.Controllers
             return new JsonResult(administracionBO.VinculadasTercerNivel(vincular.idParametro, vincular.page, vincular.size, vincular.orden, vincular.ascd));
         }
 
+        [HttpPost("Vinculadas/TipoCero")]
+        public IActionResult getVinculadasTipoCero(PaginateVincular vincular)
+        {
+            return new JsonResult(administracionBO.VinculadasTercerNivelTipoCero(vincular.idParametro, vincular.page, vincular.size, vincular.orden, vincular.ascd));
+        }
+
         [HttpPost("Vincular")]
         public IActionResult getVincular(PaginateVincular vincular)
         {
@@ -140,6 +180,12 @@ namespace Api.Controllers
         public IActionResult getVinculadasTotal(int id)
         {
             return new JsonResult(administracionBO.VinculadasTercerNivelTotal(id));
+        }
+
+        [HttpGet("Vinculadas/Total/TipoCero/{id}")]
+        public IActionResult getVinculadasTotalTipoCero(int id)
+        {
+            return new JsonResult(administracionBO.VinculadasTercerNivelTipoCeroTotal(id));
         }
 
         [HttpGet("Vinculadas/Total/Activas/{id}")]

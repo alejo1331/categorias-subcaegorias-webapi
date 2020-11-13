@@ -34,24 +34,24 @@ namespace Domain.Repository
             return context.ElementoTercerNivels.Where(s => s.id == id).FirstOrDefault();
         }
 
-        public ElementoTercerNivel GetSedeElectronicaId(int id)
+        public ElementoTercerNivel GetSedeElectronicaId(int id, int padre)
         {
-            return context.ElementoTercerNivels.Where(s => s.elementoId == id && s.tipoElementoId == 3 && s.codigoEstado == 1).FirstOrDefault();
+            return context.ElementoTercerNivels.Where(s => s.elementoId == id && s.tipoElementoId == 3 && s.codigoEstado == 1 && s.tercerNivelId == padre).FirstOrDefault();
         }
 
-        public ElementoTercerNivel GetVentanillaUnicaId(int id)
+        public ElementoTercerNivel GetVentanillaUnicaId(int id, int padre)
         {
-            return context.ElementoTercerNivels.Where(s => s.elementoId == id && s.tipoElementoId == 4 && s.codigoEstado == 1).FirstOrDefault();
+            return context.ElementoTercerNivels.Where(s => s.elementoId == id && s.tipoElementoId == 4 && s.codigoEstado == 1 && s.tercerNivelId == padre).FirstOrDefault();
         }
 
-        public ElementoTercerNivel GetTramiteServicioId(int id)
+        public ElementoTercerNivel GetTramiteServicioId(int id, int padre)
         {
-            return context.ElementoTercerNivels.Where(s => s.elementoId == id && s.tipoElementoId == 6 && s.codigoEstado == 1).FirstOrDefault();
+            return context.ElementoTercerNivels.Where(s => s.elementoId == id && s.tipoElementoId == 6 && s.codigoEstado == 1 && s.tercerNivelId == padre).FirstOrDefault();
         }
 
-        public ElementoTercerNivel GetPortalTransversalId(int id)
+        public ElementoTercerNivel GetPortalTransversalId(int id, int padre)
         {
-            return context.ElementoTercerNivels.Where(s => s.elementoId == id && s.tipoElementoId == 5 && s.codigoEstado == 1).FirstOrDefault();
+            return context.ElementoTercerNivels.Where(s => s.elementoId == id && s.tipoElementoId == 5 && s.codigoEstado == 1 && s.tercerNivelId == padre).FirstOrDefault();
         }
 
         public void Add(ElementoTercerNivel objeto)

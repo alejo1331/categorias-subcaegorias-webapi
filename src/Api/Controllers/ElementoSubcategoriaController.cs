@@ -63,10 +63,10 @@ namespace Api.Controllers
             return NotFound();
         }
 
-        [HttpGet("SedeElectronica/{id}")]
-        public IActionResult getSedeElectronicaId(int id)
+        [HttpGet("SedeElectronica/{id}/{padre}")]
+        public IActionResult getSedeElectronicaId(int id, int padre)
         {
-            ElementoSubcategoriaAM objeto = administracionBO.ElementoSubcategoriaSedeElectronicaId(id);
+            ElementoSubcategoriaAM objeto = administracionBO.ElementoSubcategoriaSedeElectronicaId(id, padre);
 
             if (objeto != null)
             {
@@ -75,10 +75,10 @@ namespace Api.Controllers
             return NotFound();
         }
 
-        [HttpGet("VentanillaUnica/{id}")]
-        public IActionResult getVentanillaUnicaId(int id)
+        [HttpGet("VentanillaUnica/{id}/{padre}")]
+        public IActionResult getVentanillaUnicaId(int id, int padre)
         {
-            ElementoSubcategoriaAM objeto = administracionBO.ElementoSubcategoriaVentanillaUnicaId(id);
+            ElementoSubcategoriaAM objeto = administracionBO.ElementoSubcategoriaVentanillaUnicaId(id, padre);
 
             if (objeto != null)
             {
@@ -87,10 +87,10 @@ namespace Api.Controllers
             return NotFound();
         }
 
-        [HttpGet("TramiteServicio/{id}")]
-        public IActionResult getTramiteServicioId(int id)
+        [HttpGet("TramiteServicio/{id}/{padre}")]
+        public IActionResult getTramiteServicioId(int id, int padre)
         {
-            ElementoSubcategoriaAM objeto = administracionBO.ElementoSubcategoriaTramisteServicioId(id);
+            ElementoSubcategoriaAM objeto = administracionBO.ElementoSubcategoriaTramisteServicioId(id, padre);
 
             if (objeto != null)
             {
@@ -99,10 +99,10 @@ namespace Api.Controllers
             return NotFound();
         }
 
-        [HttpGet("PortalTransversal/{id}")]
-        public IActionResult getPortalTransversalId(int id)
+        [HttpGet("PortalTransversal/{id}/{padre}")]
+        public IActionResult getPortalTransversalId(int id, int padre)
         {
-            ElementoSubcategoriaAM objeto = administracionBO.ElementoSubcategoriaPortalTransversalId(id);
+            ElementoSubcategoriaAM objeto = administracionBO.ElementoSubcategoriaPortalTransversalId(id, padre);
 
             if (objeto != null)
             {

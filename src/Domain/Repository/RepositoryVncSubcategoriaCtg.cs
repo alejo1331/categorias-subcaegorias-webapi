@@ -56,7 +56,7 @@ namespace Domain.Repository
 
         public VncSubcategoriaCategoria GetId(int idpadre, int idhijo)
         {
-            return this.context.VncSubcategoriaCategorias.Where(s => s.idCategoria == idpadre && s.idSubcategoria == idhijo && s.tipoVinculo == 1).FirstOrDefault();
+            return this.context.VncSubcategoriaCategorias.Where(s => s.idCategoria == idpadre && s.idSubcategoria == idhijo && s.codigoEstado == 1).FirstOrDefault();
         }
 
         public IList<Subcategoria> Vinculadas(int id, int page, int size, int orden, bool ascd)
@@ -69,6 +69,44 @@ namespace Domain.Repository
             List<Subcategoria> subcategorias = new List<Subcategoria>();
 
             subcategorias = this.context.Subcategorias.Where(s => vinculos.Contains(s.id)).ToList();
+
+            if(orden == 1)
+            {
+                if(!ascd)
+                {
+                    subcategorias = subcategorias.OrderBy(s => s.nombre).ToList();
+                }
+                else
+                {
+                    subcategorias = subcategorias.OrderByDescending(s => s.nombre).ToList();
+                }
+            }
+            else if(orden == 2)
+            {
+                if(!ascd)
+                {
+                    subcategorias = subcategorias.OrderBy(s => s.orden).ToList();
+                }
+                else
+                {
+                    subcategorias = subcategorias.OrderByDescending(s => s.orden).ToList();
+                }
+            }
+            
+            subcategorias = subcategorias.Skip((page - 1) * size).Take(size).ToList();
+            return subcategorias;
+        }
+
+        public IList<Subcategoria> VinculadasTipoCero(int id, int page, int size, int orden, bool ascd)
+        {
+            var vinculos = this.context.VncSubcategoriaCategorias
+                                                    .Where(s => s.idCategoria == id && s.codigoEstado == 1 && s.tipoVinculo == 0)
+                                                    .Select(s => s.idSubcategoria)
+                                                    .ToList();
+
+            List<Subcategoria> subcategorias = new List<Subcategoria>();
+
+            subcategorias = this.context.Subcategorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1).ToList();
 
             if(orden == 1)
             {
@@ -116,6 +154,19 @@ namespace Domain.Repository
                                                     .ToList();
 
             long total = this.context.Subcategorias.Count(s => vinculos.Contains(s.id));
+
+            return total;
+
+        }
+
+        public long VinculadasTipoCeroTotal(int id)
+        {
+            var vinculos = this.context.VncSubcategoriaCategorias
+                                                    .Where(s => s.idCategoria == id && s.codigoEstado == 1 && s.tipoVinculo == 0)
+                                                    .Select(s => s.idSubcategoria)
+                                                    .ToList();
+
+            long total = this.context.Subcategorias.Count(s => vinculos.Contains(s.id) && s.codigoEstado == 1);
 
             return total;
 

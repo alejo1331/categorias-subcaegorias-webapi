@@ -102,8 +102,11 @@ namespace Domain.Bussiness.Interface
         //Tipo categoria ---- Categoria
         IList<VncCategoriaTipoCtgAM> TodosVncCategoriaTipoCtg();
         VncCategoriaTipoCtgAM AgregarVncCategoriaTipoCtg(VncCategoriaTipoCtgAM objeto);
+        VncCategoriaTipoCtgAM ActualizarVncCategoriaTipoCtg(VncCategoriaTipoCtgAM objeto);
         VncCategoriaTipoCtgAM ObtenerVncCategoriaTipoCtg(int id);
+        VncCategoriaTipoCtgAM ObtenerVncCategoriaTipoCtg(int padre, int id);
         IList<CategoriaAM> TodosVncCategorias(int id, int page, int size, int orden, bool ascd);
+        IList<CategoriaAM> TodosVncCategoriasVinculadas(int id, int page, int size, int orden, bool ascd);
         IList<CategoriaAM> TodosVncCategoriasActivas(int id, int page, int size, int orden, bool ascd);
         IList<CategoriaAM> TodosVncCategoriasInactivas(int id, int page, int size, int orden, bool ascd);
         VncCategoriaTipoCtgAM DesvncCategoriaTipoCtg(int idpadre, int idhijo);
@@ -113,6 +116,7 @@ namespace Domain.Bussiness.Interface
         IList<CategoriaAM> TodosVncCategorias(int id);
         long VincularCategoriasTotal(int id);
         long DesvincularCategoriasTotal(int id);
+        long DesvincularCategoriasVinculadasTotal(int id);
         long DesvincularCategoriasTotalActivas(int id);
         long DesvincularCategoriasTotalInactivas(int id);
 
@@ -122,17 +126,21 @@ namespace Domain.Bussiness.Interface
         IList<VncSubcategoriaCategoriaAM> TodosVncCategoriaSubcategoria();
         VncSubcategoriaCategoriaAM AgregarVncCategoriaSubcategoria(VncSubcategoriaCategoriaAM objeto);
         VncSubcategoriaCategoriaAM ObtenerVncCategoriaSubcategoria(int id);
+        VncSubcategoriaCategoriaAM ActualizarVncCategoriaSubcategoria(VncSubcategoriaCategoriaAM objeto);
+        VncSubcategoriaCategoriaAM ObtenerVncCategoriaSubcategoria(int padre, int id);
         IList<SubcategoriaAM> TodosVncSubcategoria(int id);
         VncSubcategoriaCategoriaAM DesvncSubcategoriasCategoria(int idpadre, int idhijo);
         void VincularSubcategoriasCategoria(DvcSubcategoriaCategoria objeto);
         void DesvncSubcategoriasCategoria(DvcSubcategoriaCategoria objeto);
         IList<SubcategoriaAM> VinculadasSubcategoria(int id, int page, int size, int orden, bool ascd);
+        IList<SubcategoriaAM> VinculadasSubcategoriaTipoCero(int id, int page, int size, int orden, bool ascd);
         IList<SubcategoriaAM> VinculadasSubcategoriaActivas(int id, int page, int size, int orden, bool ascd);
         IList<SubcategoriaAM> VinculadasSubcategoriaInactivas(int id, int page, int size, int orden, bool ascd);
         IList<SubcategoriaAM> VinculadasSubcategoria(int id);
         IList<SubcategoriaAM> VincularSubcategoria(int id);
         IList<SubcategoriaAM> VincularSubcategoria(int id, int page, int size);
         long VinculadasSubcategoriasTotal(int id);
+        long VinculadasSubcategoriasTipoCeroTotal(int id);
         long VinculadasSubcategoriasTotalActivas(int id);
         long VinculadasSubcategoriasTotalInactivas(int id);
         long VincularSubcategoriasTotal(int id);
@@ -142,15 +150,19 @@ namespace Domain.Bussiness.Interface
         IList<VncTercerNvlSubcategoriaAM> TodosVncTercerNvlSubcategoria();
         VncTercerNvlSubcategoriaAM AgregarVncTercerNvlSubcategoria(VncTercerNvlSubcategoriaAM objeto);
         VncTercerNvlSubcategoriaAM ObtenerVncTercerNvlSubcategoria(int id);
+        VncTercerNvlSubcategoriaAM ActualizarVncTercerNvlSubcategoria(VncTercerNvlSubcategoriaAM objeto);
+        VncTercerNvlSubcategoriaAM ObtenerVncTercerNvlSubcategoria(int padre, int id);
         IList<TercerNivelAM> TodosVncTercerNivel(int id);
         VncTercerNvlSubcategoriaAM DesvncTercerNvlSubcategoria(int idpadre, int idhijo);
         void DesvncTercerNvlSbc(DvcTercerNivelSct objeto);
         void VincularTercerNvlSbc(DvcTercerNivelSct objeto);
         IList<TercerNivelAM> VinculadasTercerNivel(int id, int page, int size, int orden, bool ascd);
+        IList<TercerNivelAM> VinculadasTercerNivelTipoCero(int id, int page, int size, int orden, bool ascd);
         IList<TercerNivelAM> VinculadasTercerNivelActivas(int id, int page, int size, int orden, bool ascd);
         IList<TercerNivelAM> VinculadasTercerNivelInactivas(int id, int page, int size, int orden, bool ascd);
         IList<TercerNivelAM> VinculadasTercerNivel(int id);
         long VinculadasTercerNivelTotal(int id);
+        long VinculadasTercerNivelTipoCeroTotal(int id);
         long VinculadasTercerNivelTotalActivas(int id);
         long VinculadasTercerNivelTotalInactivas(int id);
         IList<TercerNivelAM> VincularTercerNivel(int id, int page, int size);
@@ -203,10 +215,10 @@ namespace Domain.Bussiness.Interface
         ElementoCategoriaAM ActualizarElementoCategoria(ElementoCategoriaAM objeto);
         IList<ElementoCategoriaAM> TodasElementoCategoria();
         ElementoCategoriaAM ElementoCategoriaId(int id);
-        ElementoCategoriaAM ElementoCategoriaSedeElectronicaId(int id);
-        ElementoCategoriaAM ElementoCategoriaVentanillaUnicaId(int id);
-        ElementoCategoriaAM ElementoCategoriaTramisteServicioId(int id);
-        ElementoCategoriaAM ElementoCategoriaPortalTransversalId(int id);
+        ElementoCategoriaAM ElementoCategoriaSedeElectronicaId(int id, int padre);
+        ElementoCategoriaAM ElementoCategoriaVentanillaUnicaId(int id, int padre);
+        ElementoCategoriaAM ElementoCategoriaTramisteServicioId(int id, int padre);
+        ElementoCategoriaAM ElementoCategoriaPortalTransversalId(int id, int padre);
         ElementoCategoriaAM AgregarElementoCategoria(ElementoCategoriaAM objeto);
         IList<PPTAM> VinculadasPPT(int id, int page, int size);
         IList<PPTAM> VincularPPT(int id, int page, int size);
@@ -248,10 +260,10 @@ namespace Domain.Bussiness.Interface
         long VinculadasRecursoCategoriaTotal(int id);
 
         //Elemento Subcategoria
-        ElementoSubcategoriaAM ElementoSubcategoriaSedeElectronicaId(int id);
-        ElementoSubcategoriaAM ElementoSubcategoriaVentanillaUnicaId(int id);
-        ElementoSubcategoriaAM ElementoSubcategoriaTramisteServicioId(int id);
-        ElementoSubcategoriaAM ElementoSubcategoriaPortalTransversalId(int id);
+        ElementoSubcategoriaAM ElementoSubcategoriaSedeElectronicaId(int id, int padre);
+        ElementoSubcategoriaAM ElementoSubcategoriaVentanillaUnicaId(int id, int padre);
+        ElementoSubcategoriaAM ElementoSubcategoriaTramisteServicioId(int id, int padre);
+        ElementoSubcategoriaAM ElementoSubcategoriaPortalTransversalId(int id, int padre);
         ElementoSubcategoriaAM ActualizarElementoSubcategoria(ElementoSubcategoriaAM objeto);
         IList<ElementoSubcategoriaAM> TodasElementoSubcategoria();
         ElementoSubcategoriaAM ElementoSubcategoriaId(int id);
@@ -295,10 +307,10 @@ namespace Domain.Bussiness.Interface
 
 
         //Elemento Tercer Nivel
-        ElementoTercerNivelAM ElementoTercerNivelSedeElectronicaId(int id);
-        ElementoTercerNivelAM ElementoTercerNivelVentanillaUnicaId(int id);
-        ElementoTercerNivelAM ElementoTercerNivelTramisteServicioId(int id);
-        ElementoTercerNivelAM ElementoTercerNivelPortalTransversalId(int id);
+        ElementoTercerNivelAM ElementoTercerNivelSedeElectronicaId(int id, int padre);
+        ElementoTercerNivelAM ElementoTercerNivelVentanillaUnicaId(int id, int padre);
+        ElementoTercerNivelAM ElementoTercerNivelTramisteServicioId(int id, int padre);
+        ElementoTercerNivelAM ElementoTercerNivelPortalTransversalId(int id, int padre);
         ElementoTercerNivelAM ActualizarElementoTercerNivel(ElementoTercerNivelAM objeto);
         IList<ElementoTercerNivelAM> TodasElementoTercerNivel();
         ElementoTercerNivelAM ElementoTercerNivelId(int id);

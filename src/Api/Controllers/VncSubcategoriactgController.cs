@@ -62,10 +62,44 @@ namespace Api.Controllers
             return NotFound();
         }
 
+        [HttpGet("{padre}/{id}")]
+        public IActionResult getSubcategoriaId(int padre, int id)
+        {
+            VncSubcategoriaCategoriaAM vinculo = administracionBO.ObtenerVncCategoriaSubcategoria(padre, id);
+            if (vinculo != null)
+            {
+                return new JsonResult(vinculo);
+            }
+            return NotFound();
+        }
+
         [HttpGet("Subcategorias/{id}")]
         public IActionResult getSubcategorias(int id)
         {
             return new JsonResult(this.administracionBO.TodosVncSubcategoria(id));
+        }
+
+        [HttpPut("Actualizar/{id}")]
+        public IActionResult PutCategoria(int id, VncSubcategoriaCategoriaAM objeto)
+        {
+            try
+            {
+                if (objeto == null)
+                {
+                    return BadRequest("Owner object is null");
+                }
+                
+                if(objeto.id != id)
+                {
+                    return BadRequest("Owner object is null for id");
+                }
+                return new JsonResult(this.administracionBO.ActualizarVncCategoriaSubcategoria(objeto));
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw ex;
+            }
+            return NoContent();
         }
 
         [HttpPut("{idCategoria}/{idSubcategoria}")]
@@ -112,6 +146,12 @@ namespace Api.Controllers
             return new JsonResult(administracionBO.VinculadasSubcategoria(vincular.idParametro, vincular.page, vincular.size, vincular.orden, vincular.ascd));
         }
 
+        [HttpPost("Vinculadas/TipoCero")]
+        public IActionResult getVinculadasTipoCero(PaginateVincular vincular)
+        {
+            return new JsonResult(administracionBO.VinculadasSubcategoriaTipoCero(vincular.idParametro, vincular.page, vincular.size, vincular.orden, vincular.ascd));
+        }
+
         [HttpPost("Vincular")]
         public IActionResult getVincular(PaginateVincular vincular)
         {
@@ -140,6 +180,12 @@ namespace Api.Controllers
         public IActionResult getVinculadasTotal(int id)
         {
             return new JsonResult(administracionBO.VinculadasSubcategoriasTotal(id));
+        }
+
+        [HttpGet("Vinculadas/Total/TipoCero/{id}")]
+        public IActionResult getVinculadasTipoCeroTotal(int id)
+        {
+            return new JsonResult(administracionBO.VinculadasSubcategoriasTipoCeroTotal(id));
         }
 
         [HttpGet("Vinculadas/Total/Activas/{id}")]

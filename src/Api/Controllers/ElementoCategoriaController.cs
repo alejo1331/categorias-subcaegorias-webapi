@@ -63,10 +63,10 @@ namespace Api.Controllers
             return NotFound();
         }
 
-        [HttpGet("SedeElectronica/{id}")]
-        public IActionResult getSedeElectronicaId(int id)
+        [HttpGet("SedeElectronica/{id}/{padre}")]
+        public IActionResult getSedeElectronicaId(int id, int padre)
         {
-            ElementoCategoriaAM objeto = administracionBO.ElementoCategoriaSedeElectronicaId(id);
+            ElementoCategoriaAM objeto = administracionBO.ElementoCategoriaSedeElectronicaId(id, padre);
 
             if (objeto != null)
             {
@@ -75,10 +75,10 @@ namespace Api.Controllers
             return NotFound();
         }
 
-        [HttpGet("VentanillaUnica/{id}")]
-        public IActionResult getVentanillaUnicaId(int id)
+        [HttpGet("VentanillaUnica/{id}/{padre}")]
+        public IActionResult getVentanillaUnicaId(int id, int padre)
         {
-            ElementoCategoriaAM objeto = administracionBO.ElementoCategoriaVentanillaUnicaId(id);
+            ElementoCategoriaAM objeto = administracionBO.ElementoCategoriaVentanillaUnicaId(id, padre);
 
             if (objeto != null)
             {
@@ -87,10 +87,10 @@ namespace Api.Controllers
             return NotFound();
         }
 
-        [HttpGet("TramiteServicio/{id}")]
-        public IActionResult getTramiteServicioId(int id)
+        [HttpGet("TramiteServicio/{id}/{padre}")]
+        public IActionResult getTramiteServicioId(int id, int padre)
         {
-            ElementoCategoriaAM objeto = administracionBO.ElementoCategoriaTramisteServicioId(id);
+            ElementoCategoriaAM objeto = administracionBO.ElementoCategoriaTramisteServicioId(id, padre);
 
             if (objeto != null)
             {
@@ -99,10 +99,10 @@ namespace Api.Controllers
             return NotFound();
         }
 
-        [HttpGet("PortalTransversal/{id}")]
-        public IActionResult getPortalTransversalId(int id)
+        [HttpGet("PortalTransversal/{id}/{padre}")]
+        public IActionResult getPortalTransversalId(int id, int padre)
         {
-            ElementoCategoriaAM objeto = administracionBO.ElementoCategoriaPortalTransversalId(id);
+            ElementoCategoriaAM objeto = administracionBO.ElementoCategoriaPortalTransversalId(id, padre);
 
             if (objeto != null)
             {

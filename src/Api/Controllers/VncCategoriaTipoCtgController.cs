@@ -50,6 +50,28 @@ namespace Api.Controllers
             }
         }
 
+        [HttpPut("Actualizar/{id}")]
+        public IActionResult Post([FromBody] VncCategoriaTipoCtgAM objeto, int id)
+        {
+            try
+            {
+                if (objeto == null)
+                {
+                    return BadRequest("Owner object is null");
+                }
+                
+                if(objeto.id != id)
+                {
+                    return BadRequest("Owner object is null for id");
+                }
+                return new JsonResult(this.administracionBO.ActualizarVncCategoriaTipoCtg(objeto));
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw ex;
+            }
+        }
+
         [HttpGet("{id}")]
         public IActionResult getSubcategoriaId(int id)
         {
@@ -61,10 +83,27 @@ namespace Api.Controllers
             return NotFound();
         }
 
+        [HttpGet("{padre}/{id}")]
+        public IActionResult getSubcategoriaId(int padre, int id)
+        {
+            VncCategoriaTipoCtgAM vinculo = administracionBO.ObtenerVncCategoriaTipoCtg(padre, id);
+            if (vinculo != null)
+            {
+                return new JsonResult(vinculo);
+            }
+            return NotFound();
+        }
+
         [HttpPost("Desvincular")]
         public IActionResult getCategoriaId(PaginateVincular desvincular)
         {
             return new JsonResult(this.administracionBO.TodosVncCategorias(desvincular.idParametro, desvincular.page, desvincular.size, desvincular.orden, desvincular.ascd));
+        }
+
+        [HttpPost("Desvincular/Vinculadas")]
+        public IActionResult getCategoriaVinculadas(PaginateVincular desvincular)
+        {
+            return new JsonResult(this.administracionBO.TodosVncCategoriasVinculadas(desvincular.idParametro, desvincular.page, desvincular.size, desvincular.orden, desvincular.ascd));
         }
 
         [HttpPost("Desvincular/Activas")]
@@ -139,6 +178,11 @@ namespace Api.Controllers
         public IActionResult getDevincularTotal(int id)
         {
             return new JsonResult(administracionBO.DesvincularCategoriasTotal(id));
+        }
+        [HttpGet("Desvincular/Total/Vinculadas/{id}")]
+        public IActionResult getDevincularVinculadasTotal(int id)
+        {
+            return new JsonResult(administracionBO.DesvincularCategoriasVinculadasTotal(id));
         }
         [HttpGet("Desvincular/Total/Activas/{id}")]
         public IActionResult getDevincularTotalActivas(int id)
