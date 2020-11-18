@@ -8,5 +8,9 @@ namespace Domain.Repository.Interface
     {
         IList<TramiteServicio> All();
         TramiteServicio GetId(string id);
+        IList<ParametrosUnion> ListaParametros(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
+        long ListaParametrosTotal(int id);
+        IList<string> AgruparEstado(int id);
+        IList<string> AgruparTipo(int id);
     }
 }

@@ -11,6 +11,7 @@ using Domain.Bussiness.Interface;
 using Domain.Bussiness.BO;
 using Domain.Data;
 using Domain.Categorias.AplicationModel;
+using Api.Helpers;
 
 namespace Api.Controllers
 {
@@ -43,6 +44,28 @@ namespace Api.Controllers
             return NotFound();
         }
 
-        
+        [HttpPost("Parametros")]
+        public IActionResult getParametrosId(PaginateVincular vincular)
+        {
+            return new JsonResult(this.administracionBO.TodosParametrosPortalTransversal(vincular.idParametro, vincular.page, vincular.size, vincular.orden, vincular.ascd, vincular.tipo, vincular.filtro));
+        }
+
+        [HttpGet("Parametros/Total/{id}")]
+        public IActionResult getParametrosTotal(int id)
+        {
+            return new JsonResult(this.administracionBO.TodosParametrosPortalTransversalTotal(id));
+        }
+
+        [HttpGet("Agrupacion/{id}")]
+        public IActionResult GetAgrupacionEstado(int id)
+        {
+            return new JsonResult(this.administracionBO.AgruparEstadoPortalTransversal(id));
+        }
+
+        [HttpGet("Agrupacion/Tipo/{id}")]
+        public IActionResult GetAgrupacionTipo(int id)
+        {
+            return new JsonResult(this.administracionBO.AgruparTipoPortalTransversal(id));
+        }
     }
 }
