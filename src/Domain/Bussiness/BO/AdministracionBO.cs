@@ -1172,6 +1172,30 @@ namespace Domain.Bussiness.BO
             return mapper.Map<List<TramiteServicioAM>>(repository.All());
         }
 
+        public IList<ParametrosUnionAM> TodosParametrosTramitesServicios(int id, int page, int size, int orden, bool ascd, int tipo, string filtro)
+        {
+            InterfaceTramiteServicio<TramiteServicio> repository = new RepositoryTramiteServicio(context);
+            return mapper.Map<List<ParametrosUnionAM>>(repository.ListaParametros(id, page, size, orden, ascd, tipo, filtro));
+        }
+
+        public long TodosParametrosTramitesServiciosTotal(int id)
+        {
+            InterfaceTramiteServicio<TramiteServicio> repository = new RepositoryTramiteServicio(context);
+            return repository.ListaParametrosTotal(id);
+        }
+
+        public IList<string> AgruparEstadoTramitesServicios(int id)
+        {
+            InterfaceTramiteServicio<TramiteServicio> repository = new RepositoryTramiteServicio(context);
+            return repository.AgruparEstado(id);
+        }
+
+        public IList<string> AgruparTipoTramitesServicios(int id)
+        {
+            InterfaceTramiteServicio<TramiteServicio> repository = new RepositoryTramiteServicio(context);
+            return repository.AgruparTipo(id);
+        }
+
         public TramiteServicioAM TramiteServicioId(string id)
         {
             InterfaceTramiteServicio<TramiteServicio> repository = new RepositoryTramiteServicio(context);
@@ -1185,6 +1209,32 @@ namespace Domain.Bussiness.BO
             InterfaceVentanillaUnica<VentanillaUnica> repository = new RepositoryVentanillaUnica(context);
             return mapper.Map<List<VentanillaUnicaAM>>(repository.All());
         }
+
+        public IList<ParametrosUnionAM> TodosParametrosVentanillaUnica(int id, int page, int size, int orden, bool ascd, int tipo, string filtro)
+        {
+            InterfaceVentanillaUnica<VentanillaUnica> repository = new RepositoryVentanillaUnica(context);
+            return mapper.Map<List<ParametrosUnionAM>>(repository.ListaParametros(id, page, size, orden, ascd, tipo, filtro));
+        }
+
+        public long TodosParametrosVentanillaUnicaTotal(int id)
+        {
+            InterfaceVentanillaUnica<VentanillaUnica> repository = new RepositoryVentanillaUnica(context);
+            return repository.ListaParametrosTotal(id);
+        }
+
+
+        public IList<string> AgruparEstadoVentanillaUnica(int id)
+        {
+            InterfaceVentanillaUnica<VentanillaUnica> repository = new RepositoryVentanillaUnica(context);
+            return repository.AgruparEstado(id);
+        }
+
+        public IList<string> AgruparTipoVentanillaUnica(int id)
+        {
+            InterfaceVentanillaUnica<VentanillaUnica> repository = new RepositoryVentanillaUnica(context);
+            return repository.AgruparTipo(id);
+        }
+
 
         public VentanillaUnicaAM VentanillaUnicaId(int id)
         {
@@ -1203,6 +1253,30 @@ namespace Domain.Bussiness.BO
         {
             InterfaceSedeElectronica<SedeElectronica> repository = new RepositorySedeElectronica(context);
             return mapper.Map<SedeElectronicaAM>(repository.GetId(id));
+        }
+
+        public IList<ParametrosUnionAM> TodosParametrosSedesElectronicas(int id, int page, int size, int orden, bool ascd, int tipo, string filtro)
+        {
+            InterfaceSedeElectronica<SedeElectronica> repository = new RepositorySedeElectronica(context);
+            return mapper.Map<List<ParametrosUnionAM>>(repository.ListaParametros(id, page, size, orden, ascd, tipo, filtro));
+        }
+
+        public long TodosParametrosSedesElectronicasTotal(int id)
+        {
+            InterfaceSedeElectronica<SedeElectronica> repository = new RepositorySedeElectronica(context);
+            return repository.ListaParametrosTotal(id);
+        }
+
+        public IList<string> AgruparEstadoSedesElectronicas(int id)
+        {
+            InterfaceSedeElectronica<SedeElectronica> repository = new RepositorySedeElectronica(context);
+            return repository.AgruparEstado(id);
+        }
+
+        public IList<string> AgruparTipoSedesElectronicas(int id)
+        {
+            InterfaceSedeElectronica<SedeElectronica> repository = new RepositorySedeElectronica(context);
+            return repository.AgruparTipo(id);
         }
 
         //Tipo Elemento
@@ -1956,6 +2030,31 @@ namespace Domain.Bussiness.BO
             InterfacePortalTransversal<PortalTransversal> repository = new RepositoryPortalTransversal(context);
             return mapper.Map<List<PortalTransversalAM>>(repository.All());
         }
+
+        public IList<ParametrosUnionAM> TodosParametrosPortalTransversal(int id, int page, int size, int orden, bool ascd, int tipo, string filtro)
+        {
+            InterfacePortalTransversal<PortalTransversal> repository = new RepositoryPortalTransversal(context);
+            return mapper.Map<List<ParametrosUnionAM>>(repository.ListaParametros(id, page, size, orden, ascd, tipo, filtro));
+        }
+
+        public long TodosParametrosPortalTransversalTotal(int id)
+        {
+            InterfacePortalTransversal<PortalTransversal> repository = new RepositoryPortalTransversal(context);
+            return repository.ListaParametrosTotal(id);
+        }
+
+        public IList<string> AgruparEstadoPortalTransversal(int id)
+        {
+            InterfacePortalTransversal<PortalTransversal> repository = new RepositoryPortalTransversal(context);
+            return repository.AgruparEstado(id);
+        }
+
+        public IList<string> AgruparTipoPortalTransversal(int id)
+        {
+            InterfacePortalTransversal<PortalTransversal> repository = new RepositoryPortalTransversal(context);
+            return repository.AgruparTipo(id);
+        }
+        
 
         public PortalTransversalAM PortalTransversalId(int id)
         {
