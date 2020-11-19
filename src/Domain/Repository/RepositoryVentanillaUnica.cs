@@ -293,6 +293,66 @@ namespace Domain.Repository
 
             return (categorias + subcategorias + tercerNivel);
         }
+
+        public long ListaParametrosTotal(int id, int tipo, string filtro)
+        {
+            
+            var vinculos = this.context.ElementoCategorias.Where(s => s.tipoElementoId == 4 && s.codigoEstado == 1 && s.elementoId == id)
+                                                            .Select(s => s.categoriaId)
+                                                            .ToList();
+
+            var categorias = this.context.Categorias.Where(s => vinculos.Contains(s.id))
+                                                    .Select(s => new { id = s.id, nombre = s.nombre, tipo = 2, estado = s.codigoEstado, orden = s.orden, descripcion = s.descripcionCorta })
+                                                    .ToList();
+            
+            var vinculos1 = this.context.ElementoSubcategorias.Where(s => s.tipoElementoId == 4 && s.codigoEstado == 1 && s.elementoId == id)
+                                                            .Select(s => s.subcategoriaId)
+                                                            .ToList();
+            
+            var subcategorias = this.context.Subcategorias.Where(s => vinculos1.Contains(s.id))
+                                                        .Select(s => new { id = s.id, nombre = s.nombre, tipo = 3, estado = s.codigoEstado, orden = s.orden, descripcion = s.descripcionCorta })
+                                                        .ToList();
+
+            var vinculos2 = this.context.ElementoTercerNivels.Where(s => s.tipoElementoId == 4 && s.codigoEstado == 1 && s.elementoId == id)
+                                                            .Select(s => s.tercerNivelId)
+                                                            .ToList();
+
+            var tercerNivel = this.context.TercerNivels.Where(s => vinculos2.Contains(s.id))
+                                                        .Select(s => new { id = s.id, nombre = s.nombre, tipo = 4, estado = s.codigoEstado, orden = s.orden, descripcion = s.descripcionCorta })
+                                                        .ToList();
+
+            List<ParametrosUnion> Union = new List<ParametrosUnion>();
+            
+            var union = categorias.Union(subcategorias);
+
+            union = union.Union(tercerNivel).ToList();
+            
+
+            if(tipo == 2)
+            {
+                union = union.Where(s => s.tipo == 2).ToList();
+            }
+            else if(tipo == 3)
+            {
+                union = union.Where(s => s.tipo == 3).ToList();
+            }
+            else if(tipo == 4)
+            {
+                union = union.Where(s => s.tipo == 4).ToList();
+            }
+
+            //Filtro por Activo/Inactivo
+            if(filtro == "1")
+            {
+                union = union.Where(s => s.estado == 1).ToList();
+            }
+            else if(filtro == "2")
+            {
+                union = union.Where(s => s.estado == 2).ToList();
+            }            
+
+            return union.Count();
+        }
         
     }
 }

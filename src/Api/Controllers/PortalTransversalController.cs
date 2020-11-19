@@ -62,6 +62,12 @@ namespace Api.Controllers
             return new JsonResult(this.administracionBO.TodosParametrosPortalTransversalTotal(id));
         }
 
+        [HttpGet("Parametros/Total/{id}/{tipo}/{filtro}")]
+        public IActionResult getParametrosTotal(int id, int tipo, string filtro)
+        {
+            return new JsonResult(this.administracionBO.TodosParametrosPortalTransversalTotal(id, tipo, filtro));
+        }
+
         [HttpGet("Agrupacion/{id}")]
         public IActionResult GetAgrupacionEstado(int id)
         {

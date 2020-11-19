@@ -376,6 +376,7 @@ namespace Domain.Bussiness.Interface
         IList<ParametrosUnionAM> TodosParametrosSedesElectronicas(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<ParametrosUnionAM> TodosParametrosSedesElectronicas(int id);
         long TodosParametrosSedesElectronicasTotal(int id);
+        long TodosParametrosSedesElectronicasTotal(int id, int tipo, string filtro);
         IList<string> AgruparEstadoSedesElectronicas(int id);
         IList<string> AgruparTipoSedesElectronicas(int id);
 
@@ -383,6 +384,7 @@ namespace Domain.Bussiness.Interface
         IList<ParametrosUnionAM> TodosParametrosVentanillaUnica(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<ParametrosUnionAM> TodosParametrosVentanillaUnica(int id);
         long TodosParametrosVentanillaUnicaTotal(int id);
+        long TodosParametrosVentanillaUnicaTotal(int id, int tipo, string filtro);
         IList<string> AgruparEstadoVentanillaUnica(int id);
         IList<string> AgruparTipoVentanillaUnica(int id);
 
@@ -390,6 +392,7 @@ namespace Domain.Bussiness.Interface
         IList<ParametrosUnionAM> TodosParametrosPortalTransversal(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<ParametrosUnionAM> TodosParametrosPortalTransversal(int id);
         long TodosParametrosPortalTransversalTotal(int id);
+        long TodosParametrosPortalTransversalTotal(int id, int tipo, string filtro);
         IList<string> AgruparEstadoPortalTransversal(int id); 
         IList<string> AgruparTipoPortalTransversal(int id);
         
@@ -398,8 +401,23 @@ namespace Domain.Bussiness.Interface
         IList<ParametrosUnionAM> TodosParametrosTramitesServicios(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<ParametrosUnionAM> TodosParametrosTramitesServicios(int id);
         long TodosParametrosTramitesServiciosTotal(int id);
+        long TodosParametrosTramitesServiciosTotal(int id, int tipo, string filtro);
         IList<string> AgruparEstadoTramitesServicios(int id); 
-        IList<string> AgruparTipoTramitesServicios(int id);        
+        IList<string> AgruparTipoTramitesServicios(int id);   
+
+        //Categoria Suit
+        IList<CategoriaSUITAM> AllCategoriasSuit();
+        CategoriaSUITAM GetCategoriaSuitId(int id);   
+
+        //Vinculo Categoria a Categoria SUIT
+        IList<CategoriaCtgSuitAM> AllCategoriaCtgSuit();
+        CategoriaCtgSuitAM AddCategoriaCtgSuit(CategoriaCtgSuitAM objeto);
+        CategoriaCtgSuitAM GetCategoriaCtgSuitId(int id); 
+
+        //Vinculo Subcategoria a Categoria SUIT
+        IList<SubcategoriaCtgSuitAM> AllSubcategoriaCtgSuit();
+        SubcategoriaCtgSuitAM AddSubcategoriaCtgSuit(SubcategoriaCtgSuitAM objeto);
+        SubcategoriaCtgSuitAM GetSubcategoriaCtgSuitId(int id);  
         
     }
 }

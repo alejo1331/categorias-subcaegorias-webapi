@@ -23,7 +23,10 @@ namespace Domain.Data
         public DbSet<ElementoCategoria> ElementoCategorias { get; set; }
         public DbSet<ElementoSubcategoria> ElementoSubcategorias { get; set; }
         public DbSet<ElementoTercerNivel> ElementoTercerNivels { get; set; }
-        public DbSet<PortalTransversal> PortalTransversals { get; set; }      
+        public DbSet<PortalTransversal> PortalTransversals { get; set; }     
+        public DbSet<CategoriaSUIT> CategoriaSUITs { get; set; }  
+        public DbSet<CategoriaCtgSuit> CategoriaCtgSuits { get; set; }
+        public DbSet<SubcategoriaCtgSuit> SubcategoriaCtgSuits { get; set; }
         
 
         //Vinculos

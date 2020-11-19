@@ -1190,6 +1190,12 @@ namespace Domain.Bussiness.BO
             return repository.ListaParametrosTotal(id);
         }
 
+        public long TodosParametrosTramitesServiciosTotal(int id, int tipo, string filtro)
+        {
+            InterfaceTramiteServicio<TramiteServicio> repository = new RepositoryTramiteServicio(context);
+            return repository.ListaParametrosTotal(id, tipo, filtro);
+        }
+
         public IList<string> AgruparEstadoTramitesServicios(int id)
         {
             InterfaceTramiteServicio<TramiteServicio> repository = new RepositoryTramiteServicio(context);
@@ -1232,6 +1238,12 @@ namespace Domain.Bussiness.BO
         {
             InterfaceVentanillaUnica<VentanillaUnica> repository = new RepositoryVentanillaUnica(context);
             return repository.ListaParametrosTotal(id);
+        }
+
+        public long TodosParametrosVentanillaUnicaTotal(int id, int tipo, string filtro)
+        {
+            InterfaceVentanillaUnica<VentanillaUnica> repository = new RepositoryVentanillaUnica(context);
+            return repository.ListaParametrosTotal(id, tipo, filtro);
         }
 
 
@@ -1283,6 +1295,12 @@ namespace Domain.Bussiness.BO
         {
             InterfaceSedeElectronica<SedeElectronica> repository = new RepositorySedeElectronica(context);
             return repository.ListaParametrosTotal(id);
+        }
+
+        public long TodosParametrosSedesElectronicasTotal(int id, int tipo, string filtro)
+        {
+            InterfaceSedeElectronica<SedeElectronica> repository = new RepositorySedeElectronica(context);
+            return repository.ListaParametrosTotal(id, tipo, filtro);
         }
 
         public IList<string> AgruparEstadoSedesElectronicas(int id)
@@ -2067,6 +2085,12 @@ namespace Domain.Bussiness.BO
             return repository.ListaParametrosTotal(id);
         }
 
+        public long TodosParametrosPortalTransversalTotal(int id, int tipo, string filtro)
+        {
+            InterfacePortalTransversal<PortalTransversal> repository = new RepositoryPortalTransversal(context);
+            return repository.ListaParametrosTotal(id, tipo, filtro);
+        }
+
         public IList<string> AgruparEstadoPortalTransversal(int id)
         {
             InterfacePortalTransversal<PortalTransversal> repository = new RepositoryPortalTransversal(context);
@@ -2246,7 +2270,64 @@ namespace Domain.Bussiness.BO
         }
 
 
-        
+        //Categoria Suit
+        public IList<CategoriaSUITAM> AllCategoriasSuit()
+        {
+            InterfaceCategoriaSUIT<CategoriaSUIT> repository = new RepositoryCategoriaSUIT(context);
+            return mapper.Map<List<CategoriaSUITAM>>(repository.All());
+        }
+
+        public CategoriaSUITAM GetCategoriaSuitId(int id)
+        {
+            InterfaceCategoriaSUIT<CategoriaSUIT> repository = new RepositoryCategoriaSUIT(context);
+            return mapper.Map<CategoriaSUITAM>(repository.GetId(id));
+        }
+
+        //Vinculo Categoria a Categoria Suit
+        public IList<CategoriaCtgSuitAM> AllCategoriaCtgSuit()
+        {
+            InterfaceCategoriaCtgSuit<CategoriaCtgSuit> repository = new RepositoryCategoriaCtgSuit(context);
+            return mapper.Map<List<CategoriaCtgSuitAM>>(repository.All());
+        }
+
+        public CategoriaCtgSuitAM GetCategoriaCtgSuitId(int id)
+        {
+            InterfaceCategoriaCtgSuit<CategoriaCtgSuit> repository = new RepositoryCategoriaCtgSuit(context);
+            return mapper.Map<CategoriaCtgSuitAM>(repository.GetId(id));
+        }
+
+        public CategoriaCtgSuitAM AddCategoriaCtgSuit(CategoriaCtgSuitAM objeto)
+        {
+            InterfaceCategoriaCtgSuit<CategoriaCtgSuit> repository = new RepositoryCategoriaCtgSuit(context);
+            CategoriaCtgSuit CategoriaCtgSuit = mapper.Map<CategoriaCtgSuit>(objeto);
+            repository.Add(CategoriaCtgSuit);
+            this.context.SaveChanges();
+            CategoriaCtgSuitAM CategoriaCtgSuitAM = mapper.Map<CategoriaCtgSuitAM>(CategoriaCtgSuit);
+            return CategoriaCtgSuitAM;
+        }
+
+        //Vinculo Subcategoria a Categoria Suit
+        public IList<SubcategoriaCtgSuitAM> AllSubcategoriaCtgSuit()
+        {
+            InterfaceSubcategoriaCtgSuit<SubcategoriaCtgSuit> repository = new RepositorySubcategoriaCtgSuit(context);
+            return mapper.Map<List<SubcategoriaCtgSuitAM>>(repository.All());
+        }
+
+        public SubcategoriaCtgSuitAM GetSubcategoriaCtgSuitId(int id)
+        {
+            InterfaceSubcategoriaCtgSuit<SubcategoriaCtgSuit> repository = new RepositorySubcategoriaCtgSuit(context);
+            return mapper.Map<SubcategoriaCtgSuitAM>(repository.GetId(id));
+        }
+
+        public SubcategoriaCtgSuitAM AddSubcategoriaCtgSuit(SubcategoriaCtgSuitAM objeto)
+        {
+            InterfaceSubcategoriaCtgSuit<SubcategoriaCtgSuit> repository = new RepositorySubcategoriaCtgSuit(context);
+            SubcategoriaCtgSuit SubcategoriaCtgSuit = mapper.Map<SubcategoriaCtgSuit>(objeto);
+            repository.Add(SubcategoriaCtgSuit);
+            this.context.SaveChanges();
+            SubcategoriaCtgSuitAM SubcategoriaCtgSuitAM = mapper.Map<SubcategoriaCtgSuitAM>(SubcategoriaCtgSuit);
+            return SubcategoriaCtgSuitAM;
+        }
 
     }
 }
