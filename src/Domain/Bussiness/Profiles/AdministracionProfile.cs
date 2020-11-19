@@ -18,6 +18,7 @@ namespace Domain.Bussiness.Profiles
             CreateMap<TipoRecurso, TipoRecursoAM>().ReverseMap();
             CreateMap<Recurso, RecursoAM>().ReverseMap();
             CreateMap<TipoParametro, TipoParametroAM>().ReverseMap();
+            CreateMap<CategoriaSUIT, CategoriaSUITAM>().ReverseMap();
 
             //Vinculaciones
             CreateMap<VncCategoriaTipoCtg, VncCategoriaTipoCtgAM>().ReverseMap();
@@ -27,6 +28,8 @@ namespace Domain.Bussiness.Profiles
             CreateMap<VncCategoriaRecurso, VncCategoriaRecursoAM>().ReverseMap();
             CreateMap<VncSubcategoriaRecurso, VncSubcategoriaRecursoAM>().ReverseMap();
             CreateMap<VncTercerNvlRecurso, VncTercerNvlRecursoAM>().ReverseMap();
+            CreateMap<CategoriaCtgSuit, CategoriaCtgSuitAM>().ReverseMap();
+            CreateMap<SubcategoriaCtgSuit, SubcategoriaCtgSuitAM>().ReverseMap();
 
             //Elementos
             CreateMap<PPT, PPTAM>();
