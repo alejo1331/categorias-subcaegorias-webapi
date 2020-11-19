@@ -126,6 +126,54 @@ namespace Domain.Repository
             return Union;
         }
 
+        public IList<ParametrosUnion> ListaParametros(int id)
+        {
+            
+            var vinculos = this.context.ElementoCategorias.Where(s => s.tipoElementoId == 4 && s.codigoEstado == 1 && s.elementoId == id)
+                                                            .Select(s => s.categoriaId)
+                                                            .ToList();
+
+            var categorias = this.context.Categorias.Where(s => vinculos.Contains(s.id))
+                                                    .Select(s => new { id = s.id, nombre = s.nombre, tipo = 2, estado = s.codigoEstado, orden = s.orden, descripcion = s.descripcionCorta })
+                                                    .ToList();
+            
+            var vinculos1 = this.context.ElementoSubcategorias.Where(s => s.tipoElementoId == 4 && s.codigoEstado == 1 && s.elementoId == id)
+                                                            .Select(s => s.subcategoriaId)
+                                                            .ToList();
+            
+            var subcategorias = this.context.Subcategorias.Where(s => vinculos1.Contains(s.id))
+                                                        .Select(s => new { id = s.id, nombre = s.nombre, tipo = 3, estado = s.codigoEstado, orden = s.orden, descripcion = s.descripcionCorta })
+                                                        .ToList();
+
+            var vinculos2 = this.context.ElementoTercerNivels.Where(s => s.tipoElementoId == 4 && s.codigoEstado == 1 && s.elementoId == id)
+                                                            .Select(s => s.tercerNivelId)
+                                                            .ToList();
+
+            var tercerNivel = this.context.TercerNivels.Where(s => vinculos2.Contains(s.id))
+                                                        .Select(s => new { id = s.id, nombre = s.nombre, tipo = 4, estado = s.codigoEstado, orden = s.orden, descripcion = s.descripcionCorta })
+                                                        .ToList();
+
+            List<ParametrosUnion> Union = new List<ParametrosUnion>();
+            
+            var union = categorias.Union(subcategorias);
+
+            union = union.Union(tercerNivel).ToList();            
+
+            foreach (var item in union)
+            {
+                Union.Add(new ParametrosUnion(){
+                    id = item.id,
+                    nombre = item.nombre,
+                    tipo = item.tipo,
+                    orden = item.orden,
+                    estado = item.estado,
+                    descripcion = item.descripcion
+                });
+            }
+
+            return Union;
+        }
+
         public IList<string> AgruparEstado(int id)
         {
             var vinculos = this.context.ElementoCategorias.Where(s => s.tipoElementoId == 4 && s.codigoEstado == 1 && s.elementoId == id)
