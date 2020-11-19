@@ -50,6 +50,12 @@ namespace Api.Controllers
             return new JsonResult(this.administracionBO.TodosParametrosPortalTransversal(vincular.idParametro, vincular.page, vincular.size, vincular.orden, vincular.ascd, vincular.tipo, vincular.filtro));
         }
 
+        [HttpGet("Parametros/{id}")]
+        public IActionResult getParametrosId(int id)
+        {
+            return new JsonResult(this.administracionBO.TodosParametrosPortalTransversal(id));
+        }
+
         [HttpGet("Parametros/Total/{id}")]
         public IActionResult getParametrosTotal(int id)
         {

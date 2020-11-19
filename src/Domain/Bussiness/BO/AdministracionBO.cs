@@ -1178,6 +1178,12 @@ namespace Domain.Bussiness.BO
             return mapper.Map<List<ParametrosUnionAM>>(repository.ListaParametros(id, page, size, orden, ascd, tipo, filtro));
         }
 
+        public IList<ParametrosUnionAM> TodosParametrosTramitesServicios(int id)
+        {
+            InterfaceTramiteServicio<TramiteServicio> repository = new RepositoryTramiteServicio(context);
+            return mapper.Map<List<ParametrosUnionAM>>(repository.ListaParametros(id));
+        }
+
         public long TodosParametrosTramitesServiciosTotal(int id)
         {
             InterfaceTramiteServicio<TramiteServicio> repository = new RepositoryTramiteServicio(context);
@@ -1214,6 +1220,12 @@ namespace Domain.Bussiness.BO
         {
             InterfaceVentanillaUnica<VentanillaUnica> repository = new RepositoryVentanillaUnica(context);
             return mapper.Map<List<ParametrosUnionAM>>(repository.ListaParametros(id, page, size, orden, ascd, tipo, filtro));
+        }
+
+        public IList<ParametrosUnionAM> TodosParametrosVentanillaUnica(int id)
+        {
+            InterfaceVentanillaUnica<VentanillaUnica> repository = new RepositoryVentanillaUnica(context);
+            return mapper.Map<List<ParametrosUnionAM>>(repository.ListaParametros(id));
         }
 
         public long TodosParametrosVentanillaUnicaTotal(int id)
@@ -1259,6 +1271,12 @@ namespace Domain.Bussiness.BO
         {
             InterfaceSedeElectronica<SedeElectronica> repository = new RepositorySedeElectronica(context);
             return mapper.Map<List<ParametrosUnionAM>>(repository.ListaParametros(id, page, size, orden, ascd, tipo, filtro));
+        }
+
+        public IList<ParametrosUnionAM> TodosParametrosSedesElectronicas(int id)
+        {
+            InterfaceSedeElectronica<SedeElectronica> repository = new RepositorySedeElectronica(context);
+            return mapper.Map<List<ParametrosUnionAM>>(repository.ListaParametros(id));
         }
 
         public long TodosParametrosSedesElectronicasTotal(int id)
@@ -2035,6 +2053,12 @@ namespace Domain.Bussiness.BO
         {
             InterfacePortalTransversal<PortalTransversal> repository = new RepositoryPortalTransversal(context);
             return mapper.Map<List<ParametrosUnionAM>>(repository.ListaParametros(id, page, size, orden, ascd, tipo, filtro));
+        }
+
+        public IList<ParametrosUnionAM> TodosParametrosPortalTransversal(int id)
+        {
+            InterfacePortalTransversal<PortalTransversal> repository = new RepositoryPortalTransversal(context);
+            return mapper.Map<List<ParametrosUnionAM>>(repository.ListaParametros(id));
         }
 
         public long TodosParametrosPortalTransversalTotal(int id)

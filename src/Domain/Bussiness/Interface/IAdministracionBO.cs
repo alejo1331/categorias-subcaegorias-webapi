@@ -374,18 +374,21 @@ namespace Domain.Bussiness.Interface
 
         //Sedes Electronicas
         IList<ParametrosUnionAM> TodosParametrosSedesElectronicas(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
+        IList<ParametrosUnionAM> TodosParametrosSedesElectronicas(int id);
         long TodosParametrosSedesElectronicasTotal(int id);
         IList<string> AgruparEstadoSedesElectronicas(int id);
         IList<string> AgruparTipoSedesElectronicas(int id);
 
         //Ventanilla Unica
         IList<ParametrosUnionAM> TodosParametrosVentanillaUnica(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
+        IList<ParametrosUnionAM> TodosParametrosVentanillaUnica(int id);
         long TodosParametrosVentanillaUnicaTotal(int id);
         IList<string> AgruparEstadoVentanillaUnica(int id);
         IList<string> AgruparTipoVentanillaUnica(int id);
 
         //Portal Transversal
         IList<ParametrosUnionAM> TodosParametrosPortalTransversal(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
+        IList<ParametrosUnionAM> TodosParametrosPortalTransversal(int id);
         long TodosParametrosPortalTransversalTotal(int id);
         IList<string> AgruparEstadoPortalTransversal(int id); 
         IList<string> AgruparTipoPortalTransversal(int id);
@@ -393,6 +396,7 @@ namespace Domain.Bussiness.Interface
 
         //Tramites y servicios
         IList<ParametrosUnionAM> TodosParametrosTramitesServicios(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
+        IList<ParametrosUnionAM> TodosParametrosTramitesServicios(int id);
         long TodosParametrosTramitesServiciosTotal(int id);
         IList<string> AgruparEstadoTramitesServicios(int id); 
         IList<string> AgruparTipoTramitesServicios(int id);        
