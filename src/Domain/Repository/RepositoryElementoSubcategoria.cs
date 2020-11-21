@@ -762,6 +762,11 @@ namespace Domain.Repository
                                                                 .Select(s => new { id = s.id, nombre = s.nombre, tipo = 5 })
                                                                 .ToList();
 
+            var vinculadas5 = this.context.SubcategoriaCtgSuits.Where(s => s.idSubcategoria == id && s.codigoEstado == 1).Select(s => s.idCategoriaSuit).ToList();
+            var TramiteServicios1 = this.context.TramiteServicios.Where(s => vinculadas5.Contains(s.CategoriaSuit) && !vinculadas2.Contains(s.id))
+                                                                .Select(s => new { id = int.Parse(s.id), nombre = s.nombre, tipo = 6 })
+                                                                .ToList();
+
 
             List<ElementosUnion> Union = new List<ElementosUnion>();
 
@@ -772,6 +777,8 @@ namespace Domain.Repository
             union = union.Union(Recursos);
 
             union = union.Union(TramiteServicios);
+
+            union = union.Union(TramiteServicios1);
 
             foreach (var item in union)
             {
@@ -808,6 +815,11 @@ namespace Domain.Repository
                                                                 .Select(s => new { id = s.id, nombre = s.nombre, tipo = 5 })
                                                                 .ToList();
 
+            var vinculadas5 = this.context.SubcategoriaCtgSuits.Where(s => s.idSubcategoria == id && s.codigoEstado == 1).Select(s => s.idCategoriaSuit).ToList();
+            var TramiteServicios1 = this.context.TramiteServicios.Where(s => vinculadas5.Contains(s.CategoriaSuit) && !vinculadas2.Contains(s.id))
+                                                                .Select(s => new { id = int.Parse(s.id), nombre = s.nombre, tipo = 6 })
+                                                                .ToList();
+
 
             List<ElementosUnion> Union = new List<ElementosUnion>();
 
@@ -818,6 +830,8 @@ namespace Domain.Repository
             union = union.Union(Recursos);
 
             union = union.Union(TramiteServicios);
+
+            union = union.Union(TramiteServicios1);
 
             if(orden == 1)
             {
@@ -881,7 +895,10 @@ namespace Domain.Repository
             var vinculadas4 = this.context.VncSubcategoriaRecursos.Where(s => s.idSubCtg == id && s.codigoEstado == 1).Select(s => s.idRecurso).ToList();
             var Recursos = this.context.Recursos.Count(s => vinculadas4.Contains(s.id));
 
-            return (SedeElectronicas + VentanillaUnicas + TramiteServicios + PortalTransversals + Recursos);
+            var vinculadas5 = this.context.SubcategoriaCtgSuits.Where(s => s.idSubcategoria == id && s.codigoEstado == 1).Select(s => s.idCategoriaSuit).ToList();
+            var TramiteServicios1 = this.context.TramiteServicios.Count(s => vinculadas5.Contains(s.CategoriaSuit) && !vinculadas2.Contains(s.id));
+
+            return (SedeElectronicas + VentanillaUnicas + TramiteServicios + PortalTransversals + Recursos + TramiteServicios1);
         }
     }
 }

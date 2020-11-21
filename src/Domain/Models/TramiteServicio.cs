@@ -44,6 +44,10 @@ namespace Domain.Models
         [Column("USUARIO_AUTORIZO_GOVCO", TypeName = "varchar(40)")]
         public string? usuarioAutorizo { get; set; }
         [Column("TIPO", TypeName = "varchar(15)")]
-        public string? tipo { get; set; }
+        public string? tipo { get; set; }        
+        [Column("SITUACION_VIDA_NOMBRE", TypeName = "varchar(100)")]
+        public string? nombreCategoriaSuit { get; set; }
+        [Column("SITUACION_VIDA_ID", TypeName = "numeric(4,0)")]
+        public int CategoriaSuit { get; set; }
     }
 }

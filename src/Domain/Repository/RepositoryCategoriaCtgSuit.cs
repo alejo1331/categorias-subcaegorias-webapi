@@ -33,5 +33,23 @@ namespace Domain.Repository
         {
             return context.CategoriaCtgSuits.Where(s => s.id == id).FirstOrDefault();
         }
+
+        public IList<CategoriaCtgSuit> GetCategoriasSuit(int idCategoria)
+        {
+            return context.CategoriaCtgSuits.Where(s => s.idCategoria == idCategoria && s.codigoEstado == 1).ToList();
+        }
+
+        public CategoriaCtgSuit GetId(int idCategoria, int idCategoriaSuit)
+        {
+            return context.CategoriaCtgSuits.Where(s => s.idCategoria == idCategoria  && s.idCategoriaSuit == idCategoriaSuit && s.codigoEstado == 1).FirstOrDefault();
+        }
+
+        public void update(CategoriaCtgSuit objeto)
+        {
+            if (objeto == null)
+                throw new ArgumentNullException(nameof(objeto));
+
+            this.context.CategoriaCtgSuits.Update(objeto);
+        }
     }
 }

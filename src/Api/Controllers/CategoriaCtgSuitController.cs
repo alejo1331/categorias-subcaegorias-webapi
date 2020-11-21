@@ -52,5 +52,33 @@ namespace Api.Controllers
             }
             return NotFound();
         }
+
+        [HttpGet("Categorias/{idCategoria}")]
+        public IActionResult IdCategoria(int idCategoria)
+        {
+            return new JsonResult(this.administracionBO.AllCategoriaCtgSuitIdCtg(idCategoria));
+        }
+
+        [HttpGet("Categorias/{idCategoria}/{idCategoriaSuit}")]
+        public IActionResult IdCategoria(int idCategoria, int idCategoriaSuit)
+        {
+            return new JsonResult(this.administracionBO.GetCategoriaCtgSuitId(idCategoria, idCategoriaSuit));
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Put([FromBody] CategoriaCtgSuitAM objeto, int id)
+        {
+            if (objeto == null)
+            {
+                return BadRequest("Owner object is null");
+            }
+
+            if (objeto.id != id)
+            {
+                return BadRequest("Owner object is null");
+            }
+            
+            return Ok(this.administracionBO.updateCategoriaCtgSuitAM(objeto));
+        }
     }
 }
