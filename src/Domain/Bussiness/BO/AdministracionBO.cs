@@ -2373,5 +2373,53 @@ namespace Domain.Bussiness.BO
             return SubcategoriaCtgSuitAM;
         }
 
+        public IList<TipoConfiguracionAM> AllTiposConfiguracion()
+        {
+            InterfaceTipoConfiguracion<TipoConfiguracion> repository = new RepositoryTipoConfiguracion(context);
+            return mapper.Map<List<TipoConfiguracionAM>>(repository.All());
+        }
+
+        public TipoConfiguracionAM GetTipoConfiguracionId(int id)
+        {
+            InterfaceTipoConfiguracion<TipoConfiguracion> repository = new RepositoryTipoConfiguracion(context);
+            return mapper.Map<TipoConfiguracionAM>(repository.GetId(id));
+        }
+
+
+        //Bitacora 
+        public IList<BitacoraCategoriasAM> AllBitacora(int page, int size)
+        {
+             InterfaceBitacora<Bitacora> repository = new RepositoryBitacora(context);
+            return mapper.Map<List<BitacoraCategoriasAM>>(repository.All(page, size));
+        }
+
+        public IList<BitacoraCategoriasAM> AllBitacora()
+        {
+            InterfaceBitacora<Bitacora> repository = new RepositoryBitacora(context);
+            return mapper.Map<List<BitacoraCategoriasAM>>(repository.All());
+        }
+
+        public long TotalBitacora()
+        {
+            InterfaceBitacora<Bitacora> repository = new RepositoryBitacora(context);
+            return repository.Total();
+        }
+
+        public BitacoraCategoriasAM GetBitacoraId(int id)
+        {
+            InterfaceBitacora<Bitacora> repository = new RepositoryBitacora(context);
+            return mapper.Map<BitacoraCategoriasAM>(repository.GetId(id));
+        }
+
+        public BitacoraCategoriasAM AddBitacora(BitacoraCategoriasAM objeto)
+        {
+            InterfaceBitacora<Bitacora> repository = new RepositoryBitacora(context);
+            Bitacora Bitacora = mapper.Map<Bitacora>(objeto);
+            repository.Add(Bitacora);
+            this.context.SaveChanges();
+            BitacoraCategoriasAM BitacoraCategoriasAM = mapper.Map<BitacoraCategoriasAM>(Bitacora);
+            return BitacoraCategoriasAM;
+        }
+
     }
 }

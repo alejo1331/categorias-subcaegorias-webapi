@@ -424,6 +424,18 @@ namespace Domain.Bussiness.Interface
         SubcategoriaCtgSuitAM GetSubcategoriaCtgSuitId(int idSubcategoria, int idCategoriaSuit);
         IList<SubcategoriaCtgSuitAM> AllSubcategoriaCtgSuitIdCtg(int idSubcategoria); 
         SubcategoriaCtgSuitAM updateSubcategoriaCtgSuitAM(SubcategoriaCtgSuitAM objeto);
+
+
+        //Tipo Configuracion
+        IList<TipoConfiguracionAM> AllTiposConfiguracion();
+        TipoConfiguracionAM GetTipoConfiguracionId(int id);
+
+        //Bitacora
+        IList<BitacoraCategoriasAM> AllBitacora(int page, int size);
+        IList<BitacoraCategoriasAM> AllBitacora();
+        long TotalBitacora();
+        BitacoraCategoriasAM AddBitacora(BitacoraCategoriasAM objeto);
+        BitacoraCategoriasAM GetBitacoraId(int id);
         
     }
 }
