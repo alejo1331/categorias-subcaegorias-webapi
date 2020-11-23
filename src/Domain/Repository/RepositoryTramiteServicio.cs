@@ -26,7 +26,7 @@ namespace Domain.Repository
             return context.TramiteServicios.Where(s => s.id == id).FirstOrDefault();
         }
 
-        public IList<TramiteServicio> ListaTramitesServicios(DateTime fehcaIncial, DateTime? fechaFinal, int page, int size, int orden, bool ascd)
+        public IList<TramiteServicio> ListaTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal, int page, int size, int orden, bool ascd)
         {
             var paginado = (page - 1) * size;
             List<TramiteServicio> Lista = new List<TramiteServicio>();
@@ -112,7 +112,7 @@ namespace Domain.Repository
             return Lista;
         }
 
-        public long TotalTramitesServicios(DateTime fehcaIncial, DateTime? fechaFinal)
+        public long TotalTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal)
         {
             List<TramiteServicio> Lista = new List<TramiteServicio>();
 

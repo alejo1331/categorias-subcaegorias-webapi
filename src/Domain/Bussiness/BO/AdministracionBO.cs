@@ -1190,13 +1190,13 @@ namespace Domain.Bussiness.BO
             return mapper.Map<List<ParametrosUnionAM>>(repository.ListaParametros(id));
         }
 
-        public IList<TramiteServicioAM> ListaTramitesServicios(DateTime fehcaIncial, DateTime? fechaFinal, int page, int size, int orden, bool ascd)
+        public IList<TramiteServicioAM> ListaTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal, int page, int size, int orden, bool ascd)
         {
             InterfaceTramiteServicio<TramiteServicio> repository = new RepositoryTramiteServicio(context);
             return mapper.Map<List<TramiteServicioAM>>(repository.ListaTramitesServicios(fehcaIncial, fechaFinal, page, size, orden, ascd));
         }
 
-        public long TotalTramitesServicios(DateTime fehcaIncial, DateTime? fechaFinal)
+        public long TotalTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal)
         {
             InterfaceTramiteServicio<TramiteServicio> repository = new RepositoryTramiteServicio(context);
             return repository.TotalTramitesServicios(fehcaIncial, fechaFinal);
