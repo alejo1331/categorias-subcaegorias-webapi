@@ -413,11 +413,29 @@ namespace Domain.Bussiness.Interface
         IList<CategoriaCtgSuitAM> AllCategoriaCtgSuit();
         CategoriaCtgSuitAM AddCategoriaCtgSuit(CategoriaCtgSuitAM objeto);
         CategoriaCtgSuitAM GetCategoriaCtgSuitId(int id); 
+        CategoriaCtgSuitAM GetCategoriaCtgSuitId(int idCategoria, int idCategoriaSuit); 
+        IList<CategoriaCtgSuitAM> AllCategoriaCtgSuitIdCtg(int idCategoria);
+        CategoriaCtgSuitAM updateCategoriaCtgSuitAM(CategoriaCtgSuitAM objeto);
 
         //Vinculo Subcategoria a Categoria SUIT
         IList<SubcategoriaCtgSuitAM> AllSubcategoriaCtgSuit();
         SubcategoriaCtgSuitAM AddSubcategoriaCtgSuit(SubcategoriaCtgSuitAM objeto);
-        SubcategoriaCtgSuitAM GetSubcategoriaCtgSuitId(int id);  
+        SubcategoriaCtgSuitAM GetSubcategoriaCtgSuitId(int id); 
+        SubcategoriaCtgSuitAM GetSubcategoriaCtgSuitId(int idSubcategoria, int idCategoriaSuit);
+        IList<SubcategoriaCtgSuitAM> AllSubcategoriaCtgSuitIdCtg(int idSubcategoria); 
+        SubcategoriaCtgSuitAM updateSubcategoriaCtgSuitAM(SubcategoriaCtgSuitAM objeto);
+
+
+        //Tipo Configuracion
+        IList<TipoConfiguracionAM> AllTiposConfiguracion();
+        TipoConfiguracionAM GetTipoConfiguracionId(int id);
+
+        //Bitacora
+        IList<BitacoraCategoriasAM> AllBitacora(int page, int size);
+        IList<BitacoraCategoriasAM> AllBitacora();
+        long TotalBitacora();
+        BitacoraCategoriasAM AddBitacora(BitacoraCategoriasAM objeto);
+        BitacoraCategoriasAM GetBitacoraId(int id);
         
     }
 }

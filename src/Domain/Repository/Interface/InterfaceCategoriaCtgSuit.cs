@@ -9,5 +9,8 @@ namespace Domain.Repository.Interface
         IList<CategoriaCtgSuit> All();
         void Add(CategoriaCtgSuit objeto);
         CategoriaCtgSuit GetId(int id);
+        CategoriaCtgSuit GetId(int idCategoria, int idCategoriaSuit);
+        IList<CategoriaCtgSuit> GetCategoriasSuit(int idCategoria);
+        void update(CategoriaCtgSuit objeto);
     }
 }

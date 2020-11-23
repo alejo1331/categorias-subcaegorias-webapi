@@ -2296,6 +2296,12 @@ namespace Domain.Bussiness.BO
             return mapper.Map<CategoriaCtgSuitAM>(repository.GetId(id));
         }
 
+        public CategoriaCtgSuitAM GetCategoriaCtgSuitId(int idCategoria, int idCategoriaSuit)
+        {
+            InterfaceCategoriaCtgSuit<CategoriaCtgSuit> repository = new RepositoryCategoriaCtgSuit(context);
+            return mapper.Map<CategoriaCtgSuitAM>(repository.GetId(idCategoria, idCategoriaSuit));
+        }
+
         public CategoriaCtgSuitAM AddCategoriaCtgSuit(CategoriaCtgSuitAM objeto)
         {
             InterfaceCategoriaCtgSuit<CategoriaCtgSuit> repository = new RepositoryCategoriaCtgSuit(context);
@@ -2304,6 +2310,22 @@ namespace Domain.Bussiness.BO
             this.context.SaveChanges();
             CategoriaCtgSuitAM CategoriaCtgSuitAM = mapper.Map<CategoriaCtgSuitAM>(CategoriaCtgSuit);
             return CategoriaCtgSuitAM;
+        }
+
+        public IList<CategoriaCtgSuitAM> AllCategoriaCtgSuitIdCtg(int idCategoria)
+        {
+            InterfaceCategoriaCtgSuit<CategoriaCtgSuit> repository = new RepositoryCategoriaCtgSuit(context);
+            return mapper.Map<List<CategoriaCtgSuitAM>>(repository.GetCategoriasSuit(idCategoria));
+        }
+
+        public CategoriaCtgSuitAM updateCategoriaCtgSuitAM(CategoriaCtgSuitAM objeto)
+        {
+            InterfaceCategoriaCtgSuit<CategoriaCtgSuit> repository = new RepositoryCategoriaCtgSuit(context);
+            CategoriaCtgSuit tipo = mapper.Map<CategoriaCtgSuit>(objeto);
+            repository.update(tipo);
+            this.context.SaveChanges();
+            CategoriaCtgSuitAM nuevo = mapper.Map<CategoriaCtgSuitAM>(tipo);
+            return nuevo;
         }
 
         //Vinculo Subcategoria a Categoria Suit
@@ -2319,6 +2341,12 @@ namespace Domain.Bussiness.BO
             return mapper.Map<SubcategoriaCtgSuitAM>(repository.GetId(id));
         }
 
+        public SubcategoriaCtgSuitAM GetSubcategoriaCtgSuitId(int idSubcategoria, int idCategoriaSuit)
+        {
+            InterfaceSubcategoriaCtgSuit<SubcategoriaCtgSuit> repository = new RepositorySubcategoriaCtgSuit(context);
+            return mapper.Map<SubcategoriaCtgSuitAM>(repository.GetId(idSubcategoria, idCategoriaSuit));
+        }
+
         public SubcategoriaCtgSuitAM AddSubcategoriaCtgSuit(SubcategoriaCtgSuitAM objeto)
         {
             InterfaceSubcategoriaCtgSuit<SubcategoriaCtgSuit> repository = new RepositorySubcategoriaCtgSuit(context);
@@ -2327,6 +2355,70 @@ namespace Domain.Bussiness.BO
             this.context.SaveChanges();
             SubcategoriaCtgSuitAM SubcategoriaCtgSuitAM = mapper.Map<SubcategoriaCtgSuitAM>(SubcategoriaCtgSuit);
             return SubcategoriaCtgSuitAM;
+        }
+
+        public IList<SubcategoriaCtgSuitAM> AllSubcategoriaCtgSuitIdCtg(int idSubcategoria)
+        {
+            InterfaceSubcategoriaCtgSuit<SubcategoriaCtgSuit> repository = new RepositorySubcategoriaCtgSuit(context);
+            return mapper.Map<List<SubcategoriaCtgSuitAM>>(repository.GetSubcategoriasSuit(idSubcategoria));
+        }
+
+        public SubcategoriaCtgSuitAM updateSubcategoriaCtgSuitAM(SubcategoriaCtgSuitAM objeto)
+        {
+            InterfaceSubcategoriaCtgSuit<SubcategoriaCtgSuit> repository = new RepositorySubcategoriaCtgSuit(context);
+            SubcategoriaCtgSuit SubcategoriaCtgSuit = mapper.Map<SubcategoriaCtgSuit>(objeto);
+            repository.update(SubcategoriaCtgSuit);
+            this.context.SaveChanges();
+            SubcategoriaCtgSuitAM SubcategoriaCtgSuitAM = mapper.Map<SubcategoriaCtgSuitAM>(SubcategoriaCtgSuit);
+            return SubcategoriaCtgSuitAM;
+        }
+
+        public IList<TipoConfiguracionAM> AllTiposConfiguracion()
+        {
+            InterfaceTipoConfiguracion<TipoConfiguracion> repository = new RepositoryTipoConfiguracion(context);
+            return mapper.Map<List<TipoConfiguracionAM>>(repository.All());
+        }
+
+        public TipoConfiguracionAM GetTipoConfiguracionId(int id)
+        {
+            InterfaceTipoConfiguracion<TipoConfiguracion> repository = new RepositoryTipoConfiguracion(context);
+            return mapper.Map<TipoConfiguracionAM>(repository.GetId(id));
+        }
+
+
+        //Bitacora 
+        public IList<BitacoraCategoriasAM> AllBitacora(int page, int size)
+        {
+             InterfaceBitacora<Bitacora> repository = new RepositoryBitacora(context);
+            return mapper.Map<List<BitacoraCategoriasAM>>(repository.All(page, size));
+        }
+
+        public IList<BitacoraCategoriasAM> AllBitacora()
+        {
+            InterfaceBitacora<Bitacora> repository = new RepositoryBitacora(context);
+            return mapper.Map<List<BitacoraCategoriasAM>>(repository.All());
+        }
+
+        public long TotalBitacora()
+        {
+            InterfaceBitacora<Bitacora> repository = new RepositoryBitacora(context);
+            return repository.Total();
+        }
+
+        public BitacoraCategoriasAM GetBitacoraId(int id)
+        {
+            InterfaceBitacora<Bitacora> repository = new RepositoryBitacora(context);
+            return mapper.Map<BitacoraCategoriasAM>(repository.GetId(id));
+        }
+
+        public BitacoraCategoriasAM AddBitacora(BitacoraCategoriasAM objeto)
+        {
+            InterfaceBitacora<Bitacora> repository = new RepositoryBitacora(context);
+            Bitacora Bitacora = mapper.Map<Bitacora>(objeto);
+            repository.Add(Bitacora);
+            this.context.SaveChanges();
+            BitacoraCategoriasAM BitacoraCategoriasAM = mapper.Map<BitacoraCategoriasAM>(Bitacora);
+            return BitacoraCategoriasAM;
         }
 
     }
