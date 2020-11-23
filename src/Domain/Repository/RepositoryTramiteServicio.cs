@@ -26,6 +26,109 @@ namespace Domain.Repository
             return context.TramiteServicios.Where(s => s.id == id).FirstOrDefault();
         }
 
+        public IList<TramiteServicio> ListaTramitesServicios(DateTime fehcaIncial, DateTime? fechaFinal, int page, int size, int orden, bool ascd)
+        {
+            var paginado = (page - 1) * size;
+            List<TramiteServicio> Lista = new List<TramiteServicio>();
+
+            if(fehcaIncial != null && fechaFinal != null)
+            {
+                Lista = context.TramiteServicios.Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal).ToList();
+                    
+            }
+            else
+            {
+                Lista = context.TramiteServicios.Where(s => s.fechaModificacion >= fehcaIncial).ToList();
+            }
+
+            if(orden == 1)
+            {
+                if(!ascd)
+                {
+                    Lista = Lista.OrderBy(s => s.id).Skip(paginado).Take(size).ToList();
+                }
+                else
+                {
+                    Lista = Lista.OrderByDescending(s => s.id).Skip(paginado).Take(size).ToList();
+                }
+            }
+            else if(orden == 2)
+            {
+                if(!ascd)
+                {
+                    Lista = Lista.OrderBy(s => s.nombre).Skip(paginado).Take(size).ToList();
+                }
+                else
+                {
+                    Lista = Lista.OrderByDescending(s => s.nombre).Skip(paginado).Take(size).ToList();
+                }
+            }
+            else if(orden == 3)
+            {
+                if(!ascd)
+                {
+                    Lista = Lista.OrderBy(s => s.institucionId).Skip(paginado).Take(size).ToList();
+                }
+                else
+                {
+                    Lista = Lista.OrderByDescending(s => s.institucionId).Skip(paginado).Take(size).ToList();
+                }
+            }
+            else if(orden == 4)
+            {
+                if(!ascd)
+                {
+                    Lista = Lista.OrderBy(s => s.institucionNombre).Skip(paginado).Take(size).ToList();
+                }
+                else
+                {
+                    Lista = Lista.OrderByDescending(s => s.institucionNombre).Skip(paginado).Take(size).ToList();
+                }
+            }
+            else if(orden == 5)
+            {
+                if(!ascd)
+                {
+                    Lista = Lista.OrderBy(s => s.fechaCreacion).Skip(paginado).Take(size).ToList();
+                }
+                else
+                {
+                    Lista = Lista.OrderByDescending(s => s.fechaCreacion).Skip(paginado).Take(size).ToList();
+                }
+            }
+            else if(orden == 6)
+            {
+                if(!ascd)
+                {
+                    Lista = Lista.OrderBy(s => s.fechaModificacion).Skip(paginado).Take(size).ToList();
+                }
+                else
+                {
+                    Lista = Lista.OrderByDescending(s => s.fechaModificacion).Skip(paginado).Take(size).ToList();
+                }
+            }
+            else
+                Lista = Lista.Skip(paginado).Take(size).ToList();
+            return Lista;
+        }
+
+        public long TotalTramitesServicios(DateTime fehcaIncial, DateTime? fechaFinal)
+        {
+            List<TramiteServicio> Lista = new List<TramiteServicio>();
+
+            if(fehcaIncial != null && fechaFinal != null)
+            {
+                Lista = context.TramiteServicios.Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal).ToList();
+                    
+            }
+            else
+            {
+                Lista = context.TramiteServicios.Where(s => s.fechaModificacion >= fehcaIncial).ToList();
+            }
+
+            return Lista.Count();
+        }
+
         public IList<ParametrosUnion> ListaParametros(int id, int page, int size, int orden, bool ascd, int tipo, string filtro)
         {
             var paginado = (page - 1) * size;

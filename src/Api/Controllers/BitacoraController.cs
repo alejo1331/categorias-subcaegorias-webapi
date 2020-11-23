@@ -41,7 +41,7 @@ namespace Api.Controllers
         [HttpPost("Todos")]
         public IActionResult GetTotal(PaginateVincular objeto)
         {
-            return new JsonResult(this.administracionBO.AllBitacora(objeto.page, objeto.size));
+            return new JsonResult(this.administracionBO.AllBitacora(objeto.page, objeto.size, objeto.orden, objeto.ascd));
         }
 
         [HttpPost]

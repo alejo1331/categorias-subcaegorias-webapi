@@ -50,6 +50,18 @@ namespace Api.Controllers
             return new JsonResult(this.administracionBO.TodosParametrosTramitesServicios(vincular.idParametro, vincular.page, vincular.size, vincular.orden, vincular.ascd, vincular.tipo, vincular.filtro));
         }
 
+        [HttpPost("Tramites")]
+        public IActionResult getTramites(HistorialHelper historial)
+        {            
+            return new JsonResult(this.administracionBO.ListaTramitesServicios(historial.fechaInicio, historial.fechaFinal, historial.page, historial.size, historial.orden, historial.ascd));
+        }
+
+        [HttpPost("Tramites/Total")]
+        public IActionResult getTramitesTotal(HistorialHelper historial)
+        {            
+            return new JsonResult(this.administracionBO.TotalTramitesServicios(historial.fechaInicio, historial.fechaFinal));
+        }
+
         [HttpGet("Parametros/{id}")]
         public IActionResult getParametrosId(int id)
         {
