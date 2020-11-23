@@ -331,6 +331,12 @@ namespace Domain.Bussiness.BO
             return mapper.Map<List<SubcategoriaAM>>(repository.SonsCategoria(id));
         }
 
+        public IList<SubcategoriaAM> SonsCategoriaActivas(int id)
+        {
+            InterfaceSubcategoria<Subcategoria> repository = new RepositorySubcategoria(context);
+            return mapper.Map<List<SubcategoriaAM>>(repository.SonsCategoriaActivas(id));
+        }
+
         public long ObtenerTotalSubcategoria(Expression<Func<SubcategoriaAM, bool>> predicate)
         {
             InterfaceSubcategoria<Subcategoria> repository = new RepositorySubcategoria(context);
@@ -1182,6 +1188,18 @@ namespace Domain.Bussiness.BO
         {
             InterfaceTramiteServicio<TramiteServicio> repository = new RepositoryTramiteServicio(context);
             return mapper.Map<List<ParametrosUnionAM>>(repository.ListaParametros(id));
+        }
+
+        public IList<TramiteServicioAM> ListaTramitesServicios(DateTime fehcaIncial, DateTime? fechaFinal, int page, int size, int orden, bool ascd)
+        {
+            InterfaceTramiteServicio<TramiteServicio> repository = new RepositoryTramiteServicio(context);
+            return mapper.Map<List<TramiteServicioAM>>(repository.ListaTramitesServicios(fehcaIncial, fechaFinal, page, size, orden, ascd));
+        }
+
+        public long TotalTramitesServicios(DateTime fehcaIncial, DateTime? fechaFinal)
+        {
+            InterfaceTramiteServicio<TramiteServicio> repository = new RepositoryTramiteServicio(context);
+            return repository.TotalTramitesServicios(fehcaIncial, fechaFinal);
         }
 
         public long TodosParametrosTramitesServiciosTotal(int id)
@@ -2387,10 +2405,10 @@ namespace Domain.Bussiness.BO
 
 
         //Bitacora 
-        public IList<BitacoraCategoriasAM> AllBitacora(int page, int size)
+        public IList<BitacoraCategoriasAM> AllBitacora(int page, int size, int orden, bool ascd)
         {
              InterfaceBitacora<Bitacora> repository = new RepositoryBitacora(context);
-            return mapper.Map<List<BitacoraCategoriasAM>>(repository.All(page, size));
+            return mapper.Map<List<BitacoraCategoriasAM>>(repository.All(page, size, orden, ascd));
         }
 
         public IList<BitacoraCategoriasAM> AllBitacora()

@@ -147,6 +147,12 @@ namespace Api.Controllers
             return new JsonResult(this.administracionBO.SonsCategoria(idCategoria));
         }
 
+        [HttpGet("Categoria/Subcategorias/Activas/{idCategoria}")]
+        public IActionResult GetSonsCategoriaActivas(int idCategoria)
+        {
+            return new JsonResult(this.administracionBO.SonsCategoriaActivas(idCategoria));
+        }
+
         [HttpPut("Estado/{id}")]
         public IActionResult PutSubcategoria(int id)
         {

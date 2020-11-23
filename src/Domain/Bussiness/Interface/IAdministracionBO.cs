@@ -56,6 +56,7 @@ namespace Domain.Bussiness.Interface
         SubcategoriaAM ActualizarSubCategoria(SubcategoriaAM objeto);
         IList<SubcategoriaAM> SearchSubcategoria(string data);
         IList<SubcategoriaAM> SonsCategoria(int id);
+        IList<SubcategoriaAM> SonsCategoriaActivas(int id);
         SubcategoriaAM CambioEstadoSubcategoria(int id);
         IList<string> AgruparCtg();
         bool ExisteSubcategoria(string data, int padre);
@@ -403,7 +404,9 @@ namespace Domain.Bussiness.Interface
         long TodosParametrosTramitesServiciosTotal(int id);
         long TodosParametrosTramitesServiciosTotal(int id, int tipo, string filtro);
         IList<string> AgruparEstadoTramitesServicios(int id); 
-        IList<string> AgruparTipoTramitesServicios(int id);   
+        IList<string> AgruparTipoTramitesServicios(int id);  
+        IList<TramiteServicioAM> ListaTramitesServicios(DateTime fehcaIncial, DateTime? fechaFinal, int page, int size, int orden, bool ascd); 
+        long TotalTramitesServicios(DateTime fehcaIncial, DateTime? fechaFinal); 
 
         //Categoria Suit
         IList<CategoriaSUITAM> AllCategoriasSuit();
@@ -431,7 +434,7 @@ namespace Domain.Bussiness.Interface
         TipoConfiguracionAM GetTipoConfiguracionId(int id);
 
         //Bitacora
-        IList<BitacoraCategoriasAM> AllBitacora(int page, int size);
+        IList<BitacoraCategoriasAM> AllBitacora(int page, int size, int orden, bool ascd);
         IList<BitacoraCategoriasAM> AllBitacora();
         long TotalBitacora();
         BitacoraCategoriasAM AddBitacora(BitacoraCategoriasAM objeto);

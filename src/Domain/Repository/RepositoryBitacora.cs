@@ -18,15 +18,71 @@ namespace Domain.Repository
             this.context = context;
         }
 
-        public IList<Bitacora> All(int page, int size)
+        public IList<Bitacora> All(int page, int size, int orden, bool ascd)
         {
             var paginado = (page - 1) * size;
             List<Bitacora> lista = this.context.Bitacoras 
                                 .Include(s => s.TipoParametro)
                                 .Include(s => s.TipoConfiguracion)                               
                                 .ToList();
-            
-            lista = lista.Skip(paginado).Take(size).ToList();
+
+            if(orden == 1)
+            {
+                if(!ascd)
+                {
+                    lista = lista.OrderBy(s => s.id).Skip(paginado).Take(size).ToList();
+                }
+                else
+                {
+                    lista = lista.OrderByDescending(s => s.id).Skip(paginado).Take(size).ToList();
+                }
+            }
+            else if(orden == 2)
+            {
+                if(!ascd)
+                {
+                    lista = lista.OrderBy(s => s.Configuracion).Skip(paginado).Take(size).ToList();
+                }
+                else
+                {
+                    lista = lista.OrderByDescending(s => s.Configuracion).Skip(paginado).Take(size).ToList();
+                }
+            }
+            else if(orden == 3)
+            {
+                if(!ascd)
+                {
+                    lista = lista.OrderBy(s => s.Parametro).Skip(paginado).Take(size).ToList();
+                }
+                else
+                {
+                    lista = lista.OrderByDescending(s => s.Parametro).Skip(paginado).Take(size).ToList();
+                }
+            }
+            else if(orden == 4)
+            {
+                if(!ascd)
+                {
+                    lista = lista.OrderBy(s => s.fechaModificacion).Skip(paginado).Take(size).ToList();
+                }
+                else
+                {
+                    lista = lista.OrderByDescending(s => s.fechaModificacion).Skip(paginado).Take(size).ToList();
+                }
+            }
+            else if(orden == 5)
+            {
+                if(!ascd)
+                {
+                    lista = lista.OrderBy(s => s.usuario).Skip(paginado).Take(size).ToList();
+                }
+                else
+                {
+                    lista = lista.OrderByDescending(s => s.usuario).Skip(paginado).Take(size).ToList();
+                }
+            }
+            else 
+                lista = lista.Skip(paginado).Take(size).ToList();
             return lista;
         }
 

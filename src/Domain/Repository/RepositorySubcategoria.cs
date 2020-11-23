@@ -64,6 +64,11 @@ namespace Domain.Repository
             return this.context.Subcategorias.Where(s => s.padre == id).ToList();
         }
 
+        public IList<Subcategoria> SonsCategoriaActivas(int id)
+        {
+            return this.context.Subcategorias.Where(s => s.padre == id && s.codigoEstado == 1).ToList();
+        }
+
         public void ChangeState(int id)
         {
             Subcategoria objeto = this.context.Subcategorias.Where(s => s.id == id).FirstOrDefault();
