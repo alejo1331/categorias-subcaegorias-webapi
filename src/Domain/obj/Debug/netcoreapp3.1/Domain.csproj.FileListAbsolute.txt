@@ -1,0 +1,12 @@
+/home/fabricio/AND/categorias-subcategorias-webapi/src/Domain/bin/Debug/netcoreapp3.1/Domain.deps.json
+/home/fabricio/AND/categorias-subcategorias-webapi/src/Domain/bin/Debug/netcoreapp3.1/Domain.runtimeconfig.json
+/home/fabricio/AND/categorias-subcategorias-webapi/src/Domain/bin/Debug/netcoreapp3.1/Domain.runtimeconfig.dev.json
+/home/fabricio/AND/categorias-subcategorias-webapi/src/Domain/bin/Debug/netcoreapp3.1/Domain.dll
+/home/fabricio/AND/categorias-subcategorias-webapi/src/Domain/bin/Debug/netcoreapp3.1/Domain.pdb
+/home/fabricio/AND/categorias-subcategorias-webapi/src/Domain/obj/Debug/netcoreapp3.1/Domain.csprojAssemblyReference.cache
+/home/fabricio/AND/categorias-subcategorias-webapi/src/Domain/obj/Debug/netcoreapp3.1/Domain.AssemblyInfoInputs.cache
+/home/fabricio/AND/categorias-subcategorias-webapi/src/Domain/obj/Debug/netcoreapp3.1/Domain.AssemblyInfo.cs
+/home/fabricio/AND/categorias-subcategorias-webapi/src/Domain/obj/Debug/netcoreapp3.1/Domain.csproj.CoreCompileInputs.cache
+/home/fabricio/AND/categorias-subcategorias-webapi/src/Domain/obj/Debug/netcoreapp3.1/Domain.dll
+/home/fabricio/AND/categorias-subcategorias-webapi/src/Domain/obj/Debug/netcoreapp3.1/Domain.pdb
+/home/fabricio/AND/categorias-subcategorias-webapi/src/Domain/obj/Debug/netcoreapp3.1/Domain.genruntimeconfig.cache
