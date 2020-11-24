@@ -26,6 +26,23 @@ namespace Domain.Repository
             return context.TramiteServicios.Where(s => s.id == id).FirstOrDefault();
         }
 
+        public IList<TramiteServicio> ListaTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal)
+        {
+            List<TramiteServicio> Lista = new List<TramiteServicio>();
+
+            if(fehcaIncial != null && fechaFinal != null)
+            {
+                Lista = context.TramiteServicios.Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal).ToList();
+                    
+            }
+            else
+            {
+                Lista = context.TramiteServicios.Where(s => s.fechaModificacion >= fehcaIncial).ToList();
+            }
+
+            return Lista;
+        }
+
         public IList<TramiteServicio> ListaTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal, int page, int size, int orden, bool ascd)
         {
             var paginado = (page - 1) * size;

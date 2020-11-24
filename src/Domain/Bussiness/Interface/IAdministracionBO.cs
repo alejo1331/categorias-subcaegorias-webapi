@@ -405,7 +405,8 @@ namespace Domain.Bussiness.Interface
         long TodosParametrosTramitesServiciosTotal(int id, int tipo, string filtro);
         IList<string> AgruparEstadoTramitesServicios(int id); 
         IList<string> AgruparTipoTramitesServicios(int id);  
-        IList<TramiteServicioAM> ListaTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal, int page, int size, int orden, bool ascd); 
+        IList<TramiteServicioAM> ListaTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal, int page, int size, int orden, bool ascd);
+        IList<TramiteServicioAM> ListaTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal); 
         long TotalTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal); 
 
         //Categoria Suit
