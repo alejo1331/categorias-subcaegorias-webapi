@@ -18,13 +18,30 @@ namespace Domain.Repository
             this.context = context;
         }
 
-        public IList<Bitacora> All(int page, int size, int orden, bool ascd)
+        public IList<Bitacora> All(int page, int size, int orden, bool ascd, int tipo, string filtro)
         {
+            Console.WriteLine(filtro);
             var paginado = (page - 1) * size;
             List<Bitacora> lista = this.context.Bitacoras 
                                 .Include(s => s.TipoParametro)
                                 .Include(s => s.TipoConfiguracion)                               
                                 .ToList();
+
+            if(tipo == 1)
+            {
+                lista = lista.Where(s => s.id == int.Parse(filtro))
+                                .ToList();  
+            }
+            else if(tipo == 2)
+            {
+                lista = lista.Where(s => s.fechaModificacion >= DateTime.Parse(filtro))
+                                .ToList();
+            }
+            else if(tipo == 3)
+            {
+                lista = lista.Where(s => s.usuario == int.Parse(filtro))
+                                .ToList();
+            }
 
             if(orden == 1)
             {
@@ -95,10 +112,34 @@ namespace Domain.Repository
             return lista;
         }
 
-        public long Total()
+        public long Total(int tipo, string filtro)
         {
-            long lista = this.context.Bitacoras.Count();
-            return lista;
+            long listaNUmero = 0;
+
+            List<Bitacora> lista = this.context.Bitacoras                              
+                                .ToList();
+
+            if(tipo == 1)
+            {
+                listaNUmero = lista.Where(s => s.id == int.Parse(filtro))
+                                .Count();  
+            }
+            else if(tipo == 2)
+            {
+                listaNUmero = lista.Where(s => s.fechaModificacion >= DateTime.Parse(filtro))
+                                .Count();
+            }
+            else if(tipo == 3)
+            {
+                listaNUmero = lista.Where(s => s.usuario == int.Parse(filtro))
+                                .Count();
+            }
+            else
+            {
+                listaNUmero = lista.Count();
+            }
+
+            return listaNUmero;
         }
 
         public void Add(Bitacora objeto)

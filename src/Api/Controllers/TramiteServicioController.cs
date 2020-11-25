@@ -53,7 +53,7 @@ namespace Api.Controllers
         [HttpPost("Tramites")]
         public IActionResult getTramites(HistorialHelper historial)
         {            
-            return new JsonResult(this.administracionBO.ListaTramitesServicios(historial.fechaInicio, historial.fechaFinal, historial.page, historial.size, historial.orden, historial.ascd));
+            return new JsonResult(this.administracionBO.ListaTramitesServicios(historial.fechaInicio, historial.fechaFinal, historial.page, historial.size, historial.orden, historial.ascd, historial.tipo, historial.filtro));
         }
 
         [HttpPost("Tramites/SinPaginacion")]
@@ -65,7 +65,7 @@ namespace Api.Controllers
         [HttpPost("Tramites/Total")]
         public IActionResult getTramitesTotal(HistorialHelper historial)
         {            
-            return new JsonResult(this.administracionBO.TotalTramitesServicios(historial.fechaInicio, historial.fechaFinal));
+            return new JsonResult(this.administracionBO.TotalTramitesServicios(historial.fechaInicio, historial.fechaFinal, historial.tipo, historial.filtro));
         }
 
         [HttpGet("Parametros/{id}")]

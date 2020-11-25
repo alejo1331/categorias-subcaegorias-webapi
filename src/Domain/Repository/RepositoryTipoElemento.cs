@@ -25,6 +25,11 @@ namespace Domain.Repository
         {
             return context.TipoElementos.Where(s => s.id == id).FirstOrDefault();
         }
+
+        public TipoElemento GetSigla(string sigla)
+        {
+            return context.TipoElementos.Where(s => s.sigla == sigla).FirstOrDefault();
+        }
         
     }
 }
