@@ -211,6 +211,7 @@ namespace Domain.Bussiness.Interface
         //Tipo Elemento
         IList<TipoElementoAM> TodasTipoElemento();
         TipoElementoAM TipoElementoId(int id);
+        TipoElementoAM TipoElementoSigla(string sigla);
 
         //Elemento Categoria
         ElementoCategoriaAM ActualizarElementoCategoria(ElementoCategoriaAM objeto);
@@ -356,14 +357,17 @@ namespace Domain.Bussiness.Interface
         long VincularVentanillaUnicaTercerNivelsTotal(int id, int tipo, string filtro);
         long VinculadasVentanillaUnicaTercerNivelsTotal(int id);
         long VinculadasVentanillaUnicaTercerNivelsTotal(int id, int tipo, string filtro);
+
         long VincularTramiteServicioTercerNivelsTotal(int id);
         long VincularTramiteServicioTercerNivelsTotal(int id, int tipo, string filtro);
         long VinculadasTramiteServicioTercerNivelsTotal(int id);
         long VinculadasTramiteServicioTercerNivelsTotal(int id, int tipo, string filtro);
+
         long VincularPortalTransversalTercerNivelsTotal(int id);
         long VincularPortalTransversalTercerNivelsTotal(int id, int tipo, string filtro);
         long VinculadasPortalTransversalTercerNivelsTotal(int id);
         long VinculadasPortalTransversalTercerNivelsTotal(int id, int tipo, string filtro);
+        
         long VincularRecursoTercerNivelsTotal(int id);
         long VinculadasRecursoTercerNivelsTotal(int id);
 
@@ -405,9 +409,9 @@ namespace Domain.Bussiness.Interface
         long TodosParametrosTramitesServiciosTotal(int id, int tipo, string filtro);
         IList<string> AgruparEstadoTramitesServicios(int id); 
         IList<string> AgruparTipoTramitesServicios(int id);  
-        IList<TramiteServicioAM> ListaTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal, int page, int size, int orden, bool ascd);
+        IList<TramiteServicioAM> ListaTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal, int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<TramiteServicioAM> ListaTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal); 
-        long TotalTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal); 
+        long TotalTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal, int tipo, string filtro); 
 
         //Categoria Suit
         IList<CategoriaSUITAM> AllCategoriasSuit();
@@ -435,9 +439,9 @@ namespace Domain.Bussiness.Interface
         TipoConfiguracionAM GetTipoConfiguracionId(int id);
 
         //Bitacora
-        IList<BitacoraCategoriasAM> AllBitacora(int page, int size, int orden, bool ascd);
+        IList<BitacoraCategoriasAM> AllBitacora(int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<BitacoraCategoriasAM> AllBitacora();
-        long TotalBitacora();
+        long TotalBitacora(int tipo, string filtro);
         BitacoraCategoriasAM AddBitacora(BitacoraCategoriasAM objeto);
         BitacoraCategoriasAM GetBitacoraId(int id);
         

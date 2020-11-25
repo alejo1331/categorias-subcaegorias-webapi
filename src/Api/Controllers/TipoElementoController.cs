@@ -43,6 +43,18 @@ namespace Api.Controllers
             return NotFound();
         }
 
+        [HttpGet("Sigla/{sigla}")]
+        public IActionResult getSigla(string sigla)
+        {
+            TipoElementoAM objeto = administracionBO.TipoElementoSigla(sigla);
+
+            if (objeto != null)
+            {
+                return new JsonResult(objeto);
+            }
+            return NotFound();
+        }
+
         
     }
 }
