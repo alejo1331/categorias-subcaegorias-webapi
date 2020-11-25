@@ -1775,25 +1775,27 @@ namespace Domain.Repository
             var elemento4 = this.context.TipoElementos.Where(s => s.sigla == "PT").FirstOrDefault();
 
 
-            var vinculadas = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == elemento1.id && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
-            long SedeElectronicas = this.context.SedeElectronicas.Count(s => vinculadas.Contains(s.id));
+            var vinculadas = this.context.ElementoCategorias.Count(s => s.categoriaId == id && s.tipoElementoId == elemento1.id && s.codigoEstado == 1);
+            
 
-            var vinculadas1 = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == elemento2.id && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
-            long VentanillaUnicas = this.context.VentanillaUnicas.Count(s => vinculadas1.Contains(s.id));
+            var vinculadas1 = this.context.ElementoCategorias.Count(s => s.categoriaId == id && s.tipoElementoId == elemento2.id && s.codigoEstado == 1);
+            
 
             var vinculadas2 = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == elemento3.id && s.codigoEstado == 1).Select(s => s.elementoId.ToString()).ToList();
-            long TramiteServicios = this.context.TramiteServicios.Count(s => vinculadas2.Contains(s.id));
+            long TramiteServicios = vinculadas2.Count();
+            
 
-            var vinculadas3 = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == elemento4.id && s.codigoEstado == 1).Select(s => s.elementoId).ToList();
-            long PortalTransversals = this.context.PortalTransversals.Count(s => vinculadas3.Contains(s.id));
+            var vinculadas3 = this.context.ElementoCategorias.Count(s => s.categoriaId == id && s.tipoElementoId == elemento4.id && s.codigoEstado == 1);
+            
 
-            var vinculadas4 = this.context.VncCategoriaRecursos.Where(s => s.idCtg == id && s.codigoEstado == 1).Select(s => s.idRecurso).ToList();
-            long Recursos = this.context.Recursos.Count(s => vinculadas4.Contains(s.id));
+            var vinculadas4 = this.context.VncCategoriaRecursos.Count(s => s.idCtg == id && s.codigoEstado == 1);
+            
 
             var vinculadas5 = this.context.CategoriaCtgSuits.Where(s => s.idCategoria == id && s.codigoEstado == 1).Select(s => s.idCategoriaSuit).ToList();
-            var TramiteServicios1 = this.context.TramiteServicios.Count(s => vinculadas5.Contains(s.CategoriaSuit) && !vinculadas2.Contains(s.id));   
+            var TramiteServicios1 = this.context.TramiteServicios.Count(s => vinculadas5.Contains(s.CategoriaSuit) && !vinculadas2.Contains(s.id));
+            
 
-            return (SedeElectronicas+VentanillaUnicas+TramiteServicios+PortalTransversals+Recursos+TramiteServicios1);
+            return (vinculadas+vinculadas1+TramiteServicios+vinculadas3+vinculadas4+TramiteServicios1);
         }
     }
 }
