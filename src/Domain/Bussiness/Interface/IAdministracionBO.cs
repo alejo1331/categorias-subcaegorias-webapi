@@ -113,7 +113,7 @@ namespace Domain.Bussiness.Interface
         VncCategoriaTipoCtgAM DesvncCategoriaTipoCtg(int idpadre, int idhijo);
         void DesvncCategoriaTipo(DvcCategoriaTipoCtg objeto);
         void VincularCategoriaTipo(DvcCategoriaTipoCtg objeto);
-        IList<CategoriaAM> VincularCategorias(int id, int page, int size);
+        IList<CategoriaAM> VincularCategorias(int id, int page, int size, int orden, bool ascd);
         IList<CategoriaAM> TodosVncCategorias(int id);
         long VincularCategoriasTotal(int id);
         long DesvincularCategoriasTotal(int id);
@@ -139,7 +139,7 @@ namespace Domain.Bussiness.Interface
         IList<SubcategoriaAM> VinculadasSubcategoriaInactivas(int id, int page, int size, int orden, bool ascd);
         IList<SubcategoriaAM> VinculadasSubcategoria(int id);
         IList<SubcategoriaAM> VincularSubcategoria(int id);
-        IList<SubcategoriaAM> VincularSubcategoria(int id, int page, int size);
+        IList<SubcategoriaAM> VincularSubcategoria(int id, int page, int size, int orden, bool ascd);
         long VinculadasSubcategoriasTotal(int id);
         long VinculadasSubcategoriasTipoCeroTotal(int id);
         long VinculadasSubcategoriasTotalActivas(int id);
@@ -166,7 +166,7 @@ namespace Domain.Bussiness.Interface
         long VinculadasTercerNivelTipoCeroTotal(int id);
         long VinculadasTercerNivelTotalActivas(int id);
         long VinculadasTercerNivelTotalInactivas(int id);
-        IList<TercerNivelAM> VincularTercerNivel(int id, int page, int size);
+        IList<TercerNivelAM> VincularTercerNivel(int id, int page, int size, int orden, bool ascd);
         long VincularTercerNivelTotal(int id);
 
         //Tipo Categoria ---- Recurso

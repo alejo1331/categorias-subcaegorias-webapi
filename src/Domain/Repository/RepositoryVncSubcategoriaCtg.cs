@@ -321,17 +321,30 @@ namespace Domain.Repository
             return subcategorias;
         }
 
-        public IList<Subcategoria> Vincular(int id, int page, int size)
+        public IList<Subcategoria> Vincular(int id, int page, int size, int orden, bool ascd)
         {
             var vinculos = this.context.VncSubcategoriaCategorias
                                                     .Where(s => s.idCategoria == id && s.codigoEstado == 1)
                                                     .Select(s => s.idSubcategoria)
                                                     .ToList();
 
-            IList<Subcategoria> subcategorias = this.context.Subcategorias.Where(s => !vinculos.Contains(s.id) && s.codigoEstado == 1)
-                                                                            .Skip((page - 1) * size)
-                                                                            .Take(size)
-                                                                            .ToList();
+            IList<Subcategoria> subcategorias = this.context.Subcategorias.Where(s => !vinculos.Contains(s.id) && s.codigoEstado == 1).ToList();
+
+            if(orden == 1)
+            {
+                if(!ascd)
+                {
+                    subcategorias = subcategorias.OrderBy( s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                }
+                else
+                {
+                    subcategorias = subcategorias.OrderByDescending(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                }
+            }
+            else
+            {
+                subcategorias = subcategorias.Skip((page - 1) * size).Take(size).ToList();
+            }
             return subcategorias;
         }
 

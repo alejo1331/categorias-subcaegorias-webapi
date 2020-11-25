@@ -155,7 +155,7 @@ namespace Api.Controllers
         [HttpPost("Vincular")]
         public IActionResult getVincular(PaginateVincular vincular)
         {
-            return new JsonResult(administracionBO.VincularSubcategoria(vincular.idParametro, vincular.page, vincular.size));
+            return new JsonResult(administracionBO.VincularSubcategoria(vincular.idParametro, vincular.page, vincular.size, vincular.orden, vincular.ascd));
         }
 
         [HttpPost("Vinculadas/Activas")]
