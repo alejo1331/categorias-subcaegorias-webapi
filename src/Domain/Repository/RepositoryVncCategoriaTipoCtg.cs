@@ -240,15 +240,31 @@ namespace Domain.Repository
 
         //Desvinculados
 
-        public IList<Categoria> Vincular(int id, int page, int size)
+        public IList<Categoria> Vincular(int id, int page, int size, int orden, bool ascd)
         {
             var vinculos = this.context.VncCategoriaTipoCtgs
                                                     .Where(s => s.idTipoCtg == id && s.codigoEstado == 1)
                                                     .Select(s => s.idCategoria)
                                                     .ToList();
             IList<Categoria> categorias = this.context.Categorias
-                                                .Where(s => !vinculos.Contains(s.id) && s.codigoEstado == 1).Skip((page -1 )*size).Take(size)
+                                                .Where(s => !vinculos.Contains(s.id) && s.codigoEstado == 1)
                                                 .ToList();
+
+            if(orden == 1)
+            {
+                if(!ascd)
+                {
+                    categorias = categorias.OrderBy(s => s.nombre).Skip((page -1 )*size).Take(size).ToList();
+                }
+                else
+                {
+                    categorias = categorias.OrderByDescending(s => s.nombre).Skip((page -1 )*size).Take(size).ToList();
+                }
+            }
+            else
+            {
+                categorias = categorias.Skip((page -1 )*size).Take(size).ToList();
+            }
 
 
             return categorias;

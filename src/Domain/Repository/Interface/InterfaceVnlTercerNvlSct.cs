@@ -17,7 +17,7 @@ namespace Domain.Repository.Interface
         IList<TercerNivel> getTercerNivel(int id);
         IList<TercerNivel> Vinculadas(int id, int page, int size, int orden, bool ascd);
         IList<TercerNivel> VinculadasTipoCero(int id, int page, int size, int orden, bool ascd);
-        IList<TercerNivel> Vincular(int id, int page, int size);
+        IList<TercerNivel> Vincular(int id, int page, int size, int orden, bool ascd);
         IList<TercerNivel> VinculadasActivas(int id, int page, int size, int orden, bool ascd);
         IList<TercerNivel> VinculadasInactivas(int id, int page, int size, int orden, bool ascd);
         IList<TercerNivel> Vinculadas(int id);

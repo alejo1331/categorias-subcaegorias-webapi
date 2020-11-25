@@ -623,10 +623,10 @@ namespace Domain.Bussiness.BO
 
         //Tipo Categoria ---- Categoria
 
-        public IList<CategoriaAM> VincularCategorias(int id, int page, int size)
+        public IList<CategoriaAM> VincularCategorias(int id, int page, int size, int orden, bool ascd)
         {
             InterfaceVclCtgTipoCtg<VncCategoriaTipoCtg> repository = new RepositoryVncCategoriaTipoCtg(context);
-            return mapper.Map<List<CategoriaAM>>(repository.Vincular(id, page, size));
+            return mapper.Map<List<CategoriaAM>>(repository.Vincular(id, page, size, orden, ascd));
         }
 
         public long VincularCategoriasTotal(int id)
@@ -874,10 +874,10 @@ namespace Domain.Bussiness.BO
             return mapper.Map<List<SubcategoriaAM>>(repository.Vinculadas(id));
         }
 
-        public IList<SubcategoriaAM> VincularSubcategoria(int id, int page, int size)
+        public IList<SubcategoriaAM> VincularSubcategoria(int id, int page, int size, int orden, bool ascd)
         {
             InterfaceVncSubcategoriaCategoria<VncSubcategoriaCategoria> repository = new RepositoryVncSubcategoriaCtg(context);
-            return mapper.Map<List<SubcategoriaAM>>(repository.Vincular(id, page, size));
+            return mapper.Map<List<SubcategoriaAM>>(repository.Vincular(id, page, size, orden, ascd));
         }
 
         public long VinculadasSubcategoriasTotal(int id)
@@ -1049,10 +1049,10 @@ namespace Domain.Bussiness.BO
             return repository.VinculadasTotaInactivas(id);
         }
 
-        public IList<TercerNivelAM> VincularTercerNivel(int id, int page, int size)
+        public IList<TercerNivelAM> VincularTercerNivel(int id, int page, int size, int orden, bool ascd)
         {
             InterfaceVnlTercerNvlSct<VncTercerNvlSubcategoria> repository = new RepositroyvVnlTercerNvlSbt(context);
-            return mapper.Map<List<TercerNivelAM>>(repository.Vincular(id, page, size));
+            return mapper.Map<List<TercerNivelAM>>(repository.Vincular(id, page, size, orden, ascd));
         }
 
         public long VincularTercerNivelTotal(int id)
