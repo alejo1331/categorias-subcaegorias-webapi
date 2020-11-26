@@ -20,7 +20,7 @@ namespace Domain.Repository.Interface
         IList<Categoria> getCategoryActivos(int id, int page, int size, int orden, bool ascd);
         IList<Categoria> getCategoryInactivos(int id, int page, int size, int orden, bool ascd);
         IList<Categoria> getCategory(int id);
-        IList<Categoria> Vincular(int id, int page, int size);
+        IList<Categoria> Vincular(int id, int page, int size, int orden, bool ascd);
         long VincularTotal(int id);
         long DesvincularTotal(int id);
         long DesvincularTotalVinculadas(int id);

@@ -26,7 +26,24 @@ namespace Domain.Repository
             return context.TramiteServicios.Where(s => s.id == id).FirstOrDefault();
         }
 
-        public IList<TramiteServicio> ListaTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal, int page, int size, int orden, bool ascd)
+        public IList<TramiteServicio> ListaTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal)
+        {
+            List<TramiteServicio> Lista = new List<TramiteServicio>();
+
+            if(fehcaIncial != null && fechaFinal != null)
+            {
+                Lista = context.TramiteServicios.Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal).ToList();
+                    
+            }
+            else
+            {
+                Lista = context.TramiteServicios.Where(s => s.fechaModificacion >= fehcaIncial).ToList();
+            }
+
+            return Lista;
+        }
+
+        public IList<TramiteServicio> ListaTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal, int page, int size, int orden, bool ascd, int tipo, string filtro)
         {
             var paginado = (page - 1) * size;
             List<TramiteServicio> Lista = new List<TramiteServicio>();
@@ -39,6 +56,31 @@ namespace Domain.Repository
             else
             {
                 Lista = context.TramiteServicios.Where(s => s.fechaModificacion >= fehcaIncial).ToList();
+            }
+
+            if(tipo == 1)
+            {
+                Lista = Lista.Where( s => s.id == filtro).ToList();
+            }
+            else if(tipo == 2)
+            {
+                Lista = Lista.Where( s => s.nombre.Contains(filtro)).ToList();
+            }
+            else if(tipo == 3)
+            {
+                Lista = Lista.Where( s => s.institucionId == filtro).ToList();
+            }
+            else if(tipo == 4)
+            {
+                Lista = Lista.Where( s => s.institucionNombre.Contains(filtro)).ToList();
+            }
+            else if(tipo == 5)
+            {
+                Lista = Lista.Where( s => s.fechaCreacion >= DateTime.Parse(filtro)).ToList();
+            }
+            else if(tipo == 6)
+            {
+                Lista = Lista.Where( s => s.fechaModificacion >= DateTime.Parse(filtro)).ToList();
             }
 
             if(orden == 1)
@@ -112,7 +154,7 @@ namespace Domain.Repository
             return Lista;
         }
 
-        public long TotalTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal)
+        public long TotalTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal, int tipo, string filtro)
         {
             List<TramiteServicio> Lista = new List<TramiteServicio>();
 
@@ -124,6 +166,31 @@ namespace Domain.Repository
             else
             {
                 Lista = context.TramiteServicios.Where(s => s.fechaModificacion >= fehcaIncial).ToList();
+            }
+
+            if(tipo == 1)
+            {
+                Lista = Lista.Where( s => s.id == filtro).ToList();
+            }
+            else if(tipo == 2)
+            {
+                Lista = Lista.Where( s => s.nombre.Contains(filtro)).ToList();
+            }
+            else if(tipo == 3)
+            {
+                Lista = Lista.Where( s => s.institucionId == filtro).ToList();
+            }
+            else if(tipo == 4)
+            {
+                Lista = Lista.Where( s => s.institucionNombre.Contains(filtro)).ToList();
+            }
+            else if(tipo == 5)
+            {
+                Lista = Lista.Where( s => s.fechaCreacion >= DateTime.Parse(filtro)).ToList();
+            }
+            else if(tipo == 6)
+            {
+                Lista = Lista.Where( s => s.fechaModificacion >= DateTime.Parse(filtro)).ToList();
             }
 
             return Lista.Count();

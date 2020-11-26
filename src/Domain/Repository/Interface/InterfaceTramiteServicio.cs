@@ -11,8 +11,9 @@ namespace Domain.Repository.Interface
         TramiteServicio GetId(string id);
         IList<ParametrosUnion> ListaParametros(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<ParametrosUnion> ListaParametros(int id);
-        IList<TramiteServicio> ListaTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal, int page, int size, int orden, bool ascd);
-        long TotalTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal);
+        IList<TramiteServicio> ListaTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal, int page, int size, int orden, bool ascd, int tipo, string filtro);
+        IList<TramiteServicio> ListaTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal);
+        long TotalTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal, int tipo, string filtro);
         long ListaParametrosTotal(int id);
         long ListaParametrosTotal(int id, int tipo, string filtro);
         IList<string> AgruparEstado(int id);

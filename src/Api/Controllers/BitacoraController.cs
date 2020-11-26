@@ -32,16 +32,16 @@ namespace Api.Controllers
             return new JsonResult(this.administracionBO.AllBitacora());
         }
 
-        [HttpGet("Total")]
-        public IActionResult GetTodos()
+        [HttpGet("Total/{tipo}/{filtro}")]
+        public IActionResult GetTodos(int tipo, string filtro)
         {
-            return new JsonResult(this.administracionBO.TotalBitacora());
+            return new JsonResult(this.administracionBO.TotalBitacora(tipo, filtro));
         }
 
         [HttpPost("Todos")]
         public IActionResult GetTotal(PaginateVincular objeto)
         {
-            return new JsonResult(this.administracionBO.AllBitacora(objeto.page, objeto.size, objeto.orden, objeto.ascd));
+            return new JsonResult(this.administracionBO.AllBitacora(objeto.page, objeto.size, objeto.orden, objeto.ascd, objeto.tipo, objeto.filtro));
         }
 
         [HttpPost]

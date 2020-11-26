@@ -59,5 +59,11 @@ namespace Api.Controllers
             }
             return NotFound();
         }
+
+        [HttpGet("Total/{id}")]
+        public IActionResult getTotalId(int id)
+        {
+            return new JsonResult(administracionBO.ObtenerVncTercerNvlRecursoTotal(id));
+        }
     }
 }

@@ -229,7 +229,7 @@ namespace Domain.Repository
                                                     .Select(s => s.idTercerNvl)
                                                     .ToList();
 
-            long lista = this.context.TercerNivels.Count(s => vinculos.Contains(s.id) && s.codigoEstado == 1);
+            long lista = this.context.TercerNivels.Count(s => vinculos.Contains(s.id));
             return lista;
         }
 
@@ -266,14 +266,30 @@ namespace Domain.Repository
             return lista;
         }
 
-        public IList<TercerNivel> Vincular(int id, int page, int size)
+        public IList<TercerNivel> Vincular(int id, int page, int size, int orden, bool ascd)
         {
             var vinculos = this.context.VncTercerNvlSubcategorias
                                                     .Where(s => s.idSubcategoria == id && s.codigoEstado == 1)
                                                     .Select(s => s.idTercerNvl)
                                                     .ToList();
 
-            IList<TercerNivel> lista = this.context.TercerNivels.Where(s => !vinculos.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).Take(size).ToList();
+            List<TercerNivel> lista = new List<TercerNivel>();
+
+            if(orden == 1)
+            {
+                if(!ascd)
+                {
+                    lista = this.context.TercerNivels.Where(s => !vinculos.Contains(s.id) && s.codigoEstado == 1).OrderBy(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                }
+                else
+                {
+                    lista = this.context.TercerNivels.Where(s => !vinculos.Contains(s.id) && s.codigoEstado == 1).OrderByDescending(s => s.nombre).Skip((page - 1) * size).Take(size).ToList();
+                }
+            }
+            else
+            {
+                lista = this.context.TercerNivels.Where(s => !vinculos.Contains(s.id) && s.codigoEstado == 1).Skip((page - 1) * size).Take(size).ToList();
+            }
             return lista;
         }
 

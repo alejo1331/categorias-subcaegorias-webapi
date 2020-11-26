@@ -10,5 +10,7 @@ namespace Api.Helpers
         public DateTime? fechaFinal { get; set; }
         public int orden { get; set; }
         public bool ascd { get; set; }
+        public int tipo {get; set;}
+        public string filtro {get; set;}
     }
 }
