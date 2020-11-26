@@ -1110,6 +1110,12 @@ namespace Domain.Bussiness.BO
             return mapper.Map<VncCategoriaRecursoAM>(repository.GetId(id));
         }
 
+        public long ObtenerVncCategoriaRecursoTotal(int id)
+        {
+            InterfaceVncCategoriaRecurso<VncCategoriaRecurso> repository = new RepositoryVncCategoriaRecurso(context);
+            return repository.getTotalId(id);
+        }
+
         //Subcategoria ---- Recurso
         public IList<VncSubcategoriaRecursoAM> TodosVncSubcategoriaRecurso()
         {
@@ -1131,6 +1137,12 @@ namespace Domain.Bussiness.BO
         {
             InterfaceVncSubcategoriaRecurso<VncSubcategoriaRecurso> repository = new RepositoryVncSubcategoriaRecurso(context);
             return mapper.Map<VncSubcategoriaRecursoAM>(repository.GetId(id));
+        }
+
+        public long ObtenerVncSubcategoriaRecursoTotal(int id)
+        {
+            InterfaceVncSubcategoriaRecurso<VncSubcategoriaRecurso> repository = new RepositoryVncSubcategoriaRecurso(context);
+            return repository.GetTotalId(id);
         }
 
         //Tercer Nivel ---- Recurso
@@ -1156,6 +1168,11 @@ namespace Domain.Bussiness.BO
             return mapper.Map<VncTercerNvlRecursoAM>(repository.GetId(id));
         }
 
+        public long ObtenerVncTercerNvlRecursoTotal(int id)
+        {
+            InterfaceVncTercerNvlRecurso<VncTercerNvlRecurso> repository = new RepositoryVncTercerNvlRecurso(context);
+            return repository.GetTotalId(id);
+        }
 
 
         //Elementos

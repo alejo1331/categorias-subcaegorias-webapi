@@ -34,5 +34,10 @@ namespace Domain.Repository
         {
             return this.context.VncCategoriaRecursos.Where(s => s.id == id).FirstOrDefault();
         }
+
+        public long getTotalId(int id)
+        {
+            return this.context.VncCategoriaRecursos.Count(s => s.idCtg == id && s.codigoEstado == 1);
+        }
     }
 }
