@@ -179,16 +179,19 @@ namespace Domain.Bussiness.Interface
         IList<VncCategoriaRecursoAM> TodosVncCategoriaRecurso();
         VncCategoriaRecursoAM AgregarVncCategoriaRecurso(VncCategoriaRecursoAM objeto);
         VncCategoriaRecursoAM ObtenerVncCategoriaRecurso(int id);
+        long ObtenerVncCategoriaRecursoTotal(int id);
 
         //Subcategoria ---- Recurso
         IList<VncSubcategoriaRecursoAM> TodosVncSubcategoriaRecurso();
         VncSubcategoriaRecursoAM AgregarVncSubcategoriaRecurso(VncSubcategoriaRecursoAM objeto);
         VncSubcategoriaRecursoAM ObtenerVncSubcategoriaRecurso(int id);
+        long ObtenerVncSubcategoriaRecursoTotal(int id);
 
         //Tercer Nivel ---- Recurso
         IList<VncTercerNvlRecursoAM> TodosVncTercerNvlRecurso();
         VncTercerNvlRecursoAM AgregarVncTercerNvlRecurso(VncTercerNvlRecursoAM objeto);
         VncTercerNvlRecursoAM ObtenerVncTercerNvlRecurso(int id);
+        long ObtenerVncTercerNvlRecursoTotal(int id);
 
 
         //Elemento 

@@ -12,5 +12,6 @@ namespace Domain.Repository.Interface
         IList<VncTercerNvlRecurso> All();
         void Add(VncTercerNvlRecurso objeto);
         VncTercerNvlRecurso GetId(int id);
+        long GetTotalId(int id);
     }
 }
