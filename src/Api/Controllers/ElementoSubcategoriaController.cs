@@ -27,16 +27,11 @@ namespace Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult PutCategoria(int id, [FromBody] ElementoSubcategoriaAM objeto)
+        public IActionResult PutCategoria(int id)
         {
-            if (id != objeto.id)
-            {
-                return BadRequest();
-            }
-
             try
             {
-                return new JsonResult(this.administracionBO.ActualizarElementoSubcategoria(objeto));
+                return new JsonResult(this.administracionBO.ActualizarElementoSubcategoria(id));
             }
             catch (ArgumentNullException ex)
             {

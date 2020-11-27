@@ -52,5 +52,17 @@ namespace Api.Controllers
             }
             return NotFound();
         }
+
+        [HttpGet("Descripcion/{texto}")]
+        public IActionResult getTexto(string texto)
+        {
+            EstadoAM estado = administracionBO.GetDescripcionEstado(texto);
+
+            if (estado != null)
+            {
+                return new JsonResult(estado);
+            }
+            return NotFound();
+        }
     }
 }

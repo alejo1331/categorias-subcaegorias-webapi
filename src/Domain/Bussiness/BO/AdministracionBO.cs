@@ -66,6 +66,13 @@ namespace Domain.Bussiness.BO
             return mapper.Map<EstadoAM>(estado);
         }
 
+        public EstadoAM GetDescripcionEstado(string texto)
+        {
+            InterfaceEstado<Estado> repository = new RepositoryEstado(context);
+            Estado estado = repository.GetDescripcion(texto);
+            return mapper.Map<EstadoAM>(estado);
+        }
+
         //Tipo Categoria
         public IList<TipoCategoriaAM> AllTiposCtg()
         {
@@ -168,6 +175,7 @@ namespace Domain.Bussiness.BO
 
         public CategoriaAM Add(CategoriaAM objeto)
         {
+            EstadoAM activo = GetDescripcionEstado("Activo");
             //Creacion de la Categoria
             InterfaceCategoria<Categoria> repository = new RepositoryCategoria(context);
             Categoria estado = mapper.Map<Categoria>(objeto);
@@ -179,9 +187,8 @@ namespace Domain.Bussiness.BO
             VncCategoriaTipoCtgAM vinculo = new VncCategoriaTipoCtgAM();
             vinculo.idCategoria = estado.id;
             vinculo.idTipoCtg = estado.padre;
-            vinculo.codigoEstado = 1;
+            vinculo.codigoEstado = activo.id;
             vinculo.tipoVinculo = 1;
-            vinculo.user = 0;
             this.AgregarVncCategoriaTipoCtg(vinculo);
             return categoria;
         }
@@ -279,6 +286,8 @@ namespace Domain.Bussiness.BO
 
         public SubcategoriaAM AgregarSubcategoria(SubcategoriaAM objeto)
         {
+            EstadoAM activo = GetDescripcionEstado("Activo");
+
             //Creacion de la subcategoria
             Subcategoria subcategoria = mapper.Map<Subcategoria>(objeto);
             InterfaceSubcategoria<Subcategoria> repository = new RepositorySubcategoria(context);
@@ -291,7 +300,7 @@ namespace Domain.Bussiness.BO
             vinculo.idCategoria = objeto.padre;
             vinculo.idSubcategoria = subcategoria.id;
             vinculo.tipoVinculo = 1;
-            vinculo.codigoEstado = 1;
+            vinculo.codigoEstado = activo.id;
             this.AgregarVncCategoriaSubcategoria(vinculo);
             return subcategoriaAM;
         }
@@ -387,6 +396,8 @@ namespace Domain.Bussiness.BO
 
         public TercerNivelAM AgregarTercerNivel(TercerNivelAM objeto)
         {
+            EstadoAM activo = GetDescripcionEstado("Activo");
+
             //Creacion del objeto
             TercerNivel tercer = mapper.Map<TercerNivel>(objeto);
             InterfaceTercerNivel<TercerNivel> repository = new RepositoryTercerNivel(context);
@@ -399,7 +410,7 @@ namespace Domain.Bussiness.BO
             vinculo.codigoEstado = 1;
             vinculo.idTercerNvl = tercer.id;
             vinculo.idSubcategoria = tercer.padre;
-            vinculo.vinculo = 1;
+            vinculo.vinculo = activo.id;
             vinculo.user = 0;
             this.AgregarVncTercerNvlSubcategoria(vinculo);
             return tercerAM;
@@ -499,6 +510,8 @@ namespace Domain.Bussiness.BO
 
         public RecursoAM AgregarRecurso(RecursoAM objeto)
         {
+            EstadoAM activo = GetDescripcionEstado("Activo");
+
             //Creacion de recurso
             Recurso recurso = mapper.Map<Recurso>(objeto);
             InterfaceRecurso<Recurso> repository = new RepositoryRecurso(context);
@@ -515,7 +528,7 @@ namespace Domain.Bussiness.BO
                     VncTipoCtgRecursoAM vinculo = new VncTipoCtgRecursoAM();
                     vinculo.idRecurso = recurso.id;
                     vinculo.idTipoCtg = recurso.idParametro;
-                    vinculo.codigoEstado = 1;
+                    vinculo.codigoEstado = activo.id;
                     vinculo.user = 0;
                     vinculo.vinculo = 1;
                     this.AgregarVncTipoCtgRecurso(vinculo);
@@ -525,7 +538,7 @@ namespace Domain.Bussiness.BO
                     VncCategoriaRecursoAM vinculo = new VncCategoriaRecursoAM();
                     vinculo.idRecurso = recurso.id;
                     vinculo.idCtg = recurso.idParametro;
-                    vinculo.codigoEstado = 1;
+                    vinculo.codigoEstado = activo.id;
                     vinculo.user = 0;
                     vinculo.vinculo = 1;
                     this.AgregarVncCategoriaRecurso(vinculo);
@@ -535,7 +548,7 @@ namespace Domain.Bussiness.BO
                     VncSubcategoriaRecursoAM vinculo = new VncSubcategoriaRecursoAM();
                     vinculo.idRecurso = recurso.id;
                     vinculo.idSubCtg = recurso.idParametro;
-                    vinculo.codigoEstado = 1;
+                    vinculo.codigoEstado = activo.id;
                     vinculo.user = 0;
                     vinculo.vinculo = 1;
                     this.AgregarVncSubcategoriaRecurso(vinculo);
@@ -545,7 +558,7 @@ namespace Domain.Bussiness.BO
                     VncTercerNvlRecursoAM vinculo = new VncTercerNvlRecursoAM();
                     vinculo.idRecurso = recurso.id;
                     vinculo.idTercerNvl = recurso.idParametro;
-                    vinculo.codigoEstado = 1;
+                    vinculo.codigoEstado = activo.id;
                     vinculo.user = 0;
                     vinculo.vinculo = 1;
                     this.AgregarVncTercerNvlRecurso(vinculo);
@@ -749,9 +762,10 @@ namespace Domain.Bussiness.BO
 
         public VncCategoriaTipoCtgAM DesvncCategoriaTipoCtg(int idpadre, int idhijo)
         {
+            EstadoAM estado = GetDescripcionEstado("Inactivo");
             InterfaceVclCtgTipoCtg<VncCategoriaTipoCtg> repository = new RepositoryVncCategoriaTipoCtg(context);
             VncCategoriaTipoCtg vinculo = repository.GetId(idpadre, idhijo);
-            vinculo.codigoEstado = 2;
+            vinculo.codigoEstado = estado.id;
             this.context.SaveChanges();
             return mapper.Map<VncCategoriaTipoCtgAM>(vinculo);
         }
@@ -767,13 +781,14 @@ namespace Domain.Bussiness.BO
 
         public void VincularCategoriaTipo(DvcCategoriaTipoCtg objeto)
         {
+            EstadoAM estado = GetDescripcionEstado("Activo");
             string[] ids = objeto.idscategorias.Split(',');
             foreach (string id in ids)
             {
                 VncCategoriaTipoCtgAM nuevo = new VncCategoriaTipoCtgAM();
                 nuevo.idTipoCtg = objeto.idTipoCategoria;
                 nuevo.idCategoria = int.Parse(id);
-                nuevo.codigoEstado = 1;
+                nuevo.codigoEstado = estado.id;
                 nuevo.tipoVinculo = 0;
                 nuevo.user = 0;
                 AgregarVncCategoriaTipoCtg(nuevo);
@@ -812,13 +827,14 @@ namespace Domain.Bussiness.BO
 
         public void VincularSubcategoriasCategoria(DvcSubcategoriaCategoria objeto)
         {
+            EstadoAM estado = GetDescripcionEstado("Activo");
             string[] ids = objeto.idssubcategorias.Split(',');
             foreach (string id in ids)
             {
                 VncSubcategoriaCategoriaAM nuevo = new VncSubcategoriaCategoriaAM();
                 nuevo.idCategoria = objeto.idCategoria;
                 nuevo.idSubcategoria = int.Parse(id);
-                nuevo.codigoEstado = 1;
+                nuevo.codigoEstado = estado.id;
                 nuevo.tipoVinculo = 0;
                 nuevo.user = 0;
                 AgregarVncCategoriaSubcategoria(nuevo);
@@ -954,12 +970,13 @@ namespace Domain.Bussiness.BO
 
         public VncTercerNvlSubcategoriaAM DesvncTercerNvlSubcategoria(int idpadre, int idhijo)
         {
+            EstadoAM estado = GetDescripcionEstado("Inactivo");
             InterfaceVnlTercerNvlSct<VncTercerNvlSubcategoria> repository = new RepositroyvVnlTercerNvlSbt(context);
             VncTercerNvlSubcategoria vinculo = repository.GetId(idpadre, idhijo);
             if (vinculo == null)
                 return null;
 
-            vinculo.codigoEstado = 0;
+            vinculo.codigoEstado = estado.id;
             repository.Update(vinculo);
             this.context.SaveChanges();
             return mapper.Map<VncTercerNvlSubcategoriaAM>(vinculo);
@@ -976,13 +993,14 @@ namespace Domain.Bussiness.BO
 
         public void VincularTercerNvlSbc(DvcTercerNivelSct objeto)
         {
+            EstadoAM estado = GetDescripcionEstado("Activo");
             string[] ids = objeto.idsTercerNivel.Split(',');
             foreach (string id in ids)
             {
                 VncTercerNvlSubcategoriaAM nuevo = new VncTercerNvlSubcategoriaAM();
                 nuevo.idSubcategoria = objeto.idSubcategoria;
                 nuevo.idTercerNvl = int.Parse(id);
-                nuevo.codigoEstado = 1;
+                nuevo.codigoEstado = estado.id;
                 nuevo.vinculo = 0;
                 nuevo.user = 0;
                 AgregarVncTercerNvlSubcategoria(nuevo);
@@ -1377,13 +1395,12 @@ namespace Domain.Bussiness.BO
 
         //Elemento Categoria
 
-        public ElementoCategoriaAM ActualizarElementoCategoria(ElementoCategoriaAM objeto)
+        public ElementoCategoriaAM ActualizarElementoCategoria(int id)
         {
             InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
-            ElementoCategoria tipo = mapper.Map<ElementoCategoria>(objeto);
-            repository.update(tipo);
+            repository.update(id);
             this.context.SaveChanges();
-            ElementoCategoriaAM nuevo = mapper.Map<ElementoCategoriaAM>(tipo);
+            ElementoCategoriaAM nuevo = ElementoCategoriaId(id);
             return nuevo;
         }
 
@@ -1664,13 +1681,12 @@ namespace Domain.Bussiness.BO
 
         /// Elemento Subcategoria
 
-        public ElementoSubcategoriaAM ActualizarElementoSubcategoria(ElementoSubcategoriaAM objeto)
+        public ElementoSubcategoriaAM ActualizarElementoSubcategoria(int id)
         {
             InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
-            ElementoSubcategoria tipo = mapper.Map<ElementoSubcategoria>(objeto);
-            repository.update(tipo);
+            repository.update(id);
             this.context.SaveChanges();
-            ElementoSubcategoriaAM nuevo = mapper.Map<ElementoSubcategoriaAM>(tipo);
+            ElementoSubcategoriaAM nuevo = ElementoSubcategoriaId(id);
             return nuevo;
         }
         public IList<ElementoSubcategoriaAM> TodasElementoSubcategoria()
@@ -1961,13 +1977,12 @@ namespace Domain.Bussiness.BO
             return mapper.Map<ElementoTercerNivelAM>(repository.GetPortalTransversalId(id, padre));
         }
 
-        public ElementoTercerNivelAM ActualizarElementoTercerNivel(ElementoTercerNivelAM objeto)
+        public ElementoTercerNivelAM ActualizarElementoTercerNivel(int id)
         {
             InterfaceElementoTercerNivel<ElementoTercerNivel> repository = new RepositoryElementoTercerNivel(context);
-            ElementoTercerNivel tipo = mapper.Map<ElementoTercerNivel>(objeto);
-            repository.update(tipo);
+            repository.update(id);
             this.context.SaveChanges();
-            ElementoTercerNivelAM nuevo = mapper.Map<ElementoTercerNivelAM>(tipo);
+            ElementoTercerNivelAM nuevo = ElementoTercerNivelId(id);
             return nuevo;
         }
 

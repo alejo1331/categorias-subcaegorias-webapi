@@ -66,16 +66,20 @@ namespace Domain.Repository
 
         public IList<Subcategoria> SonsCategoriaActivas(int id)
         {
-            return this.context.Subcategorias.Where(s => s.padre == id && s.codigoEstado == 1).ToList();
+            Estado activo = this.context.Estados.Where(s => s.descripcion == "Activo").FirstOrDefault();
+            return this.context.Subcategorias.Where(s => s.padre == id && s.codigoEstado == activo.id).ToList();
         }
 
         public void ChangeState(int id)
         {
+            Estado activo = this.context.Estados.Where(s => s.descripcion == "Activo").FirstOrDefault();
+            Estado inactivo = this.context.Estados.Where(s => s.descripcion == "Inactivo").FirstOrDefault();
+
             Subcategoria objeto = this.context.Subcategorias.Where(s => s.id == id).FirstOrDefault();
-            if (objeto.codigoEstado == 1)
-                objeto.codigoEstado = 2;
+            if (objeto.codigoEstado == activo.id)
+                objeto.codigoEstado = inactivo.id;
             else
-                objeto.codigoEstado = 1;
+                objeto.codigoEstado = activo.id;
 
             this.context.Subcategorias.Update(objeto);
         }

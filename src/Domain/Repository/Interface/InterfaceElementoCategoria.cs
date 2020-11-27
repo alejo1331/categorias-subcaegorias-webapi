@@ -6,7 +6,7 @@ namespace Domain.Repository.Interface
 {
     public interface InterfaceElementoCategoria<ElementoCategoria>
     {
-        void update(ElementoCategoria objeto);
+        void update(int id);
         IList<ElementoCategoria> All();
         ElementoCategoria GetId(int id);
         ElementoCategoria GetSedeElectronicaId(int id, int padre);

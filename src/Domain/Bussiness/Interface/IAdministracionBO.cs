@@ -18,6 +18,7 @@ namespace Domain.Bussiness.Interface
         IList<EstadoAM> All();
         EstadoAM AddEstado(EstadoAM objeto);
         EstadoAM getIdEstado(int id);
+        EstadoAM GetDescripcionEstado(string texto);
 
         //TipoCategoria
         IList<TipoCategoriaAM> AllTiposCtg();
@@ -217,7 +218,7 @@ namespace Domain.Bussiness.Interface
         TipoElementoAM TipoElementoSigla(string sigla);
 
         //Elemento Categoria
-        ElementoCategoriaAM ActualizarElementoCategoria(ElementoCategoriaAM objeto);
+        ElementoCategoriaAM ActualizarElementoCategoria(int id);
         IList<ElementoCategoriaAM> TodasElementoCategoria();
         ElementoCategoriaAM ElementoCategoriaId(int id);
         ElementoCategoriaAM ElementoCategoriaSedeElectronicaId(int id, int padre);
@@ -269,7 +270,7 @@ namespace Domain.Bussiness.Interface
         ElementoSubcategoriaAM ElementoSubcategoriaVentanillaUnicaId(int id, int padre);
         ElementoSubcategoriaAM ElementoSubcategoriaTramisteServicioId(int id, int padre);
         ElementoSubcategoriaAM ElementoSubcategoriaPortalTransversalId(int id, int padre);
-        ElementoSubcategoriaAM ActualizarElementoSubcategoria(ElementoSubcategoriaAM objeto);
+        ElementoSubcategoriaAM ActualizarElementoSubcategoria(int id);
         IList<ElementoSubcategoriaAM> TodasElementoSubcategoria();
         ElementoSubcategoriaAM ElementoSubcategoriaId(int id);
         ElementoSubcategoriaAM AgregarElementoSubcategoria(ElementoSubcategoriaAM objeto);
@@ -316,7 +317,7 @@ namespace Domain.Bussiness.Interface
         ElementoTercerNivelAM ElementoTercerNivelVentanillaUnicaId(int id, int padre);
         ElementoTercerNivelAM ElementoTercerNivelTramisteServicioId(int id, int padre);
         ElementoTercerNivelAM ElementoTercerNivelPortalTransversalId(int id, int padre);
-        ElementoTercerNivelAM ActualizarElementoTercerNivel(ElementoTercerNivelAM objeto);
+        ElementoTercerNivelAM ActualizarElementoTercerNivel(int id);
         IList<ElementoTercerNivelAM> TodasElementoTercerNivel();
         ElementoTercerNivelAM ElementoTercerNivelId(int id);
         ElementoTercerNivelAM AgregarElementoTercerNivel(ElementoTercerNivelAM objeto);

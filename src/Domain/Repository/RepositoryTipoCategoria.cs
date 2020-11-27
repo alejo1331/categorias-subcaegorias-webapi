@@ -52,11 +52,14 @@ namespace Domain.Repository
 
         public void ChangeState(int id)
         {
+            Estado activo = this.context.Estados.Where(s => s.descripcion == "Activo").FirstOrDefault();
+            Estado inactivo = this.context.Estados.Where(s => s.descripcion == "Inactivo").FirstOrDefault();
+
             TipoCategoria objeto = this.context.TipoCategorias.Where(s => s.id == id).FirstOrDefault();
-            if (objeto.codigoEstado == 1)
-                objeto.codigoEstado = 2;
+            if (objeto.codigoEstado == activo.id)
+                objeto.codigoEstado = inactivo.id;
             else
-                objeto.codigoEstado = 1;
+                objeto.codigoEstado = activo.id;
 
             this.context.TipoCategorias.Update(objeto);
         }

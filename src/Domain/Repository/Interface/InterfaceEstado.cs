@@ -9,5 +9,6 @@ namespace Domain.Repository.Interface
         IList<Estado> All();
         void Add(Estado objeto);
         Estado GetId(int id);
+        Estado GetDescripcion(string texto);
     }
 }
