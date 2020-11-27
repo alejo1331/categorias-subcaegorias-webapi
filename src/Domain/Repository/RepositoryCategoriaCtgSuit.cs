@@ -11,9 +11,11 @@ namespace Domain.Repository
     public class RepositoryCategoriaCtgSuit : InterfaceCategoriaCtgSuit<CategoriaCtgSuit>
     {
         private readonly Context context;
+        private Estado activo;
         public RepositoryCategoriaCtgSuit(Context context)
         {
             this.context = context;
+            this.activo = this.context.Estados.Where(s => s.descripcion == "Activo").FirstOrDefault();
         }
 
         public IList<CategoriaCtgSuit> All()
@@ -36,12 +38,12 @@ namespace Domain.Repository
 
         public IList<CategoriaCtgSuit> GetCategoriasSuit(int idCategoria)
         {
-            return context.CategoriaCtgSuits.Where(s => s.idCategoria == idCategoria && s.codigoEstado == 1).ToList();
+            return context.CategoriaCtgSuits.Where(s => s.idCategoria == idCategoria && s.codigoEstado == this.activo.id).ToList();
         }
 
         public CategoriaCtgSuit GetId(int idCategoria, int idCategoriaSuit)
         {
-            return context.CategoriaCtgSuits.Where(s => s.idCategoria == idCategoria  && s.idCategoriaSuit == idCategoriaSuit && s.codigoEstado == 1).FirstOrDefault();
+            return context.CategoriaCtgSuits.Where(s => s.idCategoria == idCategoria  && s.idCategoriaSuit == idCategoriaSuit && s.codigoEstado == this.activo.id).FirstOrDefault();
         }
 
         public void update(CategoriaCtgSuit objeto)

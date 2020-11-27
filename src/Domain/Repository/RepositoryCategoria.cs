@@ -85,11 +85,15 @@ namespace Domain.Repository
 
         public void ChangeState(int id)
         {
+            //Estados
+            Estado activo = this.context.Estados.Where(s => s.descripcion == "Activo").FirstOrDefault();
+            Estado inactivo = this.context.Estados.Where(s => s.descripcion == "Inactivo").FirstOrDefault();
+
             Categoria objeto = this.context.Categorias.Where(s => s.id == id).FirstOrDefault();
-            if (objeto.codigoEstado == 1)
-                objeto.codigoEstado = 2;
+            if (objeto.codigoEstado == activo.id)
+                objeto.codigoEstado = inactivo.id;
             else
-                objeto.codigoEstado = 1;
+                objeto.codigoEstado = activo.id;
 
             this.context.Categorias.Update(objeto);
         }
@@ -131,7 +135,8 @@ namespace Domain.Repository
 
         public IList<Categoria> Activas()
         {
-            return this.context.Categorias.Where(s => s.codigoEstado == 1).OrderBy(s => s.orden).ThenBy(s => s.nombre).ToList();
+            Estado activo = this.context.Estados.Where(s => s.descripcion == "Activo").FirstOrDefault();
+            return this.context.Categorias.Where(s => s.codigoEstado == activo.id).OrderBy(s => s.orden).ThenBy(s => s.nombre).ToList();
         }
 
         public int Count(int orden)

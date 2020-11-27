@@ -33,5 +33,10 @@ namespace Domain.Repository
         {
             return context.Estados.Where(s => s.id == id).FirstOrDefault();
         }
+
+        public Estado GetDescripcion(string texto)
+        {
+            return context.Estados.Where(s => s.descripcion == texto).FirstOrDefault();
+        }
     }
 }

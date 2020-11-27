@@ -27,16 +27,12 @@ namespace Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult PutCategoria(int id, [FromBody] ElementoTercerNivelAM objeto)
+        public IActionResult PutCategoria(int id)
         {
-            if (id != objeto.id)
-            {
-                return BadRequest();
-            }
 
             try
             {
-                return new JsonResult(this.administracionBO.ActualizarElementoTercerNivel(objeto));
+                return new JsonResult(this.administracionBO.ActualizarElementoTercerNivel(id));
             }
             catch (ArgumentNullException ex)
             {

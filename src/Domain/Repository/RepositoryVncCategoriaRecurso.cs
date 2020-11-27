@@ -12,6 +12,8 @@ namespace Domain.Repository
     public class RepositoryVncCategoriaRecurso : InterfaceVncCategoriaRecurso<VncCategoriaRecurso>
     {
         protected readonly Context context;
+        
+
         public RepositoryVncCategoriaRecurso(Context context)
         {
             this.context = context;
@@ -37,7 +39,9 @@ namespace Domain.Repository
 
         public long getTotalId(int id)
         {
-            return this.context.VncCategoriaRecursos.Count(s => s.idCtg == id && s.codigoEstado == 1);
+            Estado activo = this.context.Estados.Where(s => s.descripcion == "Activo").FirstOrDefault();
+
+            return this.context.VncCategoriaRecursos.Count(s => s.idCtg == id && s.codigoEstado == activo.id);
         }
     }
 }
