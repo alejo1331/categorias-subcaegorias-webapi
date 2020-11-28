@@ -43,5 +43,17 @@ namespace Api.Controllers
             }
             return NotFound();
         }
+
+        [HttpGet("Sigla/{sigla}")]
+        public IActionResult getSigla(string sigla)
+        {
+            TipoConfiguracionAM TipoConfiguracion = administracionBO.GetTipoConfiguracionSigla(sigla);
+
+            if (TipoConfiguracion != null)
+            {
+                return new JsonResult(TipoConfiguracion);
+            }
+            return NotFound();
+        }
     }
 }

@@ -8,5 +8,6 @@ namespace Domain.Repository.Interface
     {
         IList<TipoConfiguracion> All();
         TipoConfiguracion GetId(int id);
+        TipoConfiguracion GetSiglaId(string sigla);
     }
 }

@@ -12,9 +12,14 @@ namespace Domain.Repository
     public class RepositoryVncCategoriaTipoCtg : InterfaceVclCtgTipoCtg<VncCategoriaTipoCtg>
     {
         protected readonly Context context;
+        private Estado activo;
+        private Estado inactivo;
+
         public RepositoryVncCategoriaTipoCtg(Context context)
         {
             this.context = context;
+            this.activo = this.context.Estados.Where(s => s.descripcion == "Activo").FirstOrDefault();
+            this.inactivo = this.context.Estados.Where(s => s.descripcion == "Inactivo").FirstOrDefault();
         }
 
         public IList<VncCategoriaTipoCtg> All()
@@ -45,7 +50,7 @@ namespace Domain.Repository
 
         public VncCategoriaTipoCtg GetId(int idpadre, int idhijo)
         {
-            return this.context.VncCategoriaTipoCtgs.Where(s => s.idTipoCtg == idpadre && s.idCategoria == idhijo && s.codigoEstado == 1 ).FirstOrDefault();
+            return this.context.VncCategoriaTipoCtgs.Where(s => s.idTipoCtg == idpadre && s.idCategoria == idhijo && s.codigoEstado == this.activo.id ).FirstOrDefault();
         }
 
         public void Update(VncCategoriaTipoCtg objeto)
@@ -60,7 +65,7 @@ namespace Domain.Repository
         public IList<Categoria> getCategory(int id, int page, int size, int orden, bool ascd)
         {
             var vinculos = this.context.VncCategoriaTipoCtgs
-                                                    .Where(s => s.idTipoCtg == id && s.codigoEstado == 1)
+                                                    .Where(s => s.idTipoCtg == id && s.codigoEstado == this.activo.id)
                                                     .Select(s => s.idCategoria)
                                                     .ToList();
             List<Categoria> categorias =  new List<Categoria>();
@@ -117,7 +122,7 @@ namespace Domain.Repository
         public IList<Categoria> getCategoryDesvincular(int id, int page, int size, int orden, bool ascd)
         {
             var vinculos = this.context.VncCategoriaTipoCtgs
-                                                    .Where(s => s.idTipoCtg == id && s.codigoEstado == 1  && s.tipoVinculo == 0)
+                                                    .Where(s => s.idTipoCtg == id && s.codigoEstado == this.activo.id  && s.tipoVinculo == 0)
                                                     .Select(s => s.idCategoria)
                                                     .ToList();
 
@@ -127,7 +132,7 @@ namespace Domain.Repository
             {
                 if(!ascd)
                 { 
-                    categorias = this.context.Categorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1 )
+                    categorias = this.context.Categorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == this.activo.id )
                                         .OrderBy(s => s.nombre)
                                         .Skip((page -1 )*size)
                                         .Take(size)
@@ -135,7 +140,7 @@ namespace Domain.Repository
                 }
                 else
                 {
-                    categorias = this.context.Categorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1 )
+                    categorias = this.context.Categorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == this.activo.id )
                                         .OrderByDescending(s => s.nombre)
                                         .Skip((page -1 )*size)
                                         .Take(size)
@@ -146,7 +151,7 @@ namespace Domain.Repository
             {
                 if(!ascd)
                 { 
-                    categorias = this.context.Categorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1 )
+                    categorias = this.context.Categorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == this.activo.id )
                                         .OrderBy(s => s.orden)
                                         .Skip((page -1 )*size)
                                         .Take(size)
@@ -154,7 +159,7 @@ namespace Domain.Repository
                 }
                 else
                 {
-                    categorias = this.context.Categorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1 )
+                    categorias = this.context.Categorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == this.activo.id )
                                         .OrderByDescending(s => s.orden)
                                         .Skip((page -1 )*size)
                                         .Take(size)
@@ -163,7 +168,7 @@ namespace Domain.Repository
             }
             else
             {
-                categorias = this.context.Categorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1 )
+                categorias = this.context.Categorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == this.activo.id )
                                         .Skip((page -1 )*size)
                                         .Take(size)
                                         .ToList(); 
@@ -175,7 +180,7 @@ namespace Domain.Repository
         public IList<Categoria> getCategoryActivos(int id, int page, int size, int orden, bool ascd)
         {
             var vinculos = this.context.VncCategoriaTipoCtgs
-                                                    .Where(s => s.idTipoCtg == id && s.codigoEstado == 1)
+                                                    .Where(s => s.idTipoCtg == id && s.codigoEstado == this.activo.id)
                                                     .Select(s => s.idCategoria)
                                                     .ToList();
             List<Categoria> categorias =  new List<Categoria>();
@@ -184,7 +189,7 @@ namespace Domain.Repository
             {
                 if(!ascd)
                 { 
-                    categorias = this.context.Categorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1)
+                    categorias = this.context.Categorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == this.activo.id)
                                     .OrderBy(s => s.nombre)
                                     .Skip((page -1 )*size)
                                     .Take(size)
@@ -192,7 +197,7 @@ namespace Domain.Repository
                 }
                 else
                 {
-                    categorias = this.context.Categorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1)
+                    categorias = this.context.Categorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == this.activo.id)
                                     .OrderByDescending(s => s.nombre)
                                     .Skip((page -1 )*size)
                                     .Take(size)
@@ -203,7 +208,7 @@ namespace Domain.Repository
             {
                 if(!ascd)
                 { 
-                    categorias = this.context.Categorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1)
+                    categorias = this.context.Categorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == this.activo.id)
                                     .OrderBy(s => s.orden)
                                     .Skip((page -1 )*size)
                                     .Take(size)
@@ -211,7 +216,7 @@ namespace Domain.Repository
                 }
                 else
                 {
-                    categorias = this.context.Categorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1)
+                    categorias = this.context.Categorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == this.activo.id)
                                     .OrderByDescending(s => s.orden)
                                     .Skip((page -1 )*size)
                                     .Take(size)
@@ -220,7 +225,7 @@ namespace Domain.Repository
             }
             else
             {
-                categorias = this.context.Categorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == 1)
+                categorias = this.context.Categorias.Where(s => vinculos.Contains(s.id) && s.codigoEstado == this.activo.id)
                                     .Skip((page -1 )*size)
                                     .Take(size)
                                     .ToList();
@@ -232,7 +237,7 @@ namespace Domain.Repository
         public IList<Categoria> getCategoryInactivos(int id, int page, int size, int orden, bool ascd)
         {
             var vinculos = this.context.VncCategoriaTipoCtgs
-                                                    .Where(s => s.idTipoCtg == id && s.codigoEstado == 1)
+                                                    .Where(s => s.idTipoCtg == id && s.codigoEstado == this.activo.id)
                                                     .Select(s => s.idCategoria)
                                                     .ToList();
                                                     
@@ -243,7 +248,7 @@ namespace Domain.Repository
                 if(!ascd)
                 {
                     categorias = this.context.Categorias
-                                                .Where(s => vinculos.Contains(s.id) && s.codigoEstado == 2)
+                                                .Where(s => vinculos.Contains(s.id) && s.codigoEstado == this.inactivo.id)
                                                 .OrderBy(s => s.nombre)
                                                 .Skip((page -1 )*size).Take(size)
                                                 .ToList();
@@ -251,7 +256,7 @@ namespace Domain.Repository
                 else
                 {
                     categorias = this.context.Categorias
-                                                .Where(s => vinculos.Contains(s.id) && s.codigoEstado == 2)
+                                                .Where(s => vinculos.Contains(s.id) && s.codigoEstado == this.inactivo.id)
                                                 .OrderByDescending(s => s.nombre)
                                                 .Skip((page -1 )*size).Take(size)
                                                 .ToList();
@@ -262,7 +267,7 @@ namespace Domain.Repository
                 if(!ascd)
                 {
                     categorias = this.context.Categorias
-                                                .Where(s => vinculos.Contains(s.id) && s.codigoEstado == 2)
+                                                .Where(s => vinculos.Contains(s.id) && s.codigoEstado == this.inactivo.id)
                                                 .OrderBy(s => s.orden)
                                                 .Skip((page -1 )*size).Take(size)
                                                 .ToList();
@@ -270,7 +275,7 @@ namespace Domain.Repository
                 else
                 {
                     categorias = this.context.Categorias
-                                                .Where(s => vinculos.Contains(s.id) && s.codigoEstado == 2)
+                                                .Where(s => vinculos.Contains(s.id) && s.codigoEstado == this.inactivo.id)
                                                 .OrderByDescending(s => s.orden)
                                                 .Skip((page -1 )*size).Take(size)
                                                 .ToList();
@@ -279,7 +284,7 @@ namespace Domain.Repository
             else
             {
                 categorias = this.context.Categorias
-                                                .Where(s => vinculos.Contains(s.id) && s.codigoEstado == 2)
+                                                .Where(s => vinculos.Contains(s.id) && s.codigoEstado == this.inactivo.id)
                                                 .Skip((page -1 )*size).Take(size)
                                                 .ToList();
             }
@@ -293,7 +298,7 @@ namespace Domain.Repository
         public IList<Categoria> getCategory(int id)
         {
             var vinculos = this.context.VncCategoriaTipoCtgs
-                                                    .Where(s => s.idTipoCtg == id && s.codigoEstado == 1)
+                                                    .Where(s => s.idTipoCtg == id && s.codigoEstado == this.activo.id)
                                                     .Select(s => s.idCategoria)
                                                     .ToList();
             IList<Categoria> categorias = this.context.Categorias
@@ -308,7 +313,7 @@ namespace Domain.Repository
         public IList<Categoria> Vincular(int id, int page, int size, int orden, bool ascd)
         {
             var vinculos = this.context.VncCategoriaTipoCtgs
-                                                    .Where(s => s.idTipoCtg == id && s.codigoEstado == 1)
+                                                    .Where(s => s.idTipoCtg == id && s.codigoEstado == this.activo.id)
                                                     .Select(s => s.idCategoria)
                                                     .ToList();
             List<Categoria> categorias = new List<Categoria>();
@@ -318,7 +323,7 @@ namespace Domain.Repository
                 if(!ascd)
                 {
                     categorias = this.context.Categorias
-                                                .Where(s => !vinculos.Contains(s.id) && s.codigoEstado == 1)
+                                                .Where(s => !vinculos.Contains(s.id) && s.codigoEstado == this.activo.id)
                                                 .OrderBy(s => s.nombre)
                                                 .Skip((page -1 )*size)
                                                 .Take(size)
@@ -327,7 +332,7 @@ namespace Domain.Repository
                 else
                 {
                     categorias = this.context.Categorias
-                                                .Where(s => !vinculos.Contains(s.id) && s.codigoEstado == 1)
+                                                .Where(s => !vinculos.Contains(s.id) && s.codigoEstado == this.activo.id)
                                                 .OrderByDescending(s => s.nombre)
                                                 .Skip((page -1 )*size)
                                                 .Take(size)
@@ -337,7 +342,7 @@ namespace Domain.Repository
             else
             {
                 categorias = this.context.Categorias
-                                                .Where(s => !vinculos.Contains(s.id) && s.codigoEstado == 1)
+                                                .Where(s => !vinculos.Contains(s.id) && s.codigoEstado == this.activo.id)
                                                 .Skip((page -1 )*size)
                                                 .Take(size)
                                                 .ToList();
@@ -351,7 +356,7 @@ namespace Domain.Repository
         public long VincularTotal(int id)
         {
             var vinculos = this.context.VncCategoriaTipoCtgs
-                                                    .Where(s => s.idTipoCtg == id && s.codigoEstado == 1)
+                                                    .Where(s => s.idTipoCtg == id && s.codigoEstado == this.activo.id)
                                                     .Select(s => s.idCategoria)
                                                     .ToList();
             long categorias = this.context.Categorias
@@ -364,7 +369,7 @@ namespace Domain.Repository
         public long DesvincularTotal(int id)
         {
             var vinculos = this.context.VncCategoriaTipoCtgs
-                                                    .Where(s => s.idTipoCtg == id && s.codigoEstado == 1)
+                                                    .Where(s => s.idTipoCtg == id && s.codigoEstado == this.activo.id)
                                                     .Select(s => s.idCategoria)
                                                     .ToList();
             long categorias = this.context.Categorias
@@ -376,11 +381,11 @@ namespace Domain.Repository
         public long DesvincularTotalVinculadas(int id)
         {
             var vinculos = this.context.VncCategoriaTipoCtgs
-                                                    .Where(s => s.idTipoCtg == id && s.codigoEstado == 1 && s.tipoVinculo == 0)
+                                                    .Where(s => s.idTipoCtg == id && s.codigoEstado == this.activo.id && s.tipoVinculo == 0)
                                                     .Select(s => s.idCategoria)
                                                     .ToList();
             long categorias = this.context.Categorias
-                                                .Count(s => vinculos.Contains(s.id) && s.codigoEstado == 1);
+                                                .Count(s => vinculos.Contains(s.id) && s.codigoEstado == this.activo.id);
 
             return categorias;
         }
@@ -389,11 +394,11 @@ namespace Domain.Repository
         public long DesvincularTotalActivas(int id)
         {
             var vinculos = this.context.VncCategoriaTipoCtgs
-                                                    .Where(s => s.idTipoCtg == id && s.codigoEstado == 1)
+                                                    .Where(s => s.idTipoCtg == id && s.codigoEstado == this.activo.id)
                                                     .Select(s => s.idCategoria)
                                                     .ToList();
             long categorias = this.context.Categorias
-                                                .Count(s => vinculos.Contains(s.id) && s.codigoEstado == 1);
+                                                .Count(s => vinculos.Contains(s.id) && s.codigoEstado == this.activo.id);
 
             return categorias;
         }
@@ -401,11 +406,11 @@ namespace Domain.Repository
         public long DesvincularTotalInactivas(int id)
         {
             var vinculos = this.context.VncCategoriaTipoCtgs
-                                                    .Where(s => s.idTipoCtg == id && s.codigoEstado == 1)
+                                                    .Where(s => s.idTipoCtg == id && s.codigoEstado == this.activo.id)
                                                     .Select(s => s.idCategoria)
                                                     .ToList();
             long categorias = this.context.Categorias
-                                                .Count(s => vinculos.Contains(s.id) && s.codigoEstado == 2);
+                                                .Count(s => vinculos.Contains(s.id) && s.codigoEstado == this.inactivo.id);
 
             return categorias;
         }

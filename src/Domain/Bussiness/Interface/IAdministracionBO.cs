@@ -18,6 +18,7 @@ namespace Domain.Bussiness.Interface
         IList<EstadoAM> All();
         EstadoAM AddEstado(EstadoAM objeto);
         EstadoAM getIdEstado(int id);
+        EstadoAM GetDescripcionEstado(string texto);
 
         //TipoCategoria
         IList<TipoCategoriaAM> AllTiposCtg();
@@ -96,6 +97,7 @@ namespace Domain.Bussiness.Interface
         IList<TipoParametroAM> TodosTipoParamtero();
         TipoParametroAM AgregarTipoParametro(TipoParametroAM objeto);
         TipoParametroAM ObtenerTipoParametro(int id);
+        TipoParametroAM ObtenerTipoParametroSigla(string sigla);
         TipoParametroAM ActualizarTipoParametro(TipoParametroAM objeto);
 
 
@@ -217,7 +219,7 @@ namespace Domain.Bussiness.Interface
         TipoElementoAM TipoElementoSigla(string sigla);
 
         //Elemento Categoria
-        ElementoCategoriaAM ActualizarElementoCategoria(ElementoCategoriaAM objeto);
+        ElementoCategoriaAM ActualizarElementoCategoria(int id);
         IList<ElementoCategoriaAM> TodasElementoCategoria();
         ElementoCategoriaAM ElementoCategoriaId(int id);
         ElementoCategoriaAM ElementoCategoriaSedeElectronicaId(int id, int padre);
@@ -269,7 +271,7 @@ namespace Domain.Bussiness.Interface
         ElementoSubcategoriaAM ElementoSubcategoriaVentanillaUnicaId(int id, int padre);
         ElementoSubcategoriaAM ElementoSubcategoriaTramisteServicioId(int id, int padre);
         ElementoSubcategoriaAM ElementoSubcategoriaPortalTransversalId(int id, int padre);
-        ElementoSubcategoriaAM ActualizarElementoSubcategoria(ElementoSubcategoriaAM objeto);
+        ElementoSubcategoriaAM ActualizarElementoSubcategoria(int id);
         IList<ElementoSubcategoriaAM> TodasElementoSubcategoria();
         ElementoSubcategoriaAM ElementoSubcategoriaId(int id);
         ElementoSubcategoriaAM AgregarElementoSubcategoria(ElementoSubcategoriaAM objeto);
@@ -316,7 +318,7 @@ namespace Domain.Bussiness.Interface
         ElementoTercerNivelAM ElementoTercerNivelVentanillaUnicaId(int id, int padre);
         ElementoTercerNivelAM ElementoTercerNivelTramisteServicioId(int id, int padre);
         ElementoTercerNivelAM ElementoTercerNivelPortalTransversalId(int id, int padre);
-        ElementoTercerNivelAM ActualizarElementoTercerNivel(ElementoTercerNivelAM objeto);
+        ElementoTercerNivelAM ActualizarElementoTercerNivel(int id);
         IList<ElementoTercerNivelAM> TodasElementoTercerNivel();
         ElementoTercerNivelAM ElementoTercerNivelId(int id);
         ElementoTercerNivelAM AgregarElementoTercerNivel(ElementoTercerNivelAM objeto);
@@ -414,7 +416,9 @@ namespace Domain.Bussiness.Interface
         IList<string> AgruparTipoTramitesServicios(int id);  
         IList<TramiteServicioAM> ListaTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal, int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<TramiteServicioAM> ListaTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal); 
+        IList<TramiteServicioAM> ListaTramitesServicios(int page, int size, int orden, bool ascd,string filtro, int tipo); 
         long TotalTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal, int tipo, string filtro); 
+        long TotalTramitesServicios(int tipo, string filtro); 
 
         //Categoria Suit
         IList<CategoriaSUITAM> AllCategoriasSuit();
@@ -440,6 +444,7 @@ namespace Domain.Bussiness.Interface
         //Tipo Configuracion
         IList<TipoConfiguracionAM> AllTiposConfiguracion();
         TipoConfiguracionAM GetTipoConfiguracionId(int id);
+        TipoConfiguracionAM GetTipoConfiguracionSigla(string sigla);
 
         //Bitacora
         IList<BitacoraCategoriasAM> AllBitacora(int page, int size, int orden, bool ascd, int tipo, string filtro);

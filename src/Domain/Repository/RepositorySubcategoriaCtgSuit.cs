@@ -36,12 +36,14 @@ namespace Domain.Repository
 
         public SubcategoriaCtgSuit GetId(int idSubcategoria, int idCategoriaSuit)
         {
-            return context.SubcategoriaCtgSuits.Where(s => s.idSubcategoria == idSubcategoria  && s.idCategoriaSuit == idCategoriaSuit && s.codigoEstado == 1).FirstOrDefault();
+            Estado activo = this.context.Estados.Where(s => s.descripcion == "Activo").FirstOrDefault();
+            return context.SubcategoriaCtgSuits.Where(s => s.idSubcategoria == idSubcategoria  && s.idCategoriaSuit == idCategoriaSuit && s.codigoEstado == activo.id).FirstOrDefault();
         }
 
         public IList<SubcategoriaCtgSuit> GetSubcategoriasSuit(int idSubcategoria)
         {
-            return context.SubcategoriaCtgSuits.Where(s => s.idSubcategoria == idSubcategoria && s.codigoEstado == 1).ToList();
+            Estado activo = this.context.Estados.Where(s => s.descripcion == "Activo").FirstOrDefault();
+            return context.SubcategoriaCtgSuits.Where(s => s.idSubcategoria == idSubcategoria && s.codigoEstado == activo.id).ToList();
         }
 
         public void update(SubcategoriaCtgSuit objeto)

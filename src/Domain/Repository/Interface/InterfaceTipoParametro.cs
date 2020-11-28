@@ -12,6 +12,7 @@ namespace Domain.Repository.Interface
         IList<TipoParametro> All();
         void Add(TipoParametro objeto);
         TipoParametro GetId(int id);
+        TipoParametro GetSigla(string sigla);
         void Update(TipoParametro objeto);
     }
 }

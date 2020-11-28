@@ -37,7 +37,8 @@ namespace Domain.Repository
 
         public long GetTotalId(int id)
         {
-            return this.context.VncTercerNvlRecursos.Count(s => s.idTercerNvl == id  && s.codigoEstado == 1);
+            Estado activo = this.context.Estados.Where(s => s.descripcion == "Activo").FirstOrDefault();
+            return this.context.VncTercerNvlRecursos.Count(s => s.idTercerNvl == id  && s.codigoEstado == activo.id);
         }
     }
 }
