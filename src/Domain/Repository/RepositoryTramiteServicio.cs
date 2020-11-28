@@ -520,6 +520,133 @@ namespace Domain.Repository
 
             return union.Count();
         }
+
+        public IList<TramiteServicio> ListaTramitesServicios(int page, int size, int orden, bool ascd,string filtro, int tipo)
+        {
+            var paginado = (page - 1) * size;
+            List<TramiteServicio> Lista = new List<TramiteServicio>();
+
+            
+            if(tipo == 1)
+            {
+                if(orden == 1)
+                {
+                    if(!ascd)
+                    {
+                        Lista = context.TramiteServicios.Where(s => s.id == filtro)
+                                    .OrderBy(s => s.id)
+                                    .Skip(paginado)
+                                    .Take(size)
+                                    .ToList();
+                    }
+                    else
+                    {
+                        Lista = context.TramiteServicios.Where(s => s.id == filtro)
+                                    .OrderByDescending(s => s.id)
+                                    .Skip(paginado)
+                                    .Take(size)
+                                    .ToList();
+                    }
+                }
+                else if(orden == 2)
+                {
+                    if(orden == 1)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios.Where(s => s.id == filtro)
+                                        .OrderBy(s => s.nombre)
+                                        .Skip(paginado)
+                                        .Take(size)
+                                        .ToList();
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios.Where(s => s.id == filtro)
+                                        .OrderByDescending(s => s.nombre)
+                                        .Skip(paginado)
+                                        .Take(size)
+                                        .ToList();
+                        }
+                    }
+                }
+                else
+                {
+                    Lista = context.TramiteServicios.Where(s => s.id == filtro)
+                                        .Skip(paginado)
+                                        .Take(size)
+                                        .ToList();
+                }
+            }
+            else
+            {
+                if(orden == 1)
+                {
+                    if(!ascd)
+                    {
+                        Lista = context.TramiteServicios.Where(s => s.nombre.Contains(filtro))
+                                    .OrderBy(s => s.id)
+                                    .Skip(paginado)
+                                    .Take(size)
+                                    .ToList();
+                    }
+                    else
+                    {
+                        Lista = context.TramiteServicios.Where(s => s.nombre.Contains(filtro))
+                                    .OrderByDescending(s => s.id)
+                                    .Skip(paginado)
+                                    .Take(size)
+                                    .ToList();
+                    }
+                }
+                else if(orden == 2)
+                {
+                    if(!ascd)
+                    {
+                        Lista = context.TramiteServicios.Where(s => s.nombre.Contains(filtro))
+                                        .OrderBy(s => s.nombre)
+                                        .Skip(paginado)
+                                        .Take(size)
+                                        .ToList();
+                    }
+                    else
+                    {
+                            Lista = context.TramiteServicios.Where(s => s.nombre.Contains(filtro))
+                                        .OrderByDescending(s => s.nombre)
+                                        .Skip(paginado)
+                                        .Take(size)
+                                        .ToList();
+                    }
+                }
+                else
+                {
+                    Lista = context.TramiteServicios.Where(s => s.nombre.Contains(filtro))
+                                        .Skip(paginado)
+                                        .Take(size)
+                                        .ToList();
+                }
+            }
+
+            return Lista;
+        }
+
+        public long TotalTramitesServicios( int tipo, string filtro)
+        {
+            List<TramiteServicio> Lista = new List<TramiteServicio>();
+
+            
+            if(tipo == 1)
+            {
+                Lista = context.TramiteServicios.Where(s => s.id == filtro).ToList();
+            }
+            else if(tipo == 2)
+            {
+                Lista = context.TramiteServicios.Where(s => s.nombre.Contains(filtro)).ToList();
+            }
+            
+
+            return Lista.Count();
+        }
         
     }
 }

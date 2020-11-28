@@ -621,6 +621,12 @@ namespace Domain.Bussiness.BO
             return mapper.Map<TipoParametroAM>(repository.GetId(id));
         }
 
+        public TipoParametroAM ObtenerTipoParametroSigla(string sigla)
+        {
+            InterfaceTipoParametro<TipoParametro> repository = new RepositoryTipoParamtro(context);
+            return mapper.Map<TipoParametroAM>(repository.GetSigla(sigla));
+        }
+
         public TipoParametroAM ActualizarTipoParametro(TipoParametroAM objeto)
         {
             TipoParametro tipo = mapper.Map<TipoParametro>(objeto);
@@ -1231,6 +1237,12 @@ namespace Domain.Bussiness.BO
             return mapper.Map<List<TramiteServicioAM>>(repository.ListaTramitesServicios(fehcaIncial, fechaFinal, page, size, orden, ascd, tipo, filtro));
         }
 
+        public IList<TramiteServicioAM> ListaTramitesServicios(int page, int size, int orden, bool ascd,string filtro, int tipo)
+        {
+            InterfaceTramiteServicio<TramiteServicio> repository = new RepositoryTramiteServicio(context);
+            return mapper.Map<List<TramiteServicioAM>>(repository.ListaTramitesServicios(page, size, orden, ascd,filtro, tipo));
+        }
+
         public IList<TramiteServicioAM> ListaTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal)
         {
             InterfaceTramiteServicio<TramiteServicio> repository = new RepositoryTramiteServicio(context);
@@ -1241,6 +1253,12 @@ namespace Domain.Bussiness.BO
         {
             InterfaceTramiteServicio<TramiteServicio> repository = new RepositoryTramiteServicio(context);
             return repository.TotalTramitesServicios(fehcaIncial, fechaFinal, tipo, filtro);
+        }
+
+        public long TotalTramitesServicios(int tipo, string filtro)
+        {
+            InterfaceTramiteServicio<TramiteServicio> repository = new RepositoryTramiteServicio(context);
+            return repository.TotalTramitesServicios(tipo, filtro);
         }
 
         public long TodosParametrosTramitesServiciosTotal(int id)
@@ -2445,6 +2463,12 @@ namespace Domain.Bussiness.BO
         {
             InterfaceTipoConfiguracion<TipoConfiguracion> repository = new RepositoryTipoConfiguracion(context);
             return mapper.Map<TipoConfiguracionAM>(repository.GetId(id));
+        }
+
+        public TipoConfiguracionAM GetTipoConfiguracionSigla(string sigla)
+        {
+            InterfaceTipoConfiguracion<TipoConfiguracion> repository = new RepositoryTipoConfiguracion(context);
+            return mapper.Map<TipoConfiguracionAM>(repository.GetSiglaId(sigla));
         }
 
 

@@ -56,6 +56,12 @@ namespace Api.Controllers
             return new JsonResult(this.administracionBO.ListaTramitesServicios(historial.fechaInicio, historial.fechaFinal, historial.page, historial.size, historial.orden, historial.ascd, historial.tipo, historial.filtro));
         }
 
+        [HttpPost("Tramites/Consulta")]
+        public IActionResult getTramites(PaginateVincular vincular)
+        {            
+            return new JsonResult(this.administracionBO.ListaTramitesServicios(vincular.page, vincular.size, vincular.orden, vincular.ascd, vincular.filtro, vincular.tipo));
+        }
+
         [HttpPost("Tramites/SinPaginacion")]
         public IActionResult getTramitesPaginado(HistorialHelper historial)
         {            
@@ -66,6 +72,12 @@ namespace Api.Controllers
         public IActionResult getTramitesTotal(HistorialHelper historial)
         {            
             return new JsonResult(this.administracionBO.TotalTramitesServicios(historial.fechaInicio, historial.fechaFinal, historial.tipo, historial.filtro));
+        }
+
+        [HttpPost("Tramites/Total/Consulta")]
+        public IActionResult getTramitesTotalConsulta(HistorialHelper historial)
+        {            
+            return new JsonResult(this.administracionBO.TotalTramitesServicios(historial.tipo, historial.filtro));
         }
 
         [HttpGet("Parametros/{id}")]

@@ -60,6 +60,17 @@ namespace Api.Controllers
             return NotFound();
         }
 
+        [HttpGet("Sigla/{sigla}")]
+        public IActionResult getTipoParametroSigla(string sigla)
+        {
+            TipoParametroAM parametro = administracionBO.ObtenerTipoParametroSigla(sigla);
+            if (parametro != null)
+            {
+                return new JsonResult(parametro);
+            }
+            return NotFound();
+        }
+
         [HttpPut("{id}")]
         public IActionResult PutTipoParametro(int id, [FromBody] TipoParametroAM objeto)
         {
