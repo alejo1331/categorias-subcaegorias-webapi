@@ -97,6 +97,7 @@ namespace Domain.Bussiness.Interface
         IList<TipoParametroAM> TodosTipoParamtero();
         TipoParametroAM AgregarTipoParametro(TipoParametroAM objeto);
         TipoParametroAM ObtenerTipoParametro(int id);
+        TipoParametroAM ObtenerTipoParametroSigla(string sigla);
         TipoParametroAM ActualizarTipoParametro(TipoParametroAM objeto);
 
 
@@ -415,7 +416,9 @@ namespace Domain.Bussiness.Interface
         IList<string> AgruparTipoTramitesServicios(int id);  
         IList<TramiteServicioAM> ListaTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal, int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<TramiteServicioAM> ListaTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal); 
+        IList<TramiteServicioAM> ListaTramitesServicios(int page, int size, int orden, bool ascd,string filtro, int tipo); 
         long TotalTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal, int tipo, string filtro); 
+        long TotalTramitesServicios(int tipo, string filtro); 
 
         //Categoria Suit
         IList<CategoriaSUITAM> AllCategoriasSuit();
@@ -441,6 +444,7 @@ namespace Domain.Bussiness.Interface
         //Tipo Configuracion
         IList<TipoConfiguracionAM> AllTiposConfiguracion();
         TipoConfiguracionAM GetTipoConfiguracionId(int id);
+        TipoConfiguracionAM GetTipoConfiguracionSigla(string sigla);
 
         //Bitacora
         IList<BitacoraCategoriasAM> AllBitacora(int page, int size, int orden, bool ascd, int tipo, string filtro);

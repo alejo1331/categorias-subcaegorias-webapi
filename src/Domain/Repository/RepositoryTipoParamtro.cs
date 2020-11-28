@@ -39,5 +39,10 @@ namespace Domain.Repository
         {
             this.context.TipoParametros.Update(objeto);
         }
+
+        public TipoParametro GetSigla(string sigla)
+        {
+            return this.context.TipoParametros.Where(s => s.sigla == sigla).FirstOrDefault();
+        }
     }
 }
