@@ -213,13 +213,13 @@ namespace Api.Controllers
             return new JsonResult(this.administracionBO.Todo(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd));
         }
 
-        [HttpGet("TodosElementos/{id}")]
+        [HttpPost("TodosElementos/{id}")]
         public IActionResult GetTodosElementos(int id)
         {
             return new JsonResult(this.administracionBO.Todo(id));
         }
 
-        [HttpGet("TodosElementos/Total/{id}")]
+        [HttpPost("TodosElementos/Total/{id}")]
         public IActionResult GetTodosElementosTotal(int id)
         {
             return new JsonResult(this.administracionBO.TodoTotal(id));

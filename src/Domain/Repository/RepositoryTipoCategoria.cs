@@ -21,7 +21,7 @@ namespace Domain.Repository
 
         public IList<TipoCategoria> All()
         {
-            return this.context.TipoCategorias.ToList();
+            return this.context.TipoCategorias.OrderBy(s => s.nombre).ToList();
         }
 
         public void Add(TipoCategoria objeto)

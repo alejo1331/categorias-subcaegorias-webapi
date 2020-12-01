@@ -19,7 +19,7 @@ namespace Domain.Repository
         }
         public IList<TercerNivel> All()
         {
-            return this.context.TercerNivels.ToList();
+            return this.context.TercerNivels.OrderBy(s => s.nombre).ToList();
         }
 
         public void Add(TercerNivel objeto)
@@ -63,7 +63,7 @@ namespace Domain.Repository
 
         public IList<TercerNivel> SonsSubcategoria(int id)
         {
-            return this.context.TercerNivels.Where(s => s.padre == id).ToList();
+            return this.context.TercerNivels.Where(s => s.padre == id).OrderBy(s => s.nombre).ToList();
         }
 
         public void ChangeState(int id)
@@ -84,7 +84,7 @@ namespace Domain.Repository
         {
              List<String> lista1 = new List<string>(); 
 
-            var sql = this.context.TercerNivels.Include(x => x.Subcategoria).ToList().GroupBy(x => x.Subcategoria.nombre);
+            var sql = this.context.TercerNivels.Include(x => x.Subcategoria).OrderBy(x => x.Subcategoria.nombre).ToList().GroupBy(x => x.Subcategoria.nombre);
             foreach( var x in sql){
                 foreach(var y in x){
                     lista1.Add(y.Subcategoria.nombre);

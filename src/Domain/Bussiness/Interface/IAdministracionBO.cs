@@ -84,6 +84,7 @@ namespace Domain.Bussiness.Interface
         IList<TipoRecursoAM> TodosTipoRecurso();
         TipoRecursoAM AgregarTipoRecurso(TipoRecursoAM objeto);
         TipoRecursoAM ObtenerTipoRecurso(int id);
+        TipoRecursoAM ObtenerTipoRecursoSigla(string sigla);
 
         //Recurso
         IList<RecursoAM> TodosRecurso();

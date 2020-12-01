@@ -19,7 +19,7 @@ namespace Domain.Repository
         }
         public IList<Categoria> All()
         {
-            return this.context.Categorias.ToList();
+            return this.context.Categorias.OrderBy(s => s.nombre).ToList();
         }
 
         public void Add(Categoria objeto)
@@ -34,7 +34,7 @@ namespace Domain.Repository
         {
             List<String> lista1 = new List<string>();
 
-            var sql = this.context.Categorias.Include(x => x.TipoCategoria).ToList().GroupBy(x => x.TipoCategoria.nombre);
+            var sql = this.context.Categorias.Include(x => x.TipoCategoria).OrderBy(x => x.TipoCategoria.nombre).ToList().GroupBy(x => x.TipoCategoria.nombre);
             foreach (var x in sql)
             {
                 foreach (var y in x)
@@ -80,7 +80,7 @@ namespace Domain.Repository
 
         public IList<Categoria> SonsTipoCategoria(int id)
         {
-            return this.context.Categorias.Where(s => s.padre == id).ToList();
+            return this.context.Categorias.Where(s => s.padre == id).OrderBy(s => s.nombre).ToList();
         }
 
         public void ChangeState(int id)
@@ -136,7 +136,7 @@ namespace Domain.Repository
         public IList<Categoria> Activas()
         {
             Estado activo = this.context.Estados.Where(s => s.descripcion == "Activo").FirstOrDefault();
-            return this.context.Categorias.Where(s => s.codigoEstado == activo.id).OrderBy(s => s.orden).ThenBy(s => s.nombre).ToList();
+            return this.context.Categorias.Include( x => x.TipoCategoria).Where(s => s.codigoEstado == activo.id && s.TipoCategoria.codigoEstado == activo.id).OrderBy(s => s.orden).ThenBy(s => s.nombre).ToList();
         }
 
         public int Count(int orden)

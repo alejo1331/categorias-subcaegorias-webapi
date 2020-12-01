@@ -18,7 +18,7 @@ namespace Domain.Repository
         }
 
         public IList<TipoRecurso> All(){
-            return this.context.TipoRecursos.ToList();
+            return this.context.TipoRecursos.Where(s => s.codigoEstado == 1).ToList();
         }
 
         public void Add(TipoRecurso objeto){
@@ -30,6 +30,11 @@ namespace Domain.Repository
 
         public TipoRecurso GetId(int id){
             return this.context.TipoRecursos.Where(s => s.id == id).FirstOrDefault();
+        }
+
+        public TipoRecurso GetSigla(string sigla)
+        {
+            return this.context.TipoRecursos.Where(s => s.siglas == sigla).FirstOrDefault();
         }
     }
 }
