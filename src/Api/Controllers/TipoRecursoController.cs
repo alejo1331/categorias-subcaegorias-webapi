@@ -59,5 +59,16 @@ namespace Api.Controllers
             }
             return NotFound();
         }
+
+        [HttpGet("Sigla/{sigla}")]
+        public IActionResult getSubcategoriaSigla(string sigla)
+        {
+            TipoRecursoAM tipo = administracionBO.ObtenerTipoRecursoSigla(sigla);
+            if (tipo != null)
+            {
+                return new JsonResult(tipo);
+            }
+            return NotFound();
+        }
     }
 }

@@ -500,6 +500,13 @@ namespace Domain.Bussiness.BO
             return tipo;
         }
 
+        public TipoRecursoAM ObtenerTipoRecursoSigla(string sigla)
+        {
+            InterfaceTipoRecurso<TipoRecurso> repository = new RepositoryTipoRecurso(context);
+            TipoRecursoAM tipo = mapper.Map<TipoRecursoAM>(repository.GetSigla(sigla));
+            return tipo;
+        }
+
 
         //Recurso
         public IList<RecursoAM> TodosRecurso()

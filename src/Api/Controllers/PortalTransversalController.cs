@@ -44,6 +44,18 @@ namespace Api.Controllers
             return NotFound();
         }
 
+        [HttpPost("Post/{id}")]
+        public IActionResult getIdPost(int id)
+        {
+            PortalTransversalAM objeto = administracionBO.PortalTransversalId(id);
+
+            if (objeto != null)
+            {
+                return new JsonResult(objeto);
+            }
+            return NotFound();
+        }
+
         [HttpPost("Parametros")]
         public IActionResult getParametrosId(PaginateVincular vincular)
         {

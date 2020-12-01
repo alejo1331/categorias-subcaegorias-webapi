@@ -44,6 +44,18 @@ namespace Api.Controllers
             return NotFound();
         }
 
+        [HttpPost("Post/{id}")]
+        public IActionResult getIdPost(string id)
+        {
+            TramiteServicioAM objeto = administracionBO.TramiteServicioId(id);
+
+            if (objeto != null)
+            {
+                return new JsonResult(objeto);
+            }
+            return NotFound();
+        }
+
         [HttpPost("Parametros")]
         public IActionResult getParametrosId(PaginateVincular vincular)
         {
