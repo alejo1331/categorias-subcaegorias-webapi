@@ -19,7 +19,7 @@ namespace Domain.Repository
         }
         public IList<Subcategoria> All()
         {
-            return this.context.Subcategorias.ToList();
+            return this.context.Subcategorias.OrderBy(s => s.nombre).ToList();
         }
 
         public void Add(Subcategoria objeto)
@@ -61,7 +61,7 @@ namespace Domain.Repository
 
         public IList<Subcategoria> SonsCategoria(int id)
         {
-            return this.context.Subcategorias.Where(s => s.padre == id).ToList();
+            return this.context.Subcategorias.Where(s => s.padre == id).OrderBy(s => s.nombre).ToList();
         }
 
         public IList<Subcategoria> SonsCategoriaActivas(int id)
@@ -116,7 +116,7 @@ namespace Domain.Repository
         {
              List<String> lista1 = new List<string>(); 
 
-            var sql = this.context.Subcategorias.Include(x => x.Categoria).ToList().GroupBy(x => x.Categoria.nombre);
+            var sql = this.context.Subcategorias.Include(x => x.Categoria).OrderBy(x => x.Categoria.nombre).ToList().GroupBy(x => x.Categoria.nombre);
             foreach( var x in sql){
                 foreach(var y in x){
                     lista1.Add(y.Categoria.nombre);

@@ -11,5 +11,6 @@ namespace Domain.Repository.Interface
         IList<TipoRecurso> All();
         void Add(TipoRecurso objeto);
         TipoRecurso GetId(int id);
+        TipoRecurso GetSigla(string sigla);
     }
 }

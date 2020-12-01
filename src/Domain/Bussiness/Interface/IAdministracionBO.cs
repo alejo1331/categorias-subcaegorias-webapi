@@ -84,6 +84,7 @@ namespace Domain.Bussiness.Interface
         IList<TipoRecursoAM> TodosTipoRecurso();
         TipoRecursoAM AgregarTipoRecurso(TipoRecursoAM objeto);
         TipoRecursoAM ObtenerTipoRecurso(int id);
+        TipoRecursoAM ObtenerTipoRecursoSigla(string sigla);
 
         //Recurso
         IList<RecursoAM> TodosRecurso();
@@ -452,6 +453,8 @@ namespace Domain.Bussiness.Interface
         long TotalBitacora(int tipo, string filtro);
         BitacoraCategoriasAM AddBitacora(BitacoraCategoriasAM objeto);
         BitacoraCategoriasAM GetBitacoraId(int id);
+        IList<string> AgruparTipoConfiguracion();
+        IList<string> AgruparTipoParametro();
         
     }
 }

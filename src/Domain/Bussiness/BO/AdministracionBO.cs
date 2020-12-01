@@ -500,6 +500,13 @@ namespace Domain.Bussiness.BO
             return tipo;
         }
 
+        public TipoRecursoAM ObtenerTipoRecursoSigla(string sigla)
+        {
+            InterfaceTipoRecurso<TipoRecurso> repository = new RepositoryTipoRecurso(context);
+            TipoRecursoAM tipo = mapper.Map<TipoRecursoAM>(repository.GetSigla(sigla));
+            return tipo;
+        }
+
 
         //Recurso
         public IList<RecursoAM> TodosRecurso()
@@ -2505,6 +2512,18 @@ namespace Domain.Bussiness.BO
             this.context.SaveChanges();
             BitacoraCategoriasAM BitacoraCategoriasAM = mapper.Map<BitacoraCategoriasAM>(Bitacora);
             return BitacoraCategoriasAM;
+        }
+
+        public IList<string> AgruparTipoConfiguracion()
+        {
+            InterfaceBitacora<Bitacora> repository = new RepositoryBitacora(context);
+            return repository.AgruparTipoConfiguracion();
+        }
+
+        public IList<string> AgruparTipoParametro()
+        {
+            InterfaceBitacora<Bitacora> repository = new RepositoryBitacora(context);
+            return repository.AgruparTipoParametro();
         }
 
     }

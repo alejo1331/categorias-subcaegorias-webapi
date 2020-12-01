@@ -54,151 +54,2103 @@ namespace Domain.Repository
             List<TramiteServicio> Lista = new List<TramiteServicio>();
 
             if(fehcaIncial != null && fechaFinal != null)
-            {
-                Lista = context.TramiteServicios.Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal).ToList();
+            {                
+                if(tipo == 1)
+                {                    
+                    if(orden == 1)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.id == filtro)
+                                .OrderBy(s => s.id)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.id == filtro)
+                                .OrderByDescending(s => s.id)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 2)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.id == filtro)
+                                .OrderBy(s => s.nombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.id == filtro)
+                                .OrderByDescending(s => s.nombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 3)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.id == filtro)
+                                .OrderBy(s => s.institucionId)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.id == filtro)
+                                .OrderByDescending(s => s.institucionId)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 4)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.id == filtro)
+                                .OrderBy(s => s.institucionNombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.id == filtro)
+                                .OrderByDescending(s => s.institucionNombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 5)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.id == filtro)
+                                .OrderBy(s => s.fechaCreacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.id == filtro)
+                                .OrderByDescending(s => s.fechaCreacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 6)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.id == filtro)
+                                .OrderBy(s => s.fechaModificacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.id == filtro)
+                                .OrderByDescending(s => s.fechaModificacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else
+                    {
+                        Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.id == filtro)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                    }
+                }
+                else if(tipo == 2)
+                {
+                    if(orden == 1)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.nombre.Contains(filtro))
+                                .OrderBy(s => s.id)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.nombre.Contains(filtro))
+                                .OrderByDescending(s => s.id)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 2)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.nombre.Contains(filtro))
+                                .OrderBy(s => s.nombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.nombre.Contains(filtro))
+                                .OrderByDescending(s => s.nombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 3)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.nombre.Contains(filtro))
+                                .OrderBy(s => s.institucionId)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.nombre.Contains(filtro))
+                                .OrderByDescending(s => s.institucionId)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 4)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.nombre.Contains(filtro))
+                                .OrderBy(s => s.institucionNombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.nombre.Contains(filtro))
+                                .OrderByDescending(s => s.institucionNombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 5)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.nombre.Contains(filtro))
+                                .OrderBy(s => s.fechaCreacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.nombre.Contains(filtro))
+                                .OrderByDescending(s => s.fechaCreacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 6)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.nombre.Contains(filtro))
+                                .OrderBy(s => s.fechaModificacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.nombre.Contains(filtro))
+                                .OrderByDescending(s => s.fechaModificacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else
+                    {
+                        Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.nombre.Contains(filtro))
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                    }
+                }
+                else if(tipo == 3)
+                {
+                    if(orden == 1)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.institucionId == filtro)
+                                .OrderBy(s => s.id)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.institucionId == filtro)
+                                .OrderByDescending(s => s.id)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 2)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.institucionId == filtro)
+                                .OrderBy(s => s.nombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.institucionId == filtro)
+                                .OrderByDescending(s => s.nombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 3)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.institucionId == filtro)
+                                .OrderBy(s => s.institucionId)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.institucionId == filtro)
+                                .OrderByDescending(s => s.institucionId)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 4)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.institucionId == filtro)
+                                .OrderBy(s => s.institucionNombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.institucionId == filtro)
+                                .OrderByDescending(s => s.institucionNombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 5)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.institucionId == filtro)
+                                .OrderBy(s => s.fechaCreacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.institucionId == filtro)
+                                .OrderByDescending(s => s.fechaCreacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 6)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.institucionId == filtro)
+                                .OrderBy(s => s.fechaModificacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.institucionId == filtro)
+                                .OrderByDescending(s => s.fechaModificacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else
+                    {
+                        Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.institucionId == filtro)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                    }
+                }
+                else if(tipo == 4)
+                {
+                    if(orden == 1)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.institucionNombre.Contains(filtro))
+                                .OrderBy(s => s.id)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.institucionNombre.Contains(filtro))
+                                .OrderByDescending(s => s.id)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 2)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.institucionNombre.Contains(filtro))
+                                .OrderBy(s => s.nombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.institucionNombre.Contains(filtro))
+                                .OrderByDescending(s => s.nombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 3)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.institucionNombre.Contains(filtro))
+                                .OrderBy(s => s.institucionId)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.institucionNombre.Contains(filtro))
+                                .OrderByDescending(s => s.institucionId)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 4)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.institucionNombre.Contains(filtro))
+                                .OrderBy(s => s.institucionNombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.institucionNombre.Contains(filtro))
+                                .OrderByDescending(s => s.institucionNombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 5)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.institucionNombre.Contains(filtro))
+                                .OrderBy(s => s.fechaCreacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.institucionNombre.Contains(filtro))
+                                .OrderByDescending(s => s.fechaCreacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 6)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.institucionNombre.Contains(filtro))
+                                .OrderBy(s => s.fechaModificacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.institucionNombre.Contains(filtro))
+                                .OrderByDescending(s => s.fechaModificacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else
+                    {
+                        Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.institucionNombre.Contains(filtro))
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                    }
+                }
+                else if(tipo == 5)
+                {
+                    if(orden == 1)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.fechaCreacion >= DateTime.Parse(filtro))
+                                .OrderBy(s => s.id)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.fechaCreacion >= DateTime.Parse(filtro))
+                                .OrderByDescending(s => s.id)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 2)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.fechaCreacion >= DateTime.Parse(filtro))
+                                .OrderBy(s => s.nombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.fechaCreacion >= DateTime.Parse(filtro))
+                                .OrderByDescending(s => s.nombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 3)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.fechaCreacion >= DateTime.Parse(filtro))
+                                .OrderBy(s => s.institucionId)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.fechaCreacion >= DateTime.Parse(filtro))
+                                .OrderByDescending(s => s.institucionId)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 4)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.fechaCreacion >= DateTime.Parse(filtro))
+                                .OrderBy(s => s.institucionNombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.fechaCreacion >= DateTime.Parse(filtro))
+                                .OrderByDescending(s => s.institucionNombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 5)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.fechaCreacion >= DateTime.Parse(filtro))
+                                .OrderBy(s => s.fechaCreacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.fechaCreacion >= DateTime.Parse(filtro))
+                                .OrderByDescending(s => s.fechaCreacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 6)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.fechaCreacion >= DateTime.Parse(filtro))
+                                .OrderBy(s => s.fechaModificacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.fechaCreacion >= DateTime.Parse(filtro))
+                                .OrderByDescending(s => s.fechaModificacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else
+                    {
+                        Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.fechaCreacion >= DateTime.Parse(filtro))
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                    }
+                }
+                else if(tipo == 6)
+                {
+                    
+                    if(orden == 1)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.fechaModificacion >= DateTime.Parse(filtro))
+                                .OrderBy(s => s.id)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.fechaModificacion >= DateTime.Parse(filtro))
+                                .OrderByDescending(s => s.id)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 2)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.fechaModificacion >= DateTime.Parse(filtro))
+                                .OrderBy(s => s.nombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.fechaModificacion >= DateTime.Parse(filtro))
+                                .OrderByDescending(s => s.nombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 3)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.fechaModificacion >= DateTime.Parse(filtro))
+                                .OrderBy(s => s.institucionId)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.fechaModificacion >= DateTime.Parse(filtro))
+                                .OrderByDescending(s => s.institucionId)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 4)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.fechaModificacion >= DateTime.Parse(filtro))
+                                .OrderBy(s => s.institucionNombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.fechaModificacion >= DateTime.Parse(filtro))
+                                .OrderByDescending(s => s.institucionNombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 5)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.fechaModificacion >= DateTime.Parse(filtro))
+                                .OrderBy(s => s.fechaCreacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.fechaModificacion >= DateTime.Parse(filtro))
+                                .OrderByDescending(s => s.fechaCreacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 6)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.fechaModificacion >= DateTime.Parse(filtro))
+                                .OrderBy(s => s.fechaModificacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.fechaModificacion >= DateTime.Parse(filtro))
+                                .OrderByDescending(s => s.fechaModificacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else
+                    {
+                        Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.fechaModificacion >= DateTime.Parse(filtro))
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                    }
+                }
+                else
+                {
+                    if(orden == 1)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal)
+                                .OrderBy(s => s.id)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal)
+                                .OrderByDescending(s => s.id)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 2)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal)
+                                .OrderBy(s => s.nombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal)
+                                .OrderByDescending(s => s.nombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 3)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal)
+                                .OrderBy(s => s.institucionId)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal)
+                                .OrderByDescending(s => s.institucionId)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 4)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal)
+                                .OrderBy(s => s.institucionNombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal)
+                                .OrderByDescending(s => s.institucionNombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 5)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal)
+                                .OrderBy(s => s.fechaCreacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal)
+                                .OrderByDescending(s => s.fechaCreacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 6)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal)
+                                .OrderBy(s => s.fechaModificacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal)
+                                .OrderByDescending(s => s.fechaModificacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else
+                    {
+                        Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                    }
+                }
                     
             }
             else
             {
-                Lista = context.TramiteServicios.Where(s => s.fechaModificacion >= fehcaIncial).ToList();
-            }
+                
+                if(tipo == 1)
+                {                    
+                    if(orden == 1)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.id == filtro)
+                                .OrderBy(s => s.id)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.id == filtro)
+                                .OrderByDescending(s => s.id)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 2)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.id == filtro)
+                                .OrderBy(s => s.nombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.id == filtro)
+                                .OrderByDescending(s => s.nombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 3)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.id == filtro)
+                                .OrderBy(s => s.institucionId)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.id == filtro)
+                                .OrderByDescending(s => s.institucionId)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 4)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.id == filtro)
+                                .OrderBy(s => s.institucionNombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.id == filtro)
+                                .OrderByDescending(s => s.institucionNombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 5)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.id == filtro)
+                                .OrderBy(s => s.fechaCreacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.id == filtro)
+                                .OrderByDescending(s => s.fechaCreacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 6)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.id == filtro)
+                                .OrderBy(s => s.fechaModificacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.id == filtro)
+                                .OrderByDescending(s => s.fechaModificacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else
+                    {
+                        Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.id == filtro)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                    }
+                }
+                else if(tipo == 2)
+                {
+                    if(orden == 1)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.nombre.Contains(filtro))
+                                .OrderBy(s => s.id)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.nombre.Contains(filtro))
+                                .OrderByDescending(s => s.id)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 2)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.nombre.Contains(filtro))
+                                .OrderBy(s => s.nombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.nombre.Contains(filtro))
+                                .OrderByDescending(s => s.nombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 3)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.nombre.Contains(filtro))
+                                .OrderBy(s => s.institucionId)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.nombre.Contains(filtro))
+                                .OrderByDescending(s => s.institucionId)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 4)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.nombre.Contains(filtro))
+                                .OrderBy(s => s.institucionNombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.nombre.Contains(filtro))
+                                .OrderByDescending(s => s.institucionNombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 5)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.nombre.Contains(filtro))
+                                .OrderBy(s => s.fechaCreacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.nombre.Contains(filtro))
+                                .OrderByDescending(s => s.fechaCreacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 6)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.nombre.Contains(filtro))
+                                .OrderBy(s => s.fechaModificacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.nombre.Contains(filtro))
+                                .OrderByDescending(s => s.fechaModificacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else
+                    {
+                        Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.nombre.Contains(filtro))
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                    }
+                }
+                else if(tipo == 3)
+                {
+                    if(orden == 1)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.institucionId == filtro)
+                                .OrderBy(s => s.id)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.institucionId == filtro)
+                                .OrderByDescending(s => s.id)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 2)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.institucionId == filtro)
+                                .OrderBy(s => s.nombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.institucionId == filtro)
+                                .OrderByDescending(s => s.nombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 3)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.institucionId == filtro)
+                                .OrderBy(s => s.institucionId)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.institucionId == filtro)
+                                .OrderByDescending(s => s.institucionId)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 4)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.institucionId == filtro)
+                                .OrderBy(s => s.institucionNombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.institucionId == filtro)
+                                .OrderByDescending(s => s.institucionNombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 5)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.institucionId == filtro)
+                                .OrderBy(s => s.fechaCreacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.institucionId == filtro)
+                                .OrderByDescending(s => s.fechaCreacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 6)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.institucionId == filtro)
+                                .OrderBy(s => s.fechaModificacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.institucionId == filtro)
+                                .OrderByDescending(s => s.fechaModificacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else
+                    {
+                        Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.institucionId == filtro)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                    }
+                }
+                else if(tipo == 4)
+                {
+                    if(orden == 1)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.institucionNombre.Contains(filtro))
+                                .OrderBy(s => s.id)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.institucionNombre.Contains(filtro))
+                                .OrderByDescending(s => s.id)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 2)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.institucionNombre.Contains(filtro))
+                                .OrderBy(s => s.nombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.institucionNombre.Contains(filtro))
+                                .OrderByDescending(s => s.nombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 3)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.institucionNombre.Contains(filtro))
+                                .OrderBy(s => s.institucionId)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.institucionNombre.Contains(filtro))
+                                .OrderByDescending(s => s.institucionId)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 4)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.institucionNombre.Contains(filtro))
+                                .OrderBy(s => s.institucionNombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.institucionNombre.Contains(filtro))
+                                .OrderByDescending(s => s.institucionNombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 5)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.institucionNombre.Contains(filtro))
+                                .OrderBy(s => s.fechaCreacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.institucionNombre.Contains(filtro))
+                                .OrderByDescending(s => s.fechaCreacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 6)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.institucionNombre.Contains(filtro))
+                                .OrderBy(s => s.fechaModificacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.institucionNombre.Contains(filtro))
+                                .OrderByDescending(s => s.fechaModificacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else
+                    {
+                        Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.institucionNombre.Contains(filtro))
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                    }
+                }
+                else if(tipo == 5)
+                {
+                    if(orden == 1)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.fechaCreacion >= DateTime.Parse(filtro))
+                                .OrderBy(s => s.id)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.fechaCreacion >= DateTime.Parse(filtro))
+                                .OrderByDescending(s => s.id)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 2)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.fechaCreacion >= DateTime.Parse(filtro))
+                                .OrderBy(s => s.nombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.fechaCreacion >= DateTime.Parse(filtro))
+                                .OrderByDescending(s => s.nombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 3)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.fechaCreacion >= DateTime.Parse(filtro))
+                                .OrderBy(s => s.institucionId)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.fechaCreacion >= DateTime.Parse(filtro))
+                                .OrderByDescending(s => s.institucionId)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 4)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.fechaCreacion >= DateTime.Parse(filtro))
+                                .OrderBy(s => s.institucionNombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.fechaCreacion >= DateTime.Parse(filtro))
+                                .OrderByDescending(s => s.institucionNombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 5)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.fechaCreacion >= DateTime.Parse(filtro))
+                                .OrderBy(s => s.fechaCreacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.fechaCreacion >= DateTime.Parse(filtro))
+                                .OrderByDescending(s => s.fechaCreacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 6)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.fechaCreacion >= DateTime.Parse(filtro))
+                                .OrderBy(s => s.fechaModificacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.fechaCreacion >= DateTime.Parse(filtro))
+                                .OrderByDescending(s => s.fechaModificacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else
+                    {
+                        Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.fechaCreacion >= DateTime.Parse(filtro))
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                    }
+                }
+                else if(tipo == 6)
+                {
+                    
+                    if(orden == 1)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.fechaModificacion >= DateTime.Parse(filtro))
+                                .OrderBy(s => s.id)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.fechaModificacion >= DateTime.Parse(filtro))
+                                .OrderByDescending(s => s.id)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 2)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.fechaModificacion >= DateTime.Parse(filtro))
+                                .OrderBy(s => s.nombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.fechaModificacion >= DateTime.Parse(filtro))
+                                .OrderByDescending(s => s.nombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 3)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.fechaModificacion >= DateTime.Parse(filtro))
+                                .OrderBy(s => s.institucionId)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.fechaModificacion >= DateTime.Parse(filtro))
+                                .OrderByDescending(s => s.institucionId)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 4)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.fechaModificacion >= DateTime.Parse(filtro))
+                                .OrderBy(s => s.institucionNombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.fechaModificacion >= DateTime.Parse(filtro))
+                                .OrderByDescending(s => s.institucionNombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 5)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.fechaModificacion >= DateTime.Parse(filtro))
+                                .OrderBy(s => s.fechaCreacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.fechaModificacion >= DateTime.Parse(filtro))
+                                .OrderByDescending(s => s.fechaCreacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 6)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.fechaModificacion >= DateTime.Parse(filtro))
+                                .OrderBy(s => s.fechaModificacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.fechaModificacion >= DateTime.Parse(filtro))
+                                .OrderByDescending(s => s.fechaModificacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else
+                    {
+                        Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial  && s.fechaModificacion >= DateTime.Parse(filtro))
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                    }
+                }
+                else
+                {
+                    if(orden == 1)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial )
+                                .OrderBy(s => s.id)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial )
+                                .OrderByDescending(s => s.id)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 2)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial )
+                                .OrderBy(s => s.nombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial )
+                                .OrderByDescending(s => s.nombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 3)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial )
+                                .OrderBy(s => s.institucionId)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial )
+                                .OrderByDescending(s => s.institucionId)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 4)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial )
+                                .OrderBy(s => s.institucionNombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial )
+                                .OrderByDescending(s => s.institucionNombre)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 5)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial )
+                                .OrderBy(s => s.fechaCreacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial )
+                                .OrderByDescending(s => s.fechaCreacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else if(orden == 6)
+                    {
+                        if(!ascd)
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial )
+                                .OrderBy(s => s.fechaModificacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                                
+                        }
+                        else
+                        {
+                            Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial )
+                                .OrderByDescending(s => s.fechaModificacion)
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                        }
+                    }
+                    else
+                    {
+                        Lista = context.TramiteServicios
+                                .Where(s => s.fechaModificacion >= fehcaIncial )
+                                .Skip(paginado)
+                                .Take(size)
+                                .ToList();
+                    }
+                }
+            } 
 
-            if(tipo == 1)
-            {
-                Lista = Lista.Where( s => s.id == filtro).ToList();
-            }
-            else if(tipo == 2)
-            {
-                Lista = Lista.Where( s => s.nombre.Contains(filtro)).ToList();
-            }
-            else if(tipo == 3)
-            {
-                Lista = Lista.Where( s => s.institucionId == filtro).ToList();
-            }
-            else if(tipo == 4)
-            {
-                Lista = Lista.Where( s => s.institucionNombre.Contains(filtro)).ToList();
-            }
-            else if(tipo == 5)
-            {
-                Lista = Lista.Where( s => s.fechaCreacion >= DateTime.Parse(filtro)).ToList();
-            }
-            else if(tipo == 6)
-            {
-                Lista = Lista.Where( s => s.fechaModificacion >= DateTime.Parse(filtro)).ToList();
-            }
-
-            if(orden == 1)
-            {
-                if(!ascd)
-                {
-                    Lista = Lista.OrderBy(s => s.id).Skip(paginado).Take(size).ToList();
-                }
-                else
-                {
-                    Lista = Lista.OrderByDescending(s => s.id).Skip(paginado).Take(size).ToList();
-                }
-            }
-            else if(orden == 2)
-            {
-                if(!ascd)
-                {
-                    Lista = Lista.OrderBy(s => s.nombre).Skip(paginado).Take(size).ToList();
-                }
-                else
-                {
-                    Lista = Lista.OrderByDescending(s => s.nombre).Skip(paginado).Take(size).ToList();
-                }
-            }
-            else if(orden == 3)
-            {
-                if(!ascd)
-                {
-                    Lista = Lista.OrderBy(s => s.institucionId).Skip(paginado).Take(size).ToList();
-                }
-                else
-                {
-                    Lista = Lista.OrderByDescending(s => s.institucionId).Skip(paginado).Take(size).ToList();
-                }
-            }
-            else if(orden == 4)
-            {
-                if(!ascd)
-                {
-                    Lista = Lista.OrderBy(s => s.institucionNombre).Skip(paginado).Take(size).ToList();
-                }
-                else
-                {
-                    Lista = Lista.OrderByDescending(s => s.institucionNombre).Skip(paginado).Take(size).ToList();
-                }
-            }
-            else if(orden == 5)
-            {
-                if(!ascd)
-                {
-                    Lista = Lista.OrderBy(s => s.fechaCreacion).Skip(paginado).Take(size).ToList();
-                }
-                else
-                {
-                    Lista = Lista.OrderByDescending(s => s.fechaCreacion).Skip(paginado).Take(size).ToList();
-                }
-            }
-            else if(orden == 6)
-            {
-                if(!ascd)
-                {
-                    Lista = Lista.OrderBy(s => s.fechaModificacion).Skip(paginado).Take(size).ToList();
-                }
-                else
-                {
-                    Lista = Lista.OrderByDescending(s => s.fechaModificacion).Skip(paginado).Take(size).ToList();
-                }
-            }
-            else
-                Lista = Lista.Skip(paginado).Take(size).ToList();
+            
             return Lista;
         }
 
         public long TotalTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal, int tipo, string filtro)
         {
-            List<TramiteServicio> Lista = new List<TramiteServicio>();
+            long total = 0;
 
             if(fehcaIncial != null && fechaFinal != null)
-            {
-                Lista = context.TramiteServicios.Where(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal).ToList();
+            {                
+                if(tipo == 1)
+                {                    
+                    total = context.TramiteServicios
+                                .Count(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.id == filtro);
+                }
+                else if(tipo == 2)
+                {
+                    total = context.TramiteServicios
+                                .Count(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.nombre.Contains(filtro));
+                }
+                else if(tipo == 3)
+                {
+                    total = context.TramiteServicios
+                                .Count(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.institucionId == filtro);
+                }
+                else if(tipo == 4)
+                {
+                    total = context.TramiteServicios
+                                .Count(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.institucionNombre.Contains(filtro));
+                }
+                else if(tipo == 5)
+                {
+                    total = context.TramiteServicios
+                                .Count(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.fechaCreacion >= DateTime.Parse(filtro));
+                }
+                else if(tipo == 6)
+                {
+                    
+                    total = context.TramiteServicios
+                                .Count(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal && s.fechaModificacion >= DateTime.Parse(filtro));
+                }
+                else
+                {
+                    total = context.TramiteServicios
+                        .Count(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion <= fechaFinal);                    
+                }
                     
             }
             else
-            {
-                Lista = context.TramiteServicios.Where(s => s.fechaModificacion >= fehcaIncial).ToList();
+            {                
+                if(tipo == 1)
+                {                    
+                    total = context.TramiteServicios
+                                .Count(s => s.fechaModificacion >= fehcaIncial && s.id == filtro);
+                }
+                else if(tipo == 2)
+                {
+                    total = context.TramiteServicios
+                                .Count(s => s.fechaModificacion >= fehcaIncial && s.nombre.Contains(filtro));
+                }
+                else if(tipo == 3)
+                {
+                    total = context.TramiteServicios
+                                .Count(s => s.fechaModificacion >= fehcaIncial && s.institucionId == filtro);
+                }
+                else if(tipo == 4)
+                {
+                    total = context.TramiteServicios
+                                .Count(s => s.fechaModificacion >= fehcaIncial && s.institucionNombre.Contains(filtro));
+                }
+                else if(tipo == 5)
+                {
+                    total = context.TramiteServicios
+                                .Count(s => s.fechaModificacion >= fehcaIncial && s.fechaCreacion >= DateTime.Parse(filtro));
+                }
+                else if(tipo == 6)
+                {
+                    
+                    total = context.TramiteServicios
+                                .Count(s => s.fechaModificacion >= fehcaIncial && s.fechaModificacion >= DateTime.Parse(filtro));
+                }
+                else
+                {
+                    total = context.TramiteServicios
+                        .Count(s => s.fechaModificacion >= fehcaIncial);                    
+                }   
             }
 
-            if(tipo == 1)
-            {
-                Lista = Lista.Where( s => s.id == filtro).ToList();
-            }
-            else if(tipo == 2)
-            {
-                Lista = Lista.Where( s => s.nombre.Contains(filtro)).ToList();
-            }
-            else if(tipo == 3)
-            {
-                Lista = Lista.Where( s => s.institucionId == filtro).ToList();
-            }
-            else if(tipo == 4)
-            {
-                Lista = Lista.Where( s => s.institucionNombre.Contains(filtro)).ToList();
-            }
-            else if(tipo == 5)
-            {
-                Lista = Lista.Where( s => s.fechaCreacion >= DateTime.Parse(filtro)).ToList();
-            }
-            else if(tipo == 6)
-            {
-                Lista = Lista.Where( s => s.fechaModificacion >= DateTime.Parse(filtro)).ToList();
-            }
-
-            return Lista.Count();
+            return total;
         }
 
         public IList<ParametrosUnion> ListaParametros(int id, int page, int size, int orden, bool ascd, int tipo, string filtro)
