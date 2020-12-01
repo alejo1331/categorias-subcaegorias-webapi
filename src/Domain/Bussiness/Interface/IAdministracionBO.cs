@@ -453,6 +453,8 @@ namespace Domain.Bussiness.Interface
         long TotalBitacora(int tipo, string filtro);
         BitacoraCategoriasAM AddBitacora(BitacoraCategoriasAM objeto);
         BitacoraCategoriasAM GetBitacoraId(int id);
+        IList<string> AgruparTipoConfiguracion();
+        IList<string> AgruparTipoParametro();
         
     }
 }

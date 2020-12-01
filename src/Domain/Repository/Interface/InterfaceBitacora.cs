@@ -11,5 +11,7 @@ namespace Domain.Repository.Interface
         long Total(int tipo, string filtro);
         void Add(Bitacora objeto);
         Bitacora GetId(int id);
+        IList<string> AgruparTipoConfiguracion();
+        IList<string> AgruparTipoParametro();
     }
 }

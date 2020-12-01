@@ -42,6 +42,16 @@ namespace Domain.Repository
                 lista = lista.Where(s => s.usuario == int.Parse(filtro))
                                 .ToList();
             }
+            else if(tipo == 4)
+            {
+                lista = lista.Where(s => s.TipoConfiguracion.nombre == filtro)
+                                .ToList();
+            }
+            else if(tipo == 5)
+            {
+                lista = lista.Where(s => s.TipoParametro.nombre == filtro)
+                                .ToList();
+            }
 
             if(orden == 1)
             {
@@ -116,7 +126,9 @@ namespace Domain.Repository
         {
             long listaNUmero = 0;
 
-            List<Bitacora> lista = this.context.Bitacoras                              
+            List<Bitacora> lista = this.context.Bitacoras   
+                                .Include(s => s.TipoParametro)
+                                .Include(s => s.TipoConfiguracion)                           
                                 .ToList();
 
             if(tipo == 1)
@@ -132,6 +144,16 @@ namespace Domain.Repository
             else if(tipo == 3)
             {
                 listaNUmero = lista.Where(s => s.usuario == int.Parse(filtro))
+                                .Count();
+            }
+            else if(tipo == 4)
+            {
+                listaNUmero = lista.Where(s => s.TipoConfiguracion.nombre == filtro)
+                                .Count();
+            }
+            else if(tipo == 5)
+            {
+                listaNUmero = lista.Where(s => s.TipoParametro.nombre == filtro)
                                 .Count();
             }
             else
@@ -153,6 +175,38 @@ namespace Domain.Repository
         public Bitacora GetId(int id)
         {
             return context.Bitacoras.Where(s => s.id == id).FirstOrDefault();
+        }
+
+        public IList<string> AgruparTipoConfiguracion()
+        {
+            List<String> lista1 = new List<string>();
+
+            var sql = this.context.Bitacoras.Include(s => s.TipoConfiguracion).OrderBy(x => x.TipoConfiguracion.nombre).ToList().GroupBy(x => x.TipoConfiguracion.nombre);
+            foreach (var x in sql)
+            {
+                foreach (var y in x)
+                {
+                    lista1.Add(y.TipoConfiguracion.nombre);
+                    break;
+                }
+            }
+            return lista1;
+        }
+
+        public IList<string> AgruparTipoParametro()
+        {
+            List<String> lista1 = new List<string>();
+
+            var sql = this.context.Bitacoras.Include(s => s.TipoParametro).OrderBy(x => x.TipoParametro.nombre).ToList().GroupBy(x => x.TipoParametro.nombre);
+            foreach (var x in sql)
+            {
+                foreach (var y in x)
+                {
+                    lista1.Add(y.TipoParametro.nombre);
+                    break;
+                }
+            }
+            return lista1;
         }
     }
 }
