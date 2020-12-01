@@ -2514,5 +2514,17 @@ namespace Domain.Bussiness.BO
             return BitacoraCategoriasAM;
         }
 
+        public IList<string> AgruparTipoConfiguracion()
+        {
+            InterfaceBitacora<Bitacora> repository = new RepositoryBitacora(context);
+            return repository.AgruparTipoConfiguracion();
+        }
+
+        public IList<string> AgruparTipoParametro()
+        {
+            InterfaceBitacora<Bitacora> repository = new RepositoryBitacora(context);
+            return repository.AgruparTipoParametro();
+        }
+
     }
 }

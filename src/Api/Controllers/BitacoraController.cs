@@ -65,5 +65,17 @@ namespace Api.Controllers
             }
             return NotFound();
         }
+
+        [HttpGet("TipoConfiguracion")]
+        public IActionResult GetListaTipoConfiguracion()
+        {
+            return new JsonResult(this.administracionBO.AgruparTipoConfiguracion());
+        }
+
+        [HttpGet("TipoParametro")]
+        public IActionResult GetListaTipoParametro()
+        {
+            return new JsonResult(this.administracionBO.AgruparTipoParametro());
+        }
     }
 }
