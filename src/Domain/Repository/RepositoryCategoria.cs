@@ -136,7 +136,12 @@ namespace Domain.Repository
         public IList<Categoria> Activas()
         {
             Estado activo = this.context.Estados.Where(s => s.descripcion == "Activo").FirstOrDefault();
-            return this.context.Categorias.Include( x => x.TipoCategoria).Where(s => s.codigoEstado == activo.id && s.TipoCategoria.codigoEstado == activo.id).OrderBy(s => s.orden).ThenBy(s => s.nombre).ToList();
+            return this.context.Categorias
+                            .Include( x => x.TipoCategoria)
+                            .Where(s => s.codigoEstado == activo.id && s.TipoCategoria.codigoEstado == activo.id)
+                            .OrderBy(s => s.orden)
+                            .ThenBy(s => s.nombre)
+                            .ToList();
         }
 
         public int Count(int orden)

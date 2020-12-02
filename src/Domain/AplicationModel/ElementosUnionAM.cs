@@ -7,5 +7,6 @@ namespace Domain.Categorias.AplicationModel
         public int tipo { get; set; }
         public string estado { get; set; }
         public string url { get; set; }
+        public string entidad { get; set; }
     }
 }
