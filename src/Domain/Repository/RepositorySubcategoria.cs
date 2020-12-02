@@ -67,7 +67,10 @@ namespace Domain.Repository
         public IList<Subcategoria> SonsCategoriaActivas(int id)
         {
             Estado activo = this.context.Estados.Where(s => s.descripcion == "Activo").FirstOrDefault();
-            return this.context.Subcategorias.Where(s => s.padre == id && s.codigoEstado == activo.id).ToList();
+            return this.context.Subcategorias
+                            .Where(s => s.padre == id && s.codigoEstado == activo.id)
+                            .OrderBy(s => s.nombre)
+                            .ToList();
         }
 
         public void ChangeState(int id)
