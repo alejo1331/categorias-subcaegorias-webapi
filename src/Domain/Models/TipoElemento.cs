@@ -26,11 +26,11 @@ namespace Domain.Models
         public Estado Estado { get; set; }
         //
         [Column("TEL_MODULO", TypeName = "varchar(20)")]
-        public string modulo { get; set; }
+        public string? modulo { get; set; }
         [Column("TEL_FECHA_CREACION", TypeName = "smalldatetime")]
         public DateTime fechaCreacion { get; set; }
         [Column("USUARIO_CREACION", TypeName = "int")]
-        public int usuario { get; set; }
+        public int? usuario { get; set; }
         [Column("TEL_FECHA_MODIFICACION", TypeName = "smalldatetime")]
         public DateTime? fechaModificacion { get; set; }
         [Column("TEL_TIPO", TypeName = "varchar(20)")]
