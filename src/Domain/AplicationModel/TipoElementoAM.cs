@@ -14,7 +14,7 @@ namespace Domain.Categorias.AplicationModel
         public int codigoEstado { get; set; }
         public virtual EstadoAM Estado { get; set; }
         //
-        public string modulo { get; set; }
+        public string? modulo { get; set; }
         public DateTime fechaCreacion { get; set; }
         public int? usuario { get; set; }
         public DateTime? fechaModificacion { get; set; }
