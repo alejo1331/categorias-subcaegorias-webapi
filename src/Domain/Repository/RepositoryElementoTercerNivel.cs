@@ -1662,28 +1662,28 @@ namespace Domain.Repository
         public IList<Recurso> VinculadasRecurso(int id, int page, int size)
         {
             var vinculadas = this.context.VncTercerNvlRecursos.Where(s => s.idTercerNvl == id && s.codigoEstado == this.activo.id).Select(s => s.idRecurso).ToList();
-            List<Recurso> lista = this.context.Recursos.Where(s => vinculadas.Contains(s.id) && s.codigoEstado == this.activo.id).Skip((page - 1) * size).Take(size).ToList();
+            List<Recurso> lista = this.context.Recursos.Where(s => vinculadas.Contains(s.id)).Skip((page - 1) * size).Take(size).ToList();
             return lista;
         }
 
         public IList<Recurso> VincularRecurso(int id, int page, int size)
         {
             var vinculadas = this.context.VncTercerNvlRecursos.Where(s => s.idTercerNvl == id && s.codigoEstado == this.activo.id).Select(s => s.idRecurso).ToList();
-            List<Recurso> lista = this.context.Recursos.Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == this.activo.id).Skip((page - 1) * size).Take(size).ToList();
+            List<Recurso> lista = this.context.Recursos.Where(s => !vinculadas.Contains(s.id)).Skip((page - 1) * size).Take(size).ToList();
             return lista;
         }
 
         public long VincularRecursoTotal(int id)
         {
             var vinculadas = this.context.VncTercerNvlRecursos.Where(s => s.idTercerNvl == id && s.codigoEstado == this.activo.id).Select(s => s.idRecurso).ToList();
-            long lista = this.context.Recursos.Count(s => !vinculadas.Contains(s.id) && s.codigoEstado == this.activo.id);
+            long lista = this.context.Recursos.Count(s => !vinculadas.Contains(s.id));
             return lista;
         }
 
         public long VinculadasRecursoTotal(int id)
         {
             var vinculadas = this.context.VncTercerNvlRecursos.Where(s => s.idTercerNvl == id && s.codigoEstado == this.activo.id).Select(s => s.idRecurso).ToList();
-            long lista = this.context.Recursos.Count(s => vinculadas.Contains(s.id) && s.codigoEstado == this.activo.id);
+            long lista = this.context.Recursos.Count(s => vinculadas.Contains(s.id));
             return lista;
         }
 
