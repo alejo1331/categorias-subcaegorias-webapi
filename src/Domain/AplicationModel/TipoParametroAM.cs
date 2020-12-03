@@ -12,6 +12,6 @@ namespace Domain.Categorias.AplicationModel
         public int codigoEstado { get; set; }
         //
 
-        public int user { get; set; }
+        public int? user { get; set; }
     }
 }

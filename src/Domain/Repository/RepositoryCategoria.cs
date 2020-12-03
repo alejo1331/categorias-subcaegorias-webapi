@@ -144,6 +144,16 @@ namespace Domain.Repository
                             .ToList();
         }
 
+        public IList<Categoria> ActivasOrden()
+        {
+            Estado activo = this.context.Estados.Where(s => s.descripcion == "Activo").FirstOrDefault();
+            return this.context.Categorias
+                            .Include( x => x.TipoCategoria)
+                            .Where(s => s.codigoEstado == activo.id && s.TipoCategoria.codigoEstado == activo.id)
+                            .OrderBy(s => s.nombre)
+                            .ToList();
+        }
+
         public int Count(int orden)
         {
             return this.context.Categorias.Where(s => s.orden == orden).Count();

@@ -27,6 +27,6 @@ namespace Domain.Models
         //
 
         [Column("USUARIO_CREACION", TypeName = "int")]
-        public int user { get; set; }
+        public int? user { get; set; }
     }
 }

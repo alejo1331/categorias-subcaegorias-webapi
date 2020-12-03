@@ -161,6 +161,12 @@ namespace Domain.Bussiness.BO
             return mapper.Map<List<CategoriaAM>>(repository.Activas());
         }
 
+        public IList<CategoriaAM> ActivasCategoriasOrden()
+        {
+            InterfaceCategoria<Categoria> repository = new RepositoryCategoria(context);
+            return mapper.Map<List<CategoriaAM>>(repository.ActivasOrden());
+        }
+
         public bool ExisteCategoria(string data, int padre)
         {
             InterfaceCategoria<Categoria> repository = new RepositoryCategoria(context);
