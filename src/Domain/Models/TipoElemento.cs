@@ -26,7 +26,7 @@ namespace Domain.Models
         public Estado Estado { get; set; }
         //
         [Column("TEL_MODULO", TypeName = "varchar(20)")]
-        public string modulo { get; set; }
+        public string? modulo { get; set; }
         [Column("TEL_FECHA_CREACION", TypeName = "smalldatetime")]
         public DateTime fechaCreacion { get; set; }
         [Column("USUARIO_CREACION", TypeName = "int")]
