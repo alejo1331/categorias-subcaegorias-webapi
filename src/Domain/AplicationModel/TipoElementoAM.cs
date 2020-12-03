@@ -16,8 +16,8 @@ namespace Domain.Categorias.AplicationModel
         //
         public string modulo { get; set; }
         public DateTime fechaCreacion { get; set; }
-        public int usuario { get; set; }
-        public DateTime fechaModificacion { get; set; }
+        public int? usuario { get; set; }
+        public DateTime? fechaModificacion { get; set; }
         public string tipo { get; set; }
     }
 }

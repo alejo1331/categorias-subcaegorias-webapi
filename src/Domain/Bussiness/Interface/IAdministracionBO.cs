@@ -36,6 +36,7 @@ namespace Domain.Bussiness.Interface
         IList<CategoriaAM> AllCategorias();
         long CountOrdenCtg(int orden);
         IList<CategoriaAM> ActivasCategorias();
+        IList<CategoriaAM> ActivasCategoriasOrden();
         CategoriaAM Add(CategoriaAM objeto);
         CategoriaAM GetCategoria(int id);
         TipoCategoriaAM ObtenerCategoriaTipoCtg(int id);

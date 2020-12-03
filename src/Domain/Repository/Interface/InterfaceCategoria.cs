@@ -21,6 +21,7 @@ namespace Domain.Repository.Interface
         IList<string> Agrupar();
         bool Existe(string data, int padre);
         IList<Categoria> Activas();
+        IList<Categoria> ActivasOrden();
         int Count(int orden);
 
 
