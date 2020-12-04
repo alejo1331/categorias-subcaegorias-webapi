@@ -6,7 +6,7 @@ namespace Domain.Categorias.AplicationModel
     public class ElementoCategoriaAM
     {
         public int id { get; set; }
-        public int elementoId { get; set; }
+        public string elementoId { get; set; }
 
         //Foreign Key
         public int tipoElementoId { get; set; }  

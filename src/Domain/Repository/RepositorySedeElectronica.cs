@@ -36,7 +36,7 @@ namespace Domain.Repository
             var paginado = (page - 1) * size;
             var elemento1 = this.context.TipoElementos.Where(s => s.sigla == "SE").FirstOrDefault();
 
-            var vinculos = this.context.ElementoCategorias.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id)
+            var vinculos = this.context.ElementoCategorias.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id.ToString())
                                                             .Select(s => s.categoriaId)
                                                             .ToList();
 
@@ -44,7 +44,7 @@ namespace Domain.Repository
                                                     .Select(s => new { id = s.id, nombre = s.nombre, tipo = 2, estado = s.codigoEstado, orden = s.orden, descripcion = s.descripcionCorta })
                                                     .ToList();
             
-            var vinculos1 = this.context.ElementoSubcategorias.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id)
+            var vinculos1 = this.context.ElementoSubcategorias.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id.ToString())
                                                             .Select(s => s.subcategoriaId)
                                                             .ToList();
             
@@ -52,7 +52,7 @@ namespace Domain.Repository
                                                         .Select(s => new { id = s.id, nombre = s.nombre, tipo = 3, estado = s.codigoEstado, orden = s.orden, descripcion = s.descripcionCorta })
                                                         .ToList();
 
-            var vinculos2 = this.context.ElementoTercerNivels.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id)
+            var vinculos2 = this.context.ElementoTercerNivels.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id.ToString())
                                                             .Select(s => s.tercerNivelId)
                                                             .ToList();
 
@@ -136,7 +136,7 @@ namespace Domain.Repository
         {
             var elemento1 = this.context.TipoElementos.Where(s => s.sigla == "SE").FirstOrDefault();
 
-            var vinculos = this.context.ElementoCategorias.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id)
+            var vinculos = this.context.ElementoCategorias.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id.ToString())
                                                             .Select(s => s.categoriaId)
                                                             .ToList();
 
@@ -144,7 +144,7 @@ namespace Domain.Repository
                                                     .Select(s => new { id = s.id, nombre = s.nombre, tipo = 2, estado = s.codigoEstado, orden = s.orden, descripcion = s.descripcionCorta })
                                                     .ToList();
             
-            var vinculos1 = this.context.ElementoSubcategorias.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id)
+            var vinculos1 = this.context.ElementoSubcategorias.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id.ToString())
                                                             .Select(s => s.subcategoriaId)
                                                             .ToList();
             
@@ -152,7 +152,7 @@ namespace Domain.Repository
                                                         .Select(s => new { id = s.id, nombre = s.nombre, tipo = 3, estado = s.codigoEstado, orden = s.orden, descripcion = s.descripcionCorta })
                                                         .ToList();
 
-            var vinculos2 = this.context.ElementoTercerNivels.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id)
+            var vinculos2 = this.context.ElementoTercerNivels.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id.ToString())
                                                             .Select(s => s.tercerNivelId)
                                                             .ToList();
 
@@ -183,7 +183,7 @@ namespace Domain.Repository
         {
             var elemento1 = this.context.TipoElementos.Where(s => s.sigla == "SE").FirstOrDefault();
 
-            var vinculos = this.context.ElementoCategorias.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id)
+            var vinculos = this.context.ElementoCategorias.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id.ToString())
                                                             .Select(s => s.categoriaId)
                                                             .ToList();
 
@@ -191,7 +191,7 @@ namespace Domain.Repository
                                                     .Select(s => new { id = s.id, nombre = s.nombre, tipo = 2, estado = s.codigoEstado, orden = s.orden, descripcion = s.descripcionCorta })
                                                     .ToList();
             
-            var vinculos1 = this.context.ElementoSubcategorias.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id)
+            var vinculos1 = this.context.ElementoSubcategorias.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id.ToString())
                                                             .Select(s => s.subcategoriaId)
                                                             .ToList();
             
@@ -199,7 +199,7 @@ namespace Domain.Repository
                                                         .Select(s => new { id = s.id, nombre = s.nombre, tipo = 3, estado = s.codigoEstado, orden = s.orden, descripcion = s.descripcionCorta })
                                                         .ToList();
 
-            var vinculos2 = this.context.ElementoTercerNivels.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id)
+            var vinculos2 = this.context.ElementoTercerNivels.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id.ToString())
                                                             .Select(s => s.tercerNivelId)
                                                             .ToList();
 
@@ -233,7 +233,7 @@ namespace Domain.Repository
         {
             var elemento1 = this.context.TipoElementos.Where(s => s.sigla == "SE").FirstOrDefault();
 
-            var vinculos = this.context.ElementoCategorias.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id)
+            var vinculos = this.context.ElementoCategorias.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id.ToString())
                                                             .Select(s => s.categoriaId)
                                                             .ToList();
 
@@ -241,7 +241,7 @@ namespace Domain.Repository
                                                     .Select(s => new { id = s.id, nombre = s.nombre, tipo = 2, estado = s.codigoEstado, orden = s.orden, descripcion = s.descripcionCorta })
                                                     .ToList();
             
-            var vinculos1 = this.context.ElementoSubcategorias.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id)
+            var vinculos1 = this.context.ElementoSubcategorias.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id.ToString())
                                                             .Select(s => s.subcategoriaId)
                                                             .ToList();
             
@@ -249,7 +249,7 @@ namespace Domain.Repository
                                                         .Select(s => new { id = s.id, nombre = s.nombre, tipo = 3, estado = s.codigoEstado, orden = s.orden, descripcion = s.descripcionCorta })
                                                         .ToList();
 
-            var vinculos2 = this.context.ElementoTercerNivels.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id)
+            var vinculos2 = this.context.ElementoTercerNivels.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id.ToString())
                                                             .Select(s => s.tercerNivelId)
                                                             .ToList();
 
@@ -286,19 +286,19 @@ namespace Domain.Repository
         {
             var elemento1 = this.context.TipoElementos.Where(s => s.sigla == "SE").FirstOrDefault();
 
-            var vinculos = this.context.ElementoCategorias.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id)
+            var vinculos = this.context.ElementoCategorias.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id.ToString())
                                                             .Select(s => s.categoriaId)
                                                             .ToList();
 
             long categorias = this.context.Categorias.Count(s => vinculos.Contains(s.id));
             
-            var vinculos1 = this.context.ElementoSubcategorias.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id)
+            var vinculos1 = this.context.ElementoSubcategorias.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id.ToString())
                                                             .Select(s => s.subcategoriaId)
                                                             .ToList();
             
             long subcategorias = this.context.Subcategorias.Count(s => vinculos1.Contains(s.id));
 
-            var vinculos2 = this.context.ElementoTercerNivels.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id)
+            var vinculos2 = this.context.ElementoTercerNivels.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id.ToString())
                                                             .Select(s => s.tercerNivelId)
                                                             .ToList();
 
@@ -312,7 +312,7 @@ namespace Domain.Repository
 
             var elemento1 = this.context.TipoElementos.Where(s => s.sigla == "SE").FirstOrDefault();
 
-            var vinculos = this.context.ElementoCategorias.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id)
+            var vinculos = this.context.ElementoCategorias.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id.ToString())
                                                             .Select(s => s.categoriaId)
                                                             .ToList();
 
@@ -320,7 +320,7 @@ namespace Domain.Repository
                                                     .Select(s => new { id = s.id, nombre = s.nombre, tipo = 2, estado = s.codigoEstado, orden = s.orden, descripcion = s.descripcionCorta })
                                                     .ToList();
             
-            var vinculos1 = this.context.ElementoSubcategorias.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id)
+            var vinculos1 = this.context.ElementoSubcategorias.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id.ToString())
                                                             .Select(s => s.subcategoriaId)
                                                             .ToList();
             
@@ -328,7 +328,7 @@ namespace Domain.Repository
                                                         .Select(s => new { id = s.id, nombre = s.nombre, tipo = 3, estado = s.codigoEstado, orden = s.orden, descripcion = s.descripcionCorta })
                                                         .ToList();
 
-            var vinculos2 = this.context.ElementoTercerNivels.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id)
+            var vinculos2 = this.context.ElementoTercerNivels.Where(s => s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id && s.elementoId == id.ToString())
                                                             .Select(s => s.tercerNivelId)
                                                             .ToList();
 

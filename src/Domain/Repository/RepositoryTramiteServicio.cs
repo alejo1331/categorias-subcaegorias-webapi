@@ -2153,7 +2153,7 @@ namespace Domain.Repository
             return total;
         }
 
-        public IList<ParametrosUnion> ListaParametros(int id, int page, int size, int orden, bool ascd, int tipo, string filtro)
+        public IList<ParametrosUnion> ListaParametros(string id, int page, int size, int orden, bool ascd, int tipo, string filtro)
         {
             var paginado = (page - 1) * size;
 
@@ -2252,7 +2252,7 @@ namespace Domain.Repository
             return Union;
         }
 
-        public IList<ParametrosUnion> ListaParametros(int id)
+        public IList<ParametrosUnion> ListaParametros(string id)
         {
 
             var elemento3 = this.context.TipoElementos.Where(s => s.sigla == "TS").FirstOrDefault();
@@ -2300,7 +2300,7 @@ namespace Domain.Repository
             return Union;
         }
 
-        public IList<string> AgruparEstado(int id)
+        public IList<string> AgruparEstado(string id)
         {
             var elemento3 = this.context.TipoElementos.Where(s => s.sigla == "TS").FirstOrDefault();
 
@@ -2350,7 +2350,7 @@ namespace Domain.Repository
             return lista;
         }
 
-        public IList<string> AgruparTipo(int id)
+        public IList<string> AgruparTipo(string id)
         {
             var elemento3 = this.context.TipoElementos.Where(s => s.sigla == "TS").FirstOrDefault();
 
@@ -2401,7 +2401,7 @@ namespace Domain.Repository
             return lista;
         }
 
-        public long ListaParametrosTotal(int id)
+        public long ListaParametrosTotal(string id)
         {
             var elemento3 = this.context.TipoElementos.Where(s => s.sigla == "TS").FirstOrDefault();
 
@@ -2426,7 +2426,7 @@ namespace Domain.Repository
             return (categorias + subcategorias + tercerNivel);
         }
 
-        public long ListaParametrosTotal(int id, int tipo, string filtro)
+        public long ListaParametrosTotal(string id, int tipo, string filtro)
         {
             var elemento3 = this.context.TipoElementos.Where(s => s.sigla == "TS").FirstOrDefault();
 

@@ -11,7 +11,7 @@ namespace Domain.Repository.Interface
         ElementoSubcategoria GetId(int id);
         ElementoSubcategoria GetSedeElectronicaId(int id, int padre);
         ElementoSubcategoria GetVentanillaUnicaId(int id, int padre);
-        ElementoSubcategoria GetTramiteServicioId(int id, int padre);
+        ElementoSubcategoria GetTramiteServicioId(string id, int padre);
         ElementoSubcategoria GetPortalTransversalId(int id, int padre);
         void Add(ElementoSubcategoria objeto);
         IList<VentanillaUnica> VinculadasVentanillaUnica(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
