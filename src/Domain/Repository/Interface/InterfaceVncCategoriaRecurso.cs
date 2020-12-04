@@ -12,6 +12,8 @@ namespace Domain.Repository.Interface
         IList<VncCategoriaRecurso> All();
         void Add(VncCategoriaRecurso objeto);
         VncCategoriaRecurso GetId(int id);
+        VncCategoriaRecurso GetIdPadre(int id, int padre);
         long getTotalId(int id);
+        void Estado(int id);
     }
 }

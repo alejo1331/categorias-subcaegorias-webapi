@@ -596,6 +596,15 @@ namespace Domain.Bussiness.BO
             return recursoAM;
         }
 
+        public RecursoAM EstadoRecurso(int id)
+        {
+            InterfaceRecurso<Recurso> repository = new RepositoryRecurso(context);
+            repository.Estado(id);
+            this.context.SaveChanges();
+            RecursoAM recurso = ObtenerRecurso(id);
+            return recurso;
+        }
+
         public long ObtenerTotalRecurso(Expression<Func<RecursoAM, bool>> predicate)
         {
             InterfaceRecurso<Recurso> repository = new RepositoryRecurso(context);
@@ -1147,10 +1156,25 @@ namespace Domain.Bussiness.BO
             return mapper.Map<VncCategoriaRecursoAM>(repository.GetId(id));
         }
 
+        public VncCategoriaRecursoAM ObtenerVncCategoriaRecurso(int id, int padre)
+        {
+            InterfaceVncCategoriaRecurso<VncCategoriaRecurso> repository = new RepositoryVncCategoriaRecurso(context);
+            return mapper.Map<VncCategoriaRecursoAM>(repository.GetIdPadre(id, padre));
+        }
+
         public long ObtenerVncCategoriaRecursoTotal(int id)
         {
             InterfaceVncCategoriaRecurso<VncCategoriaRecurso> repository = new RepositoryVncCategoriaRecurso(context);
             return repository.getTotalId(id);
+        }
+
+        public VncCategoriaRecursoAM EstadoCategoriaRecurso(int id)
+        {
+            InterfaceVncCategoriaRecurso<VncCategoriaRecurso> repository = new RepositoryVncCategoriaRecurso(context);
+            repository.Estado(id);
+            this.context.SaveChanges();
+            VncCategoriaRecursoAM objeto = ObtenerVncCategoriaRecurso(id);
+            return objeto;
         }
 
         //Subcategoria ---- Recurso
@@ -1176,10 +1200,25 @@ namespace Domain.Bussiness.BO
             return mapper.Map<VncSubcategoriaRecursoAM>(repository.GetId(id));
         }
 
+        public VncSubcategoriaRecursoAM ObtenerVncSubcategoriaRecurso(int id, int padre)
+        {
+            InterfaceVncSubcategoriaRecurso<VncSubcategoriaRecurso> repository = new RepositoryVncSubcategoriaRecurso(context);
+            return mapper.Map<VncSubcategoriaRecursoAM>(repository.GetIdPadre(id, padre));
+        }
+
         public long ObtenerVncSubcategoriaRecursoTotal(int id)
         {
             InterfaceVncSubcategoriaRecurso<VncSubcategoriaRecurso> repository = new RepositoryVncSubcategoriaRecurso(context);
             return repository.GetTotalId(id);
+        }
+
+        public VncSubcategoriaRecursoAM EstadoSubcategoriaRecurso(int id)
+        {
+            InterfaceVncSubcategoriaRecurso<VncSubcategoriaRecurso> repository = new RepositoryVncSubcategoriaRecurso(context);
+            repository.Estado(id);
+            this.context.SaveChanges();
+            VncSubcategoriaRecursoAM objeto = ObtenerVncSubcategoriaRecurso(id);
+            return objeto;
         }
 
         //Tercer Nivel ---- Recurso
@@ -1205,10 +1244,25 @@ namespace Domain.Bussiness.BO
             return mapper.Map<VncTercerNvlRecursoAM>(repository.GetId(id));
         }
 
+        public VncTercerNvlRecursoAM ObtenerVncTercerNvlRecurso(int id, int padre)
+        {
+            InterfaceVncTercerNvlRecurso<VncTercerNvlRecurso> repository = new RepositoryVncTercerNvlRecurso(context);
+            return mapper.Map<VncTercerNvlRecursoAM>(repository.GetIdPadre(id, padre));
+        }
+
         public long ObtenerVncTercerNvlRecursoTotal(int id)
         {
             InterfaceVncTercerNvlRecurso<VncTercerNvlRecurso> repository = new RepositoryVncTercerNvlRecurso(context);
             return repository.GetTotalId(id);
+        }
+
+        public VncTercerNvlRecursoAM EstadoTercerNivelRecurso(int id)
+        {
+            InterfaceVncTercerNvlRecurso<VncTercerNvlRecurso> repository = new RepositoryVncTercerNvlRecurso(context);
+            repository.Estado(id);
+            this.context.SaveChanges();
+            VncTercerNvlRecursoAM vinculoAM = ObtenerVncTercerNvlRecurso(id);
+            return vinculoAM;
         }
 
 
