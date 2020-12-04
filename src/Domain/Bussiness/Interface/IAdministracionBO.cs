@@ -226,7 +226,7 @@ namespace Domain.Bussiness.Interface
         ElementoCategoriaAM ElementoCategoriaId(int id);
         ElementoCategoriaAM ElementoCategoriaSedeElectronicaId(int id, int padre);
         ElementoCategoriaAM ElementoCategoriaVentanillaUnicaId(int id, int padre);
-        ElementoCategoriaAM ElementoCategoriaTramisteServicioId(int id, int padre);
+        ElementoCategoriaAM ElementoCategoriaTramisteServicioId(string id, int padre);
         ElementoCategoriaAM ElementoCategoriaPortalTransversalId(int id, int padre);
         ElementoCategoriaAM AgregarElementoCategoria(ElementoCategoriaAM objeto);
         IList<PPTAM> VinculadasPPT(int id, int page, int size);
@@ -271,7 +271,7 @@ namespace Domain.Bussiness.Interface
         //Elemento Subcategoria
         ElementoSubcategoriaAM ElementoSubcategoriaSedeElectronicaId(int id, int padre);
         ElementoSubcategoriaAM ElementoSubcategoriaVentanillaUnicaId(int id, int padre);
-        ElementoSubcategoriaAM ElementoSubcategoriaTramisteServicioId(int id, int padre);
+        ElementoSubcategoriaAM ElementoSubcategoriaTramisteServicioId(string id, int padre);
         ElementoSubcategoriaAM ElementoSubcategoriaPortalTransversalId(int id, int padre);
         ElementoSubcategoriaAM ActualizarElementoSubcategoria(int id);
         IList<ElementoSubcategoriaAM> TodasElementoSubcategoria();
@@ -318,7 +318,7 @@ namespace Domain.Bussiness.Interface
         //Elemento Tercer Nivel
         ElementoTercerNivelAM ElementoTercerNivelSedeElectronicaId(int id, int padre);
         ElementoTercerNivelAM ElementoTercerNivelVentanillaUnicaId(int id, int padre);
-        ElementoTercerNivelAM ElementoTercerNivelTramisteServicioId(int id, int padre);
+        ElementoTercerNivelAM ElementoTercerNivelTramisteServicioId(string id, int padre);
         ElementoTercerNivelAM ElementoTercerNivelPortalTransversalId(int id, int padre);
         ElementoTercerNivelAM ActualizarElementoTercerNivel(int id);
         IList<ElementoTercerNivelAM> TodasElementoTercerNivel();
@@ -410,12 +410,12 @@ namespace Domain.Bussiness.Interface
         
 
         //Tramites y servicios
-        IList<ParametrosUnionAM> TodosParametrosTramitesServicios(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
-        IList<ParametrosUnionAM> TodosParametrosTramitesServicios(int id);
-        long TodosParametrosTramitesServiciosTotal(int id);
-        long TodosParametrosTramitesServiciosTotal(int id, int tipo, string filtro);
-        IList<string> AgruparEstadoTramitesServicios(int id); 
-        IList<string> AgruparTipoTramitesServicios(int id);  
+        IList<ParametrosUnionAM> TodosParametrosTramitesServicios(string id, int page, int size, int orden, bool ascd, int tipo, string filtro);
+        IList<ParametrosUnionAM> TodosParametrosTramitesServicios(string id);
+        long TodosParametrosTramitesServiciosTotal(string id);
+        long TodosParametrosTramitesServiciosTotal(string id, int tipo, string filtro);
+        IList<string> AgruparEstadoTramitesServicios(string id); 
+        IList<string> AgruparTipoTramitesServicios(string id);  
         IList<TramiteServicioAM> ListaTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal, int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<TramiteServicioAM> ListaTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal); 
         IList<TramiteServicioAM> ListaTramitesServicios(int page, int size, int orden, bool ascd,string filtro, int tipo); 

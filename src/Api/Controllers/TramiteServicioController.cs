@@ -57,7 +57,7 @@ namespace Api.Controllers
         }
 
         [HttpPost("Parametros")]
-        public IActionResult getParametrosId(PaginateVincular vincular)
+        public IActionResult getParametrosId(PaginateTramite vincular)
         {
             return new JsonResult(this.administracionBO.TodosParametrosTramitesServicios(vincular.idParametro, vincular.page, vincular.size, vincular.orden, vincular.ascd, vincular.tipo, vincular.filtro));
         }
@@ -93,31 +93,31 @@ namespace Api.Controllers
         }
 
         [HttpGet("Parametros/{id}")]
-        public IActionResult getParametrosId(int id)
+        public IActionResult getParametrosId(string id)
         {
             return new JsonResult(this.administracionBO.TodosParametrosTramitesServicios(id));
         }
 
         [HttpGet("Parametros/Total/{id}")]
-        public IActionResult getParametrosTotal(int id)
+        public IActionResult getParametrosTotal(string id)
         {
             return new JsonResult(this.administracionBO.TodosParametrosTramitesServiciosTotal(id));
         }
 
         [HttpGet("Parametros/Total/{id}/{tipo}/{filtro}")]
-        public IActionResult getParametrosTotal(int id, int tipo, string filtro)
+        public IActionResult getParametrosTotal(string id, int tipo, string filtro)
         {
             return new JsonResult(this.administracionBO.TodosParametrosTramitesServiciosTotal(id, tipo, filtro));
         }
 
         [HttpGet("Agrupacion/{id}")]
-        public IActionResult GetAgrupacionEstado(int id)
+        public IActionResult GetAgrupacionEstado(string id)
         {
             return new JsonResult(this.administracionBO.AgruparEstadoTramitesServicios(id));
         }
 
         [HttpGet("Agrupacion/Tipo/{id}")]
-        public IActionResult GetAgrupacionTipo(int id)
+        public IActionResult GetAgrupacionTipo(string id)
         {
             return new JsonResult(this.administracionBO.AgruparTipoTramitesServicios(id));
         }

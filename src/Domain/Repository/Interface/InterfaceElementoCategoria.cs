@@ -11,7 +11,7 @@ namespace Domain.Repository.Interface
         ElementoCategoria GetId(int id);
         ElementoCategoria GetSedeElectronicaId(int id, int padre);
         ElementoCategoria GetVentanillaUnicaId(int id, int padre);
-        ElementoCategoria GetTramiteServicioId(int id, int padre);
+        ElementoCategoria GetTramiteServicioId(string id, int padre);
         ElementoCategoria GetPortalTransversalId(int id, int padre);
         void Add(ElementoCategoria objeto);
         IList<PPT> VinculadasPPT(int id, int page, int size);

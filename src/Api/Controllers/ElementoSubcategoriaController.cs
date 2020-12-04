@@ -83,7 +83,7 @@ namespace Api.Controllers
         }
 
         [HttpGet("TramiteServicio/{id}/{padre}")]
-        public IActionResult getTramiteServicioId(int id, int padre)
+        public IActionResult getTramiteServicioId(string id, int padre)
         {
             ElementoSubcategoriaAM objeto = administracionBO.ElementoSubcategoriaTramisteServicioId(id, padre);
 

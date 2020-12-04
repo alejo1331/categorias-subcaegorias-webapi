@@ -13,8 +13,8 @@ namespace Domain.Models
         [Key]
         [Column("CES_ID", TypeName = "int")]
         public int id { get; set; }
-        [Column("ELEMENTO_ID", TypeName = "int")]
-        public int elementoId { get; set; }
+        [Column("ELEMENTO_ID", TypeName = "varchar(50)")]
+        public string elementoId { get; set; }
 
         //Foreign Key
         [Column("TEL_ID", TypeName = "int")]

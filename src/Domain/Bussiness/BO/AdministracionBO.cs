@@ -1232,13 +1232,13 @@ namespace Domain.Bussiness.BO
             return mapper.Map<List<TramiteServicioAM>>(repository.All());
         }
 
-        public IList<ParametrosUnionAM> TodosParametrosTramitesServicios(int id, int page, int size, int orden, bool ascd, int tipo, string filtro)
+        public IList<ParametrosUnionAM> TodosParametrosTramitesServicios(string id, int page, int size, int orden, bool ascd, int tipo, string filtro)
         {
             InterfaceTramiteServicio<TramiteServicio> repository = new RepositoryTramiteServicio(context);
             return mapper.Map<List<ParametrosUnionAM>>(repository.ListaParametros(id, page, size, orden, ascd, tipo, filtro));
         }
 
-        public IList<ParametrosUnionAM> TodosParametrosTramitesServicios(int id)
+        public IList<ParametrosUnionAM> TodosParametrosTramitesServicios(string id)
         {
             InterfaceTramiteServicio<TramiteServicio> repository = new RepositoryTramiteServicio(context);
             return mapper.Map<List<ParametrosUnionAM>>(repository.ListaParametros(id));
@@ -1274,25 +1274,25 @@ namespace Domain.Bussiness.BO
             return repository.TotalTramitesServicios(tipo, filtro);
         }
 
-        public long TodosParametrosTramitesServiciosTotal(int id)
+        public long TodosParametrosTramitesServiciosTotal(string id)
         {
             InterfaceTramiteServicio<TramiteServicio> repository = new RepositoryTramiteServicio(context);
             return repository.ListaParametrosTotal(id);
         }
 
-        public long TodosParametrosTramitesServiciosTotal(int id, int tipo, string filtro)
+        public long TodosParametrosTramitesServiciosTotal(string id, int tipo, string filtro)
         {
             InterfaceTramiteServicio<TramiteServicio> repository = new RepositoryTramiteServicio(context);
             return repository.ListaParametrosTotal(id, tipo, filtro);
         }
 
-        public IList<string> AgruparEstadoTramitesServicios(int id)
+        public IList<string> AgruparEstadoTramitesServicios(string id)
         {
             InterfaceTramiteServicio<TramiteServicio> repository = new RepositoryTramiteServicio(context);
             return repository.AgruparEstado(id);
         }
 
-        public IList<string> AgruparTipoTramitesServicios(int id)
+        public IList<string> AgruparTipoTramitesServicios(string id)
         {
             InterfaceTramiteServicio<TramiteServicio> repository = new RepositoryTramiteServicio(context);
             return repository.AgruparTipo(id);
@@ -1459,7 +1459,7 @@ namespace Domain.Bussiness.BO
             return mapper.Map<ElementoCategoriaAM>(repository.GetVentanillaUnicaId(id, padre));
         }
 
-        public ElementoCategoriaAM ElementoCategoriaTramisteServicioId(int id, int padre)
+        public ElementoCategoriaAM ElementoCategoriaTramisteServicioId(string id, int padre)
         {
             InterfaceElementoCategoria<ElementoCategoria> repository = new RepositoryElementoCategoria(context);
             return mapper.Map<ElementoCategoriaAM>(repository.GetTramiteServicioId(id, padre));
@@ -1744,7 +1744,7 @@ namespace Domain.Bussiness.BO
             return mapper.Map<ElementoSubcategoriaAM>(repository.GetVentanillaUnicaId(id, padre));
         }
 
-        public ElementoSubcategoriaAM ElementoSubcategoriaTramisteServicioId(int id, int padre)
+        public ElementoSubcategoriaAM ElementoSubcategoriaTramisteServicioId(string id, int padre)
         {
             InterfaceElementoSubcategoria<ElementoSubcategoria> repository = new RepositoryElementoSubcategoria(context);
             return mapper.Map<ElementoSubcategoriaAM>(repository.GetTramiteServicioId(id, padre));
@@ -1996,7 +1996,7 @@ namespace Domain.Bussiness.BO
             return mapper.Map<ElementoTercerNivelAM>(repository.GetVentanillaUnicaId(id, padre));
         }
 
-        public ElementoTercerNivelAM ElementoTercerNivelTramisteServicioId(int id, int padre)
+        public ElementoTercerNivelAM ElementoTercerNivelTramisteServicioId(string id, int padre)
         {
             InterfaceElementoTercerNivel<ElementoTercerNivel> repository = new RepositoryElementoTercerNivel(context);
             return mapper.Map<ElementoTercerNivelAM>(repository.GetTramiteServicioId(id, padre));
