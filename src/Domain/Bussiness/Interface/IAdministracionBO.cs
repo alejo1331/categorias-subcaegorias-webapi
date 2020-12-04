@@ -92,6 +92,7 @@ namespace Domain.Bussiness.Interface
         RecursoAM AgregarRecurso(RecursoAM objeto);
         RecursoAM ObtenerRecurso(int id);
         RecursoAM ActualizarRecurso(RecursoAM objeto);
+        RecursoAM EstadoRecurso(int id);
         long ObtenerTotalRecurso(Expression<Func<RecursoAM, bool>> predicate);
         ICollection<RecursoAM> ObtenerRecurso(Expression<Func<RecursoAM, bool>> predicate, int page, int size, Expression<Func<RecursoAM, object>> selector, bool descending);
 
@@ -183,19 +184,25 @@ namespace Domain.Bussiness.Interface
         IList<VncCategoriaRecursoAM> TodosVncCategoriaRecurso();
         VncCategoriaRecursoAM AgregarVncCategoriaRecurso(VncCategoriaRecursoAM objeto);
         VncCategoriaRecursoAM ObtenerVncCategoriaRecurso(int id);
+        VncCategoriaRecursoAM ObtenerVncCategoriaRecurso(int id, int padre);
         long ObtenerVncCategoriaRecursoTotal(int id);
+        VncCategoriaRecursoAM EstadoCategoriaRecurso(int id);
 
         //Subcategoria ---- Recurso
         IList<VncSubcategoriaRecursoAM> TodosVncSubcategoriaRecurso();
         VncSubcategoriaRecursoAM AgregarVncSubcategoriaRecurso(VncSubcategoriaRecursoAM objeto);
         VncSubcategoriaRecursoAM ObtenerVncSubcategoriaRecurso(int id);
+        VncSubcategoriaRecursoAM ObtenerVncSubcategoriaRecurso(int id, int padre);
         long ObtenerVncSubcategoriaRecursoTotal(int id);
+        VncSubcategoriaRecursoAM EstadoSubcategoriaRecurso(int id);
 
         //Tercer Nivel ---- Recurso
         IList<VncTercerNvlRecursoAM> TodosVncTercerNvlRecurso();
         VncTercerNvlRecursoAM AgregarVncTercerNvlRecurso(VncTercerNvlRecursoAM objeto);
         VncTercerNvlRecursoAM ObtenerVncTercerNvlRecurso(int id);
+        VncTercerNvlRecursoAM ObtenerVncTercerNvlRecurso(int id, int padre);
         long ObtenerVncTercerNvlRecursoTotal(int id);
+        VncTercerNvlRecursoAM EstadoTercerNivelRecurso(int id);
 
 
         //Elemento 

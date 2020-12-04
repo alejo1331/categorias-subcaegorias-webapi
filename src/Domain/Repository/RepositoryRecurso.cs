@@ -45,6 +45,24 @@ namespace Domain.Repository
             this.context.Recursos.Update(objeto);
         }
 
+        public void Estado(int id)
+        {
+            Estado activo = this.context.Estados.Where(s => s.descripcion == "Activo").FirstOrDefault();
+            Estado inactivo = this.context.Estados.Where(s => s.descripcion == "Inactivo").FirstOrDefault();
+
+            Recurso recurso = this.context.Recursos.Where(s => s.id == id).FirstOrDefault();
+
+            if (recurso == null)
+                throw new ArgumentNullException(nameof(recurso));
+
+            if(recurso.codigoEstado == activo.id)
+                recurso.codigoEstado = inactivo.id;
+            else
+                recurso.codigoEstado = activo.id;
+
+            this.context.Recursos.Update(recurso);
+        }
+
 
         //Paginacion
         public int Count(Expression<Func<Recurso, bool>> predicate)

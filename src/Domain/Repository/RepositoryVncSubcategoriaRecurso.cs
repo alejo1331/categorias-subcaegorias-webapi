@@ -36,10 +36,35 @@ namespace Domain.Repository
             return this.context.VncSubcategoriaRecursos.Where(s => s.id == id).FirstOrDefault();
         }
 
+        public VncSubcategoriaRecurso GetIdPadre(int id, int padre)
+        {
+            Estado activo = this.context.Estados.Where(s => s.descripcion == "Activo").FirstOrDefault();
+
+            return this.context.VncSubcategoriaRecursos.Where(s => s.idRecurso == id && s.idSubCtg == padre && s.codigoEstado == activo.id).FirstOrDefault();
+        }
+
         public long GetTotalId(int id)
         {
             Estado activo = this.context.Estados.Where(s => s.descripcion == "Activo").FirstOrDefault();
             return this.context.VncSubcategoriaRecursos.Count(s => s.idSubCtg == id && s.codigoEstado == activo.id);
+        }
+
+        public void Estado(int id)
+        {
+            Estado activo = this.context.Estados.Where(s => s.descripcion == "Activo").FirstOrDefault();
+            Estado inactivo = this.context.Estados.Where(s => s.descripcion == "Inactivo").FirstOrDefault();
+
+            VncSubcategoriaRecurso objeto = this.context.VncSubcategoriaRecursos.Where(s => s.id == id).FirstOrDefault();
+
+            if (objeto == null)
+                throw new ArgumentNullException(nameof(objeto));
+
+            if(objeto.codigoEstado == activo.id)
+                objeto.codigoEstado = inactivo.id;
+            else
+                objeto.codigoEstado = activo.id;
+
+            this.context.VncSubcategoriaRecursos.Update(objeto);
         }
     }
 }

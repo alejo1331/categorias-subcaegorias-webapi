@@ -62,10 +62,44 @@ namespace Api.Controllers
             return NotFound();
         }
 
+        [HttpGet("{id}/{padre}")]
+        public IActionResult getId(int id, int padre)
+        {
+            JsonResult response = new JsonResult(false);
+
+            VncCategoriaRecursoAM vinculo = administracionBO.ObtenerVncCategoriaRecurso(id, padre);
+            if (vinculo != null)
+            {
+                return new JsonResult(vinculo);
+            }
+            return NotFound();
+        }
+
         [HttpGet("Total/{id}")]
         public IActionResult getTotalId(int id)
         {
             return new JsonResult(administracionBO.ObtenerVncCategoriaRecursoTotal(id));
+        }
+
+        [HttpPut("Estado/{id}")]
+        public IActionResult Estado(int id)
+        {
+            VncCategoriaRecursoAM recurso = this.administracionBO.ObtenerVncCategoriaRecurso(id);
+
+            if (recurso == null)
+            {
+                return BadRequest("El objeto es nulo");
+            }
+
+            try
+            {
+                return new JsonResult(this.administracionBO.EstadoCategoriaRecurso(id));
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw ex;
+            }
+            return NoContent();
         }
     }
 }

@@ -15,6 +15,7 @@ namespace Domain.Repository.Interface
         void Add(Recurso objeto);
         Recurso GetId(int id);
         void Update(Recurso objeto);
+        void Estado(int id);
 
         //Paginacion
         int Count(Expression<Func<Recurso, bool>> predicate);

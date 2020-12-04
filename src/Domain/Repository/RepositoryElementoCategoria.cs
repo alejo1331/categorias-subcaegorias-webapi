@@ -1629,32 +1629,32 @@ namespace Domain.Repository
             Console.WriteLine(paginado);
             var vinculadas = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id).Select(s => int.Parse(s.elementoId)).ToList();
             var SedeElectronicas = this.context.SedeElectronicas.Where(s => vinculadas.Contains(s.id))
-                                                                .Select(s => new { id = s.id, nombre = s.nombre, tipo = 1, estado = s.codigoEstado.ToString(), url = s.sedeElectronicaUrl, entidad = "" })
+                                                                .Select(s => new { id = s.id.ToString(), nombre = s.nombre, tipo = 1, estado = s.codigoEstado.ToString(), url = s.sedeElectronicaUrl, entidad = "" })
                                                                 .ToList();
 
             var vinculadas1 = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == elemento2.id && s.codigoEstado == this.activo.id).Select(s => int.Parse(s.elementoId)).ToList();
             var VentanillaUnicas = this.context.VentanillaUnicas.Where(s => vinculadas1.Contains(s.id))
-                                                                .Select(s => new { id = s.id, nombre = s.nombre, tipo = 2, estado = s.codigoEstado.ToString(), url = s.dominio, entidad = "" })
+                                                                .Select(s => new { id = s.id.ToString(), nombre = s.nombre, tipo = 2, estado = s.codigoEstado.ToString(), url = s.dominio, entidad = "" })
                                                                 .ToList();
 
             var vinculadas2 = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == elemento3.id && s.codigoEstado == this.activo.id).Select(s => s.elementoId).ToList();
             var TramiteServicios = this.context.TramiteServicios.Where(s => vinculadas2.Contains(s.id))
-                                                                .Select(s => new { id = int.Parse(s.id), nombre = s.nombre, tipo = 3, estado = s.estadoCodigo, url = "No hay", entidad = s.institucionNombre })
+                                                                .Select(s => new { id = s.id, nombre = s.nombre, tipo = 3, estado = s.estadoCodigo, url = "No hay", entidad = s.institucionNombre })
                                                                 .ToList();
 
             var vinculadas3 = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == elemento4.id && s.codigoEstado == this.activo.id).Select(s => int.Parse(s.elementoId)).ToList();
             var PortalTransversals = this.context.PortalTransversals.Where(s => vinculadas3.Contains(s.id))
-                                                                .Select(s => new { id = s.id, nombre = s.nombre, tipo = 4, estado = s.codigoEstado.ToString(), url = "No hay", entidad = "" })
+                                                                .Select(s => new { id = s.id.ToString(), nombre = s.nombre, tipo = 4, estado = s.codigoEstado.ToString(), url = "No hay", entidad = "" })
                                                                 .ToList();
 
             var vinculadas4 = this.context.VncCategoriaRecursos.Where(s => s.idCtg == id && s.codigoEstado == this.activo.id).Select(s => s.idRecurso).ToList();
             var Recursos = this.context.Recursos.Where(s => vinculadas4.Contains(s.id))
-                                                                .Select(s => new { id = s.id, nombre = s.nombre, tipo = 5, estado = s.codigoEstado.ToString(), url = "No hay", entidad = "" })
+                                                                .Select(s => new { id = s.id.ToString(), nombre = s.nombre, tipo = 5, estado = s.codigoEstado.ToString(), url = "No hay", entidad = "" })
                                                                 .ToList();
 
             var vinculadas5 = this.context.CategoriaCtgSuits.Where(s => s.idCategoria == id && s.codigoEstado == this.activo.id).Select(s => s.idCategoriaSuit).ToList();
             var TramiteServicios1 = this.context.TramiteServicios.Where(s => vinculadas5.Contains(s.CategoriaSuit) && !vinculadas2.Contains(s.id))
-                                                                .Select(s => new { id = int.Parse(s.id), nombre = s.nombre, tipo = 6, estado = s.estadoCodigo, url = "No hay", entidad = s.institucionNombre  })
+                                                                .Select(s => new { id = s.id, nombre = s.nombre, tipo = 6, estado = s.estadoCodigo, url = "No hay", entidad = s.institucionNombre  })
                                                                 .ToList();
 
             List<ElementosUnion> Union = new List<ElementosUnion>();
@@ -1734,32 +1734,32 @@ namespace Domain.Repository
 
             var vinculadas = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id).Select(s => int.Parse(s.elementoId)).ToList();
             var SedeElectronicas = this.context.SedeElectronicas.Where(s => vinculadas.Contains(s.id))
-                                                                .Select(s => new { id = s.id, nombre = s.nombre, tipo = 1, estado = s.codigoEstado.ToString(), url = s.sedeElectronicaUrl, entidad = "no hay"})
+                                                                .Select(s => new { id = s.id.ToString(), nombre = s.nombre, tipo = 1, estado = s.codigoEstado.ToString(), url = s.sedeElectronicaUrl, entidad = "no hay"})
                                                                 .ToList();
 
             var vinculadas1 = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == elemento2.id && s.codigoEstado == this.activo.id).Select(s => int.Parse(s.elementoId)).ToList();
             var VentanillaUnicas = this.context.VentanillaUnicas.Where(s => vinculadas1.Contains(s.id))
-                                                                .Select(s => new { id = s.id, nombre = s.nombre, tipo = 2, estado = s.codigoEstado.ToString(), url = s.dominio, entidad = "no hay" })
+                                                                .Select(s => new { id = s.id.ToString(), nombre = s.nombre, tipo = 2, estado = s.codigoEstado.ToString(), url = s.dominio, entidad = "no hay" })
                                                                 .ToList();
 
             var vinculadas2 = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == elemento3.id && s.codigoEstado == this.activo.id).Select(s => s.elementoId).ToList();
             var TramiteServicios = this.context.TramiteServicios.Where(s => vinculadas2.Contains(s.id))
-                                                                .Select(s => new { id = int.Parse(s.id), nombre = s.nombre, tipo = 3, estado = s.estadoCodigo, url = "No hay", entidad = s.institucionNombre })
+                                                                .Select(s => new { id = s.id, nombre = s.nombre, tipo = 3, estado = s.estadoCodigo, url = "No hay", entidad = s.institucionNombre })
                                                                 .ToList();
 
             var vinculadas3 = this.context.ElementoCategorias.Where(s => s.categoriaId == id && s.tipoElementoId == elemento4.id && s.codigoEstado == this.activo.id).Select(s => int.Parse(s.elementoId)).ToList();
             var PortalTransversals = this.context.PortalTransversals.Where(s => vinculadas3.Contains(s.id))
-                                                                .Select(s => new { id = s.id, nombre = s.nombre, tipo = 4, estado = s.codigoEstado.ToString(), url = "No hay", entidad = "no hay" })
+                                                                .Select(s => new { id = s.id.ToString(), nombre = s.nombre, tipo = 4, estado = s.codigoEstado.ToString(), url = "No hay", entidad = "no hay" })
                                                                 .ToList();
 
             var vinculadas4 = this.context.VncCategoriaRecursos.Where(s => s.idCtg == id && s.codigoEstado == this.activo.id).Select(s => s.idRecurso).ToList();
             var Recursos = this.context.Recursos.Where(s => vinculadas4.Contains(s.id))
-                                                                .Select(s => new { id = s.id, nombre = s.nombre, tipo = 5, estado = s.codigoEstado.ToString(), url = "No hay", entidad = "no hay" })
+                                                                .Select(s => new { id = s.id.ToString(), nombre = s.nombre, tipo = 5, estado = s.codigoEstado.ToString(), url = "No hay", entidad = "no hay" })
                                                                 .ToList();
 
             var vinculadas5 = this.context.CategoriaCtgSuits.Where(s => s.idCategoria == id && s.codigoEstado == this.activo.id).Select(s => s.idCategoriaSuit).ToList();
             var TramiteServicios1 = this.context.TramiteServicios.Where(s => vinculadas5.Contains(s.CategoriaSuit) && !vinculadas2.Contains(s.id))
-                                                                .Select(s => new { id = int.Parse(s.id), nombre = s.nombre, tipo = 6, estado = s.estadoCodigo, url = "No hay", entidad = s.institucionNombre  })
+                                                                .Select(s => new { id = s.id, nombre = s.nombre, tipo = 6, estado = s.estadoCodigo, url = "No hay", entidad = s.institucionNombre  })
                                                                 .ToList();                                                    
 
 

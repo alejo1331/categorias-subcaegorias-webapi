@@ -78,5 +78,26 @@ namespace Api.Controllers
             }
             return NoContent();
         }
+
+        [HttpPut("Estado/{id}")]
+        public IActionResult Estado(int id)
+        {
+            RecursoAM recurso = this.administracionBO.ObtenerRecurso(id);
+
+            if (recurso == null)
+            {
+                return BadRequest("El objeto es nulo");
+            }
+
+            try
+            {
+                return new JsonResult(this.administracionBO.EstadoRecurso(id));
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw ex;
+            }
+            return NoContent();
+        }
     }
 }
