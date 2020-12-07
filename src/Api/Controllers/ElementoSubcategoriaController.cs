@@ -181,7 +181,7 @@ namespace Api.Controllers
         [HttpPost("TodosElementos")]
         public IActionResult GetTodosElementos(PaginateVincular objeto)
         {
-            return new JsonResult(this.administracionBO.TodoSubcategorias(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd));
+            return new JsonResult(this.administracionBO.TodoSubcategorias(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd, objeto.tipo, objeto.filtro));
         }
 
         [HttpGet("TodosElementos/{id}")]
@@ -190,10 +190,16 @@ namespace Api.Controllers
             return new JsonResult(this.administracionBO.TodoSubcategorias(id));
         }
 
-        [HttpGet("TodosElementos/Total/{id}")]
-        public IActionResult GetTodosElementosTotal(int id)
+        [HttpGet("TodosElementos/Agrupar/{id}")]
+        public IActionResult GetTodosElementosGrupo(int id)
         {
-            return new JsonResult(this.administracionBO.TodoTotalSubcategorias(id));
+            return new JsonResult(this.administracionBO.AgruparTipoElementoSubcategoria(id));
+        }
+
+        [HttpGet("TodosElementos/Total/{id}/{tipo}/{filtro}")]
+        public IActionResult GetTodosElementosTotal(int id, int tipo, string filtro)
+        {
+            return new JsonResult(this.administracionBO.TodoTotalSubcategorias(id, tipo, filtro));
         }
 
         [HttpPost("VinculadasSedeElectronica")]

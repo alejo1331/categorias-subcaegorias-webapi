@@ -210,7 +210,7 @@ namespace Api.Controllers
         [HttpPost("TodosElementos")]
         public IActionResult GetTodosElementos(PaginateVincular objeto)
         {
-            return new JsonResult(this.administracionBO.Todo(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd));
+            return new JsonResult(this.administracionBO.Todo(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd, objeto.tipo, objeto.filtro));
         }
 
         [HttpPost("TodosElementos/{id}")]
@@ -219,10 +219,16 @@ namespace Api.Controllers
             return new JsonResult(this.administracionBO.Todo(id));
         }
 
-        [HttpPost("TodosElementos/Total/{id}")]
-        public IActionResult GetTodosElementosTotal(int id)
+        [HttpGet("TodosElementos/Agrupar/{id}")]
+        public IActionResult GetTodosElementosGrupos(int id)
         {
-            return new JsonResult(this.administracionBO.TodoTotal(id));
+            return new JsonResult(this.administracionBO.AgruparTipoElementoCategoria(id));
+        }
+
+        [HttpPost("TodosElementos/Total/{id}/{tipo}/{filtro}")]
+        public IActionResult GetTodosElementosTotal(int id, int tipo, string filtro)
+        {
+            return new JsonResult(this.administracionBO.TodoTotal(id, tipo, filtro));
         }
 
         [HttpPost("VincularPortalTransversal")]

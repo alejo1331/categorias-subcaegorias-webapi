@@ -34,9 +34,10 @@ namespace Domain.Repository.Interface
         IList<PortalTransversal> VinculadasPortalTransversal(int id);
         IList<Recurso> VincularRecurso(int id, int page, int size);
         IList<Recurso> VinculadasRecurso(int id, int page, int size);
-        IList<ElementosUnion> TodosElementos(int id, int page, int size, int orden, bool ascd);   
+        IList<ElementosUnion> TodosElementos(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);   
         IList<ElementosUnion> TodosElementos(int id);   
-        long totalTodos(int id);
+        IList<string> AgruparTipoElemento(int id); 
+        long totalTodos(int id, int tipo, string filtro);
         long VincularSedeElectronicaTotal(int id, int tipo, string filtro);
         long VincularSedeElectronicaTotal(int id);   
         long VinculadasSedeElectronicaTotal(int id);

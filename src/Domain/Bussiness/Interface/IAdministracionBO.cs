@@ -352,15 +352,18 @@ namespace Domain.Bussiness.Interface
         IList<RecursoAM> VinculadasRecursoTercerNivel(int id, int page, int size);
 
 
-        IList<ElementosUnionAM> Todo(int id, int page, int size, int orden, bool ascd);
+        IList<ElementosUnionAM> Todo(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<ElementosUnionAM> Todo(int id);
         IList<ElementosUnionAM> TodoSubcategorias(int id);
-        IList<ElementosUnionAM> TodoSubcategorias(int id, int page, int size, int orden, bool ascd);
+        IList<ElementosUnionAM> TodoSubcategorias(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<ElementosUnionAM> TodoTercerNivels(int id);
-        IList<ElementosUnionAM> TodoTercerNivels(int id, int page, int size, int orden, bool ascd);
-        long TodoTotal(int id);
-        long TodoTotalSubcategorias(int id);
-        long TodoTotalTercerNivels(int id);
+        IList<ElementosUnionAM> TodoTercerNivels(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
+        IList<string> AgruparTipoElementoCategoria(int id);
+        IList<string> AgruparTipoElementoSubcategoria(int id);
+        IList<string> AgruparTipoElementoTercerNivel(int id);
+        long TodoTotal(int id, int tipo, string filtro);
+        long TodoTotalSubcategorias(int id, int tipo, string filtro);
+        long TodoTotalTercerNivels(int id, int tipo, string filtro);
 
         long VincularSedeElectronicaTercerNivelsTotal(int id);
         long VincularSedeElectronicaTercerNivelsTotal(int id, int tipo, string filtro);
