@@ -1746,7 +1746,7 @@ namespace Domain.Repository
             return Union;
         }
 
-        public IList<ElementosUnion> TodosElementos(int id, int page, int size, int orden, bool ascd)
+        public IList<ElementosUnion> TodosElementos(int id, int page, int size, int orden, bool ascd, int tipo, string filtro)
         {
             //Elementos
             var elemento1 = this.context.TipoElementos.Where(s => s.sigla == "SE").FirstOrDefault();
@@ -1792,42 +1792,125 @@ namespace Domain.Repository
 
             union = union.Union(TramiteServicios);
 
-            if(orden == 1)
+            if(tipo == 1)
             {
-                if(!ascd)
+                if(orden == 1)
                 {
-                    union = union.OrderBy(s => s.id).Skip(paginado).Take(size).ToList();
+                    if(!ascd)
+                    {
+                        union = union.Where(s => s.nombre.Contains(filtro)).OrderBy(s => s.id).Skip(paginado).Take(size).ToList();
+                    }
+                    else
+                    {
+                        union = union.Where(s => s.nombre.Contains(filtro)).OrderByDescending(s => s.id).Skip(paginado).Take(size).ToList();
+                    }
+                }
+                else if(orden == 2)
+                {
+                    if(!ascd)
+                    {
+                        union = union.Where(s => s.nombre.Contains(filtro)).OrderBy(s => s.tipo).Skip(paginado).Take(size).ToList();
+                    }
+                    else
+                    {
+                        union = union.Where(s => s.nombre.Contains(filtro)).OrderByDescending(s => s.tipo).Skip(paginado).Take(size).ToList();
+                    }
+                }
+                else if(orden == 3)
+                {
+                    if(!ascd)
+                    {
+                        union = union.Where(s => s.nombre.Contains(filtro)).OrderBy(s => s.nombre).Skip(paginado).Take(size).ToList();
+                    }
+                    else
+                    {
+                        union = union.Where(s => s.nombre.Contains(filtro)).OrderByDescending(s => s.nombre).Skip(paginado).Take(size).ToList();
+                    }
                 }
                 else
                 {
-                    union = union.OrderByDescending(s => s.id).Skip(paginado).Take(size).ToList();
+                    union = union.Where(s => s.nombre.Contains(filtro)).Skip(paginado).Take(size).ToList();
                 }
             }
-            else if(orden == 2)
+            else if(tipo == 2)
             {
-                if(!ascd)
+                if(orden == 1)
                 {
-                    union = union.OrderBy(s => s.tipo).Skip(paginado).Take(size).ToList();
+                    if(!ascd)
+                    {
+                        union = union.Where(s => s.tipo == int.Parse(filtro)).OrderBy(s => s.id).Skip(paginado).Take(size).ToList();
+                    }
+                    else
+                    {
+                        union = union.Where(s => s.tipo == int.Parse(filtro)).OrderByDescending(s => s.id).Skip(paginado).Take(size).ToList();
+                    }
+                }
+                else if(orden == 2)
+                {
+                    if(!ascd)
+                    {
+                        union = union.Where(s => s.tipo == int.Parse(filtro)).OrderBy(s => s.tipo).Skip(paginado).Take(size).ToList();
+                    }
+                    else
+                    {
+                        union = union.Where(s => s.tipo == int.Parse(filtro)).OrderByDescending(s => s.tipo).Skip(paginado).Take(size).ToList();
+                    }
+                }
+                else if(orden == 3)
+                {
+                    if(!ascd)
+                    {
+                        union = union.Where(s => s.tipo == int.Parse(filtro)).OrderBy(s => s.nombre).Skip(paginado).Take(size).ToList();
+                    }
+                    else
+                    {
+                        union = union.Where(s => s.tipo == int.Parse(filtro)).OrderByDescending(s => s.nombre).Skip(paginado).Take(size).ToList();
+                    }
                 }
                 else
                 {
-                    union = union.OrderByDescending(s => s.tipo).Skip(paginado).Take(size).ToList();
-                }
-            }
-            else if(orden == 3)
-            {
-                if(!ascd)
-                {
-                    union = union.OrderBy(s => s.nombre).Skip(paginado).Take(size).ToList();
-                }
-                else
-                {
-                    union = union.OrderByDescending(s => s.nombre).Skip(paginado).Take(size).ToList();
+                    union = union.Where(s => s.tipo == int.Parse(filtro)).Skip(paginado).Take(size).ToList();
                 }
             }
             else
             {
-                union = union.Skip(paginado).Take(size).ToList();
+                if(orden == 1)
+                {
+                    if(!ascd)
+                    {
+                        union = union.OrderBy(s => s.id).Skip(paginado).Take(size).ToList();
+                    }
+                    else
+                    {
+                        union = union.OrderByDescending(s => s.id).Skip(paginado).Take(size).ToList();
+                    }
+                }
+                else if(orden == 2)
+                {
+                    if(!ascd)
+                    {
+                        union = union.OrderBy(s => s.tipo).Skip(paginado).Take(size).ToList();
+                    }
+                    else
+                    {
+                        union = union.OrderByDescending(s => s.tipo).Skip(paginado).Take(size).ToList();
+                    }
+                }
+                else if(orden == 3)
+                {
+                    if(!ascd)
+                    {
+                        union = union.OrderBy(s => s.nombre).Skip(paginado).Take(size).ToList();
+                    }
+                    else
+                    {
+                        union = union.OrderByDescending(s => s.nombre).Skip(paginado).Take(size).ToList();
+                    }
+                }
+                else
+                {
+                    union = union.Skip(paginado).Take(size).ToList();
+                }
             }
 
             foreach (var item in union)
@@ -1844,7 +1927,66 @@ namespace Domain.Repository
             return Union;
         }
 
-        public long totalTodos(int id)
+        public long totalTodos(int id, int tipo, string filtro)
+        {
+            //Elementos
+            var elemento1 = this.context.TipoElementos.Where(s => s.sigla == "SE").FirstOrDefault();
+            var elemento2 = this.context.TipoElementos.Where(s => s.sigla == "VU").FirstOrDefault();
+            var elemento3 = this.context.TipoElementos.Where(s => s.sigla == "TS").FirstOrDefault();
+            var elemento4 = this.context.TipoElementos.Where(s => s.sigla == "PT").FirstOrDefault();
+
+
+            var vinculadas = this.context.ElementoTercerNivels.Where(s => s.tercerNivelId == id && s.tipoElementoId == elemento1.id && s.codigoEstado == this.activo.id).Select(s => int.Parse(s.elementoId)).ToList();
+            var SedeElectronicas = this.context.SedeElectronicas.Where(s => vinculadas.Contains(s.id))
+                                                                .Select(s => new { id = s.id.ToString(), nombre = s.nombre, tipo = 1, estado = s.codigoEstado.ToString(), url = s.sedeElectronicaUrl, entidad = "" })
+                                                                .ToList();
+
+            var vinculadas1 = this.context.ElementoTercerNivels.Where(s => s.tercerNivelId == id && s.tipoElementoId == elemento2.id && s.codigoEstado == this.activo.id).Select(s => int.Parse(s.elementoId)).ToList();
+            var VentanillaUnicas = this.context.VentanillaUnicas.Where(s => vinculadas1.Contains(s.id))
+                                                                .Select(s => new { id = s.id.ToString(), nombre = s.nombre, tipo = 2, estado = s.codigoEstado.ToString(), url = s.dominio, entidad = "" })
+                                                                .ToList();
+
+            var vinculadas2 = this.context.ElementoTercerNivels.Where(s => s.tercerNivelId == id && s.tipoElementoId == elemento3.id && s.codigoEstado == this.activo.id).Select(s => s.elementoId.ToString()).ToList();
+            var TramiteServicios = this.context.TramiteServicios.Where(s => vinculadas2.Contains(s.id))
+                                                                .Select(s => new { id = s.id, nombre = s.nombre, tipo = 3, estado = s.estadoCodigo, url = "No hay", entidad = s.institucionNombre })
+                                                                .ToList();
+
+            var vinculadas3 = this.context.ElementoTercerNivels.Where(s => s.tercerNivelId == id && s.tipoElementoId == elemento4.id && s.codigoEstado == this.activo.id).Select(s => int.Parse(s.elementoId)).ToList();
+            var PortalTransversals = this.context.PortalTransversals.Where(s => vinculadas3.Contains(s.id))
+                                                                .Select(s => new { id = s.id.ToString(), nombre = s.nombre, tipo = 4, estado = s.codigoEstado.ToString(), url = "No hay", entidad = "" })
+                                                                .ToList();
+
+            var vinculadas4 = this.context.VncTercerNvlRecursos.Where(s => s.idTercerNvl == id && s.codigoEstado == this.activo.id).Select(s => s.idRecurso).ToList();
+            var Recursos = this.context.Recursos.Where(s => vinculadas4.Contains(s.id))
+                                                                .Select(s => new { id = s.id.ToString(), nombre = s.nombre, tipo = 5, estado = s.codigoEstado.ToString(), url = "No hay", entidad = "" })
+                                                                .ToList();
+
+            var union = SedeElectronicas.Union(VentanillaUnicas);
+            long total = 0;
+
+            union = union.Union(PortalTransversals);
+
+            union = union.Union(Recursos);
+
+            union = union.Union(TramiteServicios);
+
+            if(tipo == 1)
+            {
+                total = union.Count(s => s.nombre.Contains(filtro));
+            }
+            else if(tipo == 2)
+            {
+                total = union.Count(s => s.tipo == int.Parse(filtro));
+            }
+            else
+            {
+                total = union.Count();
+            }
+
+            return (total);
+        }
+
+        public IList<string> AgruparTipoElemento(int id)
         {
             //Elementos
             var elemento1 = this.context.TipoElementos.Where(s => s.sigla == "SE").FirstOrDefault();
@@ -1863,7 +2005,29 @@ namespace Domain.Repository
 
             var vinculadas4 = this.context.VncTercerNvlRecursos.Count(s => s.idTercerNvl == id && s.codigoEstado == this.activo.id);
 
-            return (vinculadas+vinculadas1+vinculadas2+vinculadas3+vinculadas4);
+            int[] datos = new int[5];
+            List<string> grupo = new List<String>();
+            string[] lista = new string[5];
+
+            lista[0] = "Sede Electronica";
+            lista[1] = "Ventanilla Unica";
+            lista[2] = "Tramites y Servicios";
+            lista[3] = "Portal Transversal";
+            lista[4] = "Recurso";
+            
+            datos[0] = vinculadas;
+            datos[1] = vinculadas1;
+            datos[2] = vinculadas2;
+            datos[3] = vinculadas3;
+            datos[4] = vinculadas4;
+
+            for (int i = 0; i < 5; i++)
+            {
+                if(datos[i] > 0)
+                    grupo.Add(lista[i]);
+            }
+
+            return grupo;
         }
     }
 }
