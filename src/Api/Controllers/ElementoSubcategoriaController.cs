@@ -349,25 +349,37 @@ namespace Api.Controllers
         [HttpPost("VinculadasRecurso")]
         public IActionResult getVinculadasRecurso(PaginateVincular objeto)
         {
-            return new JsonResult(administracionBO.VinculadasRecursoSubcategoria(objeto.idParametro, objeto.page, objeto.size));
+            return new JsonResult(administracionBO.VinculadasRecursoSubcategoria(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd, objeto.tipo, objeto.filtro));
         }
 
         [HttpPost("VincularRecurso")]
         public IActionResult getVincularRecurso(PaginateVincular objeto)
         {
-            return new JsonResult(administracionBO.VincularRecursoSubcategoria(objeto.idParametro, objeto.page, objeto.size));
+            return new JsonResult(administracionBO.VincularRecursoSubcategoria(objeto.idParametro, objeto.page, objeto.size, objeto.orden, objeto.ascd, objeto.tipo, objeto.filtro));
         }
 
-        [HttpGet("Vincular/Recurso/Total/{id}")]
-        public IActionResult GetVincularRecursoTotal(int id)
+        [HttpGet("Vincular/Recurso/Total/{id}/{tipo}/{filtro}")]
+        public IActionResult GetVincularRecursoTotal(int id, int tipo, string filtro)
         {
-            return new JsonResult(this.administracionBO.VincularRecursoSubcategoriaTotal(id));
+            return new JsonResult(this.administracionBO.VincularRecursoSubcategoriaTotal(id, tipo, filtro));
         }
 
-        [HttpGet("Vinculadas/Recurso/Total/{id}")]
-        public IActionResult GetVinculadasRecursoTotal(int id)
+        [HttpGet("Vinculadas/Recurso/Total/{id}/{tipo}/{filtro}")]
+        public IActionResult GetVinculadasRecursoTotal(int id, int tipo, string filtro)
         {
-            return new JsonResult(this.administracionBO.VinculadasRecursoSubcategoriaTotal(id));
+            return new JsonResult(this.administracionBO.VinculadasRecursoSubcategoriaTotal(id, tipo, filtro));
+        }
+
+        [HttpGet("Vinculadas/Recurso/Agrupar/{id}")]
+        public IActionResult GetVinculadasRecursoTotalAgruparVinculadas(int id)
+        {
+            return new JsonResult(this.administracionBO.AgruparTipoRecursoSubcategoriaVinculadas(id));
+        }
+
+        [HttpGet("Vincular/Recurso/Agrupar/{id}")]
+        public IActionResult GetVinculadasRecursoTotalAgruparVincular(int id)
+        {
+            return new JsonResult(this.administracionBO.AgruparTipoRecursoSubcategoriaVincular(id));
         }
         
     }
