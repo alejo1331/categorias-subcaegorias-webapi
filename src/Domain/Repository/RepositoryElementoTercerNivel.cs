@@ -5,6 +5,8 @@ using Domain.Models;
 using Domain.Data;
 using System.Linq;
 
+using Microsoft.EntityFrameworkCore;
+
 
 namespace Domain.Repository
 {
@@ -1659,31 +1661,786 @@ namespace Domain.Repository
             return lista;
         }
 
-        public IList<Recurso> VinculadasRecurso(int id, int page, int size)
+        public IList<Recurso> VinculadasRecurso(int id, int page, int size, int orden, bool ascd, int tipo, string filtro)
         {
             var vinculadas = this.context.VncTercerNvlRecursos.Where(s => s.idTercerNvl == id && s.codigoEstado == this.activo.id).Select(s => s.idRecurso).ToList();
-            List<Recurso> lista = this.context.Recursos.Where(s => vinculadas.Contains(s.id)).Skip((page - 1) * size).Take(size).ToList();
+            
+            
+            List<Recurso>  lista = new List<Recurso>();
+
+            if(tipo == 1)
+            {   
+                if(orden == 1)
+                {
+                    if(!ascd)
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => vinculadas.Contains(s.id) && s.id == int.Parse(filtro))
+                                                        .OrderBy(s => s.id)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                    else
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => vinculadas.Contains(s.id) && s.id == int.Parse(filtro))
+                                                        .OrderByDescending(s => s.id)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                }
+                else if(orden == 2)
+                {
+                    if(!ascd)
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => vinculadas.Contains(s.id) && s.id == int.Parse(filtro))
+                                                        .OrderBy(s => s.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                    else
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => vinculadas.Contains(s.id) && s.id == int.Parse(filtro))
+                                                        .OrderByDescending(s => s.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                }
+                else if(orden == 3)
+                {
+                    if(!ascd)
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => vinculadas.Contains(s.id) && s.id == int.Parse(filtro))
+                                                        .OrderBy(s => s.Tipo.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                    else
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => vinculadas.Contains(s.id) && s.id == int.Parse(filtro))
+                                                        .OrderByDescending(s => s.Tipo.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                }
+                else
+                {
+                    lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => vinculadas.Contains(s.id) && s.id == int.Parse(filtro))
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                }
+            }
+            else if(tipo == 2)
+            {   
+                if(orden == 1)
+                {
+                    if(!ascd)
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => vinculadas.Contains(s.id) && s.nombre.Contains(filtro))
+                                                        .OrderBy(s => s.id)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                    else
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => vinculadas.Contains(s.id) && s.nombre.Contains(filtro))
+                                                        .OrderByDescending(s => s.id)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                }
+                else if(orden == 2)
+                {
+                    if(!ascd)
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => vinculadas.Contains(s.id) && s.nombre.Contains(filtro))
+                                                        .OrderBy(s => s.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                    else
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => vinculadas.Contains(s.id) && s.nombre.Contains(filtro))
+                                                        .OrderByDescending(s => s.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                }
+                else if(orden == 3)
+                {
+                    if(!ascd)
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => vinculadas.Contains(s.id) && s.nombre.Contains(filtro))
+                                                        .OrderBy(s => s.Tipo.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                    else
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => vinculadas.Contains(s.id) && s.nombre.Contains(filtro))
+                                                        .OrderByDescending(s => s.Tipo.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                }
+                else
+                {
+                    lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => vinculadas.Contains(s.id) && s.nombre.Contains(filtro))
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                }
+            }
+            else if(tipo == 3)
+            {   
+                if(orden == 1)
+                {
+                    if(!ascd)
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => vinculadas.Contains(s.id) && s.Tipo.nombre == filtro )
+                                                        .OrderBy(s => s.id)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                    else
+                    {
+                        lista = this.context.Recursos
+                                                        
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => vinculadas.Contains(s.id) && s.Tipo.nombre == filtro )
+                                                        .OrderByDescending(s => s.id)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                }
+                else if(orden == 2)
+                {
+                    if(!ascd)
+                    {
+                        lista = this.context.Recursos
+                                                        
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => vinculadas.Contains(s.id) && s.Tipo.nombre == filtro )
+                                                        .OrderBy(s => s.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                    else
+                    {
+                        lista = this.context.Recursos
+                                                        
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => vinculadas.Contains(s.id) && s.Tipo.nombre == filtro )
+                                                        .OrderByDescending(s => s.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                }
+                else if(orden == 3)
+                {
+                    if(!ascd)
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => vinculadas.Contains(s.id) && s.Tipo.nombre == filtro)
+                                                        .OrderBy(s => s.Tipo.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                    else
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => vinculadas.Contains(s.id) && s.Tipo.nombre == filtro)
+                                                        .OrderByDescending(s => s.Tipo.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                }
+                else
+                {
+                    lista = this.context.Recursos
+                                                        
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => vinculadas.Contains(s.id) && s.Tipo.nombre == filtro )
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                }
+            }
+            else
+            {   
+                if(orden == 1)
+                {
+                    if(!ascd)
+                    {
+                        lista = this.context.Recursos     
+                                                        .Include(s => s.Tipo)                   
+                                                        .Where(s => vinculadas.Contains(s.id))
+                                                        .OrderBy(s => s.id)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                    else
+                    {
+                        lista = this.context.Recursos     
+                                                        .Include(s => s.Tipo)                   
+                                                        .Where(s => vinculadas.Contains(s.id) )
+                                                        .OrderByDescending(s => s.id)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                }
+                else if(orden == 2)
+                {
+                    if(!ascd)
+                    {
+                        lista = this.context.Recursos   
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => vinculadas.Contains(s.id))
+                                                        .OrderBy(s => s.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                    else
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => vinculadas.Contains(s.id))
+                                                        .OrderByDescending(s => s.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                }
+                else if(orden == 3)
+                {
+                    if(!ascd)
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => vinculadas.Contains(s.id))
+                                                        .OrderBy(s => s.Tipo.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                    else
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => vinculadas.Contains(s.id))
+                                                        .OrderByDescending(s => s.Tipo.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                }
+                else
+                {
+                    lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => vinculadas.Contains(s.id))
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                }
+            }
             return lista;
         }
 
-        public IList<Recurso> VincularRecurso(int id, int page, int size)
+        public IList<string> AgruparTipoRecursovinculadas(int id)
         {
             var vinculadas = this.context.VncTercerNvlRecursos.Where(s => s.idTercerNvl == id && s.codigoEstado == this.activo.id).Select(s => s.idRecurso).ToList();
-            List<Recurso> lista = this.context.Recursos.Where(s => !vinculadas.Contains(s.id)).Skip((page - 1) * size).Take(size).ToList();
+            
+            var lista = this.context.Recursos
+                                        .Include(s => s.Tipo)      
+                                        .Where(s => vinculadas.Contains(s.id))
+                                        .ToList()
+                                        .GroupBy(x => x.Tipo.nombre);
+                                                    
+            List<string> lista1 = new List<string>();
+            foreach (var x in lista)
+            {
+                foreach (var y in x)
+                {
+                    lista1.Add(y.Tipo.nombre);
+                    break;
+                }
+            }
+            return lista1;
+        }
+
+        public IList<string> AgruparTipoRecursovincular(int id)
+        {
+            var vinculadas = this.context.VncTercerNvlRecursos.Where(s => s.idTercerNvl == id && s.codigoEstado == this.activo.id).Select(s => s.idRecurso).ToList();
+            
+            var lista = this.context.Recursos
+                                        .Include(s => s.Tipo)      
+                                        .Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == this.activo.id)
+                                        .ToList()
+                                        .GroupBy(x => x.Tipo.nombre);
+                                                    
+            List<string> lista1 = new List<string>();
+            foreach (var x in lista)
+            {
+                foreach (var y in x)
+                {
+                    lista1.Add(y.Tipo.nombre);
+                    break;
+                }
+            }
+            return lista1;
+        }
+        
+
+        public IList<Recurso> VincularRecurso(int id, int page, int size, int orden, bool ascd, int tipo, string filtro)
+        {
+            var vinculadas = this.context.VncTercerNvlRecursos.Where(s => s.idTercerNvl == id && s.codigoEstado == this.activo.id).Select(s => s.idRecurso).ToList();
+            
+            
+            List<Recurso>  lista = new List<Recurso>();
+
+            if(tipo == 1)
+            {   
+                if(orden == 1)
+                {
+                    if(!ascd)
+                    {
+                        lista = this.context.Recursos
+                                                    .Include(s => s.Tipo)      
+                                                    .Where(s => !vinculadas.Contains(s.id) && s.id == int.Parse(filtro) && s.codigoEstado == this.activo.id)
+                                                    .OrderBy(s => s.id)
+                                                    .Skip((page - 1) * size)
+                                                    .Take(size)
+                                                    .ToList();
+                    }
+                    else
+                    {
+                        lista = this.context.Recursos
+                                                    .Include(s => s.Tipo)
+                                                    .Where(s => !vinculadas.Contains(s.id) && s.id == int.Parse(filtro) && s.codigoEstado == this.activo.id)
+                                                    .OrderByDescending(s => s.id)
+                                                    .Skip((page - 1) * size)
+                                                    .Take(size)
+                                                    .ToList();
+                    }
+                }
+                else if(orden == 2)
+                {
+                    if(!ascd)
+                    {
+                        lista = this.context.Recursos
+                                                    .Include(s => s.Tipo)
+                                                    .Where(s => !vinculadas.Contains(s.id) && s.id == int.Parse(filtro) && s.codigoEstado == this.activo.id)
+                                                    .OrderBy(s => s.nombre)
+                                                    .Skip((page - 1) * size)
+                                                    .Take(size)
+                                                    .ToList();
+                    }
+                    else
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.id == int.Parse(filtro) && s.codigoEstado == this.activo.id)
+                                                        .OrderByDescending(s => s.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                }
+                else if(orden == 3)
+                {
+                    if(!ascd)
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.id == int.Parse(filtro) && s.codigoEstado == this.activo.id)
+                                                        .OrderBy(s => s.Tipo.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                    else
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.id == int.Parse(filtro) && s.codigoEstado == this.activo.id)
+                                                        .OrderByDescending(s => s.Tipo.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                }
+                else
+                {
+                    lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.id == int.Parse(filtro) && s.codigoEstado == this.activo.id)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                }
+            }
+            else if(tipo == 2)
+            {   
+                if(orden == 1)
+                {
+                    if(!ascd)
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.nombre.Contains(filtro) && s.codigoEstado == this.activo.id)
+                                                        .OrderBy(s => s.id)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                    else
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.nombre.Contains(filtro) && s.codigoEstado == this.activo.id)
+                                                        .OrderByDescending(s => s.id)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                }
+                else if(orden == 2)
+                {
+                    if(!ascd)
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.nombre.Contains(filtro) && s.codigoEstado == this.activo.id)
+                                                        .OrderBy(s => s.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                    else
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.nombre.Contains(filtro) && s.codigoEstado == this.activo.id)
+                                                        .OrderByDescending(s => s.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                }
+                else if(orden == 3)
+                {
+                    if(!ascd)
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.nombre.Contains(filtro) && s.codigoEstado == this.activo.id)
+                                                        .OrderBy(s => s.Tipo.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                    else
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.nombre.Contains(filtro) && s.codigoEstado == this.activo.id)
+                                                        .OrderByDescending(s => s.Tipo.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                }
+                else
+                {
+                    lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.nombre.Contains(filtro) && s.codigoEstado == this.activo.id)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                }
+            }
+            else if(tipo == 3)
+            {   
+                if(orden == 1)
+                {
+                    if(!ascd)
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.Tipo.nombre == filtro && s.codigoEstado == this.activo.id)
+                                                        .OrderBy(s => s.id)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                    else
+                    {
+                        lista = this.context.Recursos
+                                                        
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.Tipo.nombre == filtro && s.codigoEstado == this.activo.id)
+                                                        .OrderByDescending(s => s.id)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                }
+                else if(orden == 2)
+                {
+                    if(!ascd)
+                    {
+                        lista = this.context.Recursos
+                                                        
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.Tipo.nombre == filtro && s.codigoEstado == this.activo.id)
+                                                        .OrderBy(s => s.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                    else
+                    {
+                        lista = this.context.Recursos
+                                                        
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.Tipo.nombre == filtro && s.codigoEstado == this.activo.id)
+                                                        .OrderByDescending(s => s.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                }
+                else if(orden == 3)
+                {
+                    if(!ascd)
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.Tipo.nombre == filtro && s.codigoEstado == this.activo.id)
+                                                        .OrderBy(s => s.Tipo.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                    else
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.Tipo.nombre == filtro && s.codigoEstado == this.activo.id)
+                                                        .OrderByDescending(s => s.Tipo.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                }
+                else
+                {
+                    lista = this.context.Recursos
+                                                        
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.Tipo.nombre == filtro && s.codigoEstado == this.activo.id)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                }
+            }
+            else
+            {   
+                if(orden == 1)
+                {
+                    if(!ascd)
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == this.activo.id)
+                                                        .OrderBy(s => s.id)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                    else
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => !vinculadas.Contains(s.id)  && s.codigoEstado == this.activo.id)
+                                                        .OrderByDescending(s => s.id)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                }
+                else if(orden == 2)
+                {
+                    if(!ascd)
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == this.activo.id)
+                                                        .OrderBy(s => s.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                    else
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == this.activo.id)
+                                                        .OrderByDescending(s => s.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                }
+                else if(orden == 3)
+                {
+                    if(!ascd)
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == this.activo.id)
+                                                        .OrderBy(s => s.Tipo.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                    else
+                    {
+                        lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == this.activo.id)
+                                                        .OrderByDescending(s => s.Tipo.nombre)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                    }
+                }
+                else
+                {
+                    lista = this.context.Recursos
+                                                        .Include(s => s.Tipo)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == this.activo.id)
+                                                        .Skip((page - 1) * size)
+                                                        .Take(size)
+                                                        .ToList();
+                }
+            }
             return lista;
         }
 
-        public long VincularRecursoTotal(int id)
+        public long VincularRecursoTotal(int id, int tipo, string filtro)
         {
             var vinculadas = this.context.VncTercerNvlRecursos.Where(s => s.idTercerNvl == id && s.codigoEstado == this.activo.id).Select(s => s.idRecurso).ToList();
-            long lista = this.context.Recursos.Count(s => !vinculadas.Contains(s.id));
+            
+            long  lista = 0;
+
+            if(tipo == 1)
+            {
+                lista = this.context.Recursos
+                                        .Count(s => !vinculadas.Contains(s.id) && s.id == int.Parse(filtro) && s.codigoEstado == this.activo.id);
+                                        
+            }
+            else if(tipo == 2)
+            {
+                lista = this.context.Recursos
+                                        .Count(s => !vinculadas.Contains(s.id) &&  s.nombre.Contains(filtro) && s.codigoEstado == this.activo.id);
+            }
+            else if(tipo == 3)
+            {
+                lista = this.context.Recursos
+                                        .Include(s => s.Tipo)
+                                        .Count(s => !vinculadas.Contains(s.id) && s.Tipo.nombre == filtro && s.codigoEstado == this.activo.id);
+            }
+            else
+            {
+                lista = this.context.Recursos
+                                        .Count(s => !vinculadas.Contains(s.id));
+            }
             return lista;
         }
 
-        public long VinculadasRecursoTotal(int id)
+        public long VinculadasRecursoTotal(int id, int tipo, string filtro)
         {
             var vinculadas = this.context.VncTercerNvlRecursos.Where(s => s.idTercerNvl == id && s.codigoEstado == this.activo.id).Select(s => s.idRecurso).ToList();
-            long lista = this.context.Recursos.Count(s => vinculadas.Contains(s.id));
+            
+            long  lista = 0;
+
+            if(tipo == 1)
+            {
+                lista = this.context.Recursos
+                                        .Count(s => vinculadas.Contains(s.id) && s.id == int.Parse(filtro));
+                                        
+            }
+            else if(tipo == 2)
+            {
+                lista = this.context.Recursos
+                                        .Count(s => vinculadas.Contains(s.id) &&  s.nombre.Contains(filtro));
+            }
+            else if(tipo == 3)
+            {
+                lista = this.context.Recursos
+                                        .Include(s => s.Tipo)
+                                        .Count(s => vinculadas.Contains(s.id) && s.Tipo.nombre == filtro);
+            }
+            else
+            {
+                lista = this.context.Recursos
+                                        .Count(s => vinculadas.Contains(s.id));
+            }
             return lista;
         }
 

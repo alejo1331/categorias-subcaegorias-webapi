@@ -254,8 +254,8 @@ namespace Domain.Bussiness.Interface
         IList<PortalTransversalAM> VinculadasPortalTransversal(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<PortalTransversalAM> VincularPortalTransversal(int id);
         IList<PortalTransversalAM> VinculadasPortalTransversal(int id);
-        IList<RecursoAM> VincularRecurso(int id, int page, int size);
-        IList<RecursoAM> VinculadasRecurso(int id, int page, int size);
+        IList<RecursoAM> VincularRecurso(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
+        IList<RecursoAM> VinculadasRecurso(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
         long VincularSedeElectronicaCategoriaTotal(int id, int tipo, string filtro);
         long VincularSedeElectronicaCategoriaTotal(int id);
         long VinculadasSedeElectronicaCategoriaTotal(int id);
@@ -272,8 +272,8 @@ namespace Domain.Bussiness.Interface
         long VincularPortalTransversalCategoriaTotal(int id, int tipo, string filtro);
         long VinculadasPortalTransversalCategoriaTotal(int id);
         long VinculadasPortalTransversalCategoriaTotal(int id, int tipo, string filtro);
-        long VincularRecursoCategoriaTotal(int id);
-        long VinculadasRecursoCategoriaTotal(int id);
+        long VincularRecursoCategoriaTotal(int id, int tipo, string filtro);
+        long VinculadasRecursoCategoriaTotal(int id, int tipo, string filtro);
 
         //Elemento Subcategoria
         ElementoSubcategoriaAM ElementoSubcategoriaSedeElectronicaId(int id, int padre);
@@ -300,8 +300,8 @@ namespace Domain.Bussiness.Interface
         IList<PortalTransversalAM> VinculadasPortalTransversalSubcategoria(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<PortalTransversalAM> VincularPortalTransversalSubcategoria(int id);
         IList<PortalTransversalAM> VinculadasPortalTransversalSubcategoria(int id);
-        IList<RecursoAM> VincularRecursoSubcategoria(int id, int page, int size);
-        IList<RecursoAM> VinculadasRecursoSubcategoria(int id, int page, int size);
+        IList<RecursoAM> VincularRecursoSubcategoria(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
+        IList<RecursoAM> VinculadasRecursoSubcategoria(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
         long VincularSedeElectronicaSubcategoriaTotal(int id);
         long VincularSedeElectronicaSubcategoriaTotal(int id, int tipo, string filtro);
         long VinculadasSedeElectronicaSubcategoriaTotal(int id);
@@ -318,8 +318,8 @@ namespace Domain.Bussiness.Interface
         long VincularPortalTransversalSubcategoriaTotal(int id, int tipo, string filtrar);
         long VinculadasPortalTransversalSubcategoriaTotal(int id);
         long VinculadasPortalTransversalSubcategoriaTotal(int id, int tipo, string filtro);
-        long VincularRecursoSubcategoriaTotal(int id);
-        long VinculadasRecursoSubcategoriaTotal(int id);
+        long VincularRecursoSubcategoriaTotal(int id, int tipo, string filtro);
+        long VinculadasRecursoSubcategoriaTotal(int id, int tipo, string filtro);
 
 
         //Elemento Tercer Nivel
@@ -348,8 +348,8 @@ namespace Domain.Bussiness.Interface
         IList<PortalTransversalAM> VinculadasPortalTransversalTercerNivel(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<PortalTransversalAM> VincularPortalTransversalTercerNivel(int id);
         IList<PortalTransversalAM> VinculadasPortalTransversalTercerNivel(int id);
-        IList<RecursoAM> VincularRecursoTercerNivel(int id, int page, int size);
-        IList<RecursoAM> VinculadasRecursoTercerNivel(int id, int page, int size);
+        IList<RecursoAM> VincularRecursoTercerNivel(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
+        IList<RecursoAM> VinculadasRecursoTercerNivel(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
 
 
         IList<ElementosUnionAM> Todo(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
@@ -359,8 +359,14 @@ namespace Domain.Bussiness.Interface
         IList<ElementosUnionAM> TodoTercerNivels(int id);
         IList<ElementosUnionAM> TodoTercerNivels(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<string> AgruparTipoElementoCategoria(int id);
+        IList<string> AgruparTipoRecursoCategoriaVinculadas(int id);
+        IList<string> AgruparTipoRecursoCategoriaVincular(int id);
         IList<string> AgruparTipoElementoSubcategoria(int id);
+        IList<string> AgruparTipoRecursoSubcategoriaVinculadas(int id);
+        IList<string> AgruparTipoRecursoSubcategoriaVincular(int id);
         IList<string> AgruparTipoElementoTercerNivel(int id);
+        IList<string> AgruparTipoRecursoTercerNivelVinculadas(int id);
+        IList<string> AgruparTipoRecursoTercerNivelVincular(int id);
         long TodoTotal(int id, int tipo, string filtro);
         long TodoTotalSubcategorias(int id, int tipo, string filtro);
         long TodoTotalTercerNivels(int id, int tipo, string filtro);
@@ -385,8 +391,8 @@ namespace Domain.Bussiness.Interface
         long VinculadasPortalTransversalTercerNivelsTotal(int id);
         long VinculadasPortalTransversalTercerNivelsTotal(int id, int tipo, string filtro);
         
-        long VincularRecursoTercerNivelsTotal(int id);
-        long VinculadasRecursoTercerNivelsTotal(int id);
+        long VincularRecursoTercerNivelsTotal(int id, int tipo, string filtro);
+        long VinculadasRecursoTercerNivelsTotal(int id, int tipo, string filtro);
 
 
 

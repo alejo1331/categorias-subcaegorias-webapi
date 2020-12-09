@@ -32,11 +32,13 @@ namespace Domain.Repository.Interface
         IList<PortalTransversal> VinculadasPortalTransversal(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<PortalTransversal> VincularPortalTransversal(int id);
         IList<PortalTransversal> VinculadasPortalTransversal(int id);
-        IList<Recurso> VincularRecurso(int id, int page, int size);
-        IList<Recurso> VinculadasRecurso(int id, int page, int size);
+        IList<Recurso> VincularRecurso(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
+        IList<Recurso> VinculadasRecurso(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<ElementosUnion> TodosElementos(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);   
         IList<ElementosUnion> TodosElementos(int id);   
         IList<string> AgruparTipoElemento(int id); 
+        IList<string> AgruparTipoRecursoVinculadas(int id);
+        IList<string> AgruparTipoRecursoVincular(int id);
         long totalTodos(int id, int tipo, string filtro);
         long VincularSedeElectronicaTotal(int id, int tipo, string filtro);
         long VincularSedeElectronicaTotal(int id);   
@@ -54,7 +56,7 @@ namespace Domain.Repository.Interface
         long VincularPortalTransversalTotal(int id, int tipo, string filtro);
         long VinculadasPortalTransversalTotal(int id, int tipo, string filtro);
         long VinculadasPortalTransversalTotal(int id);
-        long VincularRecursoTotal(int id);
-        long VinculadasRecursoTotal(int id);
+        long VincularRecursoTotal(int id, int tipo, string filtro);
+        long VinculadasRecursoTotal(int id, int tipo, string filtro);
     }
 }
