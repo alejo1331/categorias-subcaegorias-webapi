@@ -34,7 +34,7 @@ namespace Domain.Repository
 
         public Recurso GetId(int id)
         {
-            return this.context.Recursos.Where(s => s.id == id).FirstOrDefault();
+            return this.context.Recursos.Include(s => s.Tipo).Where(s => s.id == id).FirstOrDefault();
         }
 
         public void Update(Recurso objeto)

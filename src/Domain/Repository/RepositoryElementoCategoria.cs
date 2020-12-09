@@ -1184,24 +1184,24 @@ namespace Domain.Repository
             if(tipo == 1)
             {
                 lista = this.context.Recursos
-                                        .Count(s => !vinculadas.Contains(s.id) && s.id == int.Parse(filtro));
+                                        .Count(s => !vinculadas.Contains(s.id) && s.id == int.Parse(filtro) && s.codigoEstado == this.activo.id);
                                         
             }
             else if(tipo == 2)
             {
                 lista = this.context.Recursos
-                                        .Count(s => !vinculadas.Contains(s.id) &&  s.nombre.Contains(filtro));
+                                        .Count(s => !vinculadas.Contains(s.id) &&  s.nombre.Contains(filtro) && s.codigoEstado == this.activo.id);
             }
             else if(tipo == 3)
             {
                 lista = this.context.Recursos
                                         .Include(s => s.Tipo)
-                                        .Count(s => !vinculadas.Contains(s.id) && s.Tipo.nombre == filtro);
+                                        .Count(s => !vinculadas.Contains(s.id) && s.Tipo.nombre == filtro && s.codigoEstado == this.activo.id);
             }
             else
             {
                 lista = this.context.Recursos
-                                        .Count(s => !vinculadas.Contains(s.id));
+                                        .Count(s => !vinculadas.Contains(s.id) && s.codigoEstado == this.activo.id);
             }
             return lista;
         }
