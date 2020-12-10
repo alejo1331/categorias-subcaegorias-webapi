@@ -2043,7 +2043,7 @@ namespace Domain.Repository
                     {
                         lista = this.context.Recursos
                                                     .Include(s => s.Tipo)     
-                                                    .Where(s => !vinculadas.Contains(s.id) && s.id == int.Parse(filtro) && s.codigoEstado == this.activo.id)
+                                                    .Where(s => !vinculadas.Contains(s.id) && s.id == int.Parse(filtro))
                                                     .OrderBy(s => s.id)
                                                     .Skip((page - 1) * size)
                                                     .Take(size)
@@ -2053,7 +2053,7 @@ namespace Domain.Repository
                     {
                         lista = this.context.Recursos
                                                     .Include(s => s.Tipo)
-                                                    .Where(s => !vinculadas.Contains(s.id) && s.id == int.Parse(filtro) && s.codigoEstado == this.activo.id)
+                                                    .Where(s => !vinculadas.Contains(s.id) && s.id == int.Parse(filtro))
                                                     .OrderByDescending(s => s.id)
                                                     .Skip((page - 1) * size)
                                                     .Take(size)
@@ -2066,7 +2066,7 @@ namespace Domain.Repository
                     {
                         lista = this.context.Recursos
                                                     .Include(s => s.Tipo)
-                                                    .Where(s => !vinculadas.Contains(s.id) && s.id == int.Parse(filtro) && s.codigoEstado == this.activo.id)
+                                                    .Where(s => !vinculadas.Contains(s.id) && s.id == int.Parse(filtro))
                                                     .OrderBy(s => s.nombre)
                                                     .Skip((page - 1) * size)
                                                     .Take(size)
@@ -2076,7 +2076,7 @@ namespace Domain.Repository
                     {
                         lista = this.context.Recursos
                                                         .Include(s => s.Tipo)
-                                                        .Where(s => !vinculadas.Contains(s.id) && s.id == int.Parse(filtro) && s.codigoEstado == this.activo.id)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.id == int.Parse(filtro))
                                                         .OrderByDescending(s => s.nombre)
                                                         .Skip((page - 1) * size)
                                                         .Take(size)
@@ -2089,7 +2089,7 @@ namespace Domain.Repository
                     {
                         lista = this.context.Recursos
                                                         .Include(s => s.Tipo)
-                                                        .Where(s => !vinculadas.Contains(s.id) && s.id == int.Parse(filtro) && s.codigoEstado == this.activo.id)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.id == int.Parse(filtro))
                                                         .OrderBy(s => s.Tipo.nombre)
                                                         .Skip((page - 1) * size)
                                                         .Take(size)
@@ -2099,7 +2099,7 @@ namespace Domain.Repository
                     {
                         lista = this.context.Recursos
                                                         .Include(s => s.Tipo)
-                                                        .Where(s => !vinculadas.Contains(s.id) && s.id == int.Parse(filtro) && s.codigoEstado == this.activo.id)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.id == int.Parse(filtro))
                                                         .OrderByDescending(s => s.Tipo.nombre)
                                                         .Skip((page - 1) * size)
                                                         .Take(size)
@@ -2110,7 +2110,7 @@ namespace Domain.Repository
                 {
                     lista = this.context.Recursos
                                                         .Include(s => s.Tipo)
-                                                        .Where(s => !vinculadas.Contains(s.id) && s.id == int.Parse(filtro) && s.codigoEstado == this.activo.id)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.id == int.Parse(filtro))
                                                         .Skip((page - 1) * size)
                                                         .Take(size)
                                                         .ToList();
@@ -2124,7 +2124,7 @@ namespace Domain.Repository
                     {
                         lista = this.context.Recursos
                                                         .Include(s => s.Tipo)
-                                                        .Where(s => !vinculadas.Contains(s.id) && s.nombre.Contains(filtro) && s.codigoEstado == this.activo.id)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.nombre.Contains(filtro))
                                                         .OrderBy(s => s.id)
                                                         .Skip((page - 1) * size)
                                                         .Take(size)
@@ -2134,7 +2134,7 @@ namespace Domain.Repository
                     {
                         lista = this.context.Recursos
                                                         .Include(s => s.Tipo)
-                                                        .Where(s => !vinculadas.Contains(s.id) && s.nombre.Contains(filtro) && s.codigoEstado == this.activo.id)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.nombre.Contains(filtro))
                                                         .OrderByDescending(s => s.id)
                                                         .Skip((page - 1) * size)
                                                         .Take(size)
@@ -2147,7 +2147,7 @@ namespace Domain.Repository
                     {
                         lista = this.context.Recursos
                                                         .Include(s => s.Tipo)
-                                                        .Where(s => !vinculadas.Contains(s.id) && s.nombre.Contains(filtro) && s.codigoEstado == this.activo.id)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.nombre.Contains(filtro))
                                                         .OrderBy(s => s.nombre)
                                                         .Skip((page - 1) * size)
                                                         .Take(size)
@@ -2157,7 +2157,7 @@ namespace Domain.Repository
                     {
                         lista = this.context.Recursos
                                                         .Include(s => s.Tipo)
-                                                        .Where(s => !vinculadas.Contains(s.id) && s.nombre.Contains(filtro) && s.codigoEstado == this.activo.id)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.nombre.Contains(filtro))
                                                         .OrderByDescending(s => s.nombre)
                                                         .Skip((page - 1) * size)
                                                         .Take(size)
@@ -2170,7 +2170,7 @@ namespace Domain.Repository
                     {
                         lista = this.context.Recursos
                                                         .Include(s => s.Tipo)
-                                                        .Where(s => !vinculadas.Contains(s.id) && s.nombre.Contains(filtro) && s.codigoEstado == this.activo.id)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.nombre.Contains(filtro))
                                                         .OrderBy(s => s.Tipo.nombre)
                                                         .Skip((page - 1) * size)
                                                         .Take(size)
@@ -2180,7 +2180,7 @@ namespace Domain.Repository
                     {
                         lista = this.context.Recursos
                                                         .Include(s => s.Tipo)
-                                                        .Where(s => !vinculadas.Contains(s.id) && s.nombre.Contains(filtro) && s.codigoEstado == this.activo.id)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.nombre.Contains(filtro))
                                                         .OrderByDescending(s => s.Tipo.nombre)
                                                         .Skip((page - 1) * size)
                                                         .Take(size)
@@ -2191,7 +2191,7 @@ namespace Domain.Repository
                 {
                     lista = this.context.Recursos
                                                         .Include(s => s.Tipo)
-                                                        .Where(s => !vinculadas.Contains(s.id) && s.nombre.Contains(filtro) && s.codigoEstado == this.activo.id)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.nombre.Contains(filtro))
                                                         .Skip((page - 1) * size)
                                                         .Take(size)
                                                         .ToList();
@@ -2205,7 +2205,7 @@ namespace Domain.Repository
                     {
                         lista = this.context.Recursos
                                                         .Include(s => s.Tipo)
-                                                        .Where(s => !vinculadas.Contains(s.id) && s.Tipo.nombre == filtro && s.codigoEstado == this.activo.id)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.Tipo.nombre == filtro)
                                                         .OrderBy(s => s.id)
                                                         .Skip((page - 1) * size)
                                                         .Take(size)
@@ -2216,7 +2216,7 @@ namespace Domain.Repository
                         lista = this.context.Recursos
                                                         
                                                         .Include(s => s.Tipo)
-                                                        .Where(s => !vinculadas.Contains(s.id) && s.Tipo.nombre == filtro && s.codigoEstado == this.activo.id)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.Tipo.nombre == filtro)
                                                         .OrderByDescending(s => s.id)
                                                         .Skip((page - 1) * size)
                                                         .Take(size)
@@ -2230,7 +2230,7 @@ namespace Domain.Repository
                         lista = this.context.Recursos
                                                         
                                                         .Include(s => s.Tipo)
-                                                        .Where(s => !vinculadas.Contains(s.id) && s.Tipo.nombre == filtro && s.codigoEstado == this.activo.id)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.Tipo.nombre == filtro)
                                                         .OrderBy(s => s.nombre)
                                                         .Skip((page - 1) * size)
                                                         .Take(size)
@@ -2241,7 +2241,7 @@ namespace Domain.Repository
                         lista = this.context.Recursos
                                                         
                                                         .Include(s => s.Tipo)
-                                                        .Where(s => !vinculadas.Contains(s.id) && s.Tipo.nombre == filtro && s.codigoEstado == this.activo.id)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.Tipo.nombre == filtro)
                                                         .OrderByDescending(s => s.nombre)
                                                         .Skip((page - 1) * size)
                                                         .Take(size)
@@ -2254,7 +2254,7 @@ namespace Domain.Repository
                     {
                         lista = this.context.Recursos
                                                         .Include(s => s.Tipo)
-                                                        .Where(s => !vinculadas.Contains(s.id) && s.Tipo.nombre == filtro && s.codigoEstado == this.activo.id)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.Tipo.nombre == filtro)
                                                         .OrderBy(s => s.Tipo.nombre)
                                                         .Skip((page - 1) * size)
                                                         .Take(size)
@@ -2264,7 +2264,7 @@ namespace Domain.Repository
                     {
                         lista = this.context.Recursos
                                                         .Include(s => s.Tipo)
-                                                        .Where(s => !vinculadas.Contains(s.id) && s.Tipo.nombre == filtro && s.codigoEstado == this.activo.id)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.Tipo.nombre == filtro)
                                                         .OrderByDescending(s => s.Tipo.nombre)
                                                         .Skip((page - 1) * size)
                                                         .Take(size)
@@ -2276,7 +2276,7 @@ namespace Domain.Repository
                     lista = this.context.Recursos
                                                         
                                                         .Include(s => s.Tipo)
-                                                        .Where(s => !vinculadas.Contains(s.id) && s.Tipo.nombre == filtro && s.codigoEstado == this.activo.id)
+                                                        .Where(s => !vinculadas.Contains(s.id) && s.Tipo.nombre == filtro)
                                                         .Skip((page - 1) * size)
                                                         .Take(size)
                                                         .ToList();
@@ -2290,7 +2290,7 @@ namespace Domain.Repository
                     {
                         lista = this.context.Recursos
                                                         .Include(s => s.Tipo)
-                                                        .Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == this.activo.id)
+                                                        .Where(s => !vinculadas.Contains(s.id))
                                                         .OrderBy(s => s.id)
                                                         .Skip((page - 1) * size)
                                                         .Take(size)
@@ -2300,7 +2300,7 @@ namespace Domain.Repository
                     {
                         lista = this.context.Recursos
                                                         .Include(s => s.Tipo)
-                                                        .Where(s => !vinculadas.Contains(s.id)  && s.codigoEstado == this.activo.id)
+                                                        .Where(s => !vinculadas.Contains(s.id) )
                                                         .OrderByDescending(s => s.id)
                                                         .Skip((page - 1) * size)
                                                         .Take(size)
@@ -2313,7 +2313,7 @@ namespace Domain.Repository
                     {
                         lista = this.context.Recursos
                                                         .Include(s => s.Tipo)
-                                                        .Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == this.activo.id)
+                                                        .Where(s => !vinculadas.Contains(s.id))
                                                         .OrderBy(s => s.nombre)
                                                         .Skip((page - 1) * size)
                                                         .Take(size)
@@ -2323,7 +2323,7 @@ namespace Domain.Repository
                     {
                         lista = this.context.Recursos
                                                         .Include(s => s.Tipo)
-                                                        .Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == this.activo.id)
+                                                        .Where(s => !vinculadas.Contains(s.id))
                                                         .OrderByDescending(s => s.nombre)
                                                         .Skip((page - 1) * size)
                                                         .Take(size)
@@ -2336,7 +2336,7 @@ namespace Domain.Repository
                     {
                         lista = this.context.Recursos
                                                         .Include(s => s.Tipo)
-                                                        .Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == this.activo.id)
+                                                        .Where(s => !vinculadas.Contains(s.id))
                                                         .OrderBy(s => s.Tipo.nombre)
                                                         .Skip((page - 1) * size)
                                                         .Take(size)
@@ -2346,7 +2346,7 @@ namespace Domain.Repository
                     {
                         lista = this.context.Recursos
                                                         .Include(s => s.Tipo)
-                                                        .Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == this.activo.id)
+                                                        .Where(s => !vinculadas.Contains(s.id))
                                                         .OrderByDescending(s => s.Tipo.nombre)
                                                         .Skip((page - 1) * size)
                                                         .Take(size)
@@ -2357,7 +2357,7 @@ namespace Domain.Repository
                 {
                     lista = this.context.Recursos
                                                         .Include(s => s.Tipo)
-                                                        .Where(s => !vinculadas.Contains(s.id) && s.codigoEstado == this.activo.id)
+                                                        .Where(s => !vinculadas.Contains(s.id))
                                                         .Skip((page - 1) * size)
                                                         .Take(size)
                                                         .ToList();
@@ -2376,24 +2376,24 @@ namespace Domain.Repository
             if(tipo == 1)
             {
                 lista = this.context.Recursos
-                                        .Count(s => !vinculadas.Contains(s.id) && s.id == int.Parse(filtro) && s.codigoEstado == this.activo.id);
+                                        .Count(s => !vinculadas.Contains(s.id) && s.id == int.Parse(filtro));
                                         
             }
             else if(tipo == 2)
             {
                 lista = this.context.Recursos
-                                        .Count(s => !vinculadas.Contains(s.id) &&  s.nombre.Contains(filtro) && s.codigoEstado == this.activo.id);
+                                        .Count(s => !vinculadas.Contains(s.id) &&  s.nombre.Contains(filtro));
             }
             else if(tipo == 3)
             {
                 lista = this.context.Recursos
                                         .Include(s => s.Tipo)
-                                        .Count(s => !vinculadas.Contains(s.id) && s.Tipo.nombre == filtro && s.codigoEstado == this.activo.id);
+                                        .Count(s => !vinculadas.Contains(s.id) && s.Tipo.nombre == filtro);
             }
             else
             {
                 lista = this.context.Recursos
-                                        .Count(s => !vinculadas.Contains(s.id) && s.codigoEstado == this.activo.id);
+                                        .Count(s => !vinculadas.Contains(s.id));
             }
             return lista;
         }
@@ -2776,19 +2776,19 @@ namespace Domain.Repository
             List<string> grupo = new List<String>();
             string[] lista = new string[6];
 
-            lista[0] = "Sede Electronica";
-            lista[1] = "Ventanilla Unica";
-            lista[2] = "Tramites y Servicios";
-            lista[3] = "Portal Transversal";
-            lista[4] = "Recurso";
-            lista[5] = "Tramites y Servicios Suit 3";
+            lista[0] = "Portal Transversal";
+            lista[1] = "Recurso";
+            lista[2] = "Sede Electronica";
+            lista[3] = "Tramites y Servicios";            
+            lista[4] = "Tramites y Servicios Suit 3";
+            lista[5] = "Ventanilla Unica";
             
-            datos[0] = vinculadas;
-            datos[1] = vinculadas1;
-            datos[2] = vinculadas2;
-            datos[3] = vinculadas3;
-            datos[4] = vinculadas4;
-            datos[5] = vinculadas5;
+            datos[0] = vinculadas3;
+            datos[1] = vinculadas4;
+            datos[2] = vinculadas;
+            datos[3] = vinculadas2;            
+            datos[4] = vinculadas5;
+            datos[5] = vinculadas1;
 
             for (int i = 0; i < 6; i++)
             {
