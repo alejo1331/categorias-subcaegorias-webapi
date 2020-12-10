@@ -6,7 +6,7 @@ namespace Domain.Categorias.AplicationModel
     public class ElementoTercerNivelAM
     {
         public int id { get; set; }
-        public int elementoId { get; set; }
+        public String elementoId { get; set; }
 
         //Foreign Key
         public int tipoElementoId { get; set; }

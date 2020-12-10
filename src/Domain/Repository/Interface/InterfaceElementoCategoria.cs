@@ -11,7 +11,7 @@ namespace Domain.Repository.Interface
         ElementoCategoria GetId(int id);
         ElementoCategoria GetSedeElectronicaId(int id, int padre);
         ElementoCategoria GetVentanillaUnicaId(int id, int padre);
-        ElementoCategoria GetTramiteServicioId(int id, int padre);
+        ElementoCategoria GetTramiteServicioId(string id, int padre);
         ElementoCategoria GetPortalTransversalId(int id, int padre);
         void Add(ElementoCategoria objeto);
         IList<PPT> VinculadasPPT(int id, int page, int size);
@@ -32,11 +32,14 @@ namespace Domain.Repository.Interface
         IList<PortalTransversal> VinculadasPortalTransversal(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<PortalTransversal> VincularPortalTransversal(int id);
         IList<PortalTransversal> VinculadasPortalTransversal(int id);
-        IList<Recurso> VincularRecurso(int id, int page, int size);
-        IList<Recurso> VinculadasRecurso(int id, int page, int size);
-        IList<ElementosUnion> TodosElementos(int id, int page, int size, int orden, bool ascd);   
+        IList<Recurso> VincularRecurso(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
+        IList<Recurso> VinculadasRecurso(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
+        IList<ElementosUnion> TodosElementos(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);   
         IList<ElementosUnion> TodosElementos(int id);   
-        long totalTodos(int id);
+        IList<string> AgruparTipoElemento(int id); 
+        IList<string> AgruparTipoRecursoVinculadas(int id);
+        IList<string> AgruparTipoRecursoVincular(int id);
+        long totalTodos(int id, int tipo, string filtro);
         long VincularSedeElectronicaTotal(int id, int tipo, string filtro);
         long VincularSedeElectronicaTotal(int id);   
         long VinculadasSedeElectronicaTotal(int id);
@@ -53,7 +56,7 @@ namespace Domain.Repository.Interface
         long VincularPortalTransversalTotal(int id, int tipo, string filtro);
         long VinculadasPortalTransversalTotal(int id, int tipo, string filtro);
         long VinculadasPortalTransversalTotal(int id);
-        long VincularRecursoTotal(int id);
-        long VinculadasRecursoTotal(int id);
+        long VincularRecursoTotal(int id, int tipo, string filtro);
+        long VinculadasRecursoTotal(int id, int tipo, string filtro);
     }
 }

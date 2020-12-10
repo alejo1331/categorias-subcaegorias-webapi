@@ -17,17 +17,17 @@ namespace Domain.Models
         [Column("TRA_RAZON_SOCIAL", TypeName = "varchar(120)")]
         public string nombre { get; set; }
         [Column("TRA_NIT", TypeName = "varchar(50)")]
-        public string nit { get; set; }
+        public string? nit { get; set; }
         [Column("TRA_DIRECCION", TypeName = "varchar(200)")]
-        public string direccion { get; set; }
+        public string? direccion { get; set; }
         [Column("TRA_TELEFONO", TypeName = "varchar(50)")]
-        public string telefono { get; set; }
+        public string? telefono { get; set; }
         [Column("TRA_CORREO", TypeName = "varchar(200)")]
-        public string correo { get; set; }
+        public string? correo { get; set; }
         [Column("TRA_FECHA_CREACION", TypeName = "smalldatetime")]
         public DateTime fechaCreacion { get; set; }
         [Column("TRA_FECHA_MODIFICACION", TypeName = "smalldatetime")]
-        public DateTime fechaModificacion { get; set; }
+        public DateTime? fechaModificacion { get; set; }
 
         //Foreign Key
         [Column("CODIGO_ESTADO", TypeName = "int")]
@@ -36,12 +36,12 @@ namespace Domain.Models
         public Estado Estado { get; set; }
         //
         [Column("TRA_PAGINA_WEB", TypeName = "varchar(100)")]
-        public string sedeElectronicaUrl { get; set; }
+        public string? sedeElectronicaUrl { get; set; }
         [Column("ENTIDAD_ID", TypeName = "varchar(4)")]
-        public string entida { get; set; }
+        public string? entida { get; set; }
         [Column("DEP_CODIGO", TypeName = "varchar(2)")]
-        public string departamento { get; set; }
+        public string? departamento { get; set; }
         [Column("MUN_CODIGO", TypeName = "varchar(5)")]
-        public string municipio { get; set; }
+        public string? municipio { get; set; }
     }
 }

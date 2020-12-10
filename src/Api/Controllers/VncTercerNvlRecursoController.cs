@@ -60,10 +60,42 @@ namespace Api.Controllers
             return NotFound();
         }
 
+        [HttpGet("{id}/{padre}")]
+        public IActionResult getId(int id, int padre)
+        {
+            VncTercerNvlRecursoAM vinculo = administracionBO.ObtenerVncTercerNvlRecurso(id, padre);
+            if (vinculo != null)
+            {
+                return new JsonResult(vinculo);
+            }
+            return NotFound();
+        }
+
         [HttpGet("Total/{id}")]
         public IActionResult getTotalId(int id)
         {
             return new JsonResult(administracionBO.ObtenerVncTercerNvlRecursoTotal(id));
+        }
+
+        [HttpPut("Estado/{id}")]
+        public IActionResult Estado(int id)
+        {
+            VncTercerNvlRecursoAM recurso = this.administracionBO.ObtenerVncTercerNvlRecurso(id);
+
+            if (recurso == null)
+            {
+                return BadRequest("El objeto es nulo");
+            }
+
+            try
+            {
+                return new JsonResult(this.administracionBO.EstadoTercerNivelRecurso(id));
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw ex;
+            }
+            return NoContent();
         }
     }
 }

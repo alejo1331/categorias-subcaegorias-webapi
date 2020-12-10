@@ -92,6 +92,7 @@ namespace Domain.Bussiness.Interface
         RecursoAM AgregarRecurso(RecursoAM objeto);
         RecursoAM ObtenerRecurso(int id);
         RecursoAM ActualizarRecurso(RecursoAM objeto);
+        RecursoAM EstadoRecurso(int id);
         long ObtenerTotalRecurso(Expression<Func<RecursoAM, bool>> predicate);
         ICollection<RecursoAM> ObtenerRecurso(Expression<Func<RecursoAM, bool>> predicate, int page, int size, Expression<Func<RecursoAM, object>> selector, bool descending);
 
@@ -183,19 +184,25 @@ namespace Domain.Bussiness.Interface
         IList<VncCategoriaRecursoAM> TodosVncCategoriaRecurso();
         VncCategoriaRecursoAM AgregarVncCategoriaRecurso(VncCategoriaRecursoAM objeto);
         VncCategoriaRecursoAM ObtenerVncCategoriaRecurso(int id);
+        VncCategoriaRecursoAM ObtenerVncCategoriaRecurso(int id, int padre);
         long ObtenerVncCategoriaRecursoTotal(int id);
+        VncCategoriaRecursoAM EstadoCategoriaRecurso(int id);
 
         //Subcategoria ---- Recurso
         IList<VncSubcategoriaRecursoAM> TodosVncSubcategoriaRecurso();
         VncSubcategoriaRecursoAM AgregarVncSubcategoriaRecurso(VncSubcategoriaRecursoAM objeto);
         VncSubcategoriaRecursoAM ObtenerVncSubcategoriaRecurso(int id);
+        VncSubcategoriaRecursoAM ObtenerVncSubcategoriaRecurso(int id, int padre);
         long ObtenerVncSubcategoriaRecursoTotal(int id);
+        VncSubcategoriaRecursoAM EstadoSubcategoriaRecurso(int id);
 
         //Tercer Nivel ---- Recurso
         IList<VncTercerNvlRecursoAM> TodosVncTercerNvlRecurso();
         VncTercerNvlRecursoAM AgregarVncTercerNvlRecurso(VncTercerNvlRecursoAM objeto);
         VncTercerNvlRecursoAM ObtenerVncTercerNvlRecurso(int id);
+        VncTercerNvlRecursoAM ObtenerVncTercerNvlRecurso(int id, int padre);
         long ObtenerVncTercerNvlRecursoTotal(int id);
+        VncTercerNvlRecursoAM EstadoTercerNivelRecurso(int id);
 
 
         //Elemento 
@@ -226,7 +233,7 @@ namespace Domain.Bussiness.Interface
         ElementoCategoriaAM ElementoCategoriaId(int id);
         ElementoCategoriaAM ElementoCategoriaSedeElectronicaId(int id, int padre);
         ElementoCategoriaAM ElementoCategoriaVentanillaUnicaId(int id, int padre);
-        ElementoCategoriaAM ElementoCategoriaTramisteServicioId(int id, int padre);
+        ElementoCategoriaAM ElementoCategoriaTramisteServicioId(string id, int padre);
         ElementoCategoriaAM ElementoCategoriaPortalTransversalId(int id, int padre);
         ElementoCategoriaAM AgregarElementoCategoria(ElementoCategoriaAM objeto);
         IList<PPTAM> VinculadasPPT(int id, int page, int size);
@@ -247,8 +254,8 @@ namespace Domain.Bussiness.Interface
         IList<PortalTransversalAM> VinculadasPortalTransversal(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<PortalTransversalAM> VincularPortalTransversal(int id);
         IList<PortalTransversalAM> VinculadasPortalTransversal(int id);
-        IList<RecursoAM> VincularRecurso(int id, int page, int size);
-        IList<RecursoAM> VinculadasRecurso(int id, int page, int size);
+        IList<RecursoAM> VincularRecurso(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
+        IList<RecursoAM> VinculadasRecurso(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
         long VincularSedeElectronicaCategoriaTotal(int id, int tipo, string filtro);
         long VincularSedeElectronicaCategoriaTotal(int id);
         long VinculadasSedeElectronicaCategoriaTotal(int id);
@@ -265,13 +272,13 @@ namespace Domain.Bussiness.Interface
         long VincularPortalTransversalCategoriaTotal(int id, int tipo, string filtro);
         long VinculadasPortalTransversalCategoriaTotal(int id);
         long VinculadasPortalTransversalCategoriaTotal(int id, int tipo, string filtro);
-        long VincularRecursoCategoriaTotal(int id);
-        long VinculadasRecursoCategoriaTotal(int id);
+        long VincularRecursoCategoriaTotal(int id, int tipo, string filtro);
+        long VinculadasRecursoCategoriaTotal(int id, int tipo, string filtro);
 
         //Elemento Subcategoria
         ElementoSubcategoriaAM ElementoSubcategoriaSedeElectronicaId(int id, int padre);
         ElementoSubcategoriaAM ElementoSubcategoriaVentanillaUnicaId(int id, int padre);
-        ElementoSubcategoriaAM ElementoSubcategoriaTramisteServicioId(int id, int padre);
+        ElementoSubcategoriaAM ElementoSubcategoriaTramisteServicioId(string id, int padre);
         ElementoSubcategoriaAM ElementoSubcategoriaPortalTransversalId(int id, int padre);
         ElementoSubcategoriaAM ActualizarElementoSubcategoria(int id);
         IList<ElementoSubcategoriaAM> TodasElementoSubcategoria();
@@ -293,8 +300,8 @@ namespace Domain.Bussiness.Interface
         IList<PortalTransversalAM> VinculadasPortalTransversalSubcategoria(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<PortalTransversalAM> VincularPortalTransversalSubcategoria(int id);
         IList<PortalTransversalAM> VinculadasPortalTransversalSubcategoria(int id);
-        IList<RecursoAM> VincularRecursoSubcategoria(int id, int page, int size);
-        IList<RecursoAM> VinculadasRecursoSubcategoria(int id, int page, int size);
+        IList<RecursoAM> VincularRecursoSubcategoria(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
+        IList<RecursoAM> VinculadasRecursoSubcategoria(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
         long VincularSedeElectronicaSubcategoriaTotal(int id);
         long VincularSedeElectronicaSubcategoriaTotal(int id, int tipo, string filtro);
         long VinculadasSedeElectronicaSubcategoriaTotal(int id);
@@ -311,14 +318,14 @@ namespace Domain.Bussiness.Interface
         long VincularPortalTransversalSubcategoriaTotal(int id, int tipo, string filtrar);
         long VinculadasPortalTransversalSubcategoriaTotal(int id);
         long VinculadasPortalTransversalSubcategoriaTotal(int id, int tipo, string filtro);
-        long VincularRecursoSubcategoriaTotal(int id);
-        long VinculadasRecursoSubcategoriaTotal(int id);
+        long VincularRecursoSubcategoriaTotal(int id, int tipo, string filtro);
+        long VinculadasRecursoSubcategoriaTotal(int id, int tipo, string filtro);
 
 
         //Elemento Tercer Nivel
         ElementoTercerNivelAM ElementoTercerNivelSedeElectronicaId(int id, int padre);
         ElementoTercerNivelAM ElementoTercerNivelVentanillaUnicaId(int id, int padre);
-        ElementoTercerNivelAM ElementoTercerNivelTramisteServicioId(int id, int padre);
+        ElementoTercerNivelAM ElementoTercerNivelTramisteServicioId(string id, int padre);
         ElementoTercerNivelAM ElementoTercerNivelPortalTransversalId(int id, int padre);
         ElementoTercerNivelAM ActualizarElementoTercerNivel(int id);
         IList<ElementoTercerNivelAM> TodasElementoTercerNivel();
@@ -341,19 +348,28 @@ namespace Domain.Bussiness.Interface
         IList<PortalTransversalAM> VinculadasPortalTransversalTercerNivel(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<PortalTransversalAM> VincularPortalTransversalTercerNivel(int id);
         IList<PortalTransversalAM> VinculadasPortalTransversalTercerNivel(int id);
-        IList<RecursoAM> VincularRecursoTercerNivel(int id, int page, int size);
-        IList<RecursoAM> VinculadasRecursoTercerNivel(int id, int page, int size);
+        IList<RecursoAM> VincularRecursoTercerNivel(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
+        IList<RecursoAM> VinculadasRecursoTercerNivel(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
 
 
-        IList<ElementosUnionAM> Todo(int id, int page, int size, int orden, bool ascd);
+        IList<ElementosUnionAM> Todo(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<ElementosUnionAM> Todo(int id);
         IList<ElementosUnionAM> TodoSubcategorias(int id);
-        IList<ElementosUnionAM> TodoSubcategorias(int id, int page, int size, int orden, bool ascd);
+        IList<ElementosUnionAM> TodoSubcategorias(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<ElementosUnionAM> TodoTercerNivels(int id);
-        IList<ElementosUnionAM> TodoTercerNivels(int id, int page, int size, int orden, bool ascd);
-        long TodoTotal(int id);
-        long TodoTotalSubcategorias(int id);
-        long TodoTotalTercerNivels(int id);
+        IList<ElementosUnionAM> TodoTercerNivels(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
+        IList<string> AgruparTipoElementoCategoria(int id);
+        IList<string> AgruparTipoRecursoCategoriaVinculadas(int id);
+        IList<string> AgruparTipoRecursoCategoriaVincular(int id);
+        IList<string> AgruparTipoElementoSubcategoria(int id);
+        IList<string> AgruparTipoRecursoSubcategoriaVinculadas(int id);
+        IList<string> AgruparTipoRecursoSubcategoriaVincular(int id);
+        IList<string> AgruparTipoElementoTercerNivel(int id);
+        IList<string> AgruparTipoRecursoTercerNivelVinculadas(int id);
+        IList<string> AgruparTipoRecursoTercerNivelVincular(int id);
+        long TodoTotal(int id, int tipo, string filtro);
+        long TodoTotalSubcategorias(int id, int tipo, string filtro);
+        long TodoTotalTercerNivels(int id, int tipo, string filtro);
 
         long VincularSedeElectronicaTercerNivelsTotal(int id);
         long VincularSedeElectronicaTercerNivelsTotal(int id, int tipo, string filtro);
@@ -375,8 +391,8 @@ namespace Domain.Bussiness.Interface
         long VinculadasPortalTransversalTercerNivelsTotal(int id);
         long VinculadasPortalTransversalTercerNivelsTotal(int id, int tipo, string filtro);
         
-        long VincularRecursoTercerNivelsTotal(int id);
-        long VinculadasRecursoTercerNivelsTotal(int id);
+        long VincularRecursoTercerNivelsTotal(int id, int tipo, string filtro);
+        long VinculadasRecursoTercerNivelsTotal(int id, int tipo, string filtro);
 
 
 
@@ -410,12 +426,12 @@ namespace Domain.Bussiness.Interface
         
 
         //Tramites y servicios
-        IList<ParametrosUnionAM> TodosParametrosTramitesServicios(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
-        IList<ParametrosUnionAM> TodosParametrosTramitesServicios(int id);
-        long TodosParametrosTramitesServiciosTotal(int id);
-        long TodosParametrosTramitesServiciosTotal(int id, int tipo, string filtro);
-        IList<string> AgruparEstadoTramitesServicios(int id); 
-        IList<string> AgruparTipoTramitesServicios(int id);  
+        IList<ParametrosUnionAM> TodosParametrosTramitesServicios(string id, int page, int size, int orden, bool ascd, int tipo, string filtro);
+        IList<ParametrosUnionAM> TodosParametrosTramitesServicios(string id);
+        long TodosParametrosTramitesServiciosTotal(string id);
+        long TodosParametrosTramitesServiciosTotal(string id, int tipo, string filtro);
+        IList<string> AgruparEstadoTramitesServicios(string id); 
+        IList<string> AgruparTipoTramitesServicios(string id);  
         IList<TramiteServicioAM> ListaTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal, int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<TramiteServicioAM> ListaTramitesServicios(DateTime? fehcaIncial, DateTime? fechaFinal); 
         IList<TramiteServicioAM> ListaTramitesServicios(int page, int size, int orden, bool ascd,string filtro, int tipo); 

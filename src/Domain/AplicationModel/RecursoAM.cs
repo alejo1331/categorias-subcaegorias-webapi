@@ -13,6 +13,7 @@ namespace Domain.Categorias.AplicationModel
         public int codigoEstado { get; set; }
 
         public int tipoRecurso { get; set; }
+        public virtual TipoRecursoAM Tipo { get; set; }
 
         public int? parametro { get; set; }
 

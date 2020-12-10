@@ -11,7 +11,7 @@ namespace Domain.Repository.Interface
         ElementoSubcategoria GetId(int id);
         ElementoSubcategoria GetSedeElectronicaId(int id, int padre);
         ElementoSubcategoria GetVentanillaUnicaId(int id, int padre);
-        ElementoSubcategoria GetTramiteServicioId(int id, int padre);
+        ElementoSubcategoria GetTramiteServicioId(string id, int padre);
         ElementoSubcategoria GetPortalTransversalId(int id, int padre);
         void Add(ElementoSubcategoria objeto);
         IList<VentanillaUnica> VinculadasVentanillaUnica(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
@@ -30,11 +30,14 @@ namespace Domain.Repository.Interface
         IList<PortalTransversal> VinculadasPortalTransversal(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<PortalTransversal> VincularPortalTransversal(int id);
         IList<PortalTransversal> VinculadasPortalTransversal(int id);
-        IList<Recurso> VinculadasRecurso(int id, int page, int size);
-        IList<Recurso> VincularRecurso(int id, int page, int size);
+        IList<Recurso> VinculadasRecurso(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
+        IList<Recurso> VincularRecurso(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<ElementosUnion> TodosElementos(int id);
-        IList<ElementosUnion> TodosElementos(int id, int page, int size, int orden, bool ascd);
-        long totalTodos(int id);
+        IList<ElementosUnion> TodosElementos(int id, int page, int size, int orden, bool ascd, int tipo, string filtro);
+        IList<string> AgruparTipoElemento(int id); 
+        IList<string> AgruparTipoRecursovinculadas(int id);
+        IList<string> AgruparTipoRecursovincular(int id);
+        long totalTodos(int id, int tipo, string filtro);
         long VincularSedeElectronicaTotal(int id);
         long VincularSedeElectronicaTotal(int id, int tipo, string filtro);
         long VinculadasSedeElectronicaTotal(int id);
@@ -51,7 +54,7 @@ namespace Domain.Repository.Interface
         long VincularPortalTransversalTotal(int id, int tipo, string filtro);
         long VinculadasPortalTransversalTotal(int id);
         long VinculadasPortalTransversalTotal(int id, int tipo, string filtro);
-        long VincularRecursoTotal(int id);
-        long VinculadasRecursoTotal(int id);
+        long VincularRecursoTotal(int id, int tipo, string filtro);
+        long VinculadasRecursoTotal(int id, int tipo, string filtro);
     }
 }

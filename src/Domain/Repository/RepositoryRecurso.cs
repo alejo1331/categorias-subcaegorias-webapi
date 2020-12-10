@@ -34,7 +34,7 @@ namespace Domain.Repository
 
         public Recurso GetId(int id)
         {
-            return this.context.Recursos.Where(s => s.id == id).FirstOrDefault();
+            return this.context.Recursos.Include(s => s.Tipo).Where(s => s.id == id).FirstOrDefault();
         }
 
         public void Update(Recurso objeto)
@@ -43,6 +43,24 @@ namespace Domain.Repository
                 throw new ArgumentNullException(nameof(objeto));
 
             this.context.Recursos.Update(objeto);
+        }
+
+        public void Estado(int id)
+        {
+            Estado activo = this.context.Estados.Where(s => s.descripcion == "Activo").FirstOrDefault();
+            Estado inactivo = this.context.Estados.Where(s => s.descripcion == "Inactivo").FirstOrDefault();
+
+            Recurso recurso = this.context.Recursos.Where(s => s.id == id).FirstOrDefault();
+
+            if (recurso == null)
+                throw new ArgumentNullException(nameof(recurso));
+
+            if(recurso.codigoEstado == activo.id)
+                recurso.codigoEstado = inactivo.id;
+            else
+                recurso.codigoEstado = activo.id;
+
+            this.context.Recursos.Update(recurso);
         }
 
 
