@@ -2612,6 +2612,12 @@ namespace Domain.Bussiness.BO
             return repository.Total(tipo, filtro);
         }
 
+        public long TotalBitacora()
+        {
+            InterfaceBitacora<Bitacora> repository = new RepositoryBitacora(context);
+            return repository.Total();
+        }
+
         public BitacoraCategoriasAM GetBitacoraId(int id)
         {
             InterfaceBitacora<Bitacora> repository = new RepositoryBitacora(context);
@@ -2624,8 +2630,25 @@ namespace Domain.Bussiness.BO
             Bitacora Bitacora = mapper.Map<Bitacora>(objeto);
             repository.Add(Bitacora);
             this.context.SaveChanges();
-            BitacoraCategoriasAM BitacoraCategoriasAM = mapper.Map<BitacoraCategoriasAM>(Bitacora);
-            return BitacoraCategoriasAM;
+
+            //Proceso de depuracion
+            DepuracionAM dato = this.Unico();
+            long total = this.TotalBitacora();
+
+            Console.WriteLine(total);
+            Console.WriteLine(dato.registros);
+
+            if(total >= dato.registros)
+            {
+                DateTime fechaActual = DateTime.Now;
+                DateTime fechaInicio = new DateTime(fechaActual.Year, fechaActual.Month, 1);
+
+                repository.Remove(fechaInicio);
+                Console.WriteLine("Fecha inicia para depuracion: " + fechaInicio);
+                this.context.SaveChanges();
+            }
+
+            return objeto;
         }
 
         public IList<string> AgruparTipoConfiguracion()
@@ -2638,6 +2661,12 @@ namespace Domain.Bussiness.BO
         {
             InterfaceBitacora<Bitacora> repository = new RepositoryBitacora(context);
             return repository.AgruparTipoParametro();
+        }
+
+        public DepuracionAM Unico()
+        {
+            InterfaceDepuracion<Depuracion> repository = new RepositoryDepuracion(context);
+            return mapper.Map<DepuracionAM>(repository.Unico());
         }
 
     }

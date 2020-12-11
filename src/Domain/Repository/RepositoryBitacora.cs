@@ -905,12 +905,29 @@ namespace Domain.Repository
             return listaNUmero;
         }
 
+        public long Total()
+        {
+            long listaNUmero = 0;            
+            listaNUmero = this.context.Bitacoras.Count(); 
+            return listaNUmero;
+        }
+
         public void Add(Bitacora objeto)
         {
             if (objeto == null)
                 throw new ArgumentNullException(nameof(objeto));
 
             this.context.Bitacoras.Add(objeto);
+        }
+
+        public void Remove(DateTime fechaInicio)
+        {
+            List<Bitacora> lista = this.context.Bitacoras.Where(s => s.fechaModificacion >= fechaInicio).ToList();
+
+            foreach (var item in lista)
+            {
+                this.context.Bitacoras.Remove(item);
+            }
         }
 
         public Bitacora GetId(int id)

@@ -21,6 +21,7 @@ namespace Domain.Bussiness.Profiles
             CreateMap<CategoriaSUIT, CategoriaSUITAM>().ReverseMap();
             CreateMap<TipoConfiguracion, TipoConfiguracionAM>().ReverseMap();
             CreateMap<Bitacora, BitacoraCategoriasAM>().ReverseMap();
+            CreateMap<Depuracion, DepuracionAM>().ReverseMap();
 
             //Vinculaciones
             CreateMap<VncCategoriaTipoCtg, VncCategoriaTipoCtgAM>().ReverseMap();

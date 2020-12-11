@@ -29,6 +29,7 @@ namespace Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
+            Console.WriteLine(DateTime.Now);
             return new JsonResult(this.administracionBO.AllBitacora());
         }
 
@@ -36,6 +37,12 @@ namespace Api.Controllers
         public IActionResult GetTodos(int tipo, string filtro)
         {
             return new JsonResult(this.administracionBO.TotalBitacora(tipo, filtro));
+        }
+
+        [HttpGet("Total")]
+        public IActionResult GetTodos()
+        {
+            return new JsonResult(this.administracionBO.TotalBitacora());
         }
 
         [HttpPost("Todos")]
@@ -47,6 +54,9 @@ namespace Api.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] BitacoraCategoriasAM objeto)
         {
+            Console.WriteLine(objeto.fechaModificacion);
+            Console.WriteLine(DateTime.Now);
+
             if (objeto == null)
             {
                 return BadRequest("Owner object is null");
