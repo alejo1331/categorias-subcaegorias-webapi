@@ -1,5 +1,6 @@
 using Domain.Models;
 using System.Collections.Generic;
+using System;
 
 
 namespace Domain.Repository.Interface
@@ -9,7 +10,9 @@ namespace Domain.Repository.Interface
         IList<Bitacora> All(int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<Bitacora> All();
         long Total(int tipo, string filtro);
+        long Total();
         void Add(Bitacora objeto);
+        void Remove(DateTime fechaInicio);
         Bitacora GetId(int id);
         IList<string> AgruparTipoConfiguracion();
         IList<string> AgruparTipoParametro();
