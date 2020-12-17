@@ -29,6 +29,7 @@ namespace Domain.Data
         public DbSet<SubcategoriaCtgSuit> SubcategoriaCtgSuits { get; set; }
         public DbSet<TipoConfiguracion> TipoConfiguracions { get; set; }
         public DbSet<Bitacora> Bitacoras { get; set; }
+        public DbSet<Depuracion> Depuracions { get; set; }
         
 
         //Vinculos

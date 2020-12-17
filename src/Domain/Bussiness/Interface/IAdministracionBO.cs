@@ -468,10 +468,13 @@ namespace Domain.Bussiness.Interface
         IList<BitacoraCategoriasAM> AllBitacora(int page, int size, int orden, bool ascd, int tipo, string filtro);
         IList<BitacoraCategoriasAM> AllBitacora();
         long TotalBitacora(int tipo, string filtro);
+        long TotalBitacora();
         BitacoraCategoriasAM AddBitacora(BitacoraCategoriasAM objeto);
         BitacoraCategoriasAM GetBitacoraId(int id);
         IList<string> AgruparTipoConfiguracion();
         IList<string> AgruparTipoParametro();
-        
+
+        //Depuracion
+        DepuracionAM Unico();        
     }
 }
