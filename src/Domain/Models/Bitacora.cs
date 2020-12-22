@@ -24,8 +24,8 @@ namespace Domain.Models
         [Column("CBC_FECHA", TypeName = "smalldatetime")]
         public DateTime? fechaModificacion { get; set; }
 
-        [Column("USUARIO", TypeName = "int")]
-        public int usuario { get; set; }
+        [Column("USUARIO", TypeName = "varchar(450)")]
+        public string usuario { get; set; }
 
         //Foreign Key
         [Column("CTP_ID", TypeName = "int")]

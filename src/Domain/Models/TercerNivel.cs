@@ -42,8 +42,8 @@ namespace Domain.Models
         public Subcategoria Subcategoria { get; set; }
         //
 
-        [Column("USUARIO_CREACION", TypeName = "int")]
-        public int user { get; set; }
+        [Column("USUARIO_CREACION", TypeName = "varchar(450)")]
+        public string user { get; set; }
 
         [Column("CTN_FECHA_CREACION", TypeName = "smalldatetime")]
         public DateTime? fechaCreacion { get; set; }

@@ -21,7 +21,7 @@ namespace Domain.Categorias.AplicationModel
         public virtual EstadoAM Estado {get; set;}
         //
 
-        public int user { get; set; }
+        public string? user { get; set; }
 
         public string icono { get; set; }
 
