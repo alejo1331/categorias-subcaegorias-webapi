@@ -24,7 +24,7 @@ namespace Domain.Categorias.AplicationModel
         public virtual SubcategoriaAM Subcategoria { get; set; }
         //
 
-        public int user { get; set; }
+        public string user { get; set; }
         public DateTime? fechaCreacion { get; set; }
 
         public DateTime? fechaModificacion { get; set; }
