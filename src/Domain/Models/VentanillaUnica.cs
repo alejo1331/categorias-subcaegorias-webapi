@@ -35,9 +35,9 @@ namespace Domain.Models
         [Column("vtu_fecha_creacion", TypeName = "smalldatetime")]
         public DateTime fechaCreacion { get; set; }
         [Column("vtu_fecha_modificacion", TypeName = "smalldatetime")]
-        public DateTime fechaModificacion { get; set; }
+        public DateTime? fechaModificacion { get; set; }
         [Column("vtu_solicitud_id", TypeName = "int")]
-        public int solicitudId { get; set; }
+        public int? solicitudId { get; set; }
 
         //Foreign Key
         [Column("vtu_codigo_estado", TypeName = "int")]

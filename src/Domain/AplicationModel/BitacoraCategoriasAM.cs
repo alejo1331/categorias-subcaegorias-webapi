@@ -14,7 +14,7 @@ namespace Domain.Categorias.AplicationModel
 
         public DateTime? fechaModificacion { get; set; }
 
-        public int usuario { get; set; }
+        public string usuario { get; set; }
 
         //Foreign Key
         public int Parametro { get; set; }

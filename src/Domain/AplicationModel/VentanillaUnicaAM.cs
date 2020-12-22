@@ -16,8 +16,8 @@ namespace Domain.Categorias.AplicationModel
         public string telefonoContacto { get; set; }
         public int usuarioCreacion { get; set; }
         public DateTime fechaCreacion { get; set; }
-        public DateTime fechaModificacion { get; set; }
-        public int solicitudId { get; set; }
+        public DateTime? fechaModificacion { get; set; }
+        public int? solicitudId { get; set; }
 
         //Foreign Key
         public int codigoEstado { get; set; }
