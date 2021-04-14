@@ -1,0 +1,300 @@
+kind: pipeline
+name: and_ci_api
+
+workspace:
+  path: /src
+
+steps:
+- name: check_readme
+  image: jjvargass/qa_develoment:latest
+  commands:
+  - python /app/check_readme.py
+  when:
+    branch:
+    - develop
+    - stage
+    - feature/*
+    - release/*
+    event:
+    - push
+
+- name: check_branch
+  image: jjvargass/qa_develoment:latest
+  commands:
+  - python /app/check_branch.py -H ${DRONE_GIT_HTTP_URL}
+  when:
+    branch:
+    - develop
+    - feature/*
+    - release/*
+    event:
+    - push
+
+- name: check_commits
+  image: jjvargass/qa_develoment:latest
+  commands:
+  - python /app/check_commits.py
+  when:
+    branch:
+    - develop
+    - stage
+    - feature/*
+    - release/*
+    event:
+    - push
+
+# - name: run_unit_test
+#   image: nosinovacao/dotnet-sonar:19.12.0
+#   commands:
+#    - cd src/
+#    - dotnet test
+#   when:
+#     branch:
+#     - develop
+#     - feature/*
+#     - release/*
+#     event:
+ 
+
+
+# - name: run_sonarqube
+#   image: nosinovacao/dotnet-sonar:19.12.0
+#   commands:
+#   - cd src
+#   - dotnet /sonar-scanner/SonarScanner.MSBuild.dll begin /k:${DRONE_REPO/\//-} /name:${DRONE_REPO/\//-} /version:1.0 /d:sonar.host.url="https://ci.sonarqube.and.gov.co/"
+#   - dotnet restore
+#   - dotnet build -c Release
+#   - dotnet publish -c Release -r linux-x64 -o deployment
+#   - dotnet test --no-build -c Release --filter "Category=Unit" --logger trx --results-directory testResults /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+#   - dotnet /sonar-scanner/SonarScanner.MSBuild.dll end
+#   when:
+#     branch:
+#     - develop
+#     - feature/*
+#     - release/*
+#     event:
+#     - push
+  
+  
+- name: publish_to_ecr_develop_stage
+  image: plugins/ecr
+  settings:
+    access_key:
+      from_secret: AWS_ACCESS_KEY_ID
+    secret_key:
+      from_secret: AWS_SECRET_ACCESS_KEY
+    region:
+      from_secret: AWS_REGION
+    repo: ${DRONE_REPO,,}
+    tags:
+      - ${DRONE_COMMIT:0:7}
+      - ${DRONE_BRANCH}
+  when:
+    branch:
+    - develop
+    - stage
+    event:
+    - push
+    - merge
+
+- name: init_config_service_to_develop
+  image: python:3
+  volumes:
+  - name: cache
+    path: /home/centos/drone/
+  environment:
+    host:
+      from_secret: SERVER_DEVELOP_MID
+    username:
+      from_secret: USER_SERVER_DEVELOP_MID
+    token:
+      from_secret: AWS_ECR_TOKEN  
+  commands:
+  - pip3 install -U fabric3
+  - fab -i /home/centos/drone/AND.pem -H $${username}@$${host} init_config init_network_govco create_token_aws:token=$${token}
+  when:
+    branch:
+    - develop
+    event:
+    - push
+    - merge
+
+- name: init_config_service_to_stage
+  image: python:3
+  volumes:
+  - name: cache
+    path: /home/centos/drone/
+  environment:
+    host:
+      from_secret: SERVER_STAGE_MID
+    username:
+      from_secret: USER_SERVER_STAGE_MID
+    token:
+      from_secret: AWS_ECR_TOKEN  
+  commands:
+  - pip3 install -U fabric3
+  - fab -i /home/centos/drone/AND-NEW-02.pem -H $${username}@$${host} init_config init_network_govco create_token_aws:token=$${token}
+  when:
+    branch:
+    - stage
+    event:
+    - push
+    - merge
+
+- name: down_service_to_develop
+  image: python:3
+  volumes:
+  - name: cache
+    path: /home/centos/drone/
+  environment:
+    host:
+      from_secret: SERVER_DEVELOP_MID
+    username:
+      from_secret: USER_SERVER_DEVELOP_MID
+  commands:
+  - pip3 install -U fabric3
+  - fab -i /home/centos/drone/AND.pem -H $${username}@$${host} compose_down_develop:foldername=${DRONE_REPO_NAME,,}
+  when:
+    branch:
+    - develop
+    event:
+    - push
+    - merge
+
+- name: down_service_to_stage
+  image: python:3
+  volumes:
+  - name: cache
+    path: /home/centos/drone/
+  environment:
+    host:
+      from_secret: SERVER_STAGE_MID
+    username:
+      from_secret: USER_SERVER_STAGE_MID
+  commands:
+  - pip3 install -U fabric3
+  - fab -i /home/centos/drone/AND-NEW-02.pem -H $${username}@$${host} compose_down_stage:foldername=${DRONE_REPO_NAME,,}
+  when:
+    branch:
+    - stage
+    event:
+    - push
+    - merge
+
+- name: update_service_to_develop
+  image: python:3
+  volumes:
+  - name: cache
+    path: /home/centos/drone/
+  environment:
+    host:
+      from_secret: SERVER_DEVELOP_MID
+    username:
+      from_secret: USER_SERVER_DEVELOP_MID
+  commands:
+  - pip3 install -U fabric3
+  - fab -i /home/centos/drone/AND.pem -H $${username}@$${host} validate_create_folder:foldername=${DRONE_REPO_NAME,,} validate_update_all_file_services:foldername=${DRONE_REPO_NAME,,}
+  when:
+    branch:
+    - develop
+    event:
+    - push
+    - merge
+
+- name: update_service_to_stage
+  image: python:3
+  volumes:
+  - name: cache
+    path: /home/centos/drone/
+  environment:
+    host:
+      from_secret: SERVER_STAGE_MID
+    username:
+      from_secret: USER_SERVER_STAGE_MID
+  commands:
+  - pip3 install -U fabric3
+  - fab -i /home/centos/drone/AND-NEW-02.pem -H $${username}@$${host} validate_create_folder:foldername=${DRONE_REPO_NAME,,} validate_update_all_file_services_2:foldername=${DRONE_REPO_NAME,,}
+  when:
+    branch:
+    - stage
+    event:
+    - push
+    - merge    
+
+
+- name: up_service_to_develop
+  image: python:3
+  volumes:
+  - name: cache
+    path: /home/centos/drone/
+  environment:
+    host:
+      from_secret: SERVER_DEVELOP_MID
+    username:
+      from_secret: USER_SERVER_DEVELOP_MID
+  commands:
+  - pip3 install -U fabric3
+  - fab -i /home/centos/drone/AND.pem -H $${username}@$${host} compose_up_develop:foldername=${DRONE_REPO_NAME,,}
+  when:
+    branch:
+    - develop
+    event:
+    - push
+    - merge
+
+- name: up_service_to_stage
+  image: python:3
+  volumes:
+  - name: cache
+    path: /home/centos/drone/
+  environment:
+    host:
+      from_secret: SERVER_STAGE_MID
+    username:
+      from_secret: USER_SERVER_STAGE_MID
+  commands:
+  - pip3 install -U fabric3
+  - fab -i /home/centos/drone/AND-NEW-02.pem -H $${username}@$${host} compose_up_stage:foldername=${DRONE_REPO_NAME,,}
+  when:
+    branch:
+    - stage
+    event:
+    - push
+    - merge    
+
+
+- name: slack_notify
+  image: plugins/slack
+  settings:
+    webhook:
+      from_secret: SLACK_AND_WEBHOOK
+    channel: despliegue-continuo
+    link_names: true
+    template: >
+      {{#if build.pull }}
+        *{{#success build.status}}✔{{ else }}✘{{/success}} {{ uppercasefirst build.status }}*: <https://gitlab.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ build.pull }}|Pull Request #{{ build.pull }}>
+      {{else}}
+        *{{#success build.status}}✔{{ else }}✘{{/success}} {{ uppercasefirst build.status }}: Build #{{ build.number }}* (type: `{{ build.event }}`)
+      {{/if}}
+      *Repo:* {{ repo.name }}
+      *Branch:* <http://https://gitlab.com/govco-developers/{{ repo.owner }}/repos/{{ repo.name }}/commits?until=refs/heads/{{ build.branch }}&merges=include|{{ build.branch }}>
+      *Commit:* <http://https://gitlab.com/govco-developers/{{ repo.owner }}/repos/{{ repo.name }}/commits/{{ build.commit }}|{{ truncate build.commit 8 }}>
+
+      Author: {{ build.author }}
+
+      <{{ build.link }}|Visit build page ↗>
+  when:
+    branch:
+    - develop
+    - stage
+    - release/*
+    - master
+    status:
+    - failure
+    - success
+
+volumes:
+- name: cache
+  host:
+    path: /etc/gitlab/fabric/
+    path: /home/centos/drone/
