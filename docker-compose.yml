@@ -4,7 +4,7 @@ services:
     container_name: Admin_ctg_webapi
     build: .
     ports:
-      - 9003:80
+      - 8087:8087
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     restart: always
