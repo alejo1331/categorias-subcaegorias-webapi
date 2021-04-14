@@ -1,0 +1,16 @@
+version: '3.6'
+services:
+  webapi_dot_net:
+    container_name: Admin_ctg_webapi
+    image: 669335818103.dkr.ecr.us-east-1.amazonaws.com/govco-developers/categorias-subcategorias-webapi:develop
+    ports: 
+      - 9003:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - TZ=America/Bogota
+    restart: always
+    networks:
+      - NETWORK_GOVCO_INTERNO
+networks:
+  NETWORK_GOVCO_INTERNO:
+    external: true
