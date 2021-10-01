@@ -43,5 +43,9 @@ namespace Domain.Models
         [ForeignKey("Configuracion")]
         public TipoConfiguracion TipoConfiguracion { get; set; }
         //
+
+        //Foranea Usuario
+        [ForeignKey("usuario")]
+        public Usuario usuarioObj { get; set; }   
     }
 }
