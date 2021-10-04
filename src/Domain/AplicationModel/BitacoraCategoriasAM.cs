@@ -25,5 +25,7 @@ namespace Domain.Categorias.AplicationModel
         public int Configuracion { get; set; }
         public virtual TipoConfiguracionAM TipoConfiguracion { get; set; }
         //
+
+        public virtual UsuarioAM usuarioObj {get; set;}
     }
 }

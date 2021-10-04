@@ -46,6 +46,8 @@ namespace Domain.Bussiness.Profiles
             CreateMap<ElementosUnion, ElementosUnionAM>().ReverseMap();  
             CreateMap<PortalTransversal, PortalTransversalAM>().ReverseMap(); 
             CreateMap<ParametrosUnion, ParametrosUnionAM>().ReverseMap(); 
+            CreateMap<Usuario, UsuarioAM>().ReverseMap(); 
+            CreateMap<PersonaNatural, PersonaNaturalAM>().ReverseMap(); 
             
         }
     }

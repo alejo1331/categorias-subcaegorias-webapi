@@ -30,6 +30,8 @@ namespace Domain.Data
         public DbSet<TipoConfiguracion> TipoConfiguracions { get; set; }
         public DbSet<Bitacora> Bitacoras { get; set; }
         public DbSet<Depuracion> Depuracions { get; set; }
+        public DbSet<Usuario> Usuario {get; set;}
+        public DbSet<PersonaNatural> PersonaNatural {get; set;}
         
 
         //Vinculos

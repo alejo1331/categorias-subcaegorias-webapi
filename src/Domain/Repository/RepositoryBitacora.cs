@@ -33,6 +33,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.id == int.Parse(filtro))                               
                                         .OrderBy(s => s.id)
                                         .Skip(paginado)
@@ -44,6 +46,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.id == int.Parse(filtro))                               
                                         .OrderByDescending(s => s.id)
                                         .Skip(paginado)
@@ -58,6 +62,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.id == int.Parse(filtro))                               
                                         .OrderBy(s => s.Configuracion)
                                         .Skip(paginado)
@@ -69,6 +75,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.id == int.Parse(filtro))                               
                                         .OrderByDescending(s => s.Configuracion)
                                         .Skip(paginado)
@@ -83,6 +91,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.id == int.Parse(filtro))                               
                                         .OrderBy(s => s.Parametro)
                                         .Skip(paginado)
@@ -94,6 +104,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.id == int.Parse(filtro))                               
                                         .OrderByDescending(s => s.Parametro)
                                         .Skip(paginado)
@@ -108,6 +120,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.id == int.Parse(filtro))                               
                                         .OrderBy(s => s.fechaModificacion)
                                         .Skip(paginado)
@@ -119,6 +133,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.id == int.Parse(filtro))                               
                                         .OrderByDescending(s => s.fechaModificacion)
                                         .Skip(paginado)
@@ -133,6 +149,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.id == int.Parse(filtro))                               
                                         .OrderBy(s => s.usuario)
                                         .Skip(paginado)
@@ -144,6 +162,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.id == int.Parse(filtro))                               
                                         .OrderByDescending(s => s.usuario)
                                         .Skip(paginado)
@@ -156,6 +176,8 @@ namespace Domain.Repository
                     lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.id == int.Parse(filtro)) 
                                         .Skip(paginado)
                                         .Take(size)
@@ -171,6 +193,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.fechaModificacion >= DateTime.Parse(filtro))                               
                                         .OrderBy(s => s.id)
                                         .Skip(paginado)
@@ -182,6 +206,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.fechaModificacion >= DateTime.Parse(filtro))                               
                                         .OrderByDescending(s => s.id)
                                         .Skip(paginado)
@@ -196,6 +222,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.fechaModificacion >= DateTime.Parse(filtro))                               
                                         .OrderBy(s => s.Configuracion)
                                         .Skip(paginado)
@@ -207,6 +235,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.fechaModificacion >= DateTime.Parse(filtro))                               
                                         .OrderByDescending(s => s.Configuracion)
                                         .Skip(paginado)
@@ -221,6 +251,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.fechaModificacion >= DateTime.Parse(filtro))                               
                                         .OrderBy(s => s.Parametro)
                                         .Skip(paginado)
@@ -232,6 +264,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.fechaModificacion >= DateTime.Parse(filtro))                               
                                         .OrderByDescending(s => s.Parametro)
                                         .Skip(paginado)
@@ -246,6 +280,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.fechaModificacion >= DateTime.Parse(filtro))                               
                                         .OrderBy(s => s.fechaModificacion)
                                         .Skip(paginado)
@@ -257,6 +293,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.fechaModificacion >= DateTime.Parse(filtro))                               
                                         .OrderByDescending(s => s.fechaModificacion)
                                         .Skip(paginado)
@@ -271,6 +309,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.fechaModificacion >= DateTime.Parse(filtro))                               
                                         .OrderBy(s => s.usuario)
                                         .Skip(paginado)
@@ -282,6 +322,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.fechaModificacion >= DateTime.Parse(filtro))                               
                                         .OrderByDescending(s => s.usuario)
                                         .Skip(paginado)
@@ -294,6 +336,8 @@ namespace Domain.Repository
                     lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.fechaModificacion >= DateTime.Parse(filtro)) 
                                         .Skip(paginado)
                                         .Take(size)
@@ -309,7 +353,15 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
-                                        .Where(s => s.usuario == filtro)                               
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
+                                        .Where(s => s.usuarioObj.PersonaNatural.PrimerNombre.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.SegundoNombre.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.PrimerApellido.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.SegundoApellido.Contains(filtro)||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.PrimerNombre+" "+s.usuarioObj.PersonaNatural.SegundoNombre) ||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.SegundoNombre+" "+s.usuarioObj.PersonaNatural.PrimerApellido)||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.PrimerApellido+" "+s.usuarioObj.PersonaNatural.SegundoApellido))                                 
                                         .OrderBy(s => s.id)
                                         .Skip(paginado)
                                         .Take(size)
@@ -320,7 +372,15 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
-                                        .Where(s => s.usuario == filtro)                               
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
+                                        .Where(s => s.usuarioObj.PersonaNatural.PrimerNombre.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.SegundoNombre.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.PrimerApellido.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.SegundoApellido.Contains(filtro)||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.PrimerNombre+" "+s.usuarioObj.PersonaNatural.SegundoNombre) ||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.SegundoNombre+" "+s.usuarioObj.PersonaNatural.PrimerApellido)||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.PrimerApellido+" "+s.usuarioObj.PersonaNatural.SegundoApellido))                          
                                         .OrderByDescending(s => s.id)
                                         .Skip(paginado)
                                         .Take(size)
@@ -334,7 +394,15 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
-                                        .Where(s => s.usuario == filtro)                               
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
+                                        .Where(s => s.usuarioObj.PersonaNatural.PrimerNombre.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.SegundoNombre.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.PrimerApellido.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.SegundoApellido.Contains(filtro)||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.PrimerNombre+" "+s.usuarioObj.PersonaNatural.SegundoNombre) ||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.SegundoNombre+" "+s.usuarioObj.PersonaNatural.PrimerApellido)||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.PrimerApellido+" "+s.usuarioObj.PersonaNatural.SegundoApellido))                     
                                         .OrderBy(s => s.Configuracion)
                                         .Skip(paginado)
                                         .Take(size)
@@ -345,7 +413,15 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
-                                        .Where(s => s.usuario == filtro)                               
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
+                                        .Where(s => s.usuarioObj.PersonaNatural.PrimerNombre.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.SegundoNombre.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.PrimerApellido.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.SegundoApellido.Contains(filtro)||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.PrimerNombre+" "+s.usuarioObj.PersonaNatural.SegundoNombre) ||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.SegundoNombre+" "+s.usuarioObj.PersonaNatural.PrimerApellido)||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.PrimerApellido+" "+s.usuarioObj.PersonaNatural.SegundoApellido))                              
                                         .OrderByDescending(s => s.Configuracion)
                                         .Skip(paginado)
                                         .Take(size)
@@ -359,7 +435,15 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
-                                        .Where(s => s.usuario == filtro)                               
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
+                                        .Where(s => s.usuarioObj.PersonaNatural.PrimerNombre.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.SegundoNombre.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.PrimerApellido.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.SegundoApellido.Contains(filtro)||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.PrimerNombre+" "+s.usuarioObj.PersonaNatural.SegundoNombre) ||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.SegundoNombre+" "+s.usuarioObj.PersonaNatural.PrimerApellido)||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.PrimerApellido+" "+s.usuarioObj.PersonaNatural.SegundoApellido))                              
                                         .OrderBy(s => s.Parametro)
                                         .Skip(paginado)
                                         .Take(size)
@@ -370,7 +454,15 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
-                                        .Where(s => s.usuario == filtro)                               
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
+                                        .Where(s => s.usuarioObj.PersonaNatural.PrimerNombre.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.SegundoNombre.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.PrimerApellido.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.SegundoApellido.Contains(filtro)||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.PrimerNombre+" "+s.usuarioObj.PersonaNatural.SegundoNombre) ||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.SegundoNombre+" "+s.usuarioObj.PersonaNatural.PrimerApellido)||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.PrimerApellido+" "+s.usuarioObj.PersonaNatural.SegundoApellido))                              
                                         .OrderByDescending(s => s.Parametro)
                                         .Skip(paginado)
                                         .Take(size)
@@ -384,7 +476,15 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
-                                        .Where(s => s.usuario == filtro)                               
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
+                                        .Where(s => s.usuarioObj.PersonaNatural.PrimerNombre.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.SegundoNombre.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.PrimerApellido.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.SegundoApellido.Contains(filtro)||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.PrimerNombre+" "+s.usuarioObj.PersonaNatural.SegundoNombre) ||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.SegundoNombre+" "+s.usuarioObj.PersonaNatural.PrimerApellido)||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.PrimerApellido+" "+s.usuarioObj.PersonaNatural.SegundoApellido))                           
                                         .OrderBy(s => s.fechaModificacion)
                                         .Skip(paginado)
                                         .Take(size)
@@ -395,7 +495,15 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
-                                        .Where(s => s.usuario == filtro)                               
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
+                                        .Where(s => s.usuarioObj.PersonaNatural.PrimerNombre.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.SegundoNombre.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.PrimerApellido.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.SegundoApellido.Contains(filtro)||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.PrimerNombre+" "+s.usuarioObj.PersonaNatural.SegundoNombre) ||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.SegundoNombre+" "+s.usuarioObj.PersonaNatural.PrimerApellido)||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.PrimerApellido+" "+s.usuarioObj.PersonaNatural.SegundoApellido))                             
                                         .OrderByDescending(s => s.fechaModificacion)
                                         .Skip(paginado)
                                         .Take(size)
@@ -409,7 +517,15 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
-                                        .Where(s => s.usuario == filtro)                               
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
+                                        .Where(s => s.usuarioObj.PersonaNatural.PrimerNombre.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.SegundoNombre.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.PrimerApellido.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.SegundoApellido.Contains(filtro)||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.PrimerNombre+" "+s.usuarioObj.PersonaNatural.SegundoNombre) ||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.SegundoNombre+" "+s.usuarioObj.PersonaNatural.PrimerApellido)||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.PrimerApellido+" "+s.usuarioObj.PersonaNatural.SegundoApellido))                                
                                         .OrderBy(s => s.usuario)
                                         .Skip(paginado)
                                         .Take(size)
@@ -420,7 +536,15 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
-                                        .Where(s => s.usuario == filtro)                               
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
+                                        .Where(s => s.usuarioObj.PersonaNatural.PrimerNombre.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.SegundoNombre.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.PrimerApellido.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.SegundoApellido.Contains(filtro)||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.PrimerNombre+" "+s.usuarioObj.PersonaNatural.SegundoNombre) ||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.SegundoNombre+" "+s.usuarioObj.PersonaNatural.PrimerApellido)||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.PrimerApellido+" "+s.usuarioObj.PersonaNatural.SegundoApellido))                            
                                         .OrderByDescending(s => s.usuario)
                                         .Skip(paginado)
                                         .Take(size)
@@ -432,7 +556,15 @@ namespace Domain.Repository
                     lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
-                                        .Where(s => s.usuario == filtro) 
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
+                                        .Where(s => s.usuarioObj.PersonaNatural.PrimerNombre.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.SegundoNombre.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.PrimerApellido.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.SegundoApellido.Contains(filtro)||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.PrimerNombre+" "+s.usuarioObj.PersonaNatural.SegundoNombre) ||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.SegundoNombre+" "+s.usuarioObj.PersonaNatural.PrimerApellido)||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.PrimerApellido+" "+s.usuarioObj.PersonaNatural.SegundoApellido))  
                                         .Skip(paginado)
                                         .Take(size)
                                         .ToList();
@@ -447,6 +579,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.TipoConfiguracion.nombre == filtro)                               
                                         .OrderBy(s => s.id)
                                         .Skip(paginado)
@@ -458,6 +592,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.TipoConfiguracion.nombre == filtro)                               
                                         .OrderByDescending(s => s.id)
                                         .Skip(paginado)
@@ -472,6 +608,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.TipoConfiguracion.nombre == filtro)                               
                                         .OrderBy(s => s.Configuracion)
                                         .Skip(paginado)
@@ -483,6 +621,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.TipoConfiguracion.nombre == filtro)                               
                                         .OrderByDescending(s => s.Configuracion)
                                         .Skip(paginado)
@@ -497,6 +637,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.TipoConfiguracion.nombre == filtro)                               
                                         .OrderBy(s => s.Parametro)
                                         .Skip(paginado)
@@ -508,6 +650,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.TipoConfiguracion.nombre == filtro)                               
                                         .OrderByDescending(s => s.Parametro)
                                         .Skip(paginado)
@@ -522,6 +666,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.TipoConfiguracion.nombre == filtro)                               
                                         .OrderBy(s => s.fechaModificacion)
                                         .Skip(paginado)
@@ -533,6 +679,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.TipoConfiguracion.nombre == filtro)                               
                                         .OrderByDescending(s => s.fechaModificacion)
                                         .Skip(paginado)
@@ -547,6 +695,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.TipoConfiguracion.nombre == filtro)                               
                                         .OrderBy(s => s.usuario)
                                         .Skip(paginado)
@@ -558,6 +708,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.TipoConfiguracion.nombre == filtro)                               
                                         .OrderByDescending(s => s.usuario)
                                         .Skip(paginado)
@@ -570,6 +722,8 @@ namespace Domain.Repository
                     lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.TipoConfiguracion.nombre == filtro) 
                                         .Skip(paginado)
                                         .Take(size)
@@ -585,6 +739,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.TipoParametro.nombre == filtro)                               
                                         .OrderBy(s => s.id)
                                         .Skip(paginado)
@@ -596,6 +752,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.TipoParametro.nombre == filtro)                               
                                         .OrderByDescending(s => s.id)
                                         .Skip(paginado)
@@ -610,6 +768,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.TipoParametro.nombre == filtro)                               
                                         .OrderBy(s => s.Configuracion)
                                         .Skip(paginado)
@@ -621,6 +781,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.TipoParametro.nombre == filtro)                               
                                         .OrderByDescending(s => s.Configuracion)
                                         .Skip(paginado)
@@ -635,6 +797,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.TipoParametro.nombre == filtro)                               
                                         .OrderBy(s => s.Parametro)
                                         .Skip(paginado)
@@ -646,6 +810,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.TipoParametro.nombre == filtro)                               
                                         .OrderByDescending(s => s.Parametro)
                                         .Skip(paginado)
@@ -660,6 +826,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.TipoParametro.nombre == filtro)                               
                                         .OrderBy(s => s.fechaModificacion)
                                         .Skip(paginado)
@@ -671,6 +839,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.TipoParametro.nombre == filtro)                               
                                         .OrderByDescending(s => s.fechaModificacion)
                                         .Skip(paginado)
@@ -685,6 +855,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.TipoParametro.nombre == filtro)                               
                                         .OrderBy(s => s.usuario)
                                         .Skip(paginado)
@@ -696,6 +868,8 @@ namespace Domain.Repository
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.TipoParametro.nombre == filtro)                               
                                         .OrderByDescending(s => s.usuario)
                                         .Skip(paginado)
@@ -708,6 +882,8 @@ namespace Domain.Repository
                     lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Where(s => s.TipoParametro.nombre == filtro) 
                                         .Skip(paginado)
                                         .Take(size)
@@ -722,7 +898,9 @@ namespace Domain.Repository
                     {
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
-                                        .Include(s => s.TipoConfiguracion)                              
+                                        .Include(s => s.TipoConfiguracion)  
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)                            
                                         .OrderBy(s => s.id)
                                         .Skip(paginado)
                                         .Take(size)
@@ -732,7 +910,9 @@ namespace Domain.Repository
                     {
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
-                                        .Include(s => s.TipoConfiguracion)                              
+                                        .Include(s => s.TipoConfiguracion)    
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)                          
                                         .OrderByDescending(s => s.id)
                                         .Skip(paginado)
                                         .Take(size)
@@ -745,7 +925,9 @@ namespace Domain.Repository
                     {
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
-                                        .Include(s => s.TipoConfiguracion)                              
+                                        .Include(s => s.TipoConfiguracion)   
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)                           
                                         .OrderBy(s => s.Configuracion)
                                         .Skip(paginado)
                                         .Take(size)
@@ -755,7 +937,9 @@ namespace Domain.Repository
                     {
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
-                                        .Include(s => s.TipoConfiguracion)                              
+                                        .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)                              
                                         .OrderByDescending(s => s.Configuracion)
                                         .Skip(paginado)
                                         .Take(size)
@@ -768,7 +952,9 @@ namespace Domain.Repository
                     {
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
-                                        .Include(s => s.TipoConfiguracion)                              
+                                        .Include(s => s.TipoConfiguracion) 
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)                             
                                         .OrderBy(s => s.Parametro)
                                         .Skip(paginado)
                                         .Take(size)
@@ -778,7 +964,9 @@ namespace Domain.Repository
                     {
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
-                                        .Include(s => s.TipoConfiguracion)                              
+                                        .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)                              
                                         .OrderByDescending(s => s.Parametro)
                                         .Skip(paginado)
                                         .Take(size)
@@ -791,7 +979,9 @@ namespace Domain.Repository
                     {
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
-                                        .Include(s => s.TipoConfiguracion)                              
+                                        .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)                              
                                         .OrderBy(s => s.fechaModificacion)
                                         .Skip(paginado)
                                         .Take(size)
@@ -801,7 +991,9 @@ namespace Domain.Repository
                     {
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
-                                        .Include(s => s.TipoConfiguracion)                              
+                                        .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)                              
                                         .OrderByDescending(s => s.fechaModificacion)
                                         .Skip(paginado)
                                         .Take(size)
@@ -814,7 +1006,9 @@ namespace Domain.Repository
                     {
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
-                                        .Include(s => s.TipoConfiguracion)                              
+                                        .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)                              
                                         .OrderBy(s => s.usuario)
                                         .Skip(paginado)
                                         .Take(size)
@@ -824,7 +1018,9 @@ namespace Domain.Repository
                     {
                         lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
-                                        .Include(s => s.TipoConfiguracion)                              
+                                        .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)                              
                                         .OrderByDescending(s => s.usuario)
                                         .Skip(paginado)
                                         .Take(size)
@@ -836,6 +1032,8 @@ namespace Domain.Repository
                     lista = this.context.Bitacoras 
                                         .Include(s => s.TipoParametro)
                                         .Include(s => s.TipoConfiguracion)
+                                        .Include( s => s.usuarioObj)
+                                        .ThenInclude(uo => uo.PersonaNatural)
                                         .Skip(paginado)
                                         .Take(size)
                                         .ToList();
@@ -850,7 +1048,9 @@ namespace Domain.Repository
         {
             List<Bitacora> lista = this.context.Bitacoras 
                                 .Include(s => s.TipoParametro)
-                                .Include(s => s.TipoConfiguracion)                               
+                                .Include(s => s.TipoConfiguracion)  
+                                .Include( s => s.usuarioObj)
+                                .ThenInclude(uo => uo.PersonaNatural)                             
                                 .ToList();
             return lista;
         }
@@ -878,7 +1078,16 @@ namespace Domain.Repository
                 listaNUmero = this.context.Bitacoras
                                     .Include(s => s.TipoParametro)
                                     .Include(s => s.TipoConfiguracion)
-                                    .Count(s => s.usuario == filtro);
+                                    .Include(s => s.usuarioObj)
+                                    .ThenInclude(uo => uo.PersonaNatural)
+                                    .Where(s => s.usuarioObj.PersonaNatural.PrimerNombre.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.SegundoNombre.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.PrimerApellido.Contains(filtro)||
+                                                    s.usuarioObj.PersonaNatural.SegundoApellido.Contains(filtro)||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.PrimerNombre+" "+s.usuarioObj.PersonaNatural.SegundoNombre) ||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.SegundoNombre+" "+s.usuarioObj.PersonaNatural.PrimerApellido)||
+                                                    filtro.Contains(s.usuarioObj.PersonaNatural.PrimerApellido+" "+s.usuarioObj.PersonaNatural.SegundoApellido))
+                                    .Count();
             }
             else if(tipo == 4)
             {
@@ -932,7 +1141,10 @@ namespace Domain.Repository
 
         public Bitacora GetId(int id)
         {
-            return context.Bitacoras.Where(s => s.id == id).FirstOrDefault();
+            return context.Bitacoras.Include( s => s.usuarioObj)
+                                    .ThenInclude(uo => uo.PersonaNatural)
+                                    .Where(s => s.id == id).
+                                    FirstOrDefault();
         }
 
         public IList<string> AgruparTipoConfiguracion()
