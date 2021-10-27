@@ -15,21 +15,28 @@ using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using Domain.Bussiness.Profiles;
 using Microsoft.OpenApi.Models;
+using Api.Utils;
 
 namespace Api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
+            _env = env;
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
+        private IWebHostEnvironment _env { get; set; }
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            if (_env.IsProduction())
+                services.AddConsulConfig(Configuration);
+
             services.AddDbContext<Context>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -42,11 +49,16 @@ namespace Api
                builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
 
-            //Doumentation swagger
-            services.AddSwaggerGen(c =>
+            // Modo desarrollador y Pruebas
+            if (_env.IsDevelopment() || _env.IsStaging())
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
-            });
+                // Register the Swagger generator, defining 1 or more Swagger documents
+                services.AddSwaggerGen(c =>
+                {
+                    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Categorías y Subcategorías - API", Version = "v1" });
+                });
+            }
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,13 +69,27 @@ namespace Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseSwagger();
-
-            app.UseSwaggerUI(c =>
+            // Modo desarrollador y Pruebas
+            if (_env.IsDevelopment() || _env.IsStaging())
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-                c.RoutePrefix = string.Empty;
-            });
+                // Habilita el middleware para servir Swagger generando un JSON.
+                app.UseSwagger();
+
+                // Habilita el middleware para servir el swagger-ui (html, js, css, etc.).
+                // Especificación del Json Swagger.
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Categorías y Subcategorías - V1");
+                });
+
+                app.UseDeveloperExceptionPage();
+
+                //Permitir request desde cualquier Origen, cualquier Header, y cualquier Metodo (Get, Post, Put, Delete)
+                app.UseCors(x =>
+                   x.AllowAnyOrigin()
+                   .AllowAnyHeader()
+                   .AllowAnyMethod());
+            }
             
             app.UseCors("CorsPolicy");
 
@@ -72,6 +98,9 @@ namespace Api
             app.UseRouting();
 
             app.UseAuthorization();
+
+            if (_env.IsProduction())
+                app.UseConsul();
 
             app.UseEndpoints(endpoints =>
             {

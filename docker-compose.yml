@@ -7,6 +7,8 @@ services:
       - 8087:8087
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - PORT_EXTERNO=8087
+      - IP_EXTERNA=${HOST_IP}
     restart: always
     networks:
       - NETWORK_GOVCO_INTERNO
