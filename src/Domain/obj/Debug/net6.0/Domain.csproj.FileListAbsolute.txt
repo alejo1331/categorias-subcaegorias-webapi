@@ -1,0 +1,14 @@
+C:\Almacenamiento adicional\AND\Proyecto GOVCO - Movil\categorias-subcategorias-webapi\src\Domain\bin\Debug\net6.0\Domain.deps.json
+C:\Almacenamiento adicional\AND\Proyecto GOVCO - Movil\categorias-subcategorias-webapi\src\Domain\bin\Debug\net6.0\Domain.runtimeconfig.json
+C:\Almacenamiento adicional\AND\Proyecto GOVCO - Movil\categorias-subcategorias-webapi\src\Domain\bin\Debug\net6.0\Domain.dll
+C:\Almacenamiento adicional\AND\Proyecto GOVCO - Movil\categorias-subcategorias-webapi\src\Domain\bin\Debug\net6.0\ref\Domain.dll
+C:\Almacenamiento adicional\AND\Proyecto GOVCO - Movil\categorias-subcategorias-webapi\src\Domain\bin\Debug\net6.0\Domain.pdb
+C:\Almacenamiento adicional\AND\Proyecto GOVCO - Movil\categorias-subcategorias-webapi\src\Domain\obj\Debug\net6.0\Domain.csproj.AssemblyReference.cache
+C:\Almacenamiento adicional\AND\Proyecto GOVCO - Movil\categorias-subcategorias-webapi\src\Domain\obj\Debug\net6.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Almacenamiento adicional\AND\Proyecto GOVCO - Movil\categorias-subcategorias-webapi\src\Domain\obj\Debug\net6.0\Domain.AssemblyInfoInputs.cache
+C:\Almacenamiento adicional\AND\Proyecto GOVCO - Movil\categorias-subcategorias-webapi\src\Domain\obj\Debug\net6.0\Domain.AssemblyInfo.cs
+C:\Almacenamiento adicional\AND\Proyecto GOVCO - Movil\categorias-subcategorias-webapi\src\Domain\obj\Debug\net6.0\Domain.csproj.CoreCompileInputs.cache
+C:\Almacenamiento adicional\AND\Proyecto GOVCO - Movil\categorias-subcategorias-webapi\src\Domain\obj\Debug\net6.0\Domain.dll
+C:\Almacenamiento adicional\AND\Proyecto GOVCO - Movil\categorias-subcategorias-webapi\src\Domain\obj\Debug\net6.0\ref\Domain.dll
+C:\Almacenamiento adicional\AND\Proyecto GOVCO - Movil\categorias-subcategorias-webapi\src\Domain\obj\Debug\net6.0\Domain.pdb
+C:\Almacenamiento adicional\AND\Proyecto GOVCO - Movil\categorias-subcategorias-webapi\src\Domain\obj\Debug\net6.0\Domain.genruntimeconfig.cache

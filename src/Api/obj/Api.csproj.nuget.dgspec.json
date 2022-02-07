@@ -1,32 +1,39 @@
 {
   "format": 1,
   "restore": {
-    "/home/fabricio/AND/categorias-subcategorias-webapi/src/Api/Api.csproj": {}
+    "C:\\Almacenamiento adicional\\AND\\Proyecto GOVCO - Movil\\categorias-subcategorias-webapi\\src\\api\\Api.csproj": {}
   },
   "projects": {
-    "/home/fabricio/AND/categorias-subcategorias-webapi/src/Api/Api.csproj": {
+    "C:\\Almacenamiento adicional\\AND\\Proyecto GOVCO - Movil\\categorias-subcategorias-webapi\\src\\api\\Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/fabricio/AND/categorias-subcategorias-webapi/src/Api/Api.csproj",
+        "projectUniqueName": "C:\\Almacenamiento adicional\\AND\\Proyecto GOVCO - Movil\\categorias-subcategorias-webapi\\src\\api\\Api.csproj",
         "projectName": "Api",
-        "projectPath": "/home/fabricio/AND/categorias-subcategorias-webapi/src/Api/Api.csproj",
-        "packagesPath": "/home/fabricio/.nuget/packages/",
-        "outputPath": "/home/fabricio/AND/categorias-subcategorias-webapi/src/Api/obj/",
+        "projectPath": "C:\\Almacenamiento adicional\\AND\\Proyecto GOVCO - Movil\\categorias-subcategorias-webapi\\src\\api\\Api.csproj",
+        "packagesPath": "C:\\Users\\PC_Cuenta\\.nuget\\packages\\",
+        "outputPath": "C:\\Almacenamiento adicional\\AND\\Proyecto GOVCO - Movil\\categorias-subcategorias-webapi\\src\\api\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "/home/fabricio/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\PC_Cuenta\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.1"
+          "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.1": {
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {
-              "/home/fabricio/AND/categorias-subcategorias-webapi/src/Domain/Domain.csproj": {
-                "projectPath": "/home/fabricio/AND/categorias-subcategorias-webapi/src/Domain/Domain.csproj"
+              "C:\\Almacenamiento adicional\\AND\\Proyecto GOVCO - Movil\\categorias-subcategorias-webapi\\src\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Almacenamiento adicional\\AND\\Proyecto GOVCO - Movil\\categorias-subcategorias-webapi\\src\\Domain\\Domain.csproj"
               }
             }
           }
@@ -38,15 +45,16 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.1": {
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
             "Microsoft.AspNetCore.ApiAuthorization.IdentityServer": {
               "target": "Package",
-              "version": "[3.1.8, )"
+              "version": "[6.0.1, )"
             },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.8, )"
+              "version": "[6.0.1, )"
             },
             "Microsoft.AspNetCore.Http": {
               "target": "Package",
@@ -54,37 +62,33 @@
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.8, )"
+              "version": "[6.0.1, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Analyzers": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.8, )"
+              "version": "[6.0.1, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[3.1.8, )"
+              "version": "[6.0.1, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.1.8, )"
+              "version": "[6.0.1, )"
             },
             "Serialize.Linq": {
               "target": "Package",
               "version": "[1.8.1, )"
             },
-            "Swashbuckle.AspNetCore.Swagger": {
+            "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[5.6.3, )"
-            },
-            "Swashbuckle.AspNetCore.SwaggerGen": {
-              "target": "Package",
-              "version": "[5.6.3, )"
-            },
-            "Swashbuckle.AspNetCore.SwaggerUi": {
-              "target": "Package",
-              "version": "[5.6.3, )"
+              "version": "[6.2.3, )"
             }
           },
           "imports": [
@@ -105,30 +109,37 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.403/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/fabricio/AND/categorias-subcategorias-webapi/src/Domain/Domain.csproj": {
+    "C:\\Almacenamiento adicional\\AND\\Proyecto GOVCO - Movil\\categorias-subcategorias-webapi\\src\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/fabricio/AND/categorias-subcategorias-webapi/src/Domain/Domain.csproj",
+        "projectUniqueName": "C:\\Almacenamiento adicional\\AND\\Proyecto GOVCO - Movil\\categorias-subcategorias-webapi\\src\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "/home/fabricio/AND/categorias-subcategorias-webapi/src/Domain/Domain.csproj",
-        "packagesPath": "/home/fabricio/.nuget/packages/",
-        "outputPath": "/home/fabricio/AND/categorias-subcategorias-webapi/src/Domain/obj/",
+        "projectPath": "C:\\Almacenamiento adicional\\AND\\Proyecto GOVCO - Movil\\categorias-subcategorias-webapi\\src\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\PC_Cuenta\\.nuget\\packages\\",
+        "outputPath": "C:\\Almacenamiento adicional\\AND\\Proyecto GOVCO - Movil\\categorias-subcategorias-webapi\\src\\Domain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "/home/fabricio/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\PC_Cuenta\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.1"
+          "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.1": {
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {}
           }
         },
@@ -139,11 +150,12 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.1": {
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[10.0.0, )"
+              "version": "[10.1.1, )"
             },
             "AutoMapper.Extensions.ExpressionMapping": {
               "target": "Package",
@@ -159,23 +171,23 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.8, )"
+              "version": "[6.0.1, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.1.8, )"
+              "version": "[6.0.1, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[3.1.8, )"
+              "version": "[6.0.1, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.1.8, )"
+              "version": "[6.0.1, )"
             }
           },
           "imports": [
@@ -193,7 +205,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.403/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
