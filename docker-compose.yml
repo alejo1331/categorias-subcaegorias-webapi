@@ -1,4 +1,4 @@
-version: '3.6'
+version: '3.8'
 services:
   webapi_dot_net:
     container_name: Admin_ctg_webapi
@@ -6,7 +6,8 @@ services:
     ports:
       - 8087:8087
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Production
+      - TZ=America/Bogota
     restart: always
     networks:
       - NETWORK_GOVCO_INTERNO
