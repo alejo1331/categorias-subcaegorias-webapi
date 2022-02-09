@@ -6,7 +6,7 @@ services:
     ports:
       - 8087:8087
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Production
       - PORT_EXTERNO=8087
       - IP_EXTERNA=${HOST_IP}
     restart: always
