@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.6'
 services:
   webapi_dot_net:
     container_name: Admin_ctg_webapi
