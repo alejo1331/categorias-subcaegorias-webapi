@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3.1'
 services:
   webapi_dot_net:
     container_name: categorias_subcategorias_webapi
