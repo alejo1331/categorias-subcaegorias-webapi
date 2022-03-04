@@ -13,61 +13,84 @@ namespace Api.Utils
 {
     public static class ServiceDiscoveryExtensions
     {
-        static public string ServiceName;
-        static public string IPAddress;
-        static public string Port;
+        static private string IPAddress = "127.0.0.1";
+        static private string Port = "7000";
+        static private string ServiceName = "categorias-subcategorias-WebApi";
 
         public static IServiceCollection AddConsulConfig(this IServiceCollection services, IConfiguration configuration)
         {
+            if (configuration.GetValue<string>("Consul:Host") == null)
+            {
+                Console.WriteLine($"Error: 'Consul:Host' is not found in the application settings (appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json)");
+                return services;
+            }
+
+            if (configuration.GetValue<string>("Consul:ServiceName") == null)
+            {
+                Console.WriteLine($"Error: 'Consul:ServiceName' is not found in the application settings (appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json)");
+                return services;
+            }
+
+            if (Environment.GetEnvironmentVariable("IP_EXTERNA") == null)
+            {
+                Console.WriteLine("Error: Environment variable 'IP_EXTERNA' not found");
+                return services;
+            }
+
+            if (Environment.GetEnvironmentVariable("PORT_EXTERNO") == null)
+            {
+                Console.WriteLine("Error: Environment variable 'PORT_EXTERNO' not found");
+                return services;
+            }
+
             services.AddSingleton<IConsulClient, ConsulClient>(p => new ConsulClient(consulConfig =>
             {
-                var address = configuration.GetValue<string>("Consul:Host");
-                IPAddress = Environment.GetEnvironmentVariable("IP_EXTERNA");
-                Port = Environment.GetEnvironmentVariable("PORT_EXTERNO");
+                var hostConsul = configuration.GetValue<string>("Consul:Host");
+                consulConfig.Address = new Uri(hostConsul);
 
-                Console.WriteLine("IP: " + IPAddress);
-                Console.WriteLine("Port: " + Port);
-
-                consulConfig.Address = new Uri(address);
+                IPAddress = Environment.GetEnvironmentVariable("IP_EXTERNA") ?? IPAddress;
+                Port = Environment.GetEnvironmentVariable("PORT_EXTERNO") ?? Port;
 
                 ServiceDiscoveryExtensions.ServiceName = configuration.GetValue<string>("Consul:ServiceName");
+
+                Console.WriteLine($"Info: Consul:Host {hostConsul}");
+                Console.WriteLine($"Info: Consul:ServiceName {configuration.GetValue<string>("Consul:ServiceName")}");
+                Console.WriteLine($"Info: Environment variable IP_EXTERNA {IPAddress}");
+                Console.WriteLine($"Info: Environment variable PORT_EXTERNO {Port}");
             }));
             return services;
         }
 
         public static IApplicationBuilder UseConsul(this IApplicationBuilder app)
         {
-            var consulClient = app.ApplicationServices.GetRequiredService<IConsulClient>();
-            var logger = app.ApplicationServices.GetRequiredService<ILoggerFactory>().CreateLogger("AppExtensions");
-            var lifetime = app.ApplicationServices.GetRequiredService<IApplicationLifetime>();
-
-            if (!(app.Properties["server.Features"] is FeatureCollection features)) return app;
-
-            // var addresses = features.Get<IServerAddressesFeature> ();
-            // var address = addresses.Addresses.First ();
-
-            // Console.WriteLine ($"address={address}");
-
-            // var uri = new Uri (address);
-
-            var registration = new AgentServiceRegistration()
+            try
             {
-                ID = $"{ServiceDiscoveryExtensions.ServiceName}-{IPAddress}-{Port}",
-                Name = ServiceDiscoveryExtensions.ServiceName,
-                Address = IPAddress,
-                Port = Convert.ToInt32(Port)
-            };
+                var consulClient = app.ApplicationServices.GetRequiredService<IConsulClient>();
+                var logger = app.ApplicationServices.GetRequiredService<ILoggerFactory>().CreateLogger("AppExtensions");
+                var lifetime = app.ApplicationServices.GetRequiredService<Microsoft.Extensions.Hosting.IHostApplicationLifetime>();
 
-            logger.LogInformation("Registering with Consul");
-            consulClient.Agent.ServiceDeregister(registration.ID).ConfigureAwait(true);
-            consulClient.Agent.ServiceRegister(registration).ConfigureAwait(true);
+                var registration = new AgentServiceRegistration()
+                {
+                    ID = $"{ServiceDiscoveryExtensions.ServiceName}-{IPAddress}-{Port}",
+                    Name = ServiceDiscoveryExtensions.ServiceName,
+                    Address = IPAddress,
+                    Port = Convert.ToInt32(Port)
+                };
 
-            lifetime.ApplicationStopping.Register(() =>
-            {
-                logger.LogInformation("Unregistering from Consul");
+                Console.WriteLine("Info: Registering with Consul");
                 consulClient.Agent.ServiceDeregister(registration.ID).ConfigureAwait(true);
-            });
+                consulClient.Agent.ServiceRegister(registration).ConfigureAwait(true);
 
+                lifetime.ApplicationStopping.Register(() =>
+                {
+                    Console.WriteLine("Info: Unregistering from Consul");
+                    consulClient.Agent.ServiceDeregister(registration.ID).ConfigureAwait(true);
+                });
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error: {e}");
+            }
             return app;
         }
     }

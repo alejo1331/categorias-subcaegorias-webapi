@@ -1,13 +1,17 @@
 version: '3.3'
 services:
   webapi_dot_net:
-    container_name: Admin_ctg_webapi
+    container_name: categorias_subcategorias_webapi
     build: .
     ports:
-      - 8087:8087
+      - 8087:80
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
+      - TZ=America/Bogota
       - PORT_EXTERNO=8087
+      # la variable de entorno "HOST_IP" se declara a nivel de Sistema Operativo de la maquina o nodo
+      # archivo con la configuracion de las variables de entorno /etc/environment
+      # el valor de la variable de entorno "HOST_IP" es la ip privada de la maquina o nodo
       - IP_EXTERNA=${HOST_IP}
     restart: always
     networks:

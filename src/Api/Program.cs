@@ -1,24 +1,21 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
-using Microsoft.Extensions.Logging;
 using Domain.Data;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using Domain.Bussiness.Profiles;
 using Microsoft.OpenApi.Models;
+using Api.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
-//public IConfiguration Configuration { get; }
+ConfigurationManager configuration = builder.Configuration;
+IWebHostEnvironment _env = builder.Environment;
+
+if (_env.IsProduction())
+    builder.Services.AddConsulConfig(configuration);
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -30,28 +27,38 @@ builder.Services.AddCors(options =>
     options.AddPolicy("CorsPolicy", builder =>
     builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 });
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
+
+if (_env.IsDevelopment() || _env.IsStaging())
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Categorias y SubCategorias", Version = "v1" });
-});
+    builder.Services.AddSwaggerGen(c =>
+    {
+        c.SwaggerDoc("v1", new OpenApiInfo { Title = "Categorias y SubCategorias", Version = "v1" });
+    });
+}
 
 AddDatabaseConfiguration(ref builder);
 
 var app = builder.Build();
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-}    
-app.UseSwagger();
 
-app.UseSwaggerUI(c =>
+if (_env.IsDevelopment() || _env.IsStaging())
 {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Categorias y Subcategorias V1");
-    c.RoutePrefix = string.Empty;
-});
+    app.UseSwagger();
+
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Categorias y SubCategorias - V1");
+    });
+
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}
 
 app.UseCors("CorsPolicy");
 
@@ -60,6 +67,9 @@ app.UseHttpsRedirection();
 app.UseRouting();
 
 app.UseAuthorization();
+
+if (_env.IsProduction())
+    app.UseConsul();
 
 app.UseEndpoints(endpoints =>
 {

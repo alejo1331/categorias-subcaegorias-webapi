@@ -9,19 +9,20 @@
         }
     },
     "profiles": {
-        "IIS Express": {
-            "commandName": "IISExpress",
+        "Api": {
+            "commandName": "Project",
+            "dotnetRunMessages": true,
             "launchBrowser": true,
-            "launchUrl": "weatherforecast",
+            "launchUrl": "swagger",
+            "applicationUrl": "http://0.0.0.0:8087",
             "environmentVariables": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
             }
         },
-        "Api": {
-            "commandName": "Project",
+        "IIS Express": {
+            "commandName": "IISExpress",
             "launchBrowser": true,
             "launchUrl": "weatherforecast",
-            "applicationUrl": "http://0.0.0.0:8087",
             "environmentVariables": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
             }
