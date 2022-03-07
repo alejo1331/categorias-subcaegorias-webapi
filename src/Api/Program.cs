@@ -86,8 +86,9 @@ bool IsProductionEnvironment(string env) => env == "Production";
 
 void AddDatabaseConfiguration(ref WebApplicationBuilder builder)
 {
+    string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
     builder.Services.AddEntityFrameworkSqlServer().AddDbContext<Context>(options =>
-                options.UseSqlServer(("DefaultConnection")));
+                options.UseSqlServer(connectionString));
 
 };
 
