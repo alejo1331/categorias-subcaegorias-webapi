@@ -39,7 +39,7 @@ namespace Categorias.Domain.Models
         //
 
         [Column("USUARIO_CREACION", TypeName = "varchar(450)")]
-        public string? user { get; set; }
+        public  string user { get; set; }
 
         [Column("CTC_LOGO", TypeName = "varchar(200)")]
         public string icono { get; set; }

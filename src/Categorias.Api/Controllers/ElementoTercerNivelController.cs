@@ -38,7 +38,7 @@ namespace Categorias.Api.Controllers
             {
                 throw ex;
             }
-            return NoContent();
+            //return NoContent();
         }
 
         [HttpGet]

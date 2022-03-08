@@ -16,25 +16,25 @@ namespace Categorias.Domain.Models
         [Column("NOMBRE", TypeName = "varchar(400)")]
         public string nombre { get; set; }
         [Column("PROPOSITO", TypeName = "varchar(max)")]
-        public string? proposito { get; set; }
+        public  string proposito { get; set; }
         [Column("NOMBRE_RESULTADO", TypeName = "varchar(400)")]
-        public string? nombreResultado { get; set; }
+        public  string nombreResultado { get; set; }
         [Column("OBSERVACION_TIEMPO_OBTENCION", TypeName = "varchar(max)")]
-        public string? observacionTiempoObtencion { get; set; }
+        public  string observacionTiempoObtencion { get; set; }
         [Column("PALABRAS_CLAVE", TypeName = "varchar(max)")]
-        public string? palabrasClave { get; set; }
+        public  string palabrasClave { get; set; }
         [Column("URL_TRAMITE_EN_LINEA", TypeName = "varchar(400)")]
-        public string? urlTramiteLinea { get; set; }
+        public  string urlTramiteLinea { get; set; }
         [Column("ESTADO_CODIGO", TypeName = "varchar(100)")]
-        public string? estadoCodigo { get; set; }
+        public  string estadoCodigo { get; set; }
         [Column("OBSERVACION_FECHA_GENERAL", TypeName = "varchar(600)")]
-        public string? observacionFechaGeneral { get; set; }
+        public  string observacionFechaGeneral { get; set; }
         [Column("INSTITUCION_ID", TypeName = "varchar(4)")]
-        public string? institucionId { get; set; }
+        public  string institucionId { get; set; }
         [Column("INSTITUCION_NOMBRE", TypeName = "varchar(120)")]
-        public string? institucionNombre { get; set; }
+        public  string institucionNombre { get; set; }
         [Column("MUNICIPIO_NOMBRE", TypeName = "varchar(255)")]
-        public string? municipioNombre { get; set; }
+        public  string municipioNombre { get; set; }
         [Column("FECHA_CREACION", TypeName = "smalldatetime")]
         public DateTime? fechaCreacion { get; set; }
         [Column("FECHA_ACTUALIZACION", TypeName = "smalldatetime")]
@@ -42,11 +42,11 @@ namespace Categorias.Domain.Models
         [Column("USUARIO_CREADOR_ENTIDAD", TypeName = "varchar(40)")]
         public string usuarioCreador { get; set; }
         [Column("USUARIO_AUTORIZO_GOVCO", TypeName = "varchar(40)")]
-        public string? usuarioAutorizo { get; set; }
+        public  string usuarioAutorizo { get; set; }
         [Column("TIPO", TypeName = "varchar(15)")]
-        public string? tipo { get; set; }        
+        public  string tipo { get; set; }        
         [Column("SITUACION_VIDA_NOMBRE", TypeName = "varchar(100)")]
-        public string? nombreCategoriaSuit { get; set; }
+        public  string nombreCategoriaSuit { get; set; }
         [Column("SITUACION_VIDA_ID", TypeName = "numeric(4,0)")]
         public int CategoriaSuit { get; set; }
     }

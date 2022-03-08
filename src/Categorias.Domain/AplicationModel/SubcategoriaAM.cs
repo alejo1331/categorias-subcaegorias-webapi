@@ -23,7 +23,7 @@ namespace Categorias.Domain.Categorias.AplicationModel
 
         public string icono { get; set; }
 
-        public string? user { get; set; }
+        public  string user { get; set; }
 
         public DateTime? fechaCreacion { get; set; }
 

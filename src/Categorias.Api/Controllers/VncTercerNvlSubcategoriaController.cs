@@ -48,7 +48,7 @@ namespace Categorias.Api.Controllers
             {
                 throw ex;
             }
-            return NoContent();
+            //return NoContent();
         }
 
         [HttpGet]
@@ -117,7 +117,7 @@ namespace Categorias.Api.Controllers
             {
                 throw ex;
             }
-            return NoContent();
+            //return NoContent();
         }
 
         [HttpPut("Desvincular/TercerNivels")]

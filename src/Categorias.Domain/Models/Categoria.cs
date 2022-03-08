@@ -42,7 +42,7 @@ namespace Categorias.Domain.Models
         public string icono { get; set; }  
 
         [Column("USUARIO_CREACION", TypeName = "varchar(450)")]
-        public string? user { get; set; }
+        public  string user { get; set; }
 
         [Column("FECHA_CREACION", TypeName = "smalldatetime")]
         public DateTime? fechaCreacion { get; set; }
