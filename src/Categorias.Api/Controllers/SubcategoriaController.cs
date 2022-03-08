@@ -12,7 +12,7 @@ using System.Text;
 using Categorias.Domain.Bussiness.Interface;
 using Categorias.Domain.Bussiness.BO;
 using Categorias.Domain.Data;
-using Categorias.Domain.Categorias.AplicationModel;
+using Domain.Categorias.AplicationModel;
 using Categorias.Api.Helpers;
 
 

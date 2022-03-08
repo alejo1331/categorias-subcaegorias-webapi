@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Categorias.Domain.Categorias.AplicationModel
+namespace Domain.Categorias.AplicationModel
 {
     public class DvcSubcategoriaCategoria
     {

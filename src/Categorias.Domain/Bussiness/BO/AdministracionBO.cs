@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
 using Categorias.Domain.Bussiness.Interface;
-using Categorias.Domain.Categorias.AplicationModel;
+using Domain.Categorias.AplicationModel;
 using Categorias.Domain.Data;
 using Categorias.Domain.Models;
 using Categorias.Domain.Repository.Interface;
