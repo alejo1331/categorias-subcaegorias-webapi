@@ -1,6 +1,6 @@
 using System;
 
-namespace Categorias.Domain.Categorias.AplicationModel
+namespace Domain.Categorias.AplicationModel
 {
     public class TramiteServicioAM
     {
