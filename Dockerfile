@@ -7,7 +7,7 @@ COPY src/ .
 RUN dotnet restore
 
 # copy everything else and build app
-WORKDIR /app/Api
+WORKDIR /app/Categorias.Api
 RUN dotnet publish -c Release -o out
 
 
