@@ -46,7 +46,7 @@ namespace Categorias.Api.Controllers
                 return response;
 
             }
-            catch (ArgumentException e)
+            catch (ArgumentException)
             {
                 //TODO: log error
                 return response;
@@ -139,7 +139,7 @@ namespace Categorias.Api.Controllers
             {
                 throw ex;
             }
-            return NoContent();
+            //return NoContent();
         }
 
         [HttpGet("Subcategoria/TercerNivels/{idSubcategoria}")]

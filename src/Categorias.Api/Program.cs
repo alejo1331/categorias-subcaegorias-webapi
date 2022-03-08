@@ -78,11 +78,11 @@ app.UseEndpoints(endpoints =>
 
 app.Run();
 
-bool IsDevelopmentEnvironment(string env) => env == "Development";
+//bool IsDevelopmentEnvironment(string env) => env == "Development";
 
-bool IsStagingEnvironment(string env) => env == "Staging";
+//bool IsStagingEnvironment(string env) => env == "Staging";
 
-bool IsProductionEnvironment(string env) => env == "Production";
+//bool IsProductionEnvironment(string env) => env == "Production";
 
 void AddDatabaseConfiguration(ref WebApplicationBuilder builder)
 {

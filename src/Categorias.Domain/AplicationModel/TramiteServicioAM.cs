@@ -22,7 +22,7 @@ namespace Categorias.Domain.Categorias.AplicationModel
         public string usuarioAutorizo { get; set; }
         public string tipo { get; set; }
         
-        public string? nombreCategoriaSuit { get; set; }
+        public  string nombreCategoriaSuit { get; set; }
         public int CategoriaSuit { get; set; }
     }
 }
