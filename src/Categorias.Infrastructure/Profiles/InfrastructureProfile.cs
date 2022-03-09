@@ -14,6 +14,9 @@ namespace Categorias.Infrastructure.Profiles
         public InfrastructureProfile()
         {
             CreateMap<Categoria, CategoriaEntity>().ReverseMap();
+            CreateMap<TramiteCategoria, TramiteCategoriaEntity>().ReverseMap();
+            CreateMap<TipoElemento, TipoElementoEntity>().ReverseMap();
+            CreateMap<Estado, EstadoEntity>().ReverseMap();
 
 
 

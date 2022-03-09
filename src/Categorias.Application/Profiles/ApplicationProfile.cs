@@ -17,6 +17,9 @@ namespace Categorias.Application.Profiles
         {
             CreateMap<CategoriaDTO, CategoriaEntity>().ReverseMap();
             CreateMap<PaginateModel, PaginateModelDomain>().ReverseMap();
+            CreateMap<TipoElementoDTO, TipoElementoEntity>().ReverseMap();
+            CreateMap<EstadoDTO, EstadoEntity>().ReverseMap();
+            CreateMap<TramiteCategoriaDTO, TramiteCategoriaEntity>().ReverseMap();
 
         }
     }
