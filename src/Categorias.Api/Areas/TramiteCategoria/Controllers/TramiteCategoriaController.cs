@@ -27,7 +27,7 @@ namespace Categorias.Api.Areas.TramiteCategoria.Controllers
             var result =  _tramitecategoriaUseCase.ObtenerListaTramitesCategorias(idTramite);
             if (!result.Succeeded)
                 return BadRequest();
-            return new JsonResult(result);
+            return new JsonResult(result.Data);
 
         }
 
