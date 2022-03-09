@@ -19,6 +19,9 @@ namespace Categorias.Infrastructure.Context
         }
 
         public DbSet<Categoria> Categoria { get; set; }
+        public DbSet<TramiteCategoria> TramiteCategoria { get; set; }
+        public DbSet<TipoElemento> TipoElemento { get; set; }
+        public DbSet<Estado> Estado { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
