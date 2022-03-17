@@ -43,5 +43,9 @@ namespace Categorias.Infrastructure.Models
 
         [Column("FECHA_MODIFICACION", TypeName = "smalldatetime")]
         public DateTime? FechaModificacion { get; set; }
+
+
+        [ForeignKey("CodigoEstado")]
+        public virtual Estado Estado { get; set; }
     }
 }

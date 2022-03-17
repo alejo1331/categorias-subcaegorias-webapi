@@ -41,7 +41,7 @@ namespace Categorias.Infrastructure.Repositories
                 using (var context = new CategoriasContext())
                 {
 
-                    var categorias = context.Categoria.ToList();
+                    var categorias = context.Categoria.Where(c=>c.Estado.Descripcion=="Activo").ToList();
                     var listaMapped = _mapper.Map<List<CategoriaEntity>>(categorias);
                     return listaMapped;
                 }
@@ -63,6 +63,7 @@ namespace Categorias.Infrastructure.Repositories
                     var selector = this.ObtenerSelectorCategoria(paginateModel);
 
                     var categorias = context.Categoria
+                                        .Where(c=>c.Estado.Descripcion=="Activo") 
                                         .Where(predicate)
                                         .OrderBy(selector + (paginateModel.Descending ? " descending" : ""))
                                         .ThenBy(c => c.Orden)
