@@ -39,6 +39,7 @@ namespace Categorias.Application.UseCases
                 using (var categoriaRepository = new CategoriaRepository())
                 {
                     response.Data = _mapper.Map<List<CategoriaDTO>>(new CategoriaService(categoriaRepository).ObtenerListadoCategorias());
+                    response.Data.ForEach(c => c.Codigo = c.Id.ToString());
                 }
                 response.Succeeded = true;
             }
