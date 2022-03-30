@@ -343,7 +343,12 @@ namespace Categorias.Domain.Bussiness.BO
         public IList<SubcategoriaAM> SonsCategoria(int id)
         {
             InterfaceSubcategoria<Subcategoria> repository = new RepositorySubcategoria(context);
-            return mapper.Map<List<SubcategoriaAM>>(repository.SonsCategoria(id));
+            IList<SubcategoriaAM> lista = mapper.Map<List<SubcategoriaAM>>(repository.SonsCategoria(id));
+            foreach (SubcategoriaAM sub in lista) 
+            {
+                sub.Codigo = sub.id.ToString();
+            }
+            return lista;
         }
 
         public IList<SubcategoriaAM> SonsCategoriaActivas(int id)
