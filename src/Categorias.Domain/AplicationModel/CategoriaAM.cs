@@ -26,6 +26,7 @@ namespace Domain.Categorias.AplicationModel
 
         public DateTime? fechaCreacion { get; set; }
 
-        public DateTime? fechaModificacion { get; set; }   
+        public DateTime? fechaModificacion { get; set; } 
+        public string item { get; set; }
     }
 }

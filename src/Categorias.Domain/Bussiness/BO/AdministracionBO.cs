@@ -203,6 +203,7 @@ namespace Categorias.Domain.Bussiness.BO
         {
             InterfaceCategoria<Categoria> repository = new RepositoryCategoria(context);
             CategoriaAM categoria = mapper.Map<CategoriaAM>(repository.GetId(id));
+            categoria.item = categoria.id.ToString() + "|" + categoria.nombre;
             return categoria;
         }
 
