@@ -41,7 +41,10 @@ namespace Categorias.Infrastructure.Repositories
                 using (var context = new CategoriasContext())
                 {
 
-                    var categorias = context.Categoria.Where(c=>c.Estado.Descripcion=="Activo").ToList();
+                    var categorias = context.Categoria
+                                    .Where(c=>c.Estado.Descripcion=="Activo")
+                                    .OrderBy(c=>c.Nombre)
+                                    .ToList();
                     var listaMapped = _mapper.Map<List<CategoriaEntity>>(categorias);
                     return listaMapped;
                 }
