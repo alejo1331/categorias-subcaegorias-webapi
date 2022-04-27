@@ -345,6 +345,7 @@ namespace Categorias.Domain.Bussiness.BO
         {
             InterfaceSubcategoria<Subcategoria> repository = new RepositorySubcategoria(context);
             IList<SubcategoriaAM> lista = mapper.Map<List<SubcategoriaAM>>(repository.SonsCategoria(id));
+            lista = lista.OrderBy(s => s.nombre).ToList();
             foreach (SubcategoriaAM sub in lista) 
             {
                 sub.Codigo = sub.id.ToString();
