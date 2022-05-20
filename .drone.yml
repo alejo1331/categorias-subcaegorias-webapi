@@ -101,7 +101,7 @@ steps:
   image: python:3
   volumes:
   - name: cache
-    path: /home/evolutivos.integracion/drone/
+    path: /home/centos/drone/
   environment:
     host:
       from_secret: SERVER_DEVELOP_MID
@@ -110,8 +110,9 @@ steps:
     token:
       from_secret: AWS_ECR_TOKEN  
   commands:
+  - sudo su
   - pip3 install -U fabric3
-  - fab -i /home/evolutivos.integracion/drone/AND.pem -H $${username}@$${host} init_config init_network_govco create_token_aws:token=$${token}
+  - fab -i /home/centos/drone/AND.pem -H $${username}@$${host} init_config init_network_govco create_token_aws:token=$${token}
   when:
     branch:
     - develop
@@ -123,7 +124,7 @@ steps:
   image: python:3
   volumes:
   - name: cache
-    path: /home/evolutivos.integracion/drone/
+    path: /home/centos/drone/
   environment:
     host:
       from_secret: SERVER_STAGE_MID
@@ -132,8 +133,9 @@ steps:
     token:
       from_secret: AWS_ECR_TOKEN  
   commands:
+  - sudo su
   - pip3 install -U fabric3
-  - fab -i /home/evolutivos.integracion/drone/AND-NEW-02.pem -H $${username}@$${host} init_config init_network_govco create_token_aws:token=$${token}
+  - fab -i /home/centos/drone/AND-NEW-02.pem -H $${username}@$${host} init_config init_network_govco create_token_aws:token=$${token}
   when:
     branch:
     - stage
@@ -145,15 +147,16 @@ steps:
   image: python:3
   volumes:
   - name: cache
-    path: /home/evolutivos.integracion/drone/
+    path: /home/centos/drone/
   environment:
     host:
       from_secret: SERVER_DEVELOP_MID
     username:
       from_secret: USER_SERVER_DEVELOP_MID
   commands:
+  - sudo su
   - pip3 install -U fabric3
-  - fab -i /home/evolutivos.integracion/drone/AND.pem -H $${username}@$${host} compose_down_develop:foldername=${DRONE_REPO_NAME,,}
+  - fab -i /home/centos/drone/AND.pem -H $${username}@$${host} compose_down_develop:foldername=${DRONE_REPO_NAME,,}
   when:
     branch:
     - develop
@@ -165,15 +168,16 @@ steps:
   image: python:3
   volumes:
   - name: cache
-    path: /home/evolutivos.integracion/drone/
+    path: /home/centos/drone/
   environment:
     host:
       from_secret: SERVER_STAGE_MID
     username:
       from_secret: USER_SERVER_STAGE_MID
   commands:
+  - sudo su
   - pip3 install -U fabric3
-  - fab -i /home/evolutivos.integracion/drone/AND-NEW-02.pem -H $${username}@$${host} compose_down_stage:foldername=${DRONE_REPO_NAME,,}
+  - fab -i /home/centos/drone/AND-NEW-02.pem -H $${username}@$${host} compose_down_stage:foldername=${DRONE_REPO_NAME,,}
   when:
     branch:
     - stage
@@ -185,15 +189,16 @@ steps:
   image: python:3
   volumes:
   - name: cache
-    path: /home/evolutivos.integracion/drone/
+    path: /home/centos/drone/
   environment:
     host:
       from_secret: SERVER_DEVELOP_MID
     username:
       from_secret: USER_SERVER_DEVELOP_MID
   commands:
+  - sudo su
   - pip3 install -U fabric3
-  - fab -i /home/evolutivos.integracion/drone/AND.pem -H $${username}@$${host} validate_create_folder:foldername=${DRONE_REPO_NAME,,} validate_update_all_file_services:foldername=${DRONE_REPO_NAME,,}
+  - fab -i /home/centos/drone/AND.pem -H $${username}@$${host} validate_create_folder:foldername=${DRONE_REPO_NAME,,} validate_update_all_file_services:foldername=${DRONE_REPO_NAME,,}
   when:
     branch:
     - develop
@@ -205,15 +210,16 @@ steps:
   image: python:3
   volumes:
   - name: cache
-    path: /home/evolutivos.integracion/drone/
+    path: /home/centos/drone/
   environment:
     host:
       from_secret: SERVER_STAGE_MID
     username:
       from_secret: USER_SERVER_STAGE_MID
   commands:
+  - sudo su
   - pip3 install -U fabric3
-  - fab -i /home/evolutivos.integracion/drone/AND-NEW-02.pem -H $${username}@$${host} validate_create_folder:foldername=${DRONE_REPO_NAME,,} validate_update_all_file_services_2:foldername=${DRONE_REPO_NAME,,}
+  - fab -i /home/centos/drone/AND-NEW-02.pem -H $${username}@$${host} validate_create_folder:foldername=${DRONE_REPO_NAME,,} validate_update_all_file_services_2:foldername=${DRONE_REPO_NAME,,}
   when:
     branch:
     - stage
@@ -226,15 +232,16 @@ steps:
   image: python:3
   volumes:
   - name: cache
-    path: /home/evolutivos.integracion/drone/
+    path: /home/centos/drone/
   environment:
     host:
       from_secret: SERVER_DEVELOP_MID
     username:
       from_secret: USER_SERVER_DEVELOP_MID
   commands:
+  - sudo su
   - pip3 install -U fabric3
-  - fab -i /home/evolutivos.integracion/drone/AND.pem -H $${username}@$${host} compose_up_develop:foldername=${DRONE_REPO_NAME,,}
+  - fab -i /home/centos/drone/AND.pem -H $${username}@$${host} compose_up_develop:foldername=${DRONE_REPO_NAME,,}
   when:
     branch:
     - develop
@@ -246,15 +253,16 @@ steps:
   image: python:3
   volumes:
   - name: cache
-    path: /home/evolutivos.integracion/drone/
+    path: /home/centos/drone/
   environment:
     host:
       from_secret: SERVER_STAGE_MID
     username:
       from_secret: USER_SERVER_STAGE_MID
   commands:
+  - sudo su
   - pip3 install -U fabric3
-  - fab -i /home/evolutivos.integracion/drone/AND-NEW-02.pem -H $${username}@$${host} compose_up_stage:foldername=${DRONE_REPO_NAME,,}
+  - fab -i /home/centos/drone/AND-NEW-02.pem -H $${username}@$${host} compose_up_stage:foldername=${DRONE_REPO_NAME,,}
   when:
     branch:
     - stage
@@ -297,4 +305,4 @@ volumes:
 - name: cache
   host:
     path: /etc/gitlab/fabric/
-    path: /home/evolutivos.integracion/drone/
+    path: /home/centos/drone/
