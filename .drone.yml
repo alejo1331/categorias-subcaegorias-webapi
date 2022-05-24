@@ -108,7 +108,7 @@ steps:
     username:
       from_secret: USER_SERVER_DEVELOP_MID
     token:
-      from_secret: AWS_ECR_TOKEN  
+      from_secret: AWS_ECR_TOKEN
   commands:
   - pip3 install -U fabric3
   - fab -i /home/centos/drone/AND.pem -H $${username}@$${host} init_config init_network_govco create_token_aws:token=$${token}
@@ -130,7 +130,7 @@ steps:
     username:
       from_secret: USER_SERVER_STAGE_MID
     token:
-      from_secret: AWS_ECR_TOKEN  
+      from_secret: AWS_ECR_TOKEN
   commands:
   - pip3 install -U fabric3
   - fab -i /home/centos/drone/AND-NEW-02.pem -H $${username}@$${host} init_config init_network_govco create_token_aws:token=$${token}
