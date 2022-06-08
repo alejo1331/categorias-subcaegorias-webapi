@@ -6,7 +6,7 @@ using Categorias.Domain.Data;
 using System.Linq;
 
 using Microsoft.EntityFrameworkCore;
-
+using System.Threading.Tasks;
 
 namespace Categorias.Domain.Repository
 {
@@ -14,17 +14,24 @@ namespace Categorias.Domain.Repository
     {
         private readonly Context context;
         private Estado activo;
+        private readonly InterfaceCategoriaTramiteDestacado _categoriaRepository;
 
         public RepositoryElementoTercerNivel(Context context)
         {
             this.context = context;
             this.activo = this.context.Estados.Where(s => s.descripcion == "Activo").FirstOrDefault();
+            this._categoriaRepository = new RepositoryCategoriaTramiteDestacado();
         }
 
         public void update(int id)
         {
             Estado inactivo = this.context.Estados.Where(s => s.descripcion == "Inactivo").FirstOrDefault();
-            ElementoTercerNivel objeto = this.context.ElementoTercerNivels.Where(s => s.id == id).FirstOrDefault();
+            ElementoTercerNivel objeto = this.context.ElementoTercerNivels
+                                                .Include(s => s.TercerNivel)
+                                                .ThenInclude(t => t.Subcategoria)
+                                                .ThenInclude(c => c.Categoria)
+                                                .Where(s => s.id == id)
+                                                .FirstOrDefault();
 
             if (objeto.codigoEstado == activo.id)
                 objeto.codigoEstado = inactivo.id;
@@ -32,6 +39,11 @@ namespace Categorias.Domain.Repository
                 objeto.codigoEstado = activo.id;
 
             this.context.ElementoTercerNivels.Update(objeto);
+            
+            if (objeto.codigoEstado == inactivo.id)
+            {
+                Task<CategoriaTramiteDestacado> model = _categoriaRepository.EliminarCategoriaTramiteDestacado(objeto.TercerNivel.Subcategoria.Categoria.id, objeto.elementoId);
+            }
         }
 
         public IList<ElementoTercerNivel> All()
