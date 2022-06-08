@@ -6,7 +6,7 @@ using Categorias.Domain.Data;
 using System.Linq;
 
 using Microsoft.EntityFrameworkCore;
-
+using System.Threading.Tasks;
 
 namespace Categorias.Domain.Repository
 {
@@ -14,17 +14,22 @@ namespace Categorias.Domain.Repository
     {
         private readonly Context context;
         private Estado activo;
+        private readonly InterfaceCategoriaTramiteDestacado _categoriaRepository;
 
         public RepositoryElementoSubcategoria(Context context)
         {
             this.context = context;
             this.activo = this.context.Estados.Where(s => s.descripcion == "Activo").FirstOrDefault();
+            this._categoriaRepository = new RepositoryCategoriaTramiteDestacado();
         }
 
         public void update(int id)
         {
             Estado inactivo = this.context.Estados.Where(s => s.descripcion == "Inactivo").FirstOrDefault();
-            ElementoSubcategoria objeto = this.context.ElementoSubcategorias.Where(s => s.id == id).FirstOrDefault();
+            ElementoSubcategoria objeto = this.context.ElementoSubcategorias
+                                                .Include(s => s.Subcategoria)
+                                                .ThenInclude(c => c.Categoria)
+                                                .Where(s => s.id == id).FirstOrDefault();
 
             if (objeto.codigoEstado == activo.id)
                 objeto.codigoEstado = inactivo.id;
@@ -32,6 +37,11 @@ namespace Categorias.Domain.Repository
                 objeto.codigoEstado = activo.id;
 
             this.context.ElementoSubcategorias.Update(objeto);
+           
+            if (objeto.codigoEstado == inactivo.id)
+            {
+                Task<CategoriaTramiteDestacado> model = _categoriaRepository.EliminarCategoriaTramiteDestacado(objeto.Subcategoria.Categoria.id, objeto.elementoId);
+            }
         }
 
         public IList<ElementoSubcategoria> All()
