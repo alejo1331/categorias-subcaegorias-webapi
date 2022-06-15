@@ -123,17 +123,7 @@ namespace Categorias.Infrastructure.Repositories
             #region Predicado si hay columna parametrica seleccionada
 
             if (!String.IsNullOrEmpty(model.ColumnValue))
-            {
-                //switch (model.ColumnValue)
-                //{
-                //    case "Estado":
-                //        Boolean estado = model.ColumnFilter == "Activo" ? true : false;
-
-                //        predicateColumn = e => e.Estado == estado;
-
-                //        break;
-
-                //}
+            {                
 
                 #region Concatenación de predicados
 
