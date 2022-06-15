@@ -19,8 +19,7 @@ namespace Categorias.Infrastructure.Helpers
                 string environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
                 if (String.IsNullOrWhiteSpace(environment))
-                    environment = "Development";
-                // throw new ArgumentNullException ("Environment not found in ASPNETCORE_ENVIRONMENT");
+                    environment = "Development";                
 
                 // Set up configuration sources.
                 var builder = new ConfigurationBuilder()
