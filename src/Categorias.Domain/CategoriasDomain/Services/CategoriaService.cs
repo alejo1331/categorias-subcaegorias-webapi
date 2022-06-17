@@ -30,6 +30,18 @@ namespace Categorias.Domain.CategoriasDomain.Services
             }
         }
 
+        public List<CategoriaEntity> ObtenerListadoCategoriasPorTipoCategoria(string sigla)
+        {
+            try
+            {
+                return _categoriaRepository.ObtenerListadoCategoriasPorTipoCategoria(sigla);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public List<CategoriaEntity> ObtenerListadoCategoriasPaginado(PaginateModelDomain paginateModel)
         {
             try

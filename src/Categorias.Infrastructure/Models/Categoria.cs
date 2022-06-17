@@ -44,8 +44,15 @@ namespace Categorias.Infrastructure.Models
         [Column("FECHA_MODIFICACION", TypeName = "smalldatetime")]
         public DateTime? FechaModificacion { get; set; }
 
+        [Column("CTC_ID", TypeName = "int")]
+        public int CodigoTipoCategoria { get; set; }
 
         [ForeignKey("CodigoEstado")]
         public virtual Estado Estado { get; set; }
+
+        [ForeignKey("CodigoTipoCategoria")]
+        public virtual TipoCategoria TipoCategoria { get; set; }
+
+
     }
 }

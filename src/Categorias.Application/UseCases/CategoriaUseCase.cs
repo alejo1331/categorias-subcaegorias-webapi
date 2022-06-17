@@ -30,7 +30,7 @@ namespace Categorias.Application.UseCases
             this._mapper = new Mapper(mapConfig);
         }
 
-        public Response<List<CategoriaDTO>> ObtenerListadoCategorias()
+        public Response<List<CategoriaDTO>> ObtenerListadoCategoriasPorTipoCategoria(string sigla)
         {
             var response = new Response<List<CategoriaDTO>>();
 
@@ -38,7 +38,7 @@ namespace Categorias.Application.UseCases
             {
                 using (var categoriaRepository = new CategoriaRepository())
                 {
-                    response.Data = _mapper.Map<List<CategoriaDTO>>(new CategoriaService(categoriaRepository).ObtenerListadoCategorias());
+                    response.Data = _mapper.Map<List<CategoriaDTO>>(new CategoriaService(categoriaRepository).ObtenerListadoCategoriasPorTipoCategoria(sigla));
                     response.Data.ForEach(c => c.Codigo = c.Id.ToString());
                 }
                 response.Succeeded = true;
@@ -73,6 +73,11 @@ namespace Categorias.Application.UseCases
             }
 
             return response;
+        }
+
+        public Response<List<CategoriaDTO>> ObtenerListadoCategorias()
+        {
+            throw new NotImplementedException();
         }
     }
 }

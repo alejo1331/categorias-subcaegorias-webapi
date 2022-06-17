@@ -56,6 +56,30 @@ namespace Categorias.Infrastructure.Repositories
 
         }
 
+        public List<CategoriaEntity> ObtenerListadoCategoriasPorTipoCategoria(string sigla)
+        {
+            try
+            {
+                using (var context = new CategoriasContext())
+                {
+
+                    var categorias = context.Categoria
+                                    .Where(c => c.Estado.Descripcion == "Activo" 
+                                                && c.TipoCategoria.Sigla==sigla
+                                                && c.TipoCategoria.Estado.Descripcion=="Activo")
+                                    .OrderBy(c => c.Nombre)
+                                    .ToList();
+                    var listaMapped = _mapper.Map<List<CategoriaEntity>>(categorias);
+                    return listaMapped;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
         public List<CategoriaEntity> ObtenerListadoCategoriasPaginado(PaginateModelDomain paginateModel)
         {
             try
