@@ -9,11 +9,11 @@ namespace Categorias.Api.Areas.Categoria.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoriaController : ControllerBase
+    public class CategoriasController : ControllerBase
     {
         private readonly ICategoriaUseCase _categoriaUseCase;
 
-        public CategoriaController()
+        public CategoriasController()
         {
             _categoriaUseCase = new CategoriaUseCase();
 
@@ -40,13 +40,11 @@ namespace Categorias.Api.Areas.Categoria.Controllers
 
         }
 
-
-        [HttpGet]
-        [Route("[action]")]
-        public IActionResult ObtenerListadoCategorias()
+        [HttpGet("Categorias/TipoCategoria/{siglaTipo}")]
+        public IActionResult ObtenerListadoCategoriasPorTipoCategoria(string siglaTipo)
         {
 
-            var result = _categoriaUseCase.ObtenerListadoCategorias();
+            var result = _categoriaUseCase.ObtenerListadoCategoriasPorTipoCategoria(siglaTipo);
 
             if (!result.Succeeded)
                 return BadRequest();
