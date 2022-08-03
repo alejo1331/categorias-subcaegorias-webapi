@@ -44,7 +44,7 @@ steps:
     - push
 
 # - name: run_unit_test
-#   image: nosinovacao/dotnet-sonar:19.12.0
+#   image: nosinovacao/dotnet-sonar:latest
 #   commands:
 #    - cd src/
 #    - dotnet test
@@ -57,23 +57,23 @@ steps:
  
 
 
-# - name: run_sonarqube
-#   image: nosinovacao/dotnet-sonar:19.12.0
-#   commands:
-#   - cd src
-#   - dotnet /sonar-scanner/SonarScanner.MSBuild.dll begin /k:${DRONE_REPO/\//-} /name:${DRONE_REPO/\//-} /version:1.0 /d:sonar.host.url="https://ci.sonarqube.and.gov.co/"
-#   - dotnet restore
-#   - dotnet build -c Release
-#   - dotnet publish -c Release -r linux-x64 -o deployment
-#   - dotnet test --no-build -c Release --filter "Category=Unit" --logger trx --results-directory testResults /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-#   - dotnet /sonar-scanner/SonarScanner.MSBuild.dll end
-#   when:
-#     branch:
-#     - develop
-#     - feature/*
-#     - release/*
-#     event:
-#     - push
+- name: run_sonarqube
+  image: nosinovacao/dotnet-sonar:latest
+  commands:
+  - cd src
+  - dotnet /sonar-scanner/SonarScanner.MSBuild.dll begin /k:${DRONE_REPO/\//-} /name:${DRONE_REPO/\//-} /version:1.0 /d:sonar.host.url="https://ci.sonarqube.and.gov.co/"
+  - dotnet restore
+  - dotnet build -c Release
+  - dotnet publish -c Release -r linux-x64 -o deployment
+  - dotnet test --no-build -c Release --filter "Category=Unit" --logger trx --results-directory testResults /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+  - dotnet /sonar-scanner/SonarScanner.MSBuild.dll end
+  when:
+    branch:
+    - develop
+    - feature/*
+    - release/*
+    event:
+    - push
   
   
 - name: publish_to_ecr_develop_stage
@@ -98,7 +98,7 @@ steps:
     - merge
 
 - name: init_config_service_to_develop
-  image: python:3
+  image: python:3.7.9
   volumes:
   - name: cache
     path: /home/centos/drone/
@@ -108,7 +108,7 @@ steps:
     username:
       from_secret: USER_SERVER_DEVELOP_MID
     token:
-      from_secret: AWS_ECR_TOKEN  
+      from_secret: AWS_ECR_TOKEN
   commands:
   - pip3 install -U fabric3
   - fab -i /home/centos/drone/AND.pem -H $${username}@$${host} init_config init_network_govco create_token_aws:token=$${token}
@@ -120,7 +120,7 @@ steps:
     - merge
 
 - name: init_config_service_to_stage
-  image: python:3
+  image: python:3.7.9
   volumes:
   - name: cache
     path: /home/centos/drone/
@@ -130,7 +130,7 @@ steps:
     username:
       from_secret: USER_SERVER_STAGE_MID
     token:
-      from_secret: AWS_ECR_TOKEN  
+      from_secret: AWS_ECR_TOKEN
   commands:
   - pip3 install -U fabric3
   - fab -i /home/centos/drone/AND-NEW-02.pem -H $${username}@$${host} init_config init_network_govco create_token_aws:token=$${token}
@@ -142,7 +142,7 @@ steps:
     - merge
 
 - name: down_service_to_develop
-  image: python:3
+  image: python:3.7.9
   volumes:
   - name: cache
     path: /home/centos/drone/
@@ -162,7 +162,7 @@ steps:
     - merge
 
 - name: down_service_to_stage
-  image: python:3
+  image: python:3.7.9
   volumes:
   - name: cache
     path: /home/centos/drone/
@@ -182,7 +182,7 @@ steps:
     - merge
 
 - name: update_service_to_develop
-  image: python:3
+  image: python:3.7.9
   volumes:
   - name: cache
     path: /home/centos/drone/
@@ -202,7 +202,7 @@ steps:
     - merge
 
 - name: update_service_to_stage
-  image: python:3
+  image: python:3.7.9
   volumes:
   - name: cache
     path: /home/centos/drone/
@@ -223,7 +223,7 @@ steps:
 
 
 - name: up_service_to_develop
-  image: python:3
+  image: python:3.7.9
   volumes:
   - name: cache
     path: /home/centos/drone/
@@ -243,7 +243,7 @@ steps:
     - merge
 
 - name: up_service_to_stage
-  image: python:3
+  image: python:3.7.9
   volumes:
   - name: cache
     path: /home/centos/drone/
