@@ -25,6 +25,6 @@ namespace Categorias.Infrastructure.Context
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
-          optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+          optionsBuilder.UseSqlServer(configuration.GetConnectionString("SqlServerConnectionMastergovco"));
     }
 }
