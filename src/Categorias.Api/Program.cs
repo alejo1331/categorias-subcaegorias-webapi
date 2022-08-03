@@ -86,7 +86,7 @@ app.Run();
 
 void AddDatabaseConfiguration(ref WebApplicationBuilder builder)
 {
-    string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    string connectionString = builder.Configuration.GetConnectionString("SqlServerConnectionMastergovco");
     builder.Services.AddEntityFrameworkSqlServer().AddDbContext<Context>(options =>
                 options.UseSqlServer(connectionString));
 
