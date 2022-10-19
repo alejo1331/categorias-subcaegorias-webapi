@@ -5,18 +5,18 @@ workspace:
   path: /src
 
 steps:
-- name: check_readme
-  image: jjvargass/qa_develoment:latest
-  commands:
-  - python /app/check_readme.py
-  when:
-    branch:
-    - develop
-    - stage
-    - feature/*
-    - release/*
-    event:
-    - push
+# - name: check_readme
+#   image: jjvargass/qa_develoment:latest
+#   commands:
+#   - python /app/check_readme.py
+#   when:
+#     branch:
+#     - develop
+#     - stage
+#     - feature/*
+#     - release/*
+#     event:
+#     - push
 
 - name: check_branch
   image: jjvargass/qa_develoment:latest
@@ -26,20 +26,7 @@ steps:
     branch:
     - develop
     - feature/*
-    - release/*
-    event:
-    - push
-
-- name: check_commits
-  image: jjvargass/qa_develoment:latest
-  commands:
-  - python /app/check_commits.py
-  when:
-    branch:
-    - develop
-    - stage
-    - feature/*
-    - release/*
+    - release*
     event:
     - push
 
@@ -52,15 +39,14 @@ steps:
 #     branch:
 #     - develop
 #     - feature/*
-#     - release/*
+#     - release*
 #     event:
  
-
-
 - name: run_sonarqube
   image: nosinovacao/dotnet-sonar:latest
   commands:
   - cd src
+  - mv ../sonar-scanner.properties /sonar-scanner/sonar-scanner-*/conf/sonar-scanner.properties
   - dotnet /sonar-scanner/SonarScanner.MSBuild.dll begin /k:${DRONE_REPO/\//-} /name:${DRONE_REPO/\//-} /version:1.0 /d:sonar.host.url="https://ci.sonarqube.and.gov.co/"
   - dotnet restore
   - dotnet build -c Release
@@ -71,12 +57,11 @@ steps:
     branch:
     - develop
     - feature/*
-    - release/*
+    - release*
     event:
     - push
-  
-  
-- name: publish_to_ecr_develop_stage
+
+- name: publish_to_ecr
   image: plugins/ecr
   settings:
     access_key:
@@ -93,9 +78,19 @@ steps:
     branch:
     - develop
     - stage
+    - release_operaciones
+    - release_preproduction
+    - release_production
     event:
     - push
     - merge
+
+#  --------------- DEVELOP ---------------
+#   ___   ___ __   __ ___  _     ___   ___ 
+#  |   \ | __|\ \ / /| __|| |   / _ \ | _ \
+#  | |) || _|  \ V / | _| | |__| (_) ||  _/
+#  |___/ |___|  \_/  |___||____|\___/ |_|  
+#
 
 - name: init_config_service_to_develop
   image: python:3.7.9
@@ -108,16 +103,90 @@ steps:
     username:
       from_secret: USER_SERVER_DEVELOP_MID
     token:
-      from_secret: AWS_ECR_TOKEN
+      from_secret: AWS_ECR_TOKEN  
   commands:
   - pip3 install -U fabric3
   - fab -i /home/centos/drone/AND.pem -H $${username}@$${host} init_config init_network_govco create_token_aws:token=$${token}
+  # - fab -i /home/centos/drone/AND-Dev-New.pem -H $${username}@$${host} init_config init_network_govco create_token_aws:token=$${token}
   when:
     branch:
     - develop
     event:
     - push
     - merge
+
+- name: down_service_to_develop
+  image: python:3.7.9
+  volumes:
+  - name: cache
+    path: /home/centos/drone/
+  environment:
+    compose: ${DRONE_BRANCH}
+    host:
+      from_secret: SERVER_DEVELOP_MID
+    username:
+      from_secret: USER_SERVER_DEVELOP_MID
+  commands:
+  - pip3 install -U fabric3
+  - fab -i /home/centos/drone/AND.pem -H $${username}@$${host} compose_down_env:foldername=${DRONE_REPO_NAME,,},compose=$${compose}
+  # - fab -i /home/centos/drone/AND-Dev-New.pem -H $${username}@$${host} compose_down_env:foldername=${DRONE_REPO_NAME,,},compose=$${compose}
+  when:
+    branch:
+    - develop
+    event:
+    - push
+    - merge
+
+- name: update_service_to_develop
+  image: python:3.7.9
+  volumes:
+  - name: cache
+    path: /home/centos/drone/
+  environment:
+    compose: ${DRONE_BRANCH}
+    host:
+      from_secret: SERVER_DEVELOP_MID
+    username:
+      from_secret: USER_SERVER_DEVELOP_MID
+  commands:
+  - pip3 install -U fabric3
+  - fab -i /home/centos/drone/AND.pem -H $${username}@$${host} validate_create_folder:foldername=${DRONE_REPO_NAME,,} validate_dockerfile_env:foldername=${DRONE_REPO_NAME,,},compose=$${compose}
+  # - fab -i /home/centos/drone/AND-Dev-New.pem -H $${username}@$${host} validate_create_folder:foldername=${DRONE_REPO_NAME,,} validate_dockerfile_env:foldername=${DRONE_REPO_NAME,,},compose=$${compose}
+  when:
+    branch:
+    - develop
+    event:
+    - push
+    - merge
+
+- name: up_service_to_develop
+  image: python:3.7.9
+  volumes:
+  - name: cache
+    path: /home/centos/drone/
+  environment:
+    compose: ${DRONE_BRANCH}
+    host:
+      from_secret: SERVER_DEVELOP_MID
+    username:
+      from_secret: USER_SERVER_DEVELOP_MID
+  commands:
+  - pip3 install -U fabric3
+  - fab -i /home/centos/drone/AND.pem -H $${username}@$${host} compose_up_env:foldername=${DRONE_REPO_NAME,,},compose=$${compose}
+  # - fab -i /home/centos/drone/AND-Dev-New.pem -H $${username}@$${host} compose_up_env:foldername=${DRONE_REPO_NAME,,},compose=$${compose}
+  when:
+    branch:
+    - develop
+    event:
+    - push
+    - merge
+
+#  ---------- STAGE ----------
+#   ___  _____  _    ___  ___ 
+#  / __||_   _|/_\  / __|| __|
+#  \__ \  | | / _ \| (_ || _| 
+#  |___/  |_|/_/ \_\\___||___|
+#
 
 - name: init_config_service_to_stage
   image: python:3.7.9
@@ -130,33 +199,14 @@ steps:
     username:
       from_secret: USER_SERVER_STAGE_MID
     token:
-      from_secret: AWS_ECR_TOKEN
+      from_secret: AWS_ECR_TOKEN  
   commands:
   - pip3 install -U fabric3
   - fab -i /home/centos/drone/AND-NEW-02.pem -H $${username}@$${host} init_config init_network_govco create_token_aws:token=$${token}
+  # - fab -i /home/centos/drone/AND-QA-New.pem -H $${username}@$${host} init_config init_network_govco create_token_aws:token=$${token}
   when:
     branch:
     - stage
-    event:
-    - push
-    - merge
-
-- name: down_service_to_develop
-  image: python:3.7.9
-  volumes:
-  - name: cache
-    path: /home/centos/drone/
-  environment:
-    host:
-      from_secret: SERVER_DEVELOP_MID
-    username:
-      from_secret: USER_SERVER_DEVELOP_MID
-  commands:
-  - pip3 install -U fabric3
-  - fab -i /home/centos/drone/AND.pem -H $${username}@$${host} compose_down_develop:foldername=${DRONE_REPO_NAME,,}
-  when:
-    branch:
-    - develop
     event:
     - push
     - merge
@@ -167,36 +217,18 @@ steps:
   - name: cache
     path: /home/centos/drone/
   environment:
+    compose: ${DRONE_BRANCH}
     host:
       from_secret: SERVER_STAGE_MID
     username:
       from_secret: USER_SERVER_STAGE_MID
   commands:
   - pip3 install -U fabric3
-  - fab -i /home/centos/drone/AND-NEW-02.pem -H $${username}@$${host} compose_down_stage:foldername=${DRONE_REPO_NAME,,}
+  - fab -i /home/centos/drone/AND-NEW-02.pem -H $${username}@$${host} compose_down_env:foldername=${DRONE_REPO_NAME,,},compose=$${compose}
+  # - fab -i /home/centos/drone/AND-QA-New.pem -H $${username}@$${host} compose_down_env:foldername=${DRONE_REPO_NAME,,},compose=$${compose}
   when:
     branch:
     - stage
-    event:
-    - push
-    - merge
-
-- name: update_service_to_develop
-  image: python:3.7.9
-  volumes:
-  - name: cache
-    path: /home/centos/drone/
-  environment:
-    host:
-      from_secret: SERVER_DEVELOP_MID
-    username:
-      from_secret: USER_SERVER_DEVELOP_MID
-  commands:
-  - pip3 install -U fabric3
-  - fab -i /home/centos/drone/AND.pem -H $${username}@$${host} validate_create_folder:foldername=${DRONE_REPO_NAME,,} validate_update_all_file_services:foldername=${DRONE_REPO_NAME,,}
-  when:
-    branch:
-    - develop
     event:
     - push
     - merge
@@ -207,37 +239,18 @@ steps:
   - name: cache
     path: /home/centos/drone/
   environment:
+    compose: ${DRONE_BRANCH}
     host:
       from_secret: SERVER_STAGE_MID
     username:
       from_secret: USER_SERVER_STAGE_MID
   commands:
   - pip3 install -U fabric3
-  - fab -i /home/centos/drone/AND-NEW-02.pem -H $${username}@$${host} validate_create_folder:foldername=${DRONE_REPO_NAME,,} validate_update_all_file_services_2:foldername=${DRONE_REPO_NAME,,}
+  - fab -i /home/centos/drone/AND-NEW-02.pem -H $${username}@$${host} validate_create_folder:foldername=${DRONE_REPO_NAME,,} validate_dockerfile_env:foldername=${DRONE_REPO_NAME,,},compose=$${compose}
+  # - fab -i /home/centos/drone/AND-QA-New.pem -H $${username}@$${host} validate_create_folder:foldername=${DRONE_REPO_NAME,,} validate_dockerfile_env:foldername=${DRONE_REPO_NAME,,},compose=$${compose}
   when:
     branch:
     - stage
-    event:
-    - push
-    - merge    
-
-
-- name: up_service_to_develop
-  image: python:3.7.9
-  volumes:
-  - name: cache
-    path: /home/centos/drone/
-  environment:
-    host:
-      from_secret: SERVER_DEVELOP_MID
-    username:
-      from_secret: USER_SERVER_DEVELOP_MID
-  commands:
-  - pip3 install -U fabric3
-  - fab -i /home/centos/drone/AND.pem -H $${username}@$${host} compose_up_develop:foldername=${DRONE_REPO_NAME,,}
-  when:
-    branch:
-    - develop
     event:
     - push
     - merge
@@ -248,20 +261,301 @@ steps:
   - name: cache
     path: /home/centos/drone/
   environment:
+    compose: ${DRONE_BRANCH}
     host:
       from_secret: SERVER_STAGE_MID
     username:
       from_secret: USER_SERVER_STAGE_MID
   commands:
   - pip3 install -U fabric3
-  - fab -i /home/centos/drone/AND-NEW-02.pem -H $${username}@$${host} compose_up_stage:foldername=${DRONE_REPO_NAME,,}
+  - fab -i /home/centos/drone/AND-NEW-02.pem -H $${username}@$${host} compose_up_env:foldername=${DRONE_REPO_NAME,,},compose=$${compose}
+  # - fab -i /home/centos/drone/AND-QA-New.pem -H $${username}@$${host} compose_up_env:foldername=${DRONE_REPO_NAME,,},compose=$${compose}
   when:
     branch:
     - stage
     event:
     - push
-    - merge    
+    - merge
 
+#  ------ QA OPERACIONES ------
+#    ___     _      ___   ___ 
+#   / _ \   /_\    / _ \ | _ \
+#  | (_) | / _ \  | (_) ||  _/
+#   \__\_\/_/ \_\  \___/ |_|  
+#
+
+# - name: init_config_service_to_qa_op
+#   image: python:3.7.9
+#   volumes:
+#   - name: cache
+#     path: /home/centos/drone/
+#   environment:
+#     host:
+#       from_secret: SERVER_QA_OP_MID
+#     username:
+#       from_secret: USER_SERVER_QA_OP_MID
+#     token:
+#       from_secret: AWS_ECR_TOKEN  
+#   commands:
+#   - pip3 install -U fabric3
+#   - fab -i /home/centos/drone/AND-QA-OP.pem -H $${username}@$${host} init_config init_network_govco create_token_aws:token=$${token}
+#   when:
+#     branch:
+#     - release_operaciones
+#     event:
+#     - push
+#     - merge
+
+# - name: down_service_to_qa_op
+#   image: python:3.7.9
+#   volumes:
+#   - name: cache
+#     path: /home/centos/drone/
+#   environment:
+#     compose: operaciones
+#     host:
+#       from_secret: SERVER_QA_OP_MID
+#     username:
+#       from_secret: USER_SERVER_QA_OP_MID
+#   commands:
+#   - pip3 install -U fabric3
+#   - fab -i /home/centos/drone/AND-QA-OP.pem -H $${username}@$${host} compose_down_env:foldername=${DRONE_REPO_NAME,,},compose=$${compose}
+#   when:
+#     branch:
+#     - release_operaciones
+#     event:
+#     - push
+#     - merge
+
+# - name: update_service_to_qa_op
+#   image: python:3.7.9
+#   volumes:
+#   - name: cache
+#     path: /home/centos/drone/
+#   environment:
+#     compose: operaciones
+#     host:
+#       from_secret: SERVER_QA_OP_MID
+#     username:
+#       from_secret: USER_SERVER_QA_OP_MID
+#   commands:
+#   - pip3 install -U fabric3
+#   - fab -i /home/centos/drone/AND-QA-OP.pem -H $${username}@$${host} validate_create_folder:foldername=${DRONE_REPO_NAME,,} validate_dockerfile_env:foldername=${DRONE_REPO_NAME,,},compose=$${compose}
+#   when:
+#     branch:
+#     - release_operaciones
+#     event:
+#     - push
+#     - merge
+
+# - name: up_service_to_qa_op
+#   image: python:3.7.9
+#   volumes:
+#   - name: cache
+#     path: /home/centos/drone/
+#   environment:
+#     compose: operaciones
+#     host:
+#       from_secret: SERVER_QA_OP_MID
+#     username:
+#       from_secret: USER_SERVER_QA_OP_MID
+#   commands:
+#   - pip3 install -U fabric3
+#   - fab -i /home/centos/drone/AND-QA-OP.pem -H $${username}@$${host} compose_up_env:foldername=${DRONE_REPO_NAME,,},compose=$${compose}
+#   when:
+#     branch:
+#     - release_operaciones
+#     event:
+#     - push
+#     - merge
+
+#  ------------ PREPRODUCTION ------------
+#   ___  ___  ___  ___  ___   ___   ___  
+#  | _ \| _ \| __|| _ \| _ \ / _ \ |   \ 
+#  |  _/|   /| _| |  _/|   /| (_) || |) |
+#  |_|  |_|_\|___||_|  |_|_\ \___/ |___/ 
+#
+
+# - name: init_config_service_to_preprod
+#   image: python:3.7.9
+#   volumes:
+#   - name: cache
+#     path: /home/centos/drone/
+#   environment:
+#     host:
+#       from_secret: SERVER_PREPROD_MID
+#     username:
+#       from_secret: USER_SERVER_PREPROD_MID
+#     token:
+#       from_secret: AWS_ECR_TOKEN  
+#   commands:
+#   - pip3 install -U fabric3
+#   - fab -i /home/centos/drone/AND-PRE-PROD.pem -H $${username}@$${host} init_config init_network_govco create_token_aws:token=$${token}
+#   when:
+#     branch:
+#     - release_preproduction
+#     event:
+#     - push
+#     - merge
+
+# - name: down_service_to_preprod
+#   image: python:3.7.9
+#   volumes:
+#   - name: cache
+#     path: /home/centos/drone/
+#   environment:
+#     compose: preprod
+#     host:
+#       from_secret: SERVER_PREPROD_MID
+#     username:
+#       from_secret: USER_SERVER_PREPROD_MID
+#   commands:
+#   - pip3 install -U fabric3
+#   - fab -i /home/centos/drone/AND-PRE-PROD.pem -H $${username}@$${host} compose_down_env:foldername=${DRONE_REPO_NAME,,},compose=$${compose}
+#   when:
+#     branch:
+#     - release_preproduction
+#     event:
+#     - push
+#     - merge
+
+# - name: update_service_to_preprod
+#   image: python:3.7.9
+#   volumes:
+#   - name: cache
+#     path: /home/centos/drone/
+#   environment:
+#     compose: preprod
+#     host:
+#       from_secret: SERVER_PREPROD_MID
+#     username:
+#       from_secret: USER_SERVER_PREPROD_MID
+#   commands:
+#   - pip3 install -U fabric3
+#   - fab -i /home/centos/drone/AND-PRE-PROD.pem -H $${username}@$${host} validate_create_folder:foldername=${DRONE_REPO_NAME,,} validate_dockerfile_env:foldername=${DRONE_REPO_NAME,,},compose=$${compose}
+#   when:
+#     branch:
+#     - release_preproduction
+#     event:
+#     - push
+#     - merge
+
+# - name: up_service_to_preprod
+#   image: python:3.7.9
+#   volumes:
+#   - name: cache
+#     path: /home/centos/drone/
+#   environment:
+#     compose: preprod
+#     host:
+#       from_secret: SERVER_PREPROD_MID
+#     username:
+#       from_secret: USER_SERVER_PREPROD_MID
+#   commands:
+#   - pip3 install -U fabric3
+#   - fab -i /home/centos/drone/AND-PRE-PROD.pem -H $${username}@$${host} compose_up_env:foldername=${DRONE_REPO_NAME,,},compose=$${compose}
+#   when:
+#     branch:
+#     - release_preproduction
+#     event:
+#     - push
+#     - merge
+
+#  ------ PRODUCTION ------
+#   ___  ___   ___   ___  
+#  | _ \| _ \ / _ \ |   \ 
+#  |  _/|   /| (_) || |) |
+#  |_|  |_|_\ \___/ |___/ 
+#
+
+# - name: init_config_service_to_prod
+#   image: python:3.7.9
+#   volumes:
+#   - name: cache
+#     path: /home/centos/drone/
+#   environment:
+#     host:
+#       from_secret: SERVER_PROD_MID
+#     username:
+#       from_secret: USER_SERVER_PROD_MID
+#     token:
+#       from_secret: AWS_ECR_TOKEN  
+#   commands:
+#   - pip3 install -U fabric3
+#   - fab -i /home/centos/drone/AND-PROD.pem -H $${username}@$${host} init_config init_network_govco create_token_aws:token=$${token}
+#   when:
+#     branch:
+#     - release_production
+#     event:
+#     - push
+#     - merge
+
+# - name: down_service_to_prod
+#   image: python:3.7.9
+#   volumes:
+#   - name: cache
+#     path: /home/centos/drone/
+#   environment:
+#     compose: prod
+#     host:
+#       from_secret: SERVER_PROD_MID
+#     username:
+#       from_secret: USER_SERVER_PROD_MID
+#   commands:
+#   - pip3 install -U fabric3
+#   - fab -i /home/centos/drone/AND-PROD.pem -H $${username}@$${host} compose_down_env:foldername=${DRONE_REPO_NAME,,},compose=$${compose}
+#   when:
+#     branch:
+#     - release_production
+#     event:
+#     - push
+#     - merge
+
+# - name: update_service_to_prod
+#   image: python:3.7.9
+#   volumes:
+#   - name: cache
+#     path: /home/centos/drone/
+#   environment:
+#     compose: prod
+#     host:
+#       from_secret: SERVER_PROD_MID
+#     username:
+#       from_secret: USER_SERVER_PROD_MID
+#   commands:
+#   - pip3 install -U fabric3
+#   - fab -i /home/centos/drone/AND-PROD.pem -H $${username}@$${host} validate_create_folder:foldername=${DRONE_REPO_NAME,,} validate_dockerfile_env:foldername=${DRONE_REPO_NAME,,},compose=$${compose}
+#   when:
+#     branch:
+#     - release_production
+#     event:
+#     - push
+#     - merge
+
+# - name: up_service_to_prod
+#   image: python:3.7.9
+#   volumes:
+#   - name: cache
+#     path: /home/centos/drone/
+#   environment:
+#     compose: prod
+#     host:
+#       from_secret: SERVER_PROD_MID
+#     username:
+#       from_secret: USER_SERVER_PROD_MID
+#   commands:
+#   - pip3 install -U fabric3
+#   - fab -i /home/centos/drone/AND-PROD.pem -H $${username}@$${host} compose_up_env:foldername=${DRONE_REPO_NAME,,},compose=$${compose}
+#   when:
+#     branch:
+#     - release_production
+#     event:
+#     - push
+#     - merge
+
+#                                         #
+# --------------------------------------- #
+#                                         #
 
 - name: slack_notify
   image: plugins/slack
@@ -279,15 +573,13 @@ steps:
       *Repo:* {{ repo.name }}
       *Branch:* <http://https://gitlab.com/govco-developers/{{ repo.owner }}/repos/{{ repo.name }}/commits?until=refs/heads/{{ build.branch }}&merges=include|{{ build.branch }}>
       *Commit:* <http://https://gitlab.com/govco-developers/{{ repo.owner }}/repos/{{ repo.name }}/commits/{{ build.commit }}|{{ truncate build.commit 8 }}>
-
       Author: {{ build.author }}
-
       <{{ build.link }}|Visit build page ↗>
   when:
     branch:
     - develop
     - stage
-    - release/*
+    - release*
     - master
     status:
     - failure

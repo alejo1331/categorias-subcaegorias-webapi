@@ -2,12 +2,12 @@ version: '3.7'
 services:
   webapi_dot_net:
     container_name: categorias-subcategorias-webapi
-    image: 669335818103.dkr.ecr.us-east-1.amazonaws.com/govco-developers/categorias-subcategorias-webapi:stage # Old ECR
-    # image: 086119512619.dkr.ecr.us-east-1.amazonaws.com/govco-developers/categorias-subcategorias-webapi:stage # New ECR
+    image: 669335818103.dkr.ecr.us-east-1.amazonaws.com/govco-developers/categorias-subcategorias-webapi:release_operaciones # Old ECR
+    # image: 086119512619.dkr.ecr.us-east-1.amazonaws.com/govco-developers/categorias-subcategorias-webapi:release_operaciones # New ECR
     ports:
       - 8087:80
     environment:
-      - ASPNETCORE_ENVIRONMENT=Staging
+      - ASPNETCORE_ENVIRONMENT=Operaciones
       - TZ=America/Bogota
       - LANG=C.UTF-8
       - LANGUAGE=C.UTF-8
@@ -18,4 +18,3 @@ services:
 networks:
   NETWORK_GOVCO_INTERNO:
     external: true
-    
