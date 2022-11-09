@@ -17,6 +17,7 @@ namespace Categorias.Infrastructure.Profiles
             CreateMap<TramiteCategoria, TramiteCategoriaEntity>().ReverseMap();
             CreateMap<TipoElemento, TipoElementoEntity>().ReverseMap();
             CreateMap<Estado, EstadoEntity>().ReverseMap();
+            CreateMap<Parametro, ParametroEntity>().ReverseMap();
 
 
 

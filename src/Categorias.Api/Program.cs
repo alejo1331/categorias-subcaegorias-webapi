@@ -89,8 +89,12 @@ void AddDatabaseConfiguration(ref WebApplicationBuilder builder)
     string connectionString = builder.Configuration.GetConnectionString("SqlServerConnectionMastergovco");
     builder.Services.AddEntityFrameworkSqlServer().AddDbContext<Context>(options =>
                 options.UseSqlServer(connectionString));
+    builder.Services.AddEntityFrameworkSqlServer().AddDbContext<ContextoParametro>(options =>
+              options.UseSqlServer(connectionString));
 
 };
+
+
 
 
 
