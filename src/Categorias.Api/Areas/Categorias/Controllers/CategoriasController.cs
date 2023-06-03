@@ -50,5 +50,16 @@ namespace Categorias.Api.Areas.Categoria.Controllers
                 return BadRequest();
             return new JsonResult(result);
         }
+
+        [HttpGet("Categorias/TipoCategoriaPaginado/{siglaTipo}/{parametro}/{pagina}")]
+        public IActionResult ObtenerListadoCategoriasPorTipoCategoriaPaginado(string siglaTipo, string parametro, int pagina)
+        {
+
+            var result = _categoriaUseCase.ObtenerListadoCategoriasPorTipoCategoriaPaginado(siglaTipo, parametro, pagina);
+
+            if (!result.Succeeded)
+                return BadRequest();
+            return new JsonResult(result);
+        }
     }
 }

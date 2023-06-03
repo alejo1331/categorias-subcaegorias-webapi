@@ -1,5 +1,6 @@
 ﻿using Categorias.Application.DTO;
 using Categorias.Application.Models;
+using Categorias.Domain.CategoriasDomain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,6 @@ namespace Categorias.Application.UseCases.Interface
     {
         Response<List<CategoriaDTO>> ObtenerListadoCategoriasPorTipoCategoria(string sigla);
         Response<List<CategoriaDTO>> ObtenerListadoCategoriasPaginado(PaginateModel paginateModel);
+        Response<List<CategoriaDTO>> ObtenerListadoCategoriasPorTipoCategoriaPaginado(string sigla, string parametro, int pagina);
     }
 }
