@@ -20,6 +20,7 @@ namespace Categorias.Application.Profiles
             CreateMap<TipoElementoDTO, TipoElementoEntity>().ReverseMap();
             CreateMap<EstadoDTO, EstadoEntity>().ReverseMap();
             CreateMap<TramiteCategoriaDTO, TramiteCategoriaEntity>().ReverseMap();
+            CreateMap<ParametroDTO, ParametroEntity>().ReverseMap();
 
         }
     }

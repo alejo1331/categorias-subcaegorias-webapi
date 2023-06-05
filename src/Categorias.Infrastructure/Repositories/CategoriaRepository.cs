@@ -81,6 +81,38 @@ namespace Categorias.Infrastructure.Repositories
 
         }
 
+        public List<CategoriaEntity> ObtenerListadoCategoriasPorTipoCategoriaPaginado(string sigla,string parametro,int pagina)
+        {
+            int numberOfObjectsPerPage;
+            ParametroRepository pParametoRepository = new ParametroRepository();
+            numberOfObjectsPerPage = Int32.Parse(pParametoRepository.ObtenerValorParametro(parametro).valor);
+
+            try
+            {
+                using (var context = new CategoriasContext())
+                {
+                    var categorias = context.Categoria
+                                    .Where(c => c.Estado.Descripcion == "Activo"
+                                                && c.TipoCategoria.Sigla == sigla
+                                                && c.TipoCategoria.Estado.Descripcion == "Activo")
+                                    .OrderBy(c => c.Nombre)
+                                     .Skip(numberOfObjectsPerPage * pagina)
+                                     .Take(numberOfObjectsPerPage)
+                                    .ToList();
+                    var listaMapped = _mapper.Map<List<CategoriaEntity>>(categorias);
+                    Console.WriteLine(context);
+                    return listaMapped;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
+
+        }
+
         public List<CategoriaEntity> ObtenerListadoCategoriasPaginado(PaginateModelDomain paginateModel)
         {
             try

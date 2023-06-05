@@ -53,5 +53,17 @@ namespace Categorias.Domain.CategoriasDomain.Services
                 throw;
             }
         }
+
+        public List<CategoriaEntity> ObtenerListadoCategoriasPorTipoCategoriaPaginado(string sigla, string parametro, int pagina)
+        {
+            try
+            {
+                return _categoriaRepository.ObtenerListadoCategoriasPorTipoCategoriaPaginado(sigla, parametro, pagina);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

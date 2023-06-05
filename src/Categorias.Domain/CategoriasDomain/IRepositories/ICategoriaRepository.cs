@@ -13,5 +13,6 @@ namespace Categorias.Domain.CategoriasDomain.IRepositories
         List<CategoriaEntity> ObtenerListadoCategoriasPaginado(PaginateModelDomain paginateModel);
         List<CategoriaEntity> ObtenerListadoCategorias();
         List<CategoriaEntity> ObtenerListadoCategoriasPorTipoCategoria(string sigla);
+        List<CategoriaEntity> ObtenerListadoCategoriasPorTipoCategoriaPaginado(string sigla, string parametro, int pagina);
     }
 }

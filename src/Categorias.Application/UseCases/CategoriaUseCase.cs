@@ -4,6 +4,7 @@ using Categorias.Application.DTO;
 using Categorias.Application.Models;
 using Categorias.Application.Profiles;
 using Categorias.Application.UseCases.Interface;
+using Categorias.Domain.CategoriasDomain.Entities;
 using Categorias.Domain.CategoriasDomain.Models;
 using Categorias.Domain.CategoriasDomain.Services;
 using Categorias.Infrastructure.Repositories;
@@ -78,6 +79,29 @@ namespace Categorias.Application.UseCases
         public Response<List<CategoriaDTO>> ObtenerListadoCategorias()
         {
             throw new NotImplementedException();
+        }
+
+        public Response<List<CategoriaDTO>> ObtenerListadoCategoriasPorTipoCategoriaPaginado(string sigla, string parametro, int pagina)
+        {
+
+            
+            var response = new Response<List<CategoriaDTO>>();
+
+            try
+            {
+                using (var categoriaRepository = new CategoriaRepository())
+                {
+                    response.Data = _mapper.Map<List<CategoriaDTO>>(new CategoriaService(categoriaRepository).ObtenerListadoCategoriasPorTipoCategoriaPaginado(sigla, parametro, pagina));
+                    response.Data.ForEach(c => c.Codigo = c.Id.ToString());
+                }
+                response.Succeeded = true;
+            }
+            catch (Exception e)
+            {
+                response.Message = e.ToString();
+            }
+
+            return response;
         }
     }
 }
